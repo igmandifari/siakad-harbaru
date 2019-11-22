@@ -29,8 +29,10 @@ class Tutor extends CI_Controller {
             redirect('tutor');
         }
         else{
-        $data["tutor"] = $tutor->getById($id);
-        $this->load->view("tutor/ubah",$data);
+            $data["tutor"] = $tutor->getById($id);
+            $data["title"] = "Ubah Data";
+            $data["actor"] = "Tutor";
+            $this->load->view("tutor/ubah",$data);
         }
     }
     public function tambah(){

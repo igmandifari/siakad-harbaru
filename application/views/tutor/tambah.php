@@ -43,12 +43,12 @@
                         <div class="form-grup">
                         <label class="d-block">Jenis Kelamin</label>
                             <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" class="custom-control-input" id="tutor_jenis_kelamin-1" name="tutor_jenis_kelamin">
-                                <label class="custom-control-label" for="tutor_jenis_kelamin-1" value="Pria">Pria</label>
+                                <input type="radio" class="custom-control-input" id="tutor_jenis_kelamin-1" value="Pria" name="tutor_jenis_kelamin">
+                                <label class="custom-control-label" for="tutor_jenis_kelamin-1">Pria</label>
                             </div>
                             <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" class="custom-control-input" id="tutor_jenis_kelamin-2" name="tutor_jenis_kelamin">
-                                <label class="custom-control-label" for="tutor_jenis_kelamin-2" value="Wanita">Wanita</label>
+                                <input type="radio" class="custom-control-input" id="tutor_jenis_kelamin-2"value="Wanita"name="tutor_jenis_kelamin">
+                                <label class="custom-control-label" for="tutor_jenis_kelamin-2">Wanita</label>
                             </div>
                         </div>
                         <br>
