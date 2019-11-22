@@ -13,17 +13,13 @@ class Tutor extends CI_Controller {
         $this->load->view('tutor/list',$data);
         
     }
-    // public function hapus($id){
-    //     $this->load->model('Tutor_model');
-    //     $run = $this->Tutor_model->delete_entry($id);
-    //     if($run)
-    //     {
-    //         echo "<script>alert('berhasil menghapus data');</script>";
-    //     }else
-    //     {
-    //         echo "<script>alert('gagal menghapus data')</script>";
-    //     }
-    // }
+    public function hapus($id=null){
+        if (!isset($id)) redirect('siswa');
+        
+        if ($this->Tutor_model->delete($id)) {
+            redirect('tutor');
+        }
+    }
     public function ubah($id=null)
     {
         $tutor= $this->Tutor_model;
@@ -41,9 +37,11 @@ class Tutor extends CI_Controller {
         $tutor = $this->Tutor_model;
         //$validasi = $this->form_validation;
         //$validasi = set_rules('field_name', 'Field Label', 'tutor_nip|NIP|required');
-        $submit = $this->input->post("submit");
-        if($submit) {
+        //$submit = $this->input->post("submit");
+        if($_POST) {
+            
             $tutor->simpan();
+            redirect('tutor');
             //$this->session->set_flashdata('success', 'Berhasil disimpan');
         }
         $data["title"] = "Tambah Data";

@@ -10,6 +10,7 @@
         <!-- Page JS Plugins CSS -->
         <link rel="stylesheet" href="<?=base_url('assets/js/plugins/datatables/dataTables.bootstrap4.css');?>">
         <link rel="stylesheet" href="<?=base_url('assets/js/plugins/datatables/buttons-bs4/buttons.bootstrap4.min.css');?>">
+        <link rel="stylesheet" href="<?=base_url('assets/js/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css');?>">
         <!-- Fonts and OneUI framework -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400italic,600,700%7COpen+Sans:300,400,400italic,600,700">
         <link rel="stylesheet" id="css-main" href="<?=base_url('assets/css/oneui.min.css');?>">

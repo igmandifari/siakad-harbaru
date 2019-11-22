@@ -40,6 +40,22 @@
                             <label for="tutor_nama">Nama Lengkap</label>
                             <input type="text" class="form-control" id="tutor_nama" name="tutor_nama" placeholder="Masukan Nama Lengkap">
                         </div>
+                        <div class="form-grup">
+                        <label class="d-block">Jenis Kelamin</label>
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" class="custom-control-input" id="tutor_jenis_kelamin-1" name="tutor_jenis_kelamin">
+                                <label class="custom-control-label" for="tutor_jenis_kelamin-1" value="Pria">Pria</label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" class="custom-control-input" id="tutor_jenis_kelamin-2" name="tutor_jenis_kelamin">
+                                <label class="custom-control-label" for="tutor_jenis_kelamin-2" value="Wanita">Wanita</label>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label for="tutor_tempat_lahir">Tempat Lahir</label>
+                            <input type="text" class="form-control" id="tutor_tempat_lahir" name="tutor_tempat_lahir" placeholder="Tempat Lahir">
+                        </div>
                         <div class="form-group">
                             <label for="tutor_agama">Agama</label>
                             <select class="custom-select" id="tutor_agama" name="tutor_agama">

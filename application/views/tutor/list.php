@@ -35,28 +35,40 @@
                     <tr>
                         <th class="text-center" style="width: 80px;">NIP</th>
                         <th>Nama</th>
-                        <th class="d-none d-sm-table-cell" style="width: 30%;">Jenis Kelamin</th>
-                        <th class="d-none d-sm-table-cell" style="width: 15%;">TTL</th>
+                        <th class="d-none d-sm-table-cell" style="width: 15%;">Jenis Kelamin</th>
+                        <th class="text-center d-none d-sm-table-cell" style="width: 30%;">TTL</th>
                         <th style="width: 15%;">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
+                   
                 <?php foreach ($tutors as $tutor): ?>
-                var_dump($tutor);
+                
 									
                     <tr>
-                        <td class="text-center font-size-sm">1</td>
+                        <td class="text-center font-size-sm"><?=$tutor->tutor_nip;?></td>
                         <td class="font-w600 font-size-sm">
-                            <a href="be_pages_generic_blank.html">Danielle Jones</a>
+                            <small><?=$tutor->tutor_nama;?>
+                        </td>
+                        <td class="font-size-sm">
+                            <?=$tutor->tutor_jenis_kelamin;?>
                         </td>
                         <td class="d-none d-sm-table-cell font-size-sm">
-                            client1<em class="text-muted">@example.com</em>
+                            <?=$tutor->tutor_tempat_lahir;?>, <?=$tutor->tutor_tanggal_lahir;?></span>
                         </td>
-                        <td class="d-none d-sm-table-cell">
-                            <span class="badge badge-success">VIP</span>
-                        </td>
-                        <td>
-                            <em class="text-muted font-size-sm">9 days ago</em>
+                        <td class="text-center">
+                            <div class="btn-group">
+                                <a href="<?=base_url('tutor/ubah/').$tutor->tutor_id;?>">
+                                    <button type="button" class="btn btn-sm btn-light js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Ubah">
+                                        <i class="fa fa-fw fa-pencil-alt"></i>
+                                    </button>
+                                </a>
+                                <a href="<?=base_url('tutor/hapus/').$tutor->tutor_id;?>">
+                                    <button type="button" class="btn btn-sm btn-light js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Hapus">
+                                        <i class="fa fa-fw fa-times"></i>
+                                    </button>
+                                </a>
+                            </div>
                         </td>
                     </tr>
                     <tr>
