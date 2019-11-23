@@ -26,55 +26,49 @@
     <!-- Dynamic Table Full -->
     <div class="block">
         <div class="block-header">
-            <h3 class="block-title">Dynamic Table <small>Full</small></h3>
+            <a href="<?=base_url('tutor/tambah');?>">
+                <button type="button" class="btn btn-success mr-1 mb-3">
+                    <i class="fa fa-fw fa-plus mr-1"></i> Tambah Data
+                </button>
+            </a>
         </div>
         <div class="block-content block-content-full">
             <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _es6/pages/be_tables_datatables.js -->
             <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
-                <thead>
-                    <tr>
-                        <th class="text-center" style="width: 80px;">NIP</th>
-                        <th>Nama</th>
-                        <th class="d-none d-sm-table-cell" style="width: 15%;">Jenis Kelamin</th>
-                        <th class="text-center d-none d-sm-table-cell" style="width: 30%;">TTL</th>
-                        <th style="width: 15%;">Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                   
-                <?php foreach ($tutors as $tutor): ?>
-                
-									
-                    <tr>
-                        <td class="text-center font-size-sm"><?=$tutor->tutor_nip;?></td>
-                        <td class="font-w600 font-size-sm">
-                            <small><?=$tutor->tutor_nama;?>
-                        </td>
-                        <td class="font-size-sm">
-                            <?=$tutor->tutor_jenis_kelamin;?>
-                        </td>
-                        <td class="d-none d-sm-table-cell font-size-sm">
-                            <?=$tutor->tutor_tempat_lahir;?>, <?=$tutor->tutor_tanggal_lahir;?></span>
-                        </td>
-                        <td class="text-center">
-                            <div class="btn-group">
-                                <a href="<?=base_url('tutor/ubah/').$tutor->tutor_id;?>">
-                                    <button type="button" class="btn btn-sm btn-light js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Ubah">
-                                        <i class="fa fa-fw fa-pencil-alt"></i>
-                                    </button>
-                                </a>
-                                <a href="<?=base_url('tutor/hapus/').$tutor->tutor_id;?>">
-                                    <button type="button" class="btn btn-sm btn-light js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Hapus">
-                                        <i class="fa fa-fw fa-times"></i>
-                                    </button>
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                <?php endforeach;?>
-                </tbody>
-            </table>
+                                <thead>
+                                    <tr>
+                                        <th class="text-center" style="width: 80px;">NIP</th>
+                                        <th>Nama Lengkap</th>
+                                        <th class="d-none d-sm-table-cell" style="width: 15%;">Jenis Kelamin</th>
+                                        <th class="d-none d-sm-table-cell" style="width: 30%;">TTL</th>
+                                        <th style="width: 15%;">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach($tutors as $tutor):?>
+                                        <tr>
+                                            <td><?=$tutor->tutor_nip;?>
+                                            <td><?=$tutor->tutor_nama;?>
+                                            <td><?=$tutor->tutor_jenis_kelamin;?>
+                                            <td><?=$tutor->tutor_tempat_lahir;?>, <?=$tutor->tutor_tanggal_lahir;?></td>
+                                            <td class="text-center">
+                                                <div class="btn-group">
+                                                    <a href="<?=base_url('tutor/ubah/').$tutor->tutor_id;?>">
+                                                        <button type="button" class="btn btn-sm btn-light js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Ubah">
+                                                            <i class="fa fa-fw fa-pencil-alt"></i>
+                                                        </button>
+                                                    </a>
+                                                    <a href="<?=base_url('tutor/hapus/').$tutor->tutor_id;?>">
+                                                        <button type="button" class="btn btn-sm btn-light js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Hapus">
+                                                            <i class="fa fa-fw fa-times"></i>
+                                                        </button>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach;?>
+                                </tbody>
+                            </table>
         </div>
     </div>
     <!-- END Dynamic Table Full -->

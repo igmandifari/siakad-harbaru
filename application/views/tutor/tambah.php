@@ -51,15 +51,18 @@
                                 <label class="custom-control-label" for="tutor_jenis_kelamin-2">Wanita</label>
                             </div>
                         </div>
-                        <br>
                         <div class="form-group">
+                            <label for="tutor_tanggal_lahir">Tanggal Lahir</label>
+                            <input type="date" class="js-flatpickr form-control bg-white js-flatpickr-enabled flatpickr-input active" id="tutor_tanggal_lahir" name="tutor_tanggal_lahir">
+                        </div>
+                        <div class="form-grup">
                             <label for="tutor_tempat_lahir">Tempat Lahir</label>
                             <input type="text" class="form-control" id="tutor_tempat_lahir" name="tutor_tempat_lahir" placeholder="Tempat Lahir">
                         </div>
                         <div class="form-group">
                             <label for="tutor_agama">Agama</label>
                             <select class="custom-select" id="tutor_agama" name="tutor_agama">
-                                <option value="0">Please select</option>
+                                <option value="0">Silahkan Pilih</option>
                                 <option value="Islam">Islam</option>
                                 <option value="Kristen Protestan">Kristen Protestan</option>
                                 <option value="Kristen Katolik">Kristen Katolik</option>
@@ -71,18 +74,18 @@
                         <div class="form-group">
                             <label class="d-block">Kewarganegaraan</label>
                             <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" class="custom-control-input" id="tutor_kewarganegaraan-1" name="tutor_kewarganegaraan">
-                                <label class="custom-control-label" for="tutor_kewarganegaraan-1" value="WNA">WNA</label>
+                                <input type="radio" class="custom-control-input" id="tutor_kewarganegaraan-1" name="tutor_kewarganegaraan" value="WNA">
+                                <label class="custom-control-label" for="tutor_kewarganegaraan-1">WNA</label>
                             </div>
                             <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" class="custom-control-input" id="tutor_kewarganegaraan-2" name="tutor_kewarganegaraan">
-                                <label class="custom-control-label" for="tutor_kewarganegaraan-2" value="WNI">WNI</label>
+                                <input type="radio" class="custom-control-input" id="tutor_kewarganegaraan-2" name="tutor_kewarganegaraan" value="WNI">
+                                <label class="custom-control-label" for="tutor_kewarganegaraan-2">WNI</label>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="tutor_pendidikan_terakhir">Pendidikan Terakhir</label>
                             <select class="custom-select" id="tutor_pendidikan_terakhir" name="tutor_pendidikan_terakhir">
-                                <option value="0">Please select</option>
+                                <option value="0">Silahkan Pilih</option>
                                 <option value="SLTA Sederajat">SLTA Sederajat</option>
                                 <option value="D3">D3</option>
                                 <option value="D4">D4</option>
@@ -118,6 +121,13 @@
                         <div class="form-grup">
                         <label for="tutor_alamat_kabupaten">KODE POS</label>
                             <input type="text" class="form-control" id="tutor_alamat_kodepos" name="tutor_alamat_kodepos" placeholder="KODE POS">
+                        </div>
+                        <div class="form-group">
+                            <label>Foto</label>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input js-custom-file-input-enabled" data-toggle="custom-file-input" id="example-file-input-custom" name="example-file-input-custom">
+                                <label class="custom-file-label" for="example-file-input-custom">Pilih foto:</label>
+                            </div>
                         </div>
                     </div>
                 </div>

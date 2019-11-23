@@ -9,7 +9,7 @@ class Tutor extends CI_Controller {
         $data["tutors"] = $this->Tutor_model->getAll();
         $data["title"] = "Data Tutor";
         $data["actor"] = "Tutor";
-
+         //$this->load->view('tutor/coba');
         $this->load->view('tutor/list',$data);
         
     }
@@ -40,7 +40,7 @@ class Tutor extends CI_Controller {
         //$validasi = $this->form_validation;
         //$validasi = set_rules('field_name', 'Field Label', 'tutor_nip|NIP|required');
         //$submit = $this->input->post("submit");
-        if($_POST) {
+        if(isset($_POST["submit"])) {
             
             $tutor->simpan();
             redirect('tutor');
