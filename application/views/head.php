@@ -10,7 +10,7 @@
         <!-- Stylesheets -->
         <!-- Page JS Plugins CSS -->
         <?php
-            if($title="Tambah Data"){
+            if($title=="Tambah Data"){
                 echo '<link rel="stylesheet" href="'.base_url("assets/js/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css").'">';
                 echo '<link rel="stylesheet" href="'.base_url("assets/js/plugins/flatpickr/flatpickr.min.css").'">';
             }
@@ -44,7 +44,7 @@
             <!-- END Side Overlay -->
 
             <!-- Sidebar -->
-<nav id="sidebar" aria-label="Main Navigation">
+            <nav id="sidebar" aria-label="Main Navigation">
                 <!-- Side Header -->
                 <div class="content-header bg-white-5">
                     <!-- Logo -->

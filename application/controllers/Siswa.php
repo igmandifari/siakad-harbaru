@@ -1,19 +1,19 @@
 <?php
 
-Class Siswa extends CI_Controller {
-
-    function __construct() {
+Class Siswa extends CI_Controller
+{
+    public function __construct()
+    {
         parent::__construct();
-        //chekAksesModule();
-        $this->load->library('form_validation');
         $this->load->model('Siswa_model');
+        $this->load->library('form_validation');        
         $this->load->library('upload');
     }
-
     
-    function index() { 
+    public function index()
+    {
         $data["title"] = "Data Siswa";
-        $data["actor"] = "Siswa";
+   	    $data["actor"] = "Siswa";
         $data["siswas"] = $this->Siswa_model->getAll();
 
         $this->load->view('siswa/list',$data);
@@ -45,7 +45,9 @@ Class Siswa extends CI_Controller {
             $this->load->view("siswa/ubah",$data);
         }
     }
-    public function tambah(){
+
+    public function tambah()
+    {
         $siswa = $this->Siswa_model;
         
         $data["title"] = "Tambah Data";
@@ -54,8 +56,7 @@ Class Siswa extends CI_Controller {
         $this->form_validation->set_rules('siswa_nis','NIS','required|numeric');
         $this->form_validation->set_rules('siswa_nisn','NISN','required|numeric');
         $this->form_validation->set_rules('siswa_nama','NAMA','required');
-        $this->form_validation->set_rules('siswa_jenis_kelamin','Jenis Kelamin','required');
-        $this->form_validation->set_rules('siswa_agama','Agama','required');
+
         if ($this->form_validation->run() == FALSE){
             $this->load->view('siswa/tambah',$data);
         } else{
@@ -67,6 +68,5 @@ Class Siswa extends CI_Controller {
             redirect('siswa');
         }
     }
-
 
 }
