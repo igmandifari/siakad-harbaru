@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 //
 // Print
 // --------------------------------------------------
@@ -19,25 +18,3 @@
         display: none !important;
     }
 }
-=======
-//
-// Print
-// --------------------------------------------------
-
-@media print {
-    #page-container,
-    #main-container {
-        padding: 0 !important;
-    }
-
-    #page-overlay,
-    #page-loader,
-    #page-header,
-    #page-footer,
-    #sidebar,
-    #side-overlay,
-    .block-options {
-        display: none !important;
-    }
-}
->>>>>>> 7d1a9c172eef389cf4f054448f50f53dc0cc1bbb

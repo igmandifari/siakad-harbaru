@@ -50,15 +50,6 @@
                                     <!-- Sign In Form -->
                                     <!-- jQuery Validation (.js-validation-signin class is initialized in js/pages/op_auth_signin.min.js which was auto compiled from _es6/pages/op_auth_signin.js) -->
                                     <!-- For more info and examples you can check out https://github.com/jzaefferer/jquery-validation -->
-<<<<<<< HEAD
-                                    <form class="js-validation-signin" action="<?=base_url('auth')?>" method="POST">
-                                        <div class="py-3">
-                                            <div class="form-group">
-                                                <input type="text" class="form-control form-control-lg form-control-alt" id="login-username" name="login-username" placeholder="Masukan nama pengguna">
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="password" class="form-control form-control-lg form-control-alt" id="login-password" name="login-password" placeholder="Masukan kata sandi">
-=======
         
                                     <?= form_open ('auth/cek_login','class="js-validation-signin"'); ?>
                                         <div class="py-3">
@@ -67,18 +58,12 @@
                                             </div>
                                             <div class="form-group">
                                                 <input type="password" class="form-control form-control-lg form-control-alt" id="password" name="password" placeholder="Masukan kata sandi">
->>>>>>> 7d1a9c172eef389cf4f054448f50f53dc0cc1bbb
                                             </div>
                                             <div class="form-group">
                                                 <div class="d-md-flex align-items-md-center justify-content-md-between">
                                                     <div class="custom-control custom-switch">
-<<<<<<< HEAD
-                                                        <input type="checkbox" class="custom-control-input" id="login-remember" name="login-remember">
-                                                        <label class="custom-control-label font-w400" for="login-remember">Remember Me</label>
-=======
                                                         <input type="checkbox" class="custom-control-input" id="remember" name="remember">
                                                         <label class="custom-control-label font-w400" for="remember">Remember Me</label>
->>>>>>> 7d1a9c172eef389cf4f054448f50f53dc0cc1bbb
                                                     </div>
                                                     <div class="py-2">
                                                         <a class="font-size-sm">Forgot Password?</a>

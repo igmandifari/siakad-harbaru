@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /*!
  * jQuery Validation Plugin v1.19.1
  *
@@ -17,26 +16,6 @@
 	}
 }(function( $ ) {
 
-=======
-/*!
- * jQuery Validation Plugin v1.19.1
- *
- * https://jqueryvalidation.org/
- *
- * Copyright (c) 2019 Jörn Zaefferer
- * Released under the MIT license
- */
-(function( factory ) {
-	if ( typeof define === "function" && define.amd ) {
-		define( ["jquery"], factory );
-	} else if (typeof module === "object" && module.exports) {
-		module.exports = factory( require( "jquery" ) );
-	} else {
-		factory( jQuery );
-	}
-}(function( $ ) {
-
->>>>>>> 7d1a9c172eef389cf4f054448f50f53dc0cc1bbb
 $.extend( $.fn, {
 
 	// https://jqueryvalidation.org/validate/
@@ -1631,11 +1610,7 @@ $.extend( $.validator, {
 	}
 
 } );
-<<<<<<< HEAD
 
-=======
-
->>>>>>> 7d1a9c172eef389cf4f054448f50f53dc0cc1bbb
 // Ajax mode: abort
 // usage: $.ajax({ mode: "abort"[, port: "uniqueport"]});
 // if mode:"abort" is used, the previous request on that port (port can be undefined) is aborted via XMLHttpRequest.abort()
@@ -1671,9 +1646,5 @@ if ( $.ajaxPrefilter ) {
 		return ajax.apply( this, arguments );
 	};
 }
-<<<<<<< HEAD
 return $;
-=======
-return $;
->>>>>>> 7d1a9c172eef389cf4f054448f50f53dc0cc1bbb
 }));

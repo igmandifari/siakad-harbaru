@@ -30,40 +30,23 @@
             <h3 class="block-title">Data siswa</h3>
         </div>
         <div class="block-content block-content-full">
-<<<<<<< HEAD
-        <?= validation_errors(); ?>
-=======
->>>>>>> 7d1a9c172eef389cf4f054448f50f53dc0cc1bbb
             <form action="<?=base_url('siswa/tambah');?>" method="POST" enctype="multipart/form-data">
                 <div class="row push">
                     <div class="col-lg-12 col-xl-5">
                         <div class="form-group">
                             <label for="siswa_nis">NIS</label>
-<<<<<<< HEAD
-                            <input type="text" class="form-control" id="siswa_nis" name="siswa_nis" placeholder="Masukan NIS" required>
-                            <div id="val-nis-error" class="invalid-feedback animated fadeIn"><?= form_error('nis'); ?></div>
-                            <small class="form-text text-danger"><?= form_error('nama'); ?></small>     
-=======
                             <input type="text" class="form-control" id="siswa_nis" name="siswa_nis" placeholder="Masukan NIS">   
                             <small class="form-text text-danger"><?= form_error('siswa_nis'); ?></small>
->>>>>>> 7d1a9c172eef389cf4f054448f50f53dc0cc1bbb
                         </div>
                         <div class="form-group">
                             <label for="siswa_nis">NISN</label>
                             <input type="text" class="form-control" id="siswa_nis" name="siswa_nisn" placeholder="Masukan NISN">
-<<<<<<< HEAD
-                        </div>
-                        <div class="form-group">
-                            <label for="siswa_nama">Nama Lengkap</label>
-                            <input type="text" class="form-control" id="siswa_nama" name="siswa_nama" placeholder="Masukan Nama Lengkap" required>
-=======
                             <small class="form-text text-danger"><?= form_error('siswa_nisn'); ?></small>
                         </div>
                         <div class="form-group">
                             <label for="siswa_nama">Nama Lengkap</label>
                             <input type="text" class="form-control" id="siswa_nama" name="siswa_nama" placeholder="Masukan Nama Lengkap">
                             <small class="form-text text-danger"><?= form_error('siswa_nama'); ?></small>
->>>>>>> 7d1a9c172eef389cf4f054448f50f53dc0cc1bbb
                         </div>
                         <div class="form-grup">
                         <label class="d-block">Jenis Kelamin</label>
@@ -425,8 +408,4 @@
 
 </main>
 <!-- END Main Container -->
-<<<<<<< HEAD
 <?php $this->load->view('foot')?>
-=======
-<?php $this->load->view('foot')?>
->>>>>>> 7d1a9c172eef389cf4f054448f50f53dc0cc1bbb

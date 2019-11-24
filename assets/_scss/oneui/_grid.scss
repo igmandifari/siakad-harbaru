@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 //
 // Grid
 // --------------------------------------------------
@@ -30,36 +29,3 @@
         min-width: 100%;
     }
 }
-=======
-//
-// Grid
-// --------------------------------------------------
-
-// Tiny grid gutters
-.row.gutters-tiny {
-    margin-right: (-($space-row-gutter-tiny / 2));
-    margin-left: (-($space-row-gutter-tiny / 2));
-
-    > .col,
-    > [class*="col-"] {
-        padding-left: ($space-row-gutter-tiny / 2);
-        padding-right: ($space-row-gutter-tiny / 2);
-    }
-
-    .push,
-    .block,
-    &.items-push > div {
-        margin-bottom: $space-row-gutter-tiny;
-    }
-}
-
-// Equal height of elements inside columns
-.row.row-deck > div {
-    display: flex;
-    align-items: stretch;
-
-    > .block {
-        min-width: 100%;
-    }
-}
->>>>>>> 7d1a9c172eef389cf4f054448f50f53dc0cc1bbb

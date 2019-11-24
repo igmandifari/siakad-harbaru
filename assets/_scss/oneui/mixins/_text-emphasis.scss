@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 //
 // Text emphasis
 // --------------------------------------------------
@@ -18,24 +17,3 @@
         }
     }
 }
-=======
-//
-// Text emphasis
-// --------------------------------------------------
-
-@mixin text-emphasis-variant($parent, $color) {
-    #{$parent} {
-        color: $color !important;
-    }
-
-    a#{$parent} {
-        &.link-fx::before {
-            background-color: $color;
-        }
-
-        @include hover-focus {
-            color: darken($color, 20%) !important;
-        }
-    }
-}
->>>>>>> 7d1a9c172eef389cf4f054448f50f53dc0cc1bbb

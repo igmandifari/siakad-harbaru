@@ -2,15 +2,16 @@
 
 class Auth extends CI_Controller
 {
-
+    
     public function __construct()
     {
         parent::__construct();
-        $this->load->model("User_model");
+        $this->load->model('User_model');
     }
     
     public function index(){
-        $this->load->view('auth/login');
+        $data["title"] = "Login - Siak Harba";
+        $this->load->view('auth/login',$data);
          
     }
 
@@ -33,7 +34,6 @@ class Auth extends CI_Controller
             redirect('auth');
         }
     }
-
 
     public function logout(){
         $this->session->sess_destroy();

@@ -1,16 +1,7 @@
-<<<<<<< HEAD
 //
 // Badge
 // --------------------------------------------------
 
 .badge-secondary {
     @include badge-variant(rgba($black,.33));
-=======
-//
-// Badge
-// --------------------------------------------------
-
-.badge-secondary {
-    @include badge-variant(rgba($black,.33));
->>>>>>> 7d1a9c172eef389cf4f054448f50f53dc0cc1bbb
 }

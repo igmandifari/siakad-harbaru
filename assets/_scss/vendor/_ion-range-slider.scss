@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 //
 // Ion Range Slider
 //
@@ -30,36 +29,3 @@
         background: theme-color("primary");
     }
 }
-=======
-//
-// Ion Range Slider
-//
-// Overwrite/Extend styles
-// --------------------------------------------------
-
-.irs.irs--round {
-    .irs-min,
-    .irs-max,
-    .irs-line,
-    .irs-grid-pol {
-        background: $body-bg;
-    }
-
-    .irs-handle {
-        border-color: theme-color("primary");
-    }
-
-    .irs-from:before,
-    .irs-to:before,
-    .irs-single:before {
-        border-top-color: theme-color("primary");
-    }
-
-    .irs-bar,
-    .irs-from,
-    .irs-to,
-    .irs-single {
-        background: theme-color("primary");
-    }
-}
->>>>>>> 7d1a9c172eef389cf4f054448f50f53dc0cc1bbb

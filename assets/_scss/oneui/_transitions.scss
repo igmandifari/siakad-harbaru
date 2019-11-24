@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 //
 // Transitions
 // --------------------------------------------------
@@ -36,42 +35,3 @@
         }
     }
 }
-=======
-//
-// Transitions
-// --------------------------------------------------
-
-.fade {
-    transition: opacity .25s ease-out;
-
-    &.fade-up,
-    &.fade-right,
-    &.fade-left {
-        transition: opacity .25s ease-out, transform .25s ease-out;
-    }
-
-    &.fade-up {
-        transform: translateY(50px);
-
-        &.show {
-            transform: translateY(0);
-        }
-    }
-
-    &.fade-right {
-        transform: translateX(-50px);
-
-        &.show {
-            transform: translateX(0);
-        }
-    }
-
-    &.fade-left {
-        transform: translateX(50px);
-
-        &.show {
-            transform: translateX(0);
-        }
-    }
-}
->>>>>>> 7d1a9c172eef389cf4f054448f50f53dc0cc1bbb

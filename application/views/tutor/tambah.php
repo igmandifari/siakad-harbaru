@@ -35,18 +35,12 @@
                         <div class="form-group">
                             <label for="tutor_nip">NIP</label>
                             <input type="text" class="form-control" id="tutor_nip" name="tutor_nip" placeholder="Masukan NIP">
-<<<<<<< HEAD
-=======
                             <small class="form-text text-danger"><?= form_error('tutor_nip'); ?></small>
->>>>>>> 7d1a9c172eef389cf4f054448f50f53dc0cc1bbb
                         </div>
                         <div class="form-group">
                             <label for="tutor_nama">Nama Lengkap</label>
                             <input type="text" class="form-control" id="tutor_nama" name="tutor_nama" placeholder="Masukan Nama Lengkap">
-<<<<<<< HEAD
-=======
                             <small class="form-text text-danger"><?= form_error('tutor_nama'); ?></small>
->>>>>>> 7d1a9c172eef389cf4f054448f50f53dc0cc1bbb
                         </div>
                         <div class="form-grup">
                         <label class="d-block">Jenis Kelamin</label>
