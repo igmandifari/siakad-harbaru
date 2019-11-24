@@ -1,62 +1,92 @@
-<div class="block">
-    <div class="block-header">
-            <h3 class="block-title">Table <small>Sementara</small></h3>
-    </div>
-        <div class="dataTables_wrapper dt-bootstrap4 no-footer">
-            <div class="block-content block-content-full">
-                <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _es6/pages/be_tables_datatables.js -->
-            
-                <table id="mytable" class="table table-striped table-bordered table-hover table-full-width dataTable" cellspacing="0" width="100%">
-                    <thead>
-                        <tr>
-                            <th>NO</th>
-                            <th>ID</th>
-                            <th>NIS</th>
-                            <th>NISN</th>
-                            <th>NAMA</th>
-                            <th>TANGGAL LAHIR</th>
-                            <th>Aksi</th>
-                        </tr>
-                    </thead>
-                </table>
-            </div>
+<?php $this->load->view('head')?>
+<?php $this->load->view('siswa/nav_list')?>
+
+<!-- Main Container -->
+<main id="main-container">
+
+<!-- Hero -->
+<div class="bg-body-light">
+    <div class="content content-full">
+        <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
+            <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
+                <ol class="breadcrumb breadcrumb-alt">
+                    <li class="breadcrumb-item"><?=$actor;?></li>
+                    <li class="breadcrumb-item" aria-current="page">
+                        <a class="link-fx" href=""><?=$title;?></a>
+                    </li>
+                </ol>
+            </nav>
         </div>
     </div>
- </div>
+</div>
+<!-- END Hero -->
 
+<!-- Page Content -->
+<div class="content">
+    <!-- Dynamic Table Full -->
+    <div class="block">
+        <div class="block-header">
+        <div class="block-header">
+            <a href="<?=base_url('siswa/tambah');?>">
+                <button type="button" class="btn btn-success mr-1 mb-3">
+                    <i class="fa fa-fw fa-plus mr-1"></i> Tambah Data
+                </button>
+            </a>
+        </div>
+        </div>
+        <div class="block-content block-content-full">
+            <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _es6/pages/be_tables_datatables.js -->
+            <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
+                <thead>
+                    <tr>
+                        <th class="text-center" style="width: 80px;">NIS</th>
+                        <th class="text-center" style="width: 80px;">NISN</th>
+                        <th class="text-center" style="width: 80px;">Nama</th>
+                        <th class="d-none d-sm-table-cell" style="width: 15%;">TTL</th>
+                        <th class="text-center" style="width: 15%;">Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php foreach ($siswas as $siswa): ?>
+									
+                    <tr>
+                        <td class="text-center font-size-sm"><?= $siswa->siswa_nis ?></td>
+                        <td class="text-center font-size-sm"><?= $siswa->siswa_nisn ?></td>
+                        <td class="d-none d-sm-table-cell font-size-sm">
+                        <?= $siswa->siswa_nama ?><em class="text-muted"></em>
+                        </td>
+                        <td class="d-none d-sm-table-scell">
+                            <span class="badge badge-success"></span>
+                        </td>
+                        <td>
+                            <em class="text-muted font-size-sm"><?= $siswa->siswa_tanggal_lahir ?></em>
+                        </td>
+                        <td class="text-center">
+                            <div class="btn-group">
+                                <a href="<?=base_url('siswa/ubah/').$siswa->siswa_id;?>">
+                                    <button type="button" class="btn btn-sm btn-light js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Ubah">
+                                        <i class="fa fa-fw fa-pencil-alt"></i>
+                                    </button>
+                                </a>
+                                <a href="<?=base_url('siswa/hapus/').$siswa->siswa_id;?>">
+                                    <button type="button" class="btn btn-sm btn-light js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Hapus">
+                                        <i class="fa fa-fw fa-times"></i>
+                                    </button>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                <?php endforeach;?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- END Dynamic Table Full -->
 
+</div>
+<!-- END Page Content -->
 
-
-
-    <!-- <script>
-        $(document).ready(function() {
-            var t = $('#mytable').DataTable( {
-                "ajax": '< site_url('siswa/data'); ?>',
-                "order": [[ 2, 'asc' ]],
-                "columns": [
-                    {
-                        "data": null,
-                        "width": "50px",
-                        "sClass": "text-center",
-                        "orderable": false,
-                    },
-                    {
-                        "data": "siswa_id",
-                        "width": "120px",
-                        "sClass": "text-center",
-                    },
-                    { "data": "siswa_nis" },
-                    { "data": "siswa_nisn" },
-                    { "data": "siswa_nama" },
-                    { "data": "siswa_tanggal_lahir", "width": "150px" },
-                    { "data": "aksi","width": "75px" },
-                ]
-            } );
-               
-            t.on( 'order.dt search.dt', function () {
-                t.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
-                    cell.innerHTML = i+1;
-                } );
-            } ).draw();
-        } );
-    </script> -->
+</main>
+<!-- END Main Container -->
+<?php $this->load->view('foot')?>

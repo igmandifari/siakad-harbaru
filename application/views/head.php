@@ -44,7 +44,7 @@
             <!-- END Side Overlay -->
 
             <!-- Sidebar -->
-<nav id="sidebar" aria-label="Main Navigation">
+            <nav id="sidebar" aria-label="Main Navigation">
                 <!-- Side Header -->
                 <div class="content-header bg-white-5">
                     <!-- Logo -->
