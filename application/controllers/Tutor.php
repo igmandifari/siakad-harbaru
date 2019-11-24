@@ -6,6 +6,7 @@ class Tutor extends CI_Controller
     {
         parent::__construct();
         $this->load->model("Tutor_model");
+        $this->load->library('form_validation');
         $this->load->library('upload');
     }
 
@@ -50,24 +51,27 @@ class Tutor extends CI_Controller
 
     public function tambah(){
         $tutor = $this->Tutor_model;
-        //$validasi = $this->form_validation;
-        //$validasi = set_rules('field_name', 'Field Label', 'tutor_nip|NIP|required');
-        //$submit = $this->input->post("submit");
-        // $config['upload_path']      = './gambar/';
-        // $config['allowed_types']    = 'jpg|png|jpeg';
-        // $config['max_size']         = '200';
-        //$upload_img = $this->upload($config)->do_upload('tutor_foto');
-        if(isset($_POST["submit"])) {
-            //$error = $this->upload->display_errors();
-            //$status = $this->upload->data();
-            $tutor->simpan();
-            redirect('tutor');
-            //$this->session->set_flashdata('success', 'Berhasil disimpan');
-        }
+
         $data["title"] = "Tambah Data";
         $data["case"] = "Tutor";
+        
+        $this->form_validation->set_rules('tutor_nip','NIP','required|numeric');
+        $this->form_validation->set_rules('tutor_nama','NAMA','required');
+    
 
-        $this->load->view('tutor/tambah',$data);
+        
+        if ($this->form_validation->run() == FALSE){
+            $this->load->view('tutor/tambah',$data);
+        } else{
+
+            if(isset($_POST["submit"])) {
+
+                $tutor->simpan();
+                $this->session->set_flashdata('flash', 'Ditambahkan');
+            }
+            redirect('tutor');
+        }
+
     }
     
 }
