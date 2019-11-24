@@ -6,43 +6,37 @@ class Auth extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('Auth_model');
+        $this->load->model('User_model');
+    }
+    
+    public function index(){
+        $this->load->view('auth/login');
+         
     }
 
-    public function index()
-    {
-        if(isset($_POST["submit"])){
-            $username = $this->input->post('login-username');
-            $password = $this->input->post('login-password');
-            $loginAdmin = $this->Auth_model->cek_login($username, $password);
+    function cek_login() {
+        if (isset($_POST['submit'])) {
+            // proses login disini
 
-            if (!empty($loginAdmin)) {
-                // sukses login user
-                $this->session->set_userdata($loginAdmin);
-                redirect('tutor');
-            // } elseif (!empty($loginGuru)) {
-            //     // login guru
-            //     $session = array(
-            //         'nama_lengkap'  =>  $loginGuru['nama_guru'],
-            //         'id_level_user' =>  3,
-            //         'id_guru'       =>  $loginGuru['id_guru']);
-            //     $this->session->set_userdata($session);
-            //     redirect('jadwal');
-            // } else {
-            //     // gagal login
-            //     redirect('auth');
-            // }
-        } 
-    }
-    else{
-        $data["title"] = "Sign in untuk masuk";
-        $this->load->view('auth/login',$data);
+            $username = $this->input->post('username');
+            $password = $this->input->post('password');
+            $result = $this->User_model->cekLogin($username,$password);
+
+            if (!empty($result)) {
+                $this->session->set_userdata($result);
+                redirect('siswa');
+            } else {
+                redirect('auth');
+            }
+            print_r($result);
+        } else {
+            redirect('auth');
         }
-        
     }
 
-    public function logout(){
+    function logout(){
         $this->session->sess_destroy();
         redirect('auth');
     }
+
 }

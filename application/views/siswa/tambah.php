@@ -409,4 +409,3 @@
 </main>
 <!-- END Main Container -->
 <?php $this->load->view('foot')?>
-<script src="<?=base_url('assets/js/plugins/bootstrap-notify/bootstrap-notify.min.js');?>"></script>
