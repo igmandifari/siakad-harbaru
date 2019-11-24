@@ -54,9 +54,14 @@ Class Siswa extends CI_Controller
         $data["actor"] = "Siswa";
 
         $this->form_validation->set_rules('siswa_nis','NIS','required|numeric');
+<<<<<<< HEAD
         $this->form_validation->set_rules('siswa_nama','NAMA','required');
         $this->form_validation->set_rules('siswa_jenis_kelamin','Jenis Kelamin','required');
         $this->form_validation->set_rules('siswa_agama','Agama','required');
+=======
+        $this->form_validation->set_rules('siswa_nisn','NISN','required|numeric');
+        $this->form_validation->set_rules('siswa_nama','NAMA','required');
+>>>>>>> 7d1a9c172eef389cf4f054448f50f53dc0cc1bbb
 
         if ($this->form_validation->run() == FALSE){
             $this->load->view('siswa/tambah',$data);

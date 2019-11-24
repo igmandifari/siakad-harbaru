@@ -98,7 +98,11 @@
                         <div class="dropdown d-inline-block ml-2">
                             <button type="button" class="btn btn-sm btn-dual" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <img class="rounded" src="<?= base_url('assets/media/avatars/avatar10.jpg');?>" alt="Header Avatar" style="width: 18px;">
+<<<<<<< HEAD
                                 <span class="d-none d-sm-inline-block ml-1">Adam</span>
+=======
+                                <span class="d-none d-sm-inline-block ml-1"><?= $this->session->userdata('nama_lengkap') ?></span>
+>>>>>>> 7d1a9c172eef389cf4f054448f50f53dc0cc1bbb
                                 <i class="fa fa-fw fa-angle-down d-none d-sm-inline-block"></i>
                             </button>
                             <div class="dropdown-menu dropdown-menu-right p-0 border-0 font-size-sm" aria-labelledby="page-header-user-dropdown">
@@ -111,10 +115,17 @@
                                         <span>Pengaturan</span>
                                         <i class="si si-settings"></i>
                                     </a>
+<<<<<<< HEAD
                                     <a class="dropdown-item d-flex align-items-center justify-content-between" href="op_auth_signin.html">
                                         <span>Log Out</span>
                                         <i class="si si-logout ml-1"></i>
                                     </a>
+=======
+                                  
+                                        <?= anchor('auth/logout','<i class="si si-logout ml-1"></i><span>Log Out</span>','<a class="dropdown-item d-flex align-items-center justify-content-between"') ?>
+                                        
+                            
+>>>>>>> 7d1a9c172eef389cf4f054448f50f53dc0cc1bbb
                                 </div>
                             </div>
                         </div>

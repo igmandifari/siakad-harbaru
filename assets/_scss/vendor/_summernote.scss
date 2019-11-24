@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 //
 // Summernote Editor
 //
@@ -25,4 +26,33 @@
     .card-header.note-toolbar .note-color .dropdown-menu {
         min-width: 350px;
     }
+=======
+//
+// Summernote Editor
+//
+// Overwrite/Extend styles
+// --------------------------------------------------
+
+.note-editor.note-frame {
+    border-color: $body-bg-dark;
+
+    .note-toolbar-wrapper {
+        background-color: $white;
+    }
+
+    .note-toolbar {
+        background-color: $body-bg-light;
+        border-bottom-color: $body-bg-dark;
+    }
+
+    .note-statusbar {
+        border-top-color: $body-bg-dark;
+        background-color: $body-bg-light;
+    }
+
+    .note-popover .popover-content .note-color .dropdown-menu,
+    .card-header.note-toolbar .note-color .dropdown-menu {
+        min-width: 350px;
+    }
+>>>>>>> 7d1a9c172eef389cf4f054448f50f53dc0cc1bbb
 }

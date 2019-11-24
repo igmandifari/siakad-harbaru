@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 //
 // Flex Utilities
 // --------------------------------------------------
@@ -11,3 +12,18 @@
         .flex#{$infix}-10-auto { flex: 1 0 auto; }
     }
 }
+=======
+//
+// Flex Utilities
+// --------------------------------------------------
+
+// Flex specific options
+@each $breakpoint in map-keys($grid-breakpoints) {
+    @include media-breakpoint-up($breakpoint) {
+        $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+        .flex#{$infix}-00-auto { flex: 0 0 auto; }
+        .flex#{$infix}-10-auto { flex: 1 0 auto; }
+    }
+}
+>>>>>>> 7d1a9c172eef389cf4f054448f50f53dc0cc1bbb

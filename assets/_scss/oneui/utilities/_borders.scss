@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 //
 // Borders
 // --------------------------------------------------
@@ -10,3 +11,17 @@
 .border-4x { border-width: 4px !important; }
 .border-5x { border-width: 5px !important; }
 .border-10x { border-width: 10px !important; }
+=======
+//
+// Borders
+// --------------------------------------------------
+
+.border-white-op { border-color: rgba($white, .1) !important; }
+.border-black-op { border-color: rgba($black, .1) !important; }
+
+.border-2x { border-width: 2px !important; }
+.border-3x { border-width: 3px !important; }
+.border-4x { border-width: 4px !important; }
+.border-5x { border-width: 5px !important; }
+.border-10x { border-width: 10px !important; }
+>>>>>>> 7d1a9c172eef389cf4f054448f50f53dc0cc1bbb

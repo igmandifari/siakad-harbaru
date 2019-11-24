@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 //
 // Forms
 // --------------------------------------------------
@@ -39,3 +40,46 @@
         }
     }
 }
+=======
+//
+// Forms
+// --------------------------------------------------
+
+.form-control {
+    font-family: $font-family-base;
+
+    // Alternative Style
+    &.form-control-alt {
+        border-color: $body-bg;
+        background-color: $body-bg;
+        transition: none;
+
+        &:focus {
+            border-color: $body-bg-dark;
+            background-color: $body-bg-dark;
+            box-shadow: none;
+        }
+
+        &.is-valid {
+            border-color: theme-color("success-light");
+            background-color: theme-color("success-light");
+
+            &:focus {
+                border-color: lighten(theme-color("success-light"), 2%);
+                background-color: lighten(theme-color("success-light"), 2%);
+            }
+        }
+
+        &.is-invalid {
+            border-color: theme-color("danger-light");
+            background-color: theme-color("danger-light");
+
+
+            &:focus {
+                border-color: lighten(theme-color("danger-light"), 2%);
+                background-color: lighten(theme-color("danger-light"), 2%);
+            }
+        }
+    }
+}
+>>>>>>> 7d1a9c172eef389cf4f054448f50f53dc0cc1bbb

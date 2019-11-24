@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 //
 // Required files for theme creation
 // --------------------------------------------------
@@ -23,3 +24,30 @@
 // Custom variables
 @import '../variables';
 @import '../variables-themes';
+=======
+//
+// Required files for theme creation
+// --------------------------------------------------
+
+// Bootstrap functions
+@import '../../bootstrap/functions';
+
+// User variables (your own variable overrides)
+@import '../../custom/variables';
+
+// Custom Bootstrap variables overrides
+@import '../variables-bootstrap';
+
+// Bootstrap variables
+@import '../../bootstrap/variables';
+
+// Bootstrap mixins
+@import '../../bootstrap/mixins';
+
+// Custom mixins and Bootstrap overrides
+@import '../mixins';
+
+// Custom variables
+@import '../variables';
+@import '../variables-themes';
+>>>>>>> 7d1a9c172eef389cf4f054448f50f53dc0cc1bbb

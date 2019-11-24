@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 //
 // jVectorMap
 //
@@ -35,3 +36,42 @@
 .jvectormap-zoomout {
     top: 2.25rem;
 }
+=======
+//
+// jVectorMap
+//
+// Overwrite/Extend styles
+// --------------------------------------------------
+
+.jvectormap-tip {
+    padding: .375rem .5rem;
+    font-family: $font-family-base;
+    background: theme-color('dark');
+    border: none;
+    border-radius: 0;
+}
+
+.jvectormap-zoomin,
+.jvectormap-zoomout,
+.jvectormap-goback {
+    left: 1rem;
+    padding: .25rem;
+    line-height: 1rem;
+    background: #555555;
+}
+
+.jvectormap-zoomin,
+.jvectormap-zoomout {
+    width: 1rem;
+    height: 1rem;
+}
+
+.jvectormap-zoomin:hover,
+.jvectormap-zoomout:hover {
+    opacity: .6;
+}
+
+.jvectormap-zoomout {
+    top: 2.25rem;
+}
+>>>>>>> 7d1a9c172eef389cf4f054448f50f53dc0cc1bbb
