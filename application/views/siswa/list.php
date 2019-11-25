@@ -59,7 +59,7 @@
                             <span class="badge badge-success"></span>
                         </td>
                         <td>
-                            <em class="text-muted font-size-sm"><?= $siswa->siswa_tanggal_lahir ?></em>
+                            <em class="text-muted font-size-sm"><?= $siswa->siswa_tempat_lahir .',' .$siswa->siswa_tanggal_lahir ?></em>
                         </td>
                         <td class="text-center">
                             <div class="btn-group">

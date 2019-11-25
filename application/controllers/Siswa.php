@@ -10,6 +10,7 @@ Class Siswa extends CI_Controller
             redirect($url);
         }
         $this->load->model('Siswa_model');
+        $this->load->model('Kelas_model');
         $this->load->library('form_validation');        
         $this->load->library('upload');
     }
@@ -37,10 +38,11 @@ Class Siswa extends CI_Controller
     public function ubah($id=null)
     {
         $siswa = $this->Siswa_model;
-        
+        $kelas =$this->Kelas_model;        
+
         $data["title"] = "Ubah Data";
         $data["actor"] = "Siswa";
-
+        $data["kelass"] = $kelas->getAll();
         $data['siswa'] = $siswa->getByid($id);
         
         $this->form_validation->set_rules('siswa_nis','NIS','required|numeric');
@@ -63,15 +65,18 @@ Class Siswa extends CI_Controller
     public function tambah()
     {
         $siswa = $this->Siswa_model;
-        
+        $kelas = $this->Kelas_model;
+
         $data["title"] = "Tambah Data";
         $data["actor"] = "Siswa";
+        $data["kelass"] = $kelas->getAll();
 
         $this->form_validation->set_rules('siswa_nis','NIS','required|numeric');
         $this->form_validation->set_rules('siswa_nisn','NISN','required|numeric');
         $this->form_validation->set_rules('siswa_nama','NAMA','required');
 
         if ($this->form_validation->run() == FALSE){
+            
             $this->load->view('siswa/tambah',$data);
         } else{
 

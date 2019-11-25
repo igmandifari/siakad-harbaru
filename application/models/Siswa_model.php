@@ -23,6 +23,7 @@
                 'siswa_alamat_provinsi'     => $this->input->post("siswa_alamat_provinsi"),
                 'siswa_alamat_kodepos'      => $this->input->post("siswa_alamat_kodepos"),
                 'siswa_foto'                => $this->input->post("siswa_foto"),
+                'kelas_id'                  => $this->input->post("kelas_id"),
 
                 'orangtua_ayah_nama'         => $this->input->post("orangtua_ayah_nama"),
                 'orangtua_ayah_agama'        => $this->input->post("orangtua_ayah_agama"),
@@ -86,6 +87,7 @@
                 'siswa_alamat_provinsi'     => $this->input->post("siswa_alamat_provinsi"),
                 'siswa_alamat_kodepos'      => $this->input->post("siswa_alamat_kodepos"),
                 'siswa_foto'                => $this->input->post("siswa_foto"),
+                'kelas_id'                  => $this->input->post("kelas_id"),    
 
                 'orangtua_ayah_nama'         => $this->input->post("orangtua_ayah_nama"),
                 'orangtua_ayah_agama'        => $this->input->post("orangtua_ayah_agama"),

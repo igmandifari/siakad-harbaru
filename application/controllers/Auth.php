@@ -2,7 +2,7 @@
 
 class Auth extends CI_Controller
 {
-
+    
     public function __construct()
     {
         parent::__construct();
@@ -11,11 +11,12 @@ class Auth extends CI_Controller
     }
     
     public function index(){
-        $this->load->view('auth/login');
+        $data["title"] = "Login - Siak Harba";
+        $this->load->view('auth/login',$data);
          
     }
 
-    function cek_login() {
+    public function cek_login() {
         if (isset($_POST['submit'])) {
             // proses login disini
 
@@ -41,7 +42,7 @@ class Auth extends CI_Controller
         }
     }
 
-    function logout(){
+    public function logout(){
         $this->session->sess_destroy();
         redirect('auth');
     }
