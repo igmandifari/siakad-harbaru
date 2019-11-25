@@ -121,6 +121,16 @@
                         <label for="siswa_alamat_kabupaten">KODE POS</label>
                             <input type="text" class="form-control" id="siswa_alamat_kodepos" name="siswa_alamat_kodepos" value="<?=$siswa["siswa_alamat_kodepos"];?>">
                         </div>
+                        <div class="form-grup">
+                            <label for="siswa_alamat_kabupaten">Kelas</label>
+                            <select class="custom-select" id="kelas_id" name="kelas_id">
+                                <option value="0">Silahkan Pilih</option>
+                            <?php foreach($kelass as $kelas) :?>
+                            <option value="<?=$kelas->kelas_id?>" 
+                            <?php if ($siswa["kelas_id"] == $kelas->kelas_id) echo 'selected'?>><?=$kelas->kelas_nama?></option>
+                            <?php endforeach;?>
+                            </select>
+                        </div>
                     </div>
                 </div>
         </div>

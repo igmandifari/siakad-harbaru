@@ -71,7 +71,7 @@
                         <div class="form-group">
                             <label for="siswa_agama">Agama</label>
                             <select class="custom-select" id="siswa_agama" name="siswa_agama">
-                                <option value="0">Please select</option>
+                                <option value="0">Silahkan Pilih</option>
                                 <option value="Islam">Islam</option>
                                 <option value="Kristen Protestan">Kristen Protestan</option>
                                 <option value="Kristen Katolik">Kristen Katolik</option>
@@ -119,10 +119,21 @@
                         <label for="siswa_alamat_kabupaten">KODE POS</label>
                             <input type="text" class="form-control" id="siswa_alamat_kodepos" name="siswa_alamat_kodepos" placeholder="KODE POS">
                         </div>
-                        <label for="siswa_foto">Foto</label><br>
-                        <input type="file" name="siswa_foto" id="siswa_foto"><br><br>
-                    </div>
+                        <div class="form-grup">
+                            <label for="siswa_foto">Foto</label><br>
+                            <input type="file" name="siswa_foto" id="siswa_foto"><br><br>
+                        </div>
+                        <div class="form-grup">
+                            <label for="siswa_alamat_kabupaten">Kelas</label>
+                            <select class="custom-select" id="kelas_id" name="kelas_id">
+                                <option value="0">Silahkan Pilih</option>
+                            <?php foreach($kelass as $kelas) :?>
+                            <option value="<?=$kelas->kelas_id?>"><?=$kelas->kelas_nama?></option>
+                            <?php endforeach;?>
+                            </select>
+                        </div>
                 </div>
+            </div>
         </div>
 
         
@@ -143,7 +154,7 @@
                         <div class="form-group">
                             <label for="orangtua_ayah_agama">Agama</label>
                             <select class="custom-select" id="orangtua_ayah_agama" name="orangtua_ayah_agama">
-                                <option value="0">Please select</option>
+                                <option value="0">Silahkan Pilih</option>
                                 <option value="Islam">Islam</option>
                                 <option value="Kristen Protestan">Kristen Protestan</option>
                                 <option value="Kristen Katolik">Kristen Katolik</option>
@@ -167,7 +178,7 @@
                         <div class="form-group">
                             <label for="orangtua_ayah_pendidikan_terakhir">Pendidikan Terakhir</label>
                             <select class="custom-select" id="orangtua_ayah_pendidikan_terakhir" name="orangtua_ayah_pendidikan_terakhir">
-                                <option value="0">Please select</option>
+                                <option value="0">Silahkan Pilih</option>
                                 <option value="SLTA Sederajat">SLTA Sederajat</option>
                                 <option value="D3">D3</option>
                                 <option value="D4">D4</option>
@@ -231,7 +242,7 @@
                         <div class="form-group">
                             <label for="orangtua_ibu_agama">Agama</label>
                             <select class="custom-select" id="orangtua_ibu_agama" name="orangtua_ibu_agama">
-                                <option value="0">Please select</option>
+                                <option value="0">Silahkan Pilih</option>
                                 <option value="Islam">Islam</option>
                                 <option value="Kristen Protestan">Kristen Protestan</option>
                                 <option value="Kristen Katolik">Kristen Katolik</option>
@@ -255,7 +266,7 @@
                         <div class="form-group">
                             <label for="orangtua_ibu_pendidikan_terakhir">Pendidikan Terakhir</label>
                             <select class="custom-select" id="orangtua_ibu_pendidikan_terakhir" name="orangtua_ibu_pendidikan_terakhir">
-                                <option value="0">Please select</option>
+                                <option value="0">Silahkan Pilih</option>
                                 <option value="SLTA Sederajat">SLTA Sederajat</option>
                                 <option value="D3">D3</option>
                                 <option value="D4">D4</option>
@@ -319,7 +330,7 @@
                         <div class="form-group">
                             <label for="orangtua_wali_agama">Agama</label>
                             <select class="custom-select" id="orangtua_wali_agama" name="orangtua_wali_agama">
-                                <option value="0">Please select</option>
+                                <option value="0">Silahkan Pilih</option>
                                 <option value="Islam">Islam</option>
                                 <option value="Kristen Protestan">Kristen Protestan</option>
                                 <option value="Kristen Katolik">Kristen Katolik</option>
@@ -343,7 +354,7 @@
                         <div class="form-group">
                             <label for="orangtua_wali_pendidikan_terakhir">Pendidikan Terakhir</label>
                             <select class="custom-select" id="orangtua_wali_pendidikan_terakhir" name="orangtua_wali_pendidikan_terakhir">
-                                <option value="0">Please select</option>
+                                <option value="0">Silahkan Pilih</option>
                                 <option value="SLTA Sederajat">SLTA Sederajat</option>
                                 <option value="D3">D3</option>
                                 <option value="D4">D4</option>
