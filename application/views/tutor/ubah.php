@@ -10,7 +10,7 @@
         <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
             <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
                 <ol class="breadcrumb breadcrumb-alt">
-                    <li class="breadcrumb-item"><?=$case;?></li>
+                    <li class="breadcrumb-item"><?=$actor;?></li>
                     <li class="breadcrumb-item"><?=$title;?></li>
                     <li class="breadcrumb-item" aria-current="page">
                         <a class="link-fx" href=""><?=$tutor["tutor_nama"];?></a>
@@ -38,10 +38,12 @@
                         <div class="form-group">
                             <label for="tutor_nip">NIP</label>
                             <input type="text" class="form-control" id="tutor_nip" name="tutor_nip" value="<?=$tutor["tutor_nip"];?>">
+                            <small class="form-text text-danger"><?= form_error('tutor_nip'); ?></small>
                         </div>
                         <div class="form-group">
                             <label for="tutor_nama">Nama Lengkap</label>
                             <input type="text" class="form-control" id="tutor_nama" name="tutor_nama" value="<?=$tutor["tutor_nama"];?>">
+                            <small class="form-text text-danger"><?= form_error('tutor_nama'); ?></small>
                         </div>
                         <div class="form-grup">
                         <label class="d-block">Jenis Kelamin</label>

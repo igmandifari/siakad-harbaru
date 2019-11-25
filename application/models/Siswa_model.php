@@ -3,7 +3,7 @@
     Class Siswa_model extends CI_Model 
     {
         private $_table = "siswa";
-        public $siswa_nis;
+ 
         public function simpan(){
             $data= array(
                 'siswa_id'                  => uniqid(),
