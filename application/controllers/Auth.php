@@ -7,6 +7,7 @@ class Auth extends CI_Controller
     {
         parent::__construct();
         $this->load->model('User_model');
+        $this->load->library('form_validation');
     }
     
     public function index(){
@@ -21,6 +22,11 @@ class Auth extends CI_Controller
             $username = $this->input->post('username');
             $password = $this->input->post('password');
             $result = $this->User_model->cekLogin($username,$password);
+
+                    
+             $this->form_validation->set_rules('username','username','required');
+             $this->form_validation->set_rules('passowrd','password','required');
+
 
             if (!empty($result)) {
                 $this->session->set_userdata('MASUK',TRUE);

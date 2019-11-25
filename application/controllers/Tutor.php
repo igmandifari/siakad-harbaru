@@ -35,17 +35,26 @@ class Tutor extends CI_Controller
 
     public function ubah($id=null)
     {
-        $tutor= $this->Tutor_model;
+        $tutor = $this->Tutor_model;
         
-        if(isset($_POST["submit"])){
-            $tutor->perbarui();
+        $data["title"] = "Ubah Data";
+        $data["actor"] = "Tutor";
+
+        $data['tutor'] = $tutor->getByid($id);
+        
+        $this->form_validation->set_rules('tutor_nip','NIP','required|numeric');
+        $this->form_validation->set_rules('tutor_nama','NAMA','required');
+
+
+        if ($this->form_validation->run() == FALSE){
+            $this->load->view('tutor/ubah',$data);
+        } else{
+
+            if(isset($_POST["submit"])) {
+                $tutor->perbarui();
+                $this->session->set_flashdata('flash', 'Ditambahkan');
+            }
             redirect('tutor');
-        }
-        else{
-            $data["tutor"] = $tutor->getById($id);
-            $data["title"] = "Ubah Data";
-            $data["case"] = "Tutor";
-            $this->load->view("tutor/ubah",$data);
         }
     }
 
@@ -53,7 +62,7 @@ class Tutor extends CI_Controller
         $tutor = $this->Tutor_model;
 
         $data["title"] = "Tambah Data";
-        $data["case"] = "Tutor";
+        $data["actor"] = "Tutor";
         
         $this->form_validation->set_rules('tutor_nip','NIP','required|numeric');
         $this->form_validation->set_rules('tutor_nama','NAMA','required');

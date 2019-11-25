@@ -36,17 +36,27 @@ Class Siswa extends CI_Controller
 
     public function ubah($id=null)
     {
-        $siswa= $this->Siswa_model;
+        $siswa = $this->Siswa_model;
         
-        if(isset($_POST["submit"])){
-            $siswa->perbarui();
+        $data["title"] = "Ubah Data";
+        $data["actor"] = "Siswa";
+
+        $data['siswa'] = $siswa->getByid($id);
+        
+        $this->form_validation->set_rules('siswa_nis','NIS','required|numeric');
+        $this->form_validation->set_rules('siswa_nisn','NISN','required|numeric');
+        $this->form_validation->set_rules('siswa_nama','NAMA','required');
+
+
+        if ($this->form_validation->run() == FALSE){
+            $this->load->view('siswa/ubah',$data);
+        } else{
+
+            if(isset($_POST["submit"])) {
+                $siswa->perbarui();
+                $this->session->set_flashdata('flash', 'Ditambahkan');
+            }
             redirect('siswa');
-        }
-        else{
-            $data["siswa"] = $siswa->getById($id);
-            $data["title"] = "Ubah Data";
-            $data["case"] = "siswa";
-            $this->load->view("siswa/ubah",$data);
         }
     }
 

@@ -9,7 +9,7 @@
         <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
             <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
             <ol class="breadcrumb breadcrumb-alt">
-                    <li class="breadcrumb-item"><?=$case;?></li>
+                    <li class="breadcrumb-item"><?=$actor;?></li>
                     <li class="breadcrumb-item"><?=$title;?></li>
                     <li class="breadcrumb-item" aria-current="page">
                         <a class="link-fx" href=""><?=$siswa["siswa_nama"];?></a>
@@ -37,14 +37,17 @@
                         <div class="form-group">
                             <label for="siswa_nis">NIS</label>
                             <input type="text" class="form-control" id="siswa_nis" name="siswa_nis" value="<?=$siswa["siswa_nis"];?>">
+                            <small class="form-text text-danger"><?= form_error('siswa_nis'); ?></small>
                         </div>
                         <div class="form-group">
                             <label for="siswa_nis">NISN</label>
                             <input type="text" class="form-control" id="siswa_nis" name="siswa_nisn" value="<?=$siswa["siswa_nisn"];?>">
+                            <small class="form-text text-danger"><?= form_error('siswa_nisn'); ?></small>
                         </div>
                         <div class="form-group">
                             <label for="siswa_nama">Nama Lengkap</label>
                             <input type="text" class="form-control" id="siswa_nama" name="siswa_nama" value="<?=$siswa["siswa_nama"];?>">
+                            <small class="form-text text-danger"><?= form_error('siswa_nama'); ?></small>
                         </div>
                         <div class="form-grup">
                         <label class="d-block">Jenis Kelamin</label>

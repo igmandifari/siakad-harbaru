@@ -5,29 +5,45 @@ class Kelas extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model("Kelas_model");
+        if($this->session->userdata('MASUK') != TRUE){
+            $url=base_url();
+            redirect($url);
+        }
+        $this->load->model('Kelas_model');
+        $this->load->library('form_validation');        
     }
 
     public function index()
     {
-        $data["kelass"] = $this->Kelas_model->getAll();
+
         $data["title"] = "Data Kelas";
-        $data["case"] = "Kelas";
+        $data["actor"] = "Kelas";
+        $data["kelass"] = $this->Kelas_model->getAll();
     
         $this->load->view('kelas/list',$data);
     }
 
     public function tambah()
     {
-        if(isset($_POST["submit"])){
-            $this->Kelas_model->simpan();
+        $kelas = $this->Kelas_model;
+        
+        $data["title"] = "Tambah Data";
+        $data["actor"] = "Kelas";
+
+        $this->form_validation->set_rules('kelas_nama','NAMA/ID','required');
+
+
+        if ($this->form_validation->run() == FALSE){
+            $this->load->view('kelas/tambah',$data);
+        } else{
+
+            if(isset($_POST["submit"])) {
+                $kelas->simpan();
+                $this->session->set_flashdata('flash', 'Ditambahkan');
+            }
             redirect('kelas');
         }
-
-        $data["title"] = "Tambah Data";
-        $data["case"] = "Kelas";
-
-        $this->load->view('kelas/tambah',$data);
+    
     }
 
     public function hapus($id=null)
@@ -42,19 +58,27 @@ class Kelas extends CI_Controller
 
     public function ubah($id=null)
     {
+        
         $kelas = $this->Kelas_model;
+        
+        $data["title"] = "Ubah Data";
+        $data["actor"] = "Kelas";
 
-        if(isset($_POST["submit"])){
-            $kelas->perbarui();
+        $data['kelas'] = $kelas->getByid($id);
+        $this->form_validation->set_rules('kelas_nama','NAMA/ID','required');
+
+
+        if ($this->form_validation->run() == FALSE){
+            $this->load->view('kelas/ubah',$data);
+        } else{
+
+            if(isset($_POST["submit"])) {
+                $kelas->perbarui();
+                $this->session->set_flashdata('flash', 'Ditambahkan');
+            }
             redirect('kelas');
         }
-        else{
-            $data["kelas"] = $kelas->getById($id);
-            $data["title"] = "Ubah Data";
-            $data["case"] = "Kelas";
-            
-            $this->load->view('kelas/ubah',$data);
-        }
+        
         
     }
 

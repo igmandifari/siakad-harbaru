@@ -54,10 +54,10 @@
                                     <?= form_open ('auth/cek_login','class="js-validation-signin"'); ?>
                                         <div class="py-3">
                                             <div class="form-group">
-                                                <input type="text" class="form-control form-control-lg form-control-alt" id="username" name="username" placeholder="Masukan nama pengguna">
+                                                <input type="text" class="form-control form-control-lg form-control-alt" id="username" name="username" placeholder="Masukan nama pengguna" required>
                                             </div>
                                             <div class="form-group">
-                                                <input type="password" class="form-control form-control-lg form-control-alt" id="password" name="password" placeholder="Masukan kata sandi">
+                                                <input type="password" class="form-control form-control-lg form-control-alt" id="password" name="password" placeholder="Masukan kata sandi" required>
                                             </div>
                                             <div class="form-group">
                                                 <div class="d-md-flex align-items-md-center justify-content-md-between">

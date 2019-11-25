@@ -10,7 +10,7 @@
         <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
             <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
                 <ol class="breadcrumb breadcrumb-alt">
-                    <li class="breadcrumb-item"><?=$case;?></li>
+                    <li class="breadcrumb-item"><?=$actor;?></li>
                     <li class="breadcrumb-item" aria-current="page">
                         <a class="link-fx" href=""><?=$title;?></a>
                     </li>
@@ -35,6 +35,7 @@
                         <div class="form-group">
                             <label for="matpel_nama">Nama Mata Pelajaran</label>
                             <input type="text" class="form-control" id="matpel_nama" name="matpel_nama" placeholder="Masukan Nama atau Kode Mata Pelajaran">
+                            <small class="form-text text-danger"><?= form_error('matpel_nama'); ?></small>
                         </div>                        
                     </div>
                 </div>
