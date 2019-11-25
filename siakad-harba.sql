@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 25, 2019 at 05:16 PM
+-- Generation Time: Nov 25, 2019 at 06:00 PM
 -- Server version: 10.0.38-MariaDB-0ubuntu0.16.04.1
 -- PHP Version: 7.3.11-1+ubuntu16.04.1+deb.sury.org+1
 
@@ -42,6 +42,22 @@ INSERT INTO `administrator` (`administrator_id`, `administrator_username`, `admi
 (3, 'adm0dd0n', 'a31c86d61e1c1773167ca7b5bf023f98'),
 (5, 'bahtiar', 'a31c86d61e1c1773167ca7b5bf023f98'),
 (0, 'igman', '827ccb0eea8a706c4c34a16891f84e7b');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jadwal`
+--
+
+CREATE TABLE `jadwal` (
+  `jadwal_id` varchar(100) NOT NULL,
+  `jadwal_hari` varchar(15) NOT NULL,
+  `tutor_id` varchar(100) NOT NULL,
+  `matpel_id` varchar(100) NOT NULL,
+  `kelas_id` varchar(100) NOT NULL,
+  `jadwal_jam_mulai` varchar(10) NOT NULL,
+  `jadwal_jam_berakhir` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -272,6 +288,15 @@ INSERT INTO `tutor` (`tutor_id`, `tutor_nip`, `tutor_nama`, `tutor_jenis_kelamin
 --
 
 --
+-- Indexes for table `jadwal`
+--
+ALTER TABLE `jadwal`
+  ADD PRIMARY KEY (`jadwal_id`),
+  ADD KEY `jadwaLtutor` (`tutor_id`),
+  ADD KEY `jadwal_kelas` (`kelas_id`),
+  ADD KEY `jadwal_matpel` (`matpel_id`);
+
+--
 -- Indexes for table `kelas`
 --
 ALTER TABLE `kelas`
@@ -336,6 +361,14 @@ ALTER TABLE `tbl_user`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `jadwal`
+--
+ALTER TABLE `jadwal`
+  ADD CONSTRAINT `jadwal_kelas` FOREIGN KEY (`kelas_id`) REFERENCES `kelas` (`kelas_id`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `jadwal_matpel` FOREIGN KEY (`matpel_id`) REFERENCES `matpel` (`matpel_id`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `jadwal_tutor` FOREIGN KEY (`tutor_id`) REFERENCES `tutor` (`tutor_id`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
 -- Constraints for table `siswa`
