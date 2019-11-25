@@ -23,6 +23,7 @@ class Auth extends CI_Controller
             $result = $this->User_model->cekLogin($username,$password);
 
             if (!empty($result)) {
+                $this->session->set_userdata('MASUK',TRUE);
                 $this->session->set_userdata($result);
                 redirect('siswa');
             } else {

@@ -5,6 +5,10 @@ Class Siswa extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        if($this->session->userdata('MASUK') != TRUE){
+            $url=base_url();
+            redirect($url);
+        }
         $this->load->model('Siswa_model');
         $this->load->library('form_validation');        
         $this->load->library('upload');
