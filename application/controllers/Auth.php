@@ -6,11 +6,15 @@ class Auth extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        
         $this->load->model('User_model');
         $this->load->library('form_validation');
     }
     
     public function index(){
+        if($this->session->userdata('MASUK') == TRUE){
+            redirect("siswa");
+        }
         $data["title"] = "Login - Siak Harba";
         $this->load->view('auth/login',$data);
          
