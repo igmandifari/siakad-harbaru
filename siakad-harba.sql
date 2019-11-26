@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 25, 2019 at 06:00 PM
+-- Generation Time: Nov 26, 2019 at 02:30 PM
 -- Server version: 10.0.38-MariaDB-0ubuntu0.16.04.1
 -- PHP Version: 7.3.11-1+ubuntu16.04.1+deb.sury.org+1
 
@@ -59,6 +59,13 @@ CREATE TABLE `jadwal` (
   `jadwal_jam_berakhir` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `jadwal`
+--
+
+INSERT INTO `jadwal` (`jadwal_id`, `jadwal_hari`, `tutor_id`, `matpel_id`, `kelas_id`, `jadwal_jam_mulai`, `jadwal_jam_berakhir`) VALUES
+('5ddcd4551c97f', 'Jum\'at', '5dd7f98bc4245', '5ddcd276be772', '5ddb9cf0d13fc', '13:00', '14:00');
+
 -- --------------------------------------------------------
 
 --
@@ -92,6 +99,14 @@ CREATE TABLE `matpel` (
   `matpel_id` varchar(100) NOT NULL,
   `matpel_nama` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `matpel`
+--
+
+INSERT INTO `matpel` (`matpel_id`, `matpel_nama`) VALUES
+('5ddcd276be772', 'Matematika'),
+('5ddcd27ce80cd', 'Bahasa Indonesia');
 
 -- --------------------------------------------------------
 
