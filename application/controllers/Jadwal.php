@@ -5,6 +5,11 @@ class Jadwal extends CI_Controller
     {
         parent::__construct();
 
+        if($this->session->userdata('MASUK') != TRUE){
+            $url=base_url();
+            redirect($url);
+        }
+
         $this->load->model("Jadwal_model");
         $this->load->model("Kelas_model");
         $this->load->model("Tutor_model");
@@ -12,12 +17,35 @@ class Jadwal extends CI_Controller
     }
     public function index()
     {
-        echo base_url();
+        $data["jadwals"] = $this->Jadwal_model->getAll();
+        $data["title"] = "Jadwal Mata Pelajaran";
+        $data["actor"] = "Mata Pelajaran";
+
+        $this->load->view('jadwal/list',$data);
+    }
+
+    public function ubah($id=null)
+    {
+        
+        if(isset($_POST["submit"])){
+            $this->Jadwal_model->perbarui();
+            redirect('jadwal');
+        }else{
+
+            $data["title"] = "Ubah Jadwal Mata Pelajaran";
+            $data["actor"] = "Jadwal";
+            $data["kelass"] = $this->Kelas_model->getAll();
+            $data["matpels"] = $this->Matpel_model->getAll();
+            $data["tutors"] = $this->Tutor_model->getAll();
+            $data["jadwal"] = $this->Jadwal_model->getById($id);
+
+            $this->load->view("jadwal/ubah",$data);
+        }
+
     }
 
     public function tambah()
     {
-       
 
         if(isset($_POST["submit"])){
             $this->Jadwal_model->simpan();

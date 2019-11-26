@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 26, 2019 at 02:30 PM
+-- Generation Time: Nov 26, 2019 at 06:53 PM
 -- Server version: 10.0.38-MariaDB-0ubuntu0.16.04.1
 -- PHP Version: 7.3.11-1+ubuntu16.04.1+deb.sury.org+1
 
@@ -64,7 +64,8 @@ CREATE TABLE `jadwal` (
 --
 
 INSERT INTO `jadwal` (`jadwal_id`, `jadwal_hari`, `tutor_id`, `matpel_id`, `kelas_id`, `jadwal_jam_mulai`, `jadwal_jam_berakhir`) VALUES
-('5ddcd4551c97f', 'Jum\'at', '5dd7f98bc4245', '5ddcd276be772', '5ddb9cf0d13fc', '13:00', '14:00');
+('5ddcd4551c97f', 'Jum\'at', '5dd7f98bc4245', '5ddcd276be772', '5ddb9cf0d13fc', '13:00', '14:00'),
+('5ddd1084114ea', 'Jum\'at', '5dd7f94d53468', '5ddcd276be772', '5ddb9cf8d41fd', '15:00', '16:00');
 
 -- --------------------------------------------------------
 
@@ -183,45 +184,6 @@ INSERT INTO `siswa` (`siswa_id`, `siswa_nis`, `siswa_nisn`, `siswa_nama`, `siswa
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tabel_menu`
---
-
-CREATE TABLE `tabel_menu` (
-  `id` int(11) NOT NULL,
-  `nama_menu` varchar(50) NOT NULL,
-  `link` varchar(50) NOT NULL,
-  `icon` varchar(30) NOT NULL,
-  `is_main_menu` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `tabel_menu`
---
-
-INSERT INTO `tabel_menu` (`id`, `nama_menu`, `link`, `icon`, `is_main_menu`) VALUES
-(1, 'Database Siswa', 'siswa', '', 0),
-(2, 'Database Guru', 'guru', '', 0),
-(8, 'Data Sekolah', 'sekolah', '', 0),
-(9, 'Data Master', '#', '', 0),
-(10, 'Mata Pelajaran', 'mapel', '', 9),
-(11, 'Ruangan Kelas', 'ruangan', '', 9),
-(12, 'Jurusan', 'jurusan', '', 9),
-(13, 'Tahun Akademik', 'tahunakademik', '', 9),
-(14, 'Jadwal Pelajaran', 'jadwal', '', 0),
-(15, 'Rombongan Belajar', 'rombel', '', 9),
-(16, 'Laporan Nilai', 'nilai', '', 0),
-(17, 'Pengguna sistem', 'users', '', 0),
-(19, 'Kurikulum', 'kurikulum', '', 9),
-(20, 'Wali Kelas', 'walikelas', '', 0),
-(21, 'form pembayaran', 'keuangan/form', '', 0),
-(22, 'Peserta Didik', 'siswa/siswa_aktif', '', 0),
-(23, 'jenis pembayaran', 'jenis_pembayaran', '', 0),
-(24, 'setup biaya', 'keuangan/setup', '', 0),
-(25, 'Raport Online', 'raport', '', 0);
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `tbl_level_user`
 --
 
@@ -331,12 +293,6 @@ ALTER TABLE `siswa`
   ADD KEY `kelas_id` (`kelas_id`);
 
 --
--- Indexes for table `tabel_menu`
---
-ALTER TABLE `tabel_menu`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `tbl_level_user`
 --
 ALTER TABLE `tbl_level_user`
@@ -358,11 +314,6 @@ ALTER TABLE `tutor`
 -- AUTO_INCREMENT for dumped tables
 --
 
---
--- AUTO_INCREMENT for table `tabel_menu`
---
-ALTER TABLE `tabel_menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 --
 -- AUTO_INCREMENT for table `tbl_level_user`
 --
