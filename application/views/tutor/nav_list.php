@@ -51,6 +51,11 @@
                                         <span class="nav-main-link-name">Tambah Kelas</span>
                                     </a>
                                 </li>
+                                <li class="nav-main-item">
+                                    <a class="nav-main-link" href="<?=base_url('jadwal');?>">
+                                        <span class="nav-main-link-name">Jadwal Mata Pelajaran</span>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                         <li class="nav-main-item">
@@ -67,6 +72,11 @@
                                 <li class="nav-main-item">
                                     <a class="nav-main-link" href="<?=base_url('matpel/tambah');?>">
                                         <span class="nav-main-link-name">Tambah Mata Pelajaran</span>
+                                    </a>
+                                </li>
+                                <li class="nav-main-item">
+                                    <a class="nav-main-link" href="<?=base_url('jadwal');?>">
+                                        <span class="nav-main-link-name">Jadwal Mata Pelajaran</span>
                                     </a>
                                 </li>
                             </ul>

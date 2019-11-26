@@ -69,6 +69,11 @@
                                         <span class="nav-main-link-name">Tambah Mata Pelajaran</span>
                                     </a>
                                 </li>
+                                <li class="nav-main-item">
+                                    <a class="nav-main-link" href="<?=base_url('jadwal');?>">
+                                        <span class="nav-main-link-name">Jadwal Mata Pelajaran</span>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                     </ul>
@@ -111,10 +116,10 @@
                                         <span>Pengaturan</span>
                                         <i class="si si-settings"></i>
                                     </a>
-                                  
-                                        <?= anchor('auth/logout','<i class="si si-logout ml-1"></i><span>Log Out</span>','<a class="dropdown-item d-flex align-items-center justify-content-between"') ?>
-                                        
-                            
+                                    <a class="dropdown-item d-flex align-items-center justify-content-between" href="<?=base_url('auth/logout')?>">
+                                        <span>Log Out</span>
+                                        <i class="si si-logout ml-1"></i>
+                                    </a>
                                 </div>
                             </div>
                         </div>
