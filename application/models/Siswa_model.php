@@ -4,7 +4,7 @@
     {
         private $_table = "siswa";
  
-        public function simpan(){
+        public function simpan($foto){
             $data= array(
                 'siswa_id'                  => uniqid(),
                 'siswa_nis'                 => $this->input->post("siswa_nis"),
@@ -68,7 +68,7 @@
             );
             return $this->db->insert($this->_table, $data);
         }
-        public function perbarui()
+        public function perbarui($foto)
         {
             $data= array(
                 'siswa_nis'                 => $this->input->post("siswa_nis"),
