@@ -45,8 +45,8 @@
                                 <tbody>
                                     <?php foreach($admins as $admin):?>
                                         <tr>
-                                            <td><?=$admin->nama_admin;?>
-                                            <td><?=$admin->username;?>
+                                            <td><?=$admin->admin_nama;?>
+                                            <td><?=$admin->admin_username;?>
                                             <td class="text-center">
                                                 <div class="btn-group">
                                                     <a href="<?=base_url('admin/ubah/').$admin->admin_id;?>">

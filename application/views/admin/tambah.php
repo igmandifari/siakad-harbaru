@@ -36,7 +36,24 @@
                             <label for="admin_nama">Nama admin</label>
                             <input type="text" class="form-control" id="admin_nama" name="admin_nama" placeholder="Masukan Nama atau Kode admin">
                             <small class="form-text text-danger"><?= form_error('admin_nama'); ?></small>
-                        </div>                        
+                        </div> 
+                        <div class="form-group">
+                            <label for="admin_nama">Username</label>
+                            <input type="text" class="form-control" id="admin_username" name="admin_username" placeholder="Masukan Nama Pengguna">
+                            <small class="form-text text-danger"><?= form_error('admin_username'); ?></small>
+                        </div> 
+                        <div class="form-group">
+                            <label for="admin_nama">Password</label>
+                            <input type="password" class="form-control" id="admin_password" name="admin_password" placeholder="Masukan Password">
+                            <small class="form-text text-danger"><?= form_error('admin_password'); ?></small>
+                        </div> 
+                        <div class="form-group">
+                            <label>Foto</label>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input js-custom-file-input-enabled" data-toggle="custom-file-input" id="admin_foto" name="admin_foto">
+                                <label class="custom-file-label" for="admin_foto">Pilih foto:</label>
+                            </div>
+                        </div>                   
                     </div>
                 </div>
                 <div class="row push">

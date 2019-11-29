@@ -7,7 +7,7 @@ class Auth extends CI_Controller
     {
         parent::__construct();
         
-        $this->load->model('User_model');
+        $this->load->model('Auth_model');
         $this->load->library('form_validation');
     }
     
@@ -26,7 +26,7 @@ class Auth extends CI_Controller
 
             $username = $this->input->post('username');
             $password = $this->input->post('password');
-            $result = $this->User_model->cekLogin($username,$password);
+            $result = $this->Auth_model->cekLogin($username,$password);
 
                     
              $this->form_validation->set_rules('username','username','required');

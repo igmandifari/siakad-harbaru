@@ -32,7 +32,7 @@
         </div>
         <div class="block-content block-content-full">
             <form action="<?=base_url('admin/ubah');?>" method="POST" enctype="multipart/form-data">
-            <input type="hidden" name="id" value="<?=$admin["admin_id"];?>">
+            <input type="hidden" id="admin_id" name="admin_id" value="<?=$admin["admin_id"];?>">
                 <div class="row push">
                     <div class="col-lg-12 col-xl-5">
                         <div class="form-group">
@@ -42,14 +42,21 @@
                         </div>
                         <div class="form-group">
                             <label for="username">Username</label>
-                            <input type="text" class="form-control" id="username" name="username" value="<?=$admin["username"];?>">
+                            <input type="text" class="form-control" id="admin_username" name="admin_username" value="<?=$admin["admin_username"];?>">
                             <small class="form-text text-danger"><?= form_error('username'); ?></small>
                         </div>
                         <div class="form-group">
                             <label for="password">Password</label>
-                            <input type="text" class="form-control" id="password" name="password" value="<?=$admin["password"];?>">
+                            <input type="password" class="form-control" id="admin_password" name="admin_password" placeholder="Masukan Password">
                             <small class="form-text text-danger"><?= form_error('password'); ?></small>
                         </div>
+                        <div class="form-group">
+                            <label>Foto</label>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input js-custom-file-input-enabled" data-toggle="custom-file-input" id="admin_foto" name="admin_foto">
+                                <label class="custom-file-label" for="admin_foto">Pilih foto:</label>
+                            </div>
+                        </div> 
                     </div>
                 </div>
                 <div class="row push">

@@ -10,13 +10,14 @@ class Admin extends CI_Controller
             redirect($url);
         }
         $this->load->model('Admin_model');
-        $this->load->library('form_validation');        
+        $this->load->library('form_validation');
+        
     }
 
     public function index()
     {
 
-        $data["title"] = "Data admin";
+        $data["title"] = "Data Admin";
         $data["actor"] = "admin";
         $data["admins"] = $this->Admin_model->getAll();
     
@@ -58,7 +59,7 @@ class Admin extends CI_Controller
 
     public function ubah($id=null)
     {
-        
+        if(!isset($id)) redirect('admin');
         $admin = $this->Admin_model;
         
         $data["title"] = "Ubah Data";
@@ -73,7 +74,12 @@ class Admin extends CI_Controller
         } else{
 
             if(isset($_POST["submit"])) {
-                $admin->perbarui();
+                
+                if(!isset($_POST["password"])){
+                    $admin->perbaruiWithoutPassword();
+                }else{
+                    $admin->perbarui();
+                }
                 $this->session->set_flashdata('flash', 'Ditambahkan');
             }
             redirect('admin');

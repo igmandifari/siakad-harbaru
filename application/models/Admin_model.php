@@ -4,21 +4,37 @@
     {
         private $_table = "admin";
       
-        public function simpan(){
+        public function simpan()
+        {
+           
             $data= array(
-                'admin_id'                => uniqid(),
-                'admin_nama'              => $this->input->post("admin_nama"),
-                'username'                => $this->input->post("username"),
-                'password'                => $this->input->post("password")
+                'admin_id'          => uniqid(),
+                'admin_nama'        => $this->input->post("admin_nama"),
+                'admin_username'    => strtolower($this->input->post("admin_username")),
+                'admin_password'    => MD5($this->input->post("admin_password"))
                 );
-            return $this->db->insert($this->_table, $data);
+
+            if ( ! $this->db->insert($this->_table, $data))
+            {
+                return $this->db->error(); // Has keys 'code' and 'message'
+            }
+            
         }
         public function perbarui()
         {
             $data= array(
-                'admin_nama'              => $this->input->post("admin_nama"),
-                'username'                => $this->input->post("username"),
-                'password'                => $this->input->post("password")
+                'admin_nama'        => $this->input->post("admin_nama"),
+                'admin_username'    => $this->input->post("admin_username"),
+                'admin_password'    => MD5($this->input->post("admin_password"))
+            );
+            $this->db->where('admin_id',$this->input->post("admin_id"));
+            return $this->db->update($this->_table, $data);    
+        }
+        public function perbaruiWithoutPassword()
+        {
+            $data= array(
+                'admin_nama'        => $this->input->post("admin_nama"),
+                'admin_username'    => strtolower($this->input->post("admin_username"))
             );
             $this->db->where('admin_id',$this->input->post("admin_id"));
             return $this->db->update($this->_table, $data);    
