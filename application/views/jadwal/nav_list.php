@@ -60,7 +60,7 @@
                             </a>
                             <ul class="nav-main-submenu">
                                 <li class="nav-main-item">
-                                    <a class="nav-main-link" href="<?=base_url('jadwal/');?>">
+                                    <a class="nav-main-link" href="<?=base_url('matpel/');?>">
                                         <span class="nav-main-link-name">Daftar Mata Pelajaran</span>
                                     </a>
                                 </li>

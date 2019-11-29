@@ -12,7 +12,7 @@ Class Siswa extends CI_Controller
         $this->load->model('Siswa_model');
         $this->load->model('Kelas_model');
         $this->load->library('form_validation');        
-        $this->load->library('upload');
+        $this->load->helper('url');
     }
     
     public function index()
@@ -75,6 +75,7 @@ Class Siswa extends CI_Controller
         $this->form_validation->set_rules('siswa_nisn','NISN','required|numeric');
         $this->form_validation->set_rules('siswa_nama','NAMA','required');
 
+
         if ($this->form_validation->run() == FALSE){
             
             $this->load->view('siswa/tambah',$data);
@@ -82,10 +83,24 @@ Class Siswa extends CI_Controller
 
             if(isset($_POST["submit"])) {
                 $siswa->simpan();
+                $uploadFoto = $this->upload_foto_siswa();
+                $this->Model_siswa->save($uploadFoto);
                 $this->session->set_flashdata('flash', 'Ditambahkan');
             }
             redirect('siswa');
         }
     }
+
+    function upload_foto_siswa(){
+        $config['upload_path']          = './uploads/';
+        $config['allowed_types']        = 'jpg|png';
+        $config['max_size']             = 1024; // imb
+        $this->load->library('upload', $config);
+            // proses upload
+        $this->upload->do_upload('siswa_foto');
+        $upload = $this->upload->data();
+        return $upload['file_name'];
+    }
+    
 
 }
