@@ -31,7 +31,7 @@
         <div class="block-content block-content-full">
             <form action="<?=base_url('jadwal/tambah');?>" method="POST" enctype="multipart/form-data">
                 <div class="row push">
-                    <div class="col-lg-12 col-xl-5">
+                    <div class="col-lg-12">
                         <div class="form-group">
                             <label for="kelas_id">Hari</label>
                             <select class="custom-select" id="jadwal_hari" name="jadwal_hari">

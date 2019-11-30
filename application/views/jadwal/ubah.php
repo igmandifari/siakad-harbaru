@@ -31,7 +31,7 @@
         <div class="block-content block-content-full">
             <form action="<?=base_url('jadwal/ubah');?>" method="POST" enctype="multipart/form-data">
                 <div class="row push">
-                    <div class="col-lg-12 col-xl-5">
+                    <div class="col-lg-12">
                         <div class="form-group">
                             <input type="hidden" name="id" value="<?=$jadwal["jadwal_id"]?>">
                             <label for="kelas_id">Hari</label>

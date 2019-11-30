@@ -31,7 +31,7 @@
         <div class="block-content block-content-full">
             <form action="<?=base_url('tutor/tambah');?>" method="POST" enctype="multipart/form-data">
                 <div class="row push">
-                    <div class="col-lg-12 col-xl-5">
+                    <div class="col-lg-12">
                         <div class="form-group">
                             <label for="tutor_nip">NIP</label>
                             <input type="text" class="form-control" id="tutor_nip" name="tutor_nip" placeholder="Masukan NIP">

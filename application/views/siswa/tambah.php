@@ -32,7 +32,7 @@
         <div class="block-content block-content-full">
             <form action="<?=base_url('siswa/tambah');?>" method="POST" enctype="multipart/form-data">
                 <div class="row push">
-                    <div class="col-lg-12 col-xl-5">
+                    <div class="col-lg-12">
                         <div class="form-group">
                             <label for="siswa_nis">NIS</label>
                             <input type="text" class="form-control" id="siswa_nis" name="siswa_nis" placeholder="Masukan NIS">   
@@ -48,10 +48,15 @@
                             <input type="text" class="form-control" id="siswa_nama" name="siswa_nama" placeholder="Masukan Nama Lengkap">
                             <small class="form-text text-danger"><?= form_error('siswa_nama'); ?></small>
                         </div>
+                        <div class="form-group">
+                            <label for="siswa_nik">NIK</label>
+                            <input type="text" class="form-control" id="siswa_nik" name="siswa_nik" placeholder="Masukan NIK">
+                            <small class="form-text text-danger"><?= form_error('siswa_nik'); ?></small>
+                        </div>
                         <div class="form-grup">
                         <label class="d-block">Jenis Kelamin</label>
                             <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" class="custom-control-input" id="siswa_jenis_kelamin-1" value="Pria" name="siswa_jenis_kelamin">
+                                <input type="radio" class="custom-control-input" id="siswa_jenis_kelamin-1" value="Pria" name="siswa_jenis_kelamin" required>
                                 <label class="custom-control-label" for="siswa_jenis_kelamin-1">Pria</label>
                             </div>
                             <div class="custom-control custom-radio custom-control-inline">
@@ -119,13 +124,17 @@
                         <label for="siswa_alamat_kabupaten">KODE POS</label>
                             <input type="text" class="form-control" id="siswa_alamat_kodepos" name="siswa_alamat_kodepos" placeholder="KODE POS">
                         </div>
-                        <div class="form-grup">
-                            <label for="siswa_foto">Foto</label><br>
-                            <input type="file" name="siswa_foto" id="siswa_foto"><br><br>
+                        <div class="form-group">
+                            <label>Foto Siswa</label>
+                            <div class="custom-file">
+                            <!-- Populating custom file input label with the selected filename (data-toggle="custom-file-input" is initialized in Helpers.coreBootstrapCustomFileInput()) -->
+                            <input type="file" class="custom-file-input js-custom-file-input-enabled" data-toggle="custom-file-input" id="siswa_foto" name="siswa_foto">
+                            <label class="custom-file-label" for="siswa_foto">Silahkan masukan foto</label>
+                            </div>
                         </div>
                         <div class="form-grup">
                             <label for="siswa_alamat_kabupaten">Kelas</label>
-                            <select class="custom-select" id="kelas_id" name="kelas_id">
+                            <select class="custom-select" id="kelas_id" name="kelas_id" required>
                                 <option value="0">Silahkan Pilih</option>
                             <?php foreach($kelass as $kelas) :?>
                             <option value="<?=$kelas->kelas_id?>"><?=$kelas->kelas_nama?></option>
@@ -146,10 +155,14 @@
         </div>
         <div class="block-content block-content-full">
                 <div class="row push">
-                    <div class="col-lg-12 col-xl-5">
+                    <div class="col-lg-12 col-xl-">
                         <div class="form-group">
                             <label for="orangtua_ayah_nama">Nama Lengkap</label>
                             <input type="text" class="form-control" id="orangtua_ayah_nama" name="orangtua_ayah_nama" placeholder="Masukan Nama Lengkap">
+                        </div>
+                        <div class="form-group">
+                            <label for="orangtua_ayah_nik">NIK</label>
+                            <input type="text" class="form-control" id="orangtua_ayah_nik" name="orangtua_ayah_nik" placeholder="Masukan NIK">
                         </div>
                         <div class="form-group">
                             <label for="orangtua_ayah_agama">Agama</label>
@@ -234,10 +247,14 @@
         </div>
         <div class="block-content block-content-full">
                 <div class="row push">
-                    <div class="col-lg-12 col-xl-5">
+                    <div class="col-lg-12">
                         <div class="form-group">
                             <label for="orangtua_ibu_nama">Nama Lengkap</label>
                             <input type="text" class="form-control" id="orangtua_ibu_nama" name="orangtua_ibu_nama" placeholder="Masukan Nama Lengkap">
+                        </div>
+                        <div class="form-group">
+                            <label for="orangtua_ibu_nik">NIK</label>
+                            <input type="text" class="form-control" id="orangtua_ibu_nik" name="orangtua_ibu_nik" placeholder="Masukan NIK">
                         </div>
                         <div class="form-group">
                             <label for="orangtua_ibu_agama">Agama</label>
@@ -322,10 +339,14 @@
         </div>
         <div class="block-content block-content-full">
                 <div class="row push">
-                    <div class="col-lg-12 col-xl-5">
+                    <div class="col-lg-12">
                         <div class="form-group">
                             <label for="orangtua_wali_nama">Nama Lengkap</label>
                             <input type="text" class="form-control" id="orangtua_wali_nama" name="orangtua_wali_nama" placeholder="Masukan Nama Lengkap">
+                        </div>
+                        <div class="form-group">
+                            <label for="orangtua_wali_nik">NIK</label>
+                            <input type="text" class="form-control" id="orangtua_wali_nik" name="orangtua_wali_nik" placeholder="Masukan NIK">
                         </div>
                         <div class="form-group">
                             <label for="orangtua_wali_agama">Agama</label>

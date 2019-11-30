@@ -31,7 +31,7 @@
         <div class="block-content block-content-full">
             <form action="<?=base_url('matpel/tambah');?>" method="POST" enctype="multipart/form-data">
                 <div class="row push">
-                    <div class="col-lg-12 col-xl-5">
+                    <div class="col-lg-12">
                         <div class="form-group">
                             <label for="matpel_nama">Nama Mata Pelajaran</label>
                             <input type="text" class="form-control" id="matpel_nama" name="matpel_nama" placeholder="Masukan Nama atau Kode Mata Pelajaran">

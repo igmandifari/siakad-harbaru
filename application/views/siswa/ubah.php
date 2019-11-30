@@ -12,7 +12,7 @@
                     <li class="breadcrumb-item"><?=$actor;?></li>
                     <li class="breadcrumb-item"><?=$title;?></li>
                     <li class="breadcrumb-item" aria-current="page">
-                        <a class="link-fx" href=""><?=$siswa["siswa_nama"];?></a>
+                        <a class="link-fx" href=""><?=$siswa->siswa_nama?></a>
                     </li>
                     
                 </ol>
@@ -26,100 +26,123 @@
 <div class="content">
     <!-- Basic -->
     <div class="block">
+    <?php if ($this->session->flashdata('success')): ?>
+        <div class="alert alert-success d-flex align-items-center" role="alert">
+            <div class="flex-00-auto">
+                <i class="fa fa-fw fa-check"></i>
+            </div>
+            <div class="flex-fill ml-3">
+                <p class="mb-0"><?php echo $this->session->flashdata('success'); ?></p>
+            </div>
+        </div>
+    <?php endif;?>
         <div class="block-header">
             <h3 class="block-title">Data siswa</h3>
         </div>
         <div class="block-content block-content-full">
-            <form action="<?=base_url('siswa/ubah');?>" method="POST" enctype="multipart/form-data">
-            <input type="hidden" name="id" value="<?=$siswa["siswa_id"];?>">
+            <form action="<?php base_url("siswa/ubah")?>" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="id" value="<?=$siswa->siswa_id;?>">
                 <div class="row push">
-                    <div class="col-lg-12 col-xl-5">
+                    <div class="col-lg-12">
                         <div class="form-group">
                             <label for="siswa_nis">NIS</label>
-                            <input type="text" class="form-control" id="siswa_nis" name="siswa_nis" value="<?=$siswa["siswa_nis"];?>">
+                            <input type="text" class="form-control" id="siswa_nis" name="siswa_nis" value="<?=$siswa->siswa_nis;?>">
                             <small class="form-text text-danger"><?= form_error('siswa_nis'); ?></small>
                         </div>
                         <div class="form-group">
                             <label for="siswa_nis">NISN</label>
-                            <input type="text" class="form-control" id="siswa_nis" name="siswa_nisn" value="<?=$siswa["siswa_nisn"];?>">
+                            <input type="text" class="form-control" id="siswa_nis" name="siswa_nisn" value="<?=$siswa->siswa_nisn;?>">
                             <small class="form-text text-danger"><?= form_error('siswa_nisn'); ?></small>
                         </div>
                         <div class="form-group">
                             <label for="siswa_nama">Nama Lengkap</label>
-                            <input type="text" class="form-control" id="siswa_nama" name="siswa_nama" value="<?=$siswa["siswa_nama"];?>">
+                            <input type="text" class="form-control" id="siswa_nama" name="siswa_nama" value="<?=$siswa->siswa_nama;?>">
                             <small class="form-text text-danger"><?= form_error('siswa_nama'); ?></small>
+                        </div>
+                        <div class="form-group">
+                            <label for="siswa_nik">NIK</label>
+                            <input type="text" class="form-control" id="siswa_nik" name="siswa_nik" value="<?=$siswa->siswa_nik?>">
                         </div>
                         <div class="form-grup">
                         <label class="d-block">Jenis Kelamin</label>
                             <div class="custom-control custom-radio custom-control-inline">
                             <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" class="custom-control-input" id="tutor_jenis_kelamin-1" name="siswa_jenis_kelamin" value="Pria" <?php if($siswa["siswa_jenis_kelamin"]=="Pria")echo "checked";?>>
+                                <input type="radio" class="custom-control-input" id="tutor_jenis_kelamin-1" name="siswa_jenis_kelamin" value="Pria" <?php if($siswa->siswa_jenis_kelamin=="Pria")echo "checked";?>>
                                 <label class="custom-control-label" for="siswa_jenis_kelamin-1" value="Pria">Pria</label>
                             </div>
                             <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" class="custom-control-input" id="siswa_jenis_kelamin-2" name="siswa_jenis_kelamin" value="Wanita"<?php if($siswa["siswa_jenis_kelamin"]=="Wanita")echo "checked";?>>
+                                <input type="radio" class="custom-control-input" id="siswa_jenis_kelamin-2" name="siswa_jenis_kelamin" value="Wanita"<?php if($siswa->siswa_jenis_kelamin=="Wanita")echo "checked";?>>
                                 <label class="custom-control-label" for="siswa_jenis_kelamin-2" value="Wanita">Wanita</label>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="siswa_tempat_lahir">Tempat Lahir</label>
-                            <input type="text" class="form-control" id="siswa_tempat_lahir" name="siswa_tempat_lahir" value="<?=$siswa["siswa_tempat_lahir"];?>">
+                            <input type="text" class="form-control" id="siswa_tempat_lahir" name="siswa_tempat_lahir" value="<?=$siswa->siswa_tempat_lahir;?>">
                         </div>
                         <div class="form-group">
                             <label for="siswa_tanggal_lahir">Tanggal Lahir</label>
-                            <input type="date" class="js-flatpickr form-control bg-white js-flatpickr-enabled flatpickr-input active" id="siswa_tanggal_lahir" name="siswa_tanggal_lahir" value="<?=$siswa["siswa_tanggal_lahir"];?>">
+                            <input type="date" class="js-flatpickr form-control bg-white js-flatpickr-enabled flatpickr-input active" id="siswa_tanggal_lahir" name="siswa_tanggal_lahir" value="<?=$siswa->siswa_tanggal_lahir;?>">
                             
                         </div>
                         <div class="form-group">
                             <label for="siswa_agama">Agama</label>
                             <select class="custom-select" id="siswa_agama" name="siswa_agama">
                                 <option value="0">Please select</option>
-                                <option value="Islam" <?php if($siswa["siswa_agama"]=="Islam")echo "selected";?>>Islam</option>
-                                <option value="Kristen Protestan" <?php if($siswa["siswa_agama"]=="Kristen Protestan")echo "selected";?>>Kristen Protestan</option>
-                                <option value="Kristen Katolik" <?php if($siswa["siswa_agama"]=="Kristen Katolik")echo "selected";?>>Kristen Katolik</option>
-                                <option value="Hindu" <?php if($siswa["siswa_agama"]=="Hindu")echo "selected";?>>Hindu</option>
-                                <option value="Buddha" <?php if($siswa["siswa_agama"]=="Buddha")echo "selected";?>>Buddha</option>
-                                <option value="Kong Hu Cu" <?php if($siswa["siswa_agama"]=="Kong Hu Cu")echo "selected";?>>Kong Hu Cu</option>
+                                <option value="Islam" <?php if($siswa->siswa_agama=="Islam")echo "selected";?>>Islam</option>
+                                <option value="Kristen Protestan" <?php if($siswa->siswa_agama=="Kristen Protestan")echo "selected";?>>Kristen Protestan</option>
+                                <option value="Kristen Katolik" <?php if($siswa->siswa_agama=="Kristen Katolik")echo "selected";?>>Kristen Katolik</option>
+                                <option value="Hindu" <?php if($siswa->siswa_agama=="Hindu")echo "selected";?>>Hindu</option>
+                                <option value="Buddha" <?php if($siswa->siswa_agama=="Buddha")echo "selected";?>>Buddha</option>
+                                <option value="Kong Hu Cu" <?php if($siswa->siswa_agama=="Kong Hu Cu")echo "selected";?>>Kong Hu Cu</option>
                             </select>
                         </div>
                         <div class="form-group">
                         <label class="d-block">Kewarganegaraan</label>
                             <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" class="custom-control-input" id="siswa_kewarganegaraan-1" name="siswa_kewarganegaraan"  value="WNA" <?php if($siswa["siswa_kewarganegaraan"]=="WNA")echo "checked";?>>
+                                <input type="radio" class="custom-control-input" id="siswa_kewarganegaraan-1" name="siswa_kewarganegaraan"  value="WNA" <?php if($siswa->siswa_kewarganegaraan=="WNA")echo "checked";?>>
                                 <label class="custom-control-label" for="siswa_kewarganegaraan-1">WNA</label>
                             </div>
                             <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" class="custom-control-input" id="siswa_kewarganegaraan-2" name="siswa_kewarganegaraan" value="WNI" <?php if($siswa["siswa_kewarganegaraan"]=="WNI")echo "checked";?>>
+                                <input type="radio" class="custom-control-input" id="siswa_kewarganegaraan-2" name="siswa_kewarganegaraan" value="WNI" <?php if($siswa->siswa_kewarganegaraan=="WNI")echo "checked";?>>
                                 <label class="custom-control-label" for="siswa_kewarganegaraan-2">WNI</label>
                             </div>
                         </div>
                         <div class="form-grup">
                         <label for="siswa_alamat_jalan">Alamat</label>
-                            <input type="text" class="form-control" id="siswa_alamat_jalan" name="siswa_alamat_jalan" value="<?=$siswa["siswa_alamat_jalan"];?>">
+                            <input type="text" class="form-control" id="siswa_alamat_jalan" name="siswa_alamat_jalan" value="<?=$siswa->siswa_alamat_jalan;?>">
                         </div>
                         <div class="form-grup">
                         <label for="siswa_alamat_rtrw">RT/RW</label>
-                            <input type="text" class="form-control" id="siswa_alamat_rtrw" name="siswa_alamat_rtrw" value="<?=$siswa["siswa_alamat_rtrw"];?>">
+                            <input type="text" class="form-control" id="siswa_alamat_rtrw" name="siswa_alamat_rtrw" value="<?=$siswa->siswa_alamat_rtrw;?>">
                         </div>
                         <div class="form-grup">
                         <label for="siswa_alamat_desa">Desa/Kelurahan</label>
-                            <input type="text" class="form-control" id="siswa_alamat_desa" name="siswa_alamat_desa"value="<?=$siswa["siswa_alamat_desa"];?>">
+                            <input type="text" class="form-control" id="siswa_alamat_desa" name="siswa_alamat_desa"value="<?=$siswa->siswa_alamat_desa;?>">
                         </div>
                         <div class="form-grup">
                         <label for="siswa_alamat_kecamatan">Kecamatan</label>
-                            <input type="text" class="form-control" id="siswa_alamat_kecamatan" name="siswa_alamat_kecamatan" value="<?=$siswa["siswa_alamat_kecamatan"];?>">
+                            <input type="text" class="form-control" id="siswa_alamat_kecamatan" name="siswa_alamat_kecamatan" value="<?=$siswa->siswa_alamat_kecamatan;?>">
                         </div>
                         <div class="form-grup">
                         <label for="siswa_alamat_kabupaten">Kota/Kabupaten</label>
-                            <input type="text" class="form-control" id="siswa_alamat_kabupaten" name="siswa_alamat_kabupaten" value="<?=$siswa["siswa_alamat_kabupaten"];?>">
+                            <input type="text" class="form-control" id="siswa_alamat_kabupaten" name="siswa_alamat_kabupaten" value="<?=$siswa->siswa_alamat_kabupaten;?>">
                         </div>
                         <div class="form-grup">
                         <label for="siswa_alamat_provinsi">Provinsi</label>
-                            <input type="text" class="form-control" id="siswa_alamat_provinsi" name="siswa_alamat_provinsi" value="<?=$siswa["siswa_alamat_provinsi"];?>">
+                            <input type="text" class="form-control" id="siswa_alamat_provinsi" name="siswa_alamat_provinsi" value="<?=$siswa->siswa_alamat_provinsi;?>">
                         </div>
                         <div class="form-grup">
                         <label for="siswa_alamat_kabupaten">KODE POS</label>
-                            <input type="text" class="form-control" id="siswa_alamat_kodepos" name="siswa_alamat_kodepos" value="<?=$siswa["siswa_alamat_kodepos"];?>">
+                            <input type="text" class="form-control" id="siswa_alamat_kodepos" name="siswa_alamat_kodepos" value="<?=$siswa->siswa_alamat_kodepos;?>">
+                        </div>
+                        <div class="form-group">
+                            <label>Foto Siswa</label>
+                            <div class="custom-file">
+                            <!-- Populating custom file input label with the selected filename (data-toggle="custom-file-input" is initialized in Helpers.coreBootstrapCustomFileInput()) -->
+                            <input type="file" class="custom-file-input js-custom-file-input-enabled" data-toggle="custom-file-input" id="siswa_foto" name="siswa_foto">
+                            <label class="custom-file-label" for="siswa_foto">Silahkan masukan foto</label>
+                            <input type="hidden" name="old_image" value="<?=$siswa->siswa_foto ?>">
+                            </div>
                         </div>
                         <div class="form-grup">
                             <label for="siswa_alamat_kabupaten">Kelas</label>
@@ -127,7 +150,7 @@
                                 <option value="0">Silahkan Pilih</option>
                             <?php foreach($kelass as $kelas) :?>
                             <option value="<?=$kelas->kelas_id?>" 
-                            <?php if ($siswa["kelas_id"] == $kelas->kelas_id) echo 'selected'?>><?=$kelas->kelas_nama?></option>
+                            <?php if ($siswa->kelas_id == $kelas->kelas_id) echo 'selected'?>><?=$kelas->kelas_nama?></option>
                             <?php endforeach;?>
                             </select>
                         </div>
@@ -147,10 +170,14 @@
         </div>
         <div class="block-content block-content-full">
                 <div class="row push">
-                    <div class="col-lg-12 col-xl-5">
+                    <div class="col-lg-12">
                     <div class="form-group">
                             <label for="orangtua_ayah_nama">Nama Lengkap</label>
-                            <input type="text" class="form-control" id="orangtua_ayah_nama" name="orangtua_ayah_nama" value="<?=$siswa["orangtua_ayah_nama"];?>">
+                            <input type="text" class="form-control" id="orangtua_ayah_nama" name="orangtua_ayah_nama" value="<?=$siswa->orangtua_ayah_nama;?>">
+                        </div>
+                        <div class="form-group">
+                            <label for="orangtua_ayah_nik">NIK</label>
+                            <input type="text" class="form-control" id="orangtua_ayah_nik" name="orangtua_ayah_nik" value="<?=$siswa->orangtua_ayah_nik?>">
                         </div>
                         <div class="form-group">
                             <label for="orangtua_ayah_agama">Agama</label>
@@ -190,35 +217,35 @@
                         </div>
                         <div class="form-grup">
                         <label for="orangtua_ayah_pekerjaan">Pekerjaan</label>
-                            <input type="text" class="form-control" id="orangtua_ayah_pekerjaan" name="orangtua_ayah_pekerjaan" value="<?=$siswa["orangtua_ayah_pekerjaan"];?>">
+                            <input type="text" class="form-control" id="orangtua_ayah_pekerjaan" name="orangtua_ayah_pekerjaan" value="<?=$siswa->orangtua_ayah_pekerjaan;?>">
                         </div>
                         <div class="form-grup">
                         <label for="orangtua_ayah_alamat_jalan">Alamat</label>
-                            <input type="text" class="form-control" id="orangtua_ayah_alamat_jalan" name="orangtua_ayah_alamat_jalan" value="<?=$siswa["orangtua_ayah_alamat_jalan"];?>">
+                            <input type="text" class="form-control" id="orangtua_ayah_alamat_jalan" name="orangtua_ayah_alamat_jalan" value="<?=$siswa->orangtua_ayah_alamat_jalan;?>">
                         </div>
                         <div class="form-grup">
                         <label for="orangtua_ayah_alamat_rtrw">RT/RW</label>
-                            <input type="text" class="form-control" id="orangtua_ayah_alamat_rtrw" name="orangtua_ayah_alamat_rtrw" value="<?=$siswa["orangtua_ayah_alamat_rtrw"];?>">
+                            <input type="text" class="form-control" id="orangtua_ayah_alamat_rtrw" name="orangtua_ayah_alamat_rtrw" value="<?=$siswa->orangtua_ayah_alamat_rtrw;?>">
                         </div>
                         <div class="form-grup">
                         <label for="orangtua_ayah_alamat_desa">Desa/Kelurahan</label>
-                            <input type="text" class="form-control" id="orangtua_ayah_alamat_desa" name="orangtua_ayah_alamat_desa" value="<?=$siswa["orangtua_ayah_alamat_desa"];?>">
+                            <input type="text" class="form-control" id="orangtua_ayah_alamat_desa" name="orangtua_ayah_alamat_desa" value="<?=$siswa->orangtua_ayah_alamat_desa;?>">
                         </div>
                         <div class="form-grup">
                         <label for="orangtua_ayah_alamat_kecamatan">Kecamatan</label>
-                            <input type="text" class="form-control" id="orangtua_ayah_alamat_kecamatan" name="orangtua_ayah_alamat_kecamatan" value="<?=$siswa["orangtua_ayah_alamat_kecamatan"];?>">
+                            <input type="text" class="form-control" id="orangtua_ayah_alamat_kecamatan" name="orangtua_ayah_alamat_kecamatan" value="<?=$siswa->orangtua_ayah_alamat_kecamatan;?>">
                         </div>
                         <div class="form-grup">
                         <label for="orangtua_ayah_alamat_kabupaten">Kota/Kabupaten</label>
-                            <input type="text" class="form-control" id="orangtua_ayah_alamat_kabupaten" name="orangtua_ayah_alamat_kabupaten" value="<?=$siswa["orangtua_ayah_alamat_kabupaten"];?>">
+                            <input type="text" class="form-control" id="orangtua_ayah_alamat_kabupaten" name="orangtua_ayah_alamat_kabupaten" value="<?=$siswa->orangtua_ayah_alamat_kabupaten;?>">
                         </div>
                         <div class="form-grup">
                         <label for="orangtua_ayah_alamat_provinsi">Provinsi</label>
-                            <input type="text" class="form-control" id="orangtua_ayah_alamat_provinsi" name="orangtua_ayah_alamat_provinsi" value="<?=$siswa["orangtua_ayah_alamat_provinsi"];?>">
+                            <input type="text" class="form-control" id="orangtua_ayah_alamat_provinsi" name="orangtua_ayah_alamat_provinsi" value="<?=$siswa->orangtua_ayah_alamat_provinsi;?>">
                         </div>
                         <div class="form-grup">
                         <label for="orangtua_ayah_alamat_kodepos">KODE POS</label>
-                            <input type="text" class="form-control" id="orangtua_ayah_alamat_kodepos" name="orangtua_ayah_alamat_kodepos" value="<?=$siswa["orangtua_ayah_alamat_kodepos"];?>">
+                            <input type="text" class="form-control" id="orangtua_ayah_alamat_kodepos" name="orangtua_ayah_alamat_kodepos" value="<?=$siswa->orangtua_ayah_alamat_kodepos;?>">
                         </div>
                     </div>
                 </div>
@@ -234,10 +261,14 @@
         </div>
         <div class="block-content block-content-full">
                 <div class="row push">
-                    <div class="col-lg-12 col-xl-5">
+                    <div class="col-lg-12">
                     <div class="form-group">
                             <label for="orangtua_ibu_nama">Nama Lengkap</label>
-                            <input type="text" class="form-control" id="orangtua_ibu_nama" name="orangtua_ibu_nama" value="<?=$siswa["orangtua_ibu_nama"];?>">
+                            <input type="text" class="form-control" id="orangtua_ibu_nama" name="orangtua_ibu_nama" value="<?=$siswa->orangtua_ibu_nama;?>">
+                        </div>
+                        <div class="form-group">
+                            <label for="orangtua_ibu_nik">NIK</label>
+                            <input type="text" class="form-control" id="orangtua_ibu_nik" name="orangtua_ibu_nik" value="<?=$siswa->orangtua_ibu_nik?>">
                         </div>
                         <div class="form-group">
                             <label for="orangtua_ibu_agama">Agama</label>
@@ -277,35 +308,35 @@
                         </div>
                         <div class="form-grup">
                         <label for="orangtua_ibu_pekerjaan">Pekerjaan</label>
-                            <input type="text" class="form-control" id="orangtua_ibu_pekerjaan" name="orangtua_ibu_pekerjaan" value="<?=$siswa["orangtua_ibu_pekerjaan"];?>">
+                            <input type="text" class="form-control" id="orangtua_ibu_pekerjaan" name="orangtua_ibu_pekerjaan" value="<?=$siswa->orangtua_ibu_pekerjaan;?>">
                         </div>
                         <div class="form-grup">
                         <label for="orangtua_ibu_alamat_jalan">Alamat</label>
-                            <input type="text" class="form-control" id="orangtua_ibu_alamat_jalan" name="orangtua_ibu_alamat_jalan" value="<?=$siswa["orangtua_ibu_alamat_jalan"];?>">
+                            <input type="text" class="form-control" id="orangtua_ibu_alamat_jalan" name="orangtua_ibu_alamat_jalan" value="<?=$siswa->orangtua_ibu_alamat_jalan;?>">
                         </div>
                         <div class="form-grup">
                         <label for="orangtua_ibu_alamat_rtrw">RT/RW</label>
-                            <input type="text" class="form-control" id="orangtua_ibu_alamat_rtrw" name="orangtua_ibu_alamat_rtrw" value="<?=$siswa["orangtua_ibu_alamat_rtrw"];?>">
+                            <input type="text" class="form-control" id="orangtua_ibu_alamat_rtrw" name="orangtua_ibu_alamat_rtrw" value="<?=$siswa->orangtua_ibu_alamat_rtrw;?>">
                         </div>
                         <div class="form-grup">
                         <label for="orangtua_ibu_alamat_desa">Desa/Kelurahan</label>
-                            <input type="text" class="form-control" id="orangtua_ibu_alamat_desa" name="orangtua_ibu_alamat_desa" value="<?=$siswa["orangtua_ibu_alamat_desa"];?>">
+                            <input type="text" class="form-control" id="orangtua_ibu_alamat_desa" name="orangtua_ibu_alamat_desa" value="<?=$siswa->orangtua_ibu_alamat_desa;?>">
                         </div>
                         <div class="form-grup">
                         <label for="orangtua_ibu_alamat_kecamatan">Kecamatan</label>
-                            <input type="text" class="form-control" id="orangtua_ibu_alamat_kecamatan" name="orangtua_ibu_alamat_kecamatan" value="<?=$siswa["orangtua_ibu_alamat_kecamatan"];?>">
+                            <input type="text" class="form-control" id="orangtua_ibu_alamat_kecamatan" name="orangtua_ibu_alamat_kecamatan" value="<?=$siswa->orangtua_ibu_alamat_kecamatan;?>">
                         </div>
                         <div class="form-grup">
                         <label for="orangtua_ibu_alamat_kabupaten">Kota/Kabupaten</label>
-                            <input type="text" class="form-control" id="orangtua_ibu_alamat_kabupaten" name="orangtua_ibu_alamat_kabupaten" value="<?=$siswa["orangtua_ibu_alamat_kabupaten"];?>">
+                            <input type="text" class="form-control" id="orangtua_ibu_alamat_kabupaten" name="orangtua_ibu_alamat_kabupaten" value="<?=$siswa->orangtua_ibu_alamat_kabupaten;?>">
                         </div>
                         <div class="form-grup">
                         <label for="orangtua_ibu_alamat_provinsi">Provinsi</label>
-                            <input type="text" class="form-control" id="orangtua_ibu_alamat_provinsi" name="orangtua_ibu_alamat_provinsi" value="<?=$siswa["orangtua_ibu_alamat_provinsi"];?>">
+                            <input type="text" class="form-control" id="orangtua_ibu_alamat_provinsi" name="orangtua_ibu_alamat_provinsi" value="<?=$siswa->orangtua_ibu_alamat_provinsi;?>">
                         </div>
                         <div class="form-grup">
                         <label for="orangtua_ibu_alamat_kodepos">KODE POS</label>
-                            <input type="text" class="form-control" id="orangtua_ibu_alamat_kodepos" name="orangtua_ibu_alamat_kodepos" value="<?=$siswa["orangtua_ibu_alamat_kodepos"];?>">
+                            <input type="text" class="form-control" id="orangtua_ibu_alamat_kodepos" name="orangtua_ibu_alamat_kodepos" value="<?=$siswa->orangtua_ibu_alamat_kodepos;?>">
                         </div>
                     </div>
                 </div>
@@ -321,10 +352,14 @@
         </div>
         <div class="block-content block-content-full">
                 <div class="row push">
-                    <div class="col-lg-12 col-xl-5">
+                    <div class="col-lg-12">
                     <div class="form-group">
                             <label for="orangtua_wali_nama">Nama Lengkap</label>
-                            <input type="text" class="form-control" id="orangtua_wali_nama" name="orangtua_wali_nama" value="<?=$siswa["orangtua_wali_nama"];?>">
+                            <input type="text" class="form-control" id="orangtua_wali_nama" name="orangtua_wali_nama" value="<?=$siswa->orangtua_wali_nama;?>">
+                        </div>
+                        <div class="form-group">
+                            <label for="orangtua_wali_nik">NIK</label>
+                            <input type="text" class="form-control" id="orangtua_wali_nik" name="orangtua_wali_nik" value="<?=$siswa->orangtua_wali_nik?>">
                         </div>
                         <div class="form-group">
                             <label for="orangtua_wali_agama">Agama</label>
@@ -364,35 +399,35 @@
                         </div>
                         <div class="form-grup">
                         <label for="orangtua_wali_pekerjaan">Pekerjaan</label>
-                            <input type="text" class="form-control" id="orangtua_wali_pekerjaan" name="orangtua_wali_pekerjaan" value="<?=$siswa["orangtua_wali_pekerjaan"];?>">
+                            <input type="text" class="form-control" id="orangtua_wali_pekerjaan" name="orangtua_wali_pekerjaan" value="<?=$siswa->orangtua_wali_pekerjaan;?>">
                         </div>
                         <div class="form-grup">
                         <label for="orangtua_wali_alamat_jalan">Alamat</label>
-                            <input type="text" class="form-control" id="orangtua_wali_alamat_jalan" name="orangtua_wali_alamat_jalan" value="<?=$siswa["orangtua_wali_alamat_jalan"];?>">
+                            <input type="text" class="form-control" id="orangtua_wali_alamat_jalan" name="orangtua_wali_alamat_jalan" value="<?=$siswa->orangtua_wali_alamat_jalan;?>">
                         </div>
                         <div class="form-grup">
                         <label for="orangtua_wali_alamat_rtrw">RT/RW</label>
-                            <input type="text" class="form-control" id="orangtua_wali_alamat_rtrw" name="orangtua_wali_alamat_rtrw" value="<?=$siswa["orangtua_wali_alamat_rtrw"];?>">
+                            <input type="text" class="form-control" id="orangtua_wali_alamat_rtrw" name="orangtua_wali_alamat_rtrw" value="<?=$siswa->orangtua_wali_alamat_rtrw;?>">
                         </div>
                         <div class="form-grup">
                         <label for="orangtua_wali_alamat_desa">Desa/Kelurahan</label>
-                            <input type="text" class="form-control" id="orangtua_wali_alamat_desa" name="orangtua_wali_alamat_desa" value="<?=$siswa["orangtua_wali_alamat_desa"];?>">
+                            <input type="text" class="form-control" id="orangtua_wali_alamat_desa" name="orangtua_wali_alamat_desa" value="<?=$siswa->orangtua_wali_alamat_desa;?>">
                         </div>
                         <div class="form-grup">
                         <label for="orangtua_wali_alamat_kecamatan">Kecamatan</label>
-                            <input type="text" class="form-control" id="orangtua_wali_alamat_kecamatan" name="orangtua_wali_alamat_kecamatan" value="<?=$siswa["orangtua_wali_alamat_kecamatan"];?>">
+                            <input type="text" class="form-control" id="orangtua_wali_alamat_kecamatan" name="orangtua_wali_alamat_kecamatan" value="<?=$siswa->orangtua_wali_alamat_kecamatan;?>">
                         </div>
                         <div class="form-grup">
                         <label for="orangtua_wali_alamat_kabupaten">Kota/Kabupaten</label>
-                            <input type="text" class="form-control" id="orangtua_wali_alamat_kabupaten" name="orangtua_wali_alamat_kabupaten" value="<?=$siswa["orangtua_wali_alamat_kabupaten"];?>">
+                            <input type="text" class="form-control" id="orangtua_wali_alamat_kabupaten" name="orangtua_wali_alamat_kabupaten" value="<?=$siswa->orangtua_wali_alamat_kabupaten;?>">
                         </div>
                         <div class="form-grup">
                         <label for="orangtua_wali_alamat_provinsi">Provinsi</label>
-                            <input type="text" class="form-control" id="orangtua_wali_alamat_provinsi" name="orangtua_wali_alamat_provinsi" value="<?=$siswa["orangtua_wali_alamat_provinsi"];?>">
+                            <input type="text" class="form-control" id="orangtua_wali_alamat_provinsi" name="orangtua_wali_alamat_provinsi" value="<?=$siswa->orangtua_wali_alamat_provinsi;?>">
                         </div>
                         <div class="form-grup">
                         <label for="orangtua_wali_alamat_kodepos">KODE POS</label>
-                            <input type="text" class="form-control" id="orangtua_wali_alamat_kodepos" name="orangtua_wali_alamat_kodepos" value="<?=$siswa["orangtua_wali_alamat_kodepos"];?>">
+                            <input type="text" class="form-control" id="orangtua_wali_alamat_kodepos" name="orangtua_wali_alamat_kodepos" value="<?=$siswa->orangtua_wali_alamat_kodepos;?>">
                         </div>
                     </div>
                 </div>

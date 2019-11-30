@@ -1,28 +1,69 @@
 <?php
 
+defined('BASEPATH') OR exit('No direct script access allowed');
+
     Class Admin_model extends CI_Model 
     {
         private $_table = "admin";
+        public $admin_id;
       
-        public function simpan(){
+        public function simpan()
+        {
+           $this->admin_id = uniqid();
             $data= array(
-                'admin_id'                => uniqid(),
-                'admin_nama'              => $this->input->post("admin_nama"),
-                'username'                => $this->input->post("username"),
-                'password'                => $this->input->post("password")
+                'admin_id'          => $this->admin_id,
+                'admin_nama'        => $this->input->post("admin_nama"),
+                'admin_username'    => strtolower($this->input->post("admin_username")),
+                'admin_password'    => MD5($this->input->post("admin_password")),
+                'admin_foto'        => $this->_uploadImage()
                 );
-            return $this->db->insert($this->_table, $data);
+
+            return $this->db->insert($this->_table, $data);    
+        }
+        private function _uploadImage()
+        {
+            $config['upload_path']          = './upload/admin/';
+            $config['allowed_types']        = 'jpg|jpeg|png';
+            $config['file_name']            = $this->admin_id;
+            $config['overwrite']			= true;
+            $config['max_size']             = 500; // 
+        
+            $this->load->library('upload', $config);
+            if ($this->upload->do_upload('admin_foto')) {
+                return $this->upload->data("file_name");
+            }
+            return "default.jpg";
+
+        }
+        private function _deleteImage($id)
+        {
+            $admin = $this->getById($id);
+            if ($admin["admin_foto"] != "default.jpg") {
+                $filename = explode(".", $admin["admin_foto"])[0];
+                return array_map('unlink', glob(FCPATH."upload/admin/$filename.*"));
+            }
         }
         public function perbarui()
         {
+            $this->admin_id = $this->input->post("admin_id");
+            if (!empty($_FILES["admin_foto"]["name"])) {
+                $foto = $this->_uploadImage();
+            } else {
+                $foto = $this->input->post("old_image");
+            }
+
             $data= array(
-                'admin_nama'              => $this->input->post("admin_nama"),
-                'username'                => $this->input->post("username"),
-                'password'                => $this->input->post("password")
+                'admin_nama'        => $this->input->post("admin_nama"),
+                'admin_username'    => $this->input->post("admin_username"),
+                'admin_password'    => MD5($this->input->post("admin_password")),
+                'admin_foto'        => $foto
+                
             );
+
             $this->db->where('admin_id',$this->input->post("admin_id"));
             return $this->db->update($this->_table, $data);    
         }
+
         public function getAll(){
             return $this->db->get($this->_table)->result();
         }
