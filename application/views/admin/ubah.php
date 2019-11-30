@@ -27,14 +27,24 @@
 <div class="content">
     <!-- Basic -->
     <div class="block">
+    <?php if ($this->session->flashdata('success')): ?>
+        <div class="alert alert-success d-flex align-items-center" role="alert">
+            <div class="flex-00-auto">
+                <i class="fa fa-fw fa-check"></i>
+            </div>
+            <div class="flex-fill ml-3">
+                <p class="mb-0"><?php echo $this->session->flashdata('success'); ?></p>
+            </div>
+        </div>
+    <?php endif;?>
         <div class="block-header">
             <h3 class="block-title">Data admin</h3>
         </div>
         <div class="block-content block-content-full">
-            <form action="<?=base_url('admin/ubah');?>" method="POST" enctype="multipart/form-data">
+            <form action="<?php base_url("admin/ubah")?>" method="post" enctype="multipart/form-data">
             <input type="hidden" id="admin_id" name="admin_id" value="<?=$admin["admin_id"];?>">
                 <div class="row push">
-                    <div class="col-lg-12 col-xl-5">
+                    <div class="col-lg-12">
                         <div class="form-group">
                             <label for="admin_nama">Nama Admin</label>
                             <input type="text" class="form-control" id="admin_nama" name="admin_nama" value="<?=$admin["admin_nama"];?>">
@@ -55,6 +65,7 @@
                             <div class="custom-file">
                                 <input type="file" class="custom-file-input js-custom-file-input-enabled" data-toggle="custom-file-input" id="admin_foto" name="admin_foto">
                                 <label class="custom-file-label" for="admin_foto">Pilih foto:</label>
+                                <input type="hidden" name="old_image" value="<?php echo $admin["admin_foto"] ?>" />
                             </div>
                         </div> 
                     </div>

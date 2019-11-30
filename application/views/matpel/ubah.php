@@ -31,7 +31,7 @@
         <div class="block-content block-content-full">
             <form action="<?=base_url('matpel/ubah');?>" method="POST" enctype="multipart/form-data">
                 <div class="row push">
-                    <div class="col-lg-12 col-xl-5">
+                    <div class="col-lg-12">
                         <div class="form-group">
                             <input type="hidden" name="matpel_id" value="<?=$matpel["matpel_id"];?>"">
                             <label for="matpel_nama">Nama Kelas</label>

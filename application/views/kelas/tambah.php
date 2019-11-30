@@ -31,7 +31,7 @@
         <div class="block-content block-content-full">
             <form action="<?=base_url('kelas/tambah');?>" method="POST" enctype="multipart/form-data">
                 <div class="row push">
-                    <div class="col-lg-12 col-xl-5">
+                    <div class="col-lg-12">
                         <div class="form-group">
                             <label for="kelas_nama">Nama Kelas</label>
                             <input type="text" class="form-control" id="kelas_nama" name="kelas_nama" placeholder="Masukan Nama atau Kode Kelas">

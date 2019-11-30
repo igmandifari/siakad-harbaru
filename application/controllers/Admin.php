@@ -1,6 +1,9 @@
 <?php
-class Admin extends CI_Controller
-{
+    
+    defined('BASEPATH') OR exit('No direct script access allowed');
+    
+    class Admin extends CI_Controller
+    {
 
     public function __construct()
     {
@@ -28,22 +31,19 @@ class Admin extends CI_Controller
     {
         $admin = $this->Admin_model;
         
-        $data["title"] = "Tambah Data";
-        $data["actor"] = "admin";
+        
 
         $this->form_validation->set_rules('admin_nama','NAMA/ID','required');
 
 
-        if ($this->form_validation->run() == FALSE){
-            $this->load->view('admin/tambah',$data);
-        } else{
-
-            if(isset($_POST["submit"])) {
-                $admin->simpan();
-                $this->session->set_flashdata('flash', 'Ditambahkan');
-            }
-            redirect('admin');
+        if ($this->form_validation->run()){
+            $admin->simpan();
+            $this->session->set_flashdata('success', 'Berhasil');
+            
         }
+        $data["title"] = "Tambah Data";
+        $data["actor"] = "admin";
+        $this->load->view('admin/tambah',$data);
     
     }
 
@@ -62,28 +62,22 @@ class Admin extends CI_Controller
         if(!isset($id)) redirect('admin');
         $admin = $this->Admin_model;
         
-        $data["title"] = "Ubah Data";
-        $data["actor"] = "admin";
-
-        $data['admin'] = $admin->getByid($id);
+        
         $this->form_validation->set_rules('admin_nama','NAMA/ID','required');
 
 
-        if ($this->form_validation->run() == FALSE){
-            $this->load->view('admin/ubah',$data);
-        } else{
+        if ($this->form_validation->run()){
+            $admin->perbarui();
+            $this->session->set_flashdata('success', 'Berhasil');
+        } 
 
-            if(isset($_POST["submit"])) {
-                
-                if(!isset($_POST["password"])){
-                    $admin->perbaruiWithoutPassword();
-                }else{
-                    $admin->perbarui();
-                }
-                $this->session->set_flashdata('flash', 'Ditambahkan');
-            }
-            redirect('admin');
-        }
+        $data["title"] = "Ubah Data";
+        $data["actor"] = "admin";
+        $data['admin'] = $admin->getByid($id);
+
+        $this->load->view('admin/ubah',$data);
+           
+        
         
         
     }
