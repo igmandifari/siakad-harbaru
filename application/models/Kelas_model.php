@@ -3,6 +3,17 @@
     Class Kelas_model extends CI_Model 
     {
         private $_table = "kelas";
+
+        public function rules()
+        {
+            return[
+                [
+                    'field' => 'kelas_nama',
+                    'label' => 'Nama Kelas',
+                    'rules' => 'required|trim|xss_clean',
+                ]
+            ];
+        }
       
         public function simpan(){
             $data= array(

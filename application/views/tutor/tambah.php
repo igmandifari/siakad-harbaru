@@ -25,6 +25,16 @@
 <div class="content">
     <!-- Basic -->
     <div class="block">
+    <?php if ($this->session->flashdata('success')): ?>
+        <div class="alert alert-success d-flex align-items-center" role="alert">
+            <div class="flex-00-auto">
+                <i class="fa fa-fw fa-check"></i>
+            </div>
+            <div class="flex-fill ml-3">
+                <p class="mb-0"><?php echo $this->session->flashdata('success'); ?></p>
+            </div>
+        </div>
+    <?php endif;?>
         <div class="block-header">
             <h3 class="block-title">Data Tutor</h3>
         </div>
@@ -60,6 +70,7 @@
                         <div class="form-grup">
                             <label for="tutor_tempat_lahir">Tempat Lahir</label>
                             <input type="text" class="form-control" id="tutor_tempat_lahir" name="tutor_tempat_lahir" placeholder="Tempat Lahir">
+                            <small class="form-text text-danger"><?= form_error('tutor_tempat_lahir'); ?></small>
                         </div>
                         <div class="form-group">
                             <label for="tutor_agama">Agama</label>
@@ -99,35 +110,42 @@
                         <div class="form-grup">
                         <label for="tutor_alamat_jalan">Alamat</label>
                             <input type="text" class="form-control" id="tutor_alamat_jalan" name="tutor_alamat_jalan" placeholder="Jl. ">
+                            <small class="form-text text-danger"><?= form_error('tutor_alamat_jalan'); ?></small>
                         </div>
                         <div class="form-grup">
                         <label for="tutor_alamat_rtrw">RT/RW</label>
                             <input type="text" class="form-control" id="tutor_alamat_rtrw" name="tutor_alamat_rtrw" placeholder="RT/RW">
+                            <small class="form-text text-danger"><?= form_error('tutor_alamat_rtrw'); ?></small>
                         </div>
                         <div class="form-grup">
                         <label for="tutor_alamat_desa">Desa/Kelurahan</label>
                             <input type="text" class="form-control" id="tutor_alamat_desa" name="tutor_alamat_desa" placeholder="Desa/Kelurahan">
+                            <small class="form-text text-danger"><?= form_error('tutor_alamat_desa'); ?></small>
                         </div>
                         <div class="form-grup">
                         <label for="tutor_alamat_kecamatan">Kecamatan</label>
                             <input type="text" class="form-control" id="tutor_alamat_kecamatan" name="tutor_alamat_kecamatan" placeholder="Kecamatan">
+                            <small class="form-text text-danger"><?= form_error('tutor_alamat_kecamatan'); ?></small>
                         </div>
                         <div class="form-grup">
                         <label for="tutor_alamat_kabupaten">Kota/Kabupaten</label>
                             <input type="text" class="form-control" id="tutor_alamat_kabupaten" name="tutor_alamat_kabupaten" placeholder="Kota/Kabupaten">
+                            <small class="form-text text-danger"><?= form_error('tutor_alamat_kabupaten'); ?></small>
                         </div>
                         <div class="form-grup">
                         <label for="tutor_alamat_provinsi">Provinsi</label>
                             <input type="text" class="form-control" id="tutor_alamat_provinsi" name="tutor_alamat_provinsi" placeholder="Provinsi">
+                            <small class="form-text text-danger"><?= form_error('tutor_alamat_provinsi'); ?></small>
                         </div>
                         <div class="form-grup">
                         <label for="tutor_alamat_kabupaten">KODE POS</label>
                             <input type="text" class="form-control" id="tutor_alamat_kodepos" name="tutor_alamat_kodepos" placeholder="KODE POS">
+                            <small class="form-text text-danger"><?= form_error('tutor_alamat_kodepos'); ?></small>
                         </div>
                         <div class="form-group">
                             <label>Foto</label>
                             <div class="custom-file">
-                                <input type="file" class="custom-file-input js-custom-file-input-enabled" data-toggle="custom-file-input" id="example-file-input-custom" name="example-file-input-custom">
+                                <input type="file" class="custom-file-input js-custom-file-input-enabled" data-toggle="custom-file-input" id="tutor_foto" name="tutor_foto">
                                 <label class="custom-file-label" for="example-file-input-custom">Pilih foto:</label>
                             </div>
                         </div>

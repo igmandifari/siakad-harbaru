@@ -14,6 +14,8 @@ Class Siswa extends CI_Controller
         $this->load->model('Siswa_model');
         $this->load->model('Kelas_model');
         $this->load->library('form_validation');        
+        $this->load->helper('security');
+
     }
     
     public function index()
@@ -61,28 +63,18 @@ Class Siswa extends CI_Controller
         $siswa = $this->Siswa_model;
         $kelas = $this->Kelas_model;
 
+        $validasi =  $this->form_validation;
+        $validasi->set_rules($siswa->rules());
+
+        if ($validasi->run()){
+            $siswa->simpan();
+            $this->session->set_flashdata('success', 'Berhasil');
+        } 
         $data["title"] = "Tambah Data";
         $data["actor"] = "Siswa";
         $data["kelass"] = $kelas->getAll();
 
-        $this->form_validation->set_rules('siswa_nis','NIS','required|numeric');
-        $this->form_validation->set_rules('siswa_nik','NIK','required|numeric');
-        $this->form_validation->set_rules('siswa_nama','NAMA','required');
-
-
-        if ($this->form_validation->run() == FALSE){
-            
-            $this->load->view('siswa/tambah',$data);
-        } else{
-
-            if(isset($_POST["submit"])) {
-                $siswa->simpan();
-                //$uploadFoto = $this->upload_foto_siswa();
-                //$this->Model_siswa->save($uploadFoto);
-                $this->session->set_flashdata('flash', 'Ditambahkan');
-            }
-            redirect('siswa');
-        }
+        $this->load->view('siswa/tambah',$data);
     }
 
 

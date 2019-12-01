@@ -26,6 +26,16 @@
 <div class="content">
     <!-- Basic -->
     <div class="block">
+    <?php if ($this->session->flashdata('success')): ?>
+        <div class="alert alert-success d-flex align-items-center" role="alert">
+            <div class="flex-00-auto">
+                <i class="fa fa-fw fa-check"></i>
+            </div>
+            <div class="flex-fill ml-3">
+                <p class="mb-0"><?php echo $this->session->flashdata('success'); ?></p>
+            </div>
+        </div>
+    <?php endif;?>
         <div class="block-header">
             <h3 class="block-title">Data siswa</h3>
         </div>
@@ -63,10 +73,12 @@
                                 <input type="radio" class="custom-control-input" id="siswa_jenis_kelamin-2"value="Wanita"name="siswa_jenis_kelamin">
                                 <label class="custom-control-label" for="siswa_jenis_kelamin-2">Wanita</label>
                             </div>
+                            <small class="form-text text-danger"><?= form_error('siswa_jenis_kelamin'); ?></small>
                         </div>
                         <div class="form-group">
                             <label for="siswa_tempat_lahir">Tempat Lahir</label>
                             <input type="text" class="form-control" id="siswa_tempat_lahir" name="siswa_tempat_lahir" placeholder="Tempat Lahir">
+                            <small class="form-text text-danger"><?= form_error('siswa_tempat_lahir'); ?></small>
                         </div>
                         <div class="form-group">
                             <label for="siswa_tanggal_lahir">Tanggal Lahir</label>
@@ -99,6 +111,7 @@
                         <div class="form-grup">
                         <label for="siswa_alamat_jalan">Alamat</label>
                             <input type="text" class="form-control" id="siswa_alamat_jalan" name="siswa_alamat_jalan" placeholder="Jl. ">
+                            <small class="form-text text-danger"><?= form_error('siswa_alamat_jalan'); ?></small>
                         </div>
                         <div class="form-grup">
                         <label for="siswa_alamat_rtrw">RT/RW</label>

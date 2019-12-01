@@ -25,11 +25,21 @@
 <div class="content">
     <!-- Basic -->
     <div class="block">
+    <?php if ($this->session->flashdata('success')): ?>
+        <div class="alert alert-success d-flex align-items-center" role="alert">
+            <div class="flex-00-auto">
+                <i class="fa fa-fw fa-check"></i>
+            </div>
+            <div class="flex-fill ml-3">
+                <p class="mb-0"><?php echo $this->session->flashdata('success'); ?></p>
+            </div>
+        </div>
+    <?php endif;?>
         <div class="block-header">
             <h3 class="block-title">Data Mata Pelajaran</h3>
         </div>
         <div class="block-content block-content-full">
-            <form action="<?=base_url('matpel/ubah');?>" method="POST" enctype="multipart/form-data">
+            <form action="<?php base_url('matpel/ubah');?>" method="post" enctype="multipart/form-data">
                 <div class="row push">
                     <div class="col-lg-12">
                         <div class="form-group">

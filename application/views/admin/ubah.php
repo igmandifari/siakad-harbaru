@@ -53,12 +53,13 @@
                         <div class="form-group">
                             <label for="username">Username</label>
                             <input type="text" class="form-control" id="admin_username" name="admin_username" value="<?=$admin["admin_username"];?>">
-                            <small class="form-text text-danger"><?= form_error('username'); ?></small>
+                            <small class="form-text text-danger"><?= form_error('admin_username'); ?></small>
                         </div>
                         <div class="form-group">
                             <label for="password">Password</label>
                             <input type="password" class="form-control" id="admin_password" name="admin_password" placeholder="Masukan Password">
-                            <small class="form-text text-danger"><?= form_error('password'); ?></small>
+                            <input type="hidden" name="admin_old_password" value="<?=$admin["admin_password"]?>">
+                            <small class="form-text text-danger"><?= form_error('admin_password'); ?></small>
                         </div>
                         <div class="form-group">
                             <label>Foto</label>
