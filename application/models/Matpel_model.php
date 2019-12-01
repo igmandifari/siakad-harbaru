@@ -4,6 +4,17 @@
     {
         private $_table = "matpel";
       
+        public function rules()
+        {
+            return[
+                [
+                    'field' => 'matpel_nama',
+                    'label' => 'Nama Mata Pelajaran',
+                    'rules' => 'required|trim|xss_clean',
+                ]
+            ];
+        }
+
         public function simpan(){
             $data= array(
                 'matpel_id'                  => uniqid(),

@@ -11,6 +11,7 @@ class Kelas extends CI_Controller
         }
         $this->load->model('Kelas_model');
         $this->load->library('form_validation');        
+        $this->load->helper('security');
     }
 
     public function index()
@@ -27,23 +28,18 @@ class Kelas extends CI_Controller
     {
         $kelas = $this->Kelas_model;
         
+        $validasi = $this->form_validation;
+        $validasi->set_rules($kelas->rules());
+
+        if ($validasi->run()){
+            $kelas->simpan();
+            $this->session->set_flashdata('success', 'Berhasil'); 
+        }
+
         $data["title"] = "Tambah Data";
         $data["actor"] = "Kelas";
 
-        $this->form_validation->set_rules('kelas_nama','NAMA/ID','required');
-
-
-        if ($this->form_validation->run() == FALSE){
-            $this->load->view('kelas/tambah',$data);
-        } else{
-
-            if(isset($_POST["submit"])) {
-                $kelas->simpan();
-                $this->session->set_flashdata('flash', 'Ditambahkan');
-            }
-            redirect('kelas');
-        }
-    
+        $this->load->view('kelas/tambah',$data);
     }
 
     public function hapus($id=null)
@@ -58,28 +54,23 @@ class Kelas extends CI_Controller
 
     public function ubah($id=null)
     {
-        
+        if (!isset($id)) redirect('kelas');
+
         $kelas = $this->Kelas_model;
+        $validasi = $this->form_validation;
+        $validasi->set_rules($kelas->rules());
+
+        if ($validasi->run()){
+            $kelas->perbarui();
+            $this->session->set_flashdata('success', 'Berhasil');
+        }
         
         $data["title"] = "Ubah Data";
         $data["actor"] = "Kelas";
-
         $data['kelas'] = $kelas->getByid($id);
-        $this->form_validation->set_rules('kelas_nama','NAMA/ID','required');
 
+        $this->load->view('kelas/ubah',$data);
 
-        if ($this->form_validation->run() == FALSE){
-            $this->load->view('kelas/ubah',$data);
-        } else{
-
-            if(isset($_POST["submit"])) {
-                $kelas->perbarui();
-                $this->session->set_flashdata('flash', 'Ditambahkan');
-            }
-            redirect('kelas');
-        }
-        
-        
     }
 
 }

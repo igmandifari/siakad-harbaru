@@ -14,7 +14,7 @@
         }
         $this->load->model('Admin_model');
         $this->load->library('form_validation');
-        
+        $this->load->helper('security');
     }
 
     public function index()
@@ -29,18 +29,16 @@
 
     public function tambah()
     {
-        $admin = $this->Admin_model;
-        
-        
+        $admin = $this->Admin_model;    
+        $validasi = $this->form_validation;
+        $validasi->set_rules($admin->rules());
 
-        $this->form_validation->set_rules('admin_nama','NAMA/ID','required');
-
-
-        if ($this->form_validation->run()){
+        if ($validasi->run()){
             $admin->simpan();
             $this->session->set_flashdata('success', 'Berhasil');
             
         }
+
         $data["title"] = "Tambah Data";
         $data["actor"] = "admin";
         $this->load->view('admin/tambah',$data);
@@ -60,26 +58,39 @@
     public function ubah($id=null)
     {
         if(!isset($id)) redirect('admin');
-        $admin = $this->Admin_model;
-        
-        
-        $this->form_validation->set_rules('admin_nama','NAMA/ID','required');
 
+        $admin = $this->Admin_model;
+
+        $this->form_validation->set_rules('admin_nama','Nama','required|trim|xss_clean|min_length[7]');        
+        $this->form_validation->set_rules('admin_username','Username','required|trim|callback_username_check_blank|xss_clean|min_length[7]');
+        $this->form_validation->set_rules('admin_password','Password','min_length[7]');
 
         if ($this->form_validation->run()){
-            $admin->perbarui();
+           $admin->perbarui();
             $this->session->set_flashdata('success', 'Berhasil');
         } 
 
         $data["title"] = "Ubah Data";
         $data["actor"] = "admin";
-        $data['admin'] = $admin->getByid($id);
+        $data["admin"] = $admin->getByid($id);
+        $this->load->view('admin/ubah',$data);        
+    }
 
-        $this->load->view('admin/ubah',$data);
-           
-        
-        
-        
+    public function username_check_blank($str)
+    {
+
+    $pattern = '/ /';
+    $result = preg_match($pattern, $str);
+
+    if ($result)
+    {
+        $this->form_validation->set_message('username_check_blank', 'Kolom {field} dilarang menggunakan spasi');
+        return FALSE;
+    }
+    else
+    {
+        return TRUE;
+    }
     }
 
 }

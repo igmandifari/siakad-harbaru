@@ -1,8 +1,6 @@
 <?php
 class Matpel extends CI_Controller
 {
-    
-
     public function __construct()
     {
         parent::__construct();
@@ -12,7 +10,7 @@ class Matpel extends CI_Controller
         }
         $this->load->model('Matpel_model');
         $this->load->library('form_validation'); 
-        
+        $this->load->helper('security'); 
     }
 
     public function index()
@@ -27,24 +25,19 @@ class Matpel extends CI_Controller
     public function tambah()
     {
         $matpel = $this->Matpel_model;
-        
+
+        $validasi = $this->form_validation;
+        $validasi->set_rules($matpel->rules());
+
+        if ($validasi->run()){
+            $matpel->simpan();
+            $this->session->set_flashdata('success', 'Berhasil');
+        }
+
         $data["title"] = "Tambah Data";
         $data["actor"] = "Mata Pelajaran";
 
-        $this->form_validation->set_rules('matpel_nama','Nama/Kode Matpel','required');
-
-
-        if ($this->form_validation->run() == FALSE){
-            $this->load->view('matpel/tambah',$data);
-        } else{
-
-            if(isset($_POST["submit"])) {
-                $matpel->simpan();
-                $this->session->set_flashdata('flash', 'Ditambahkan');
-            }
-            redirect('matpel');
-        }
-
+        $this->load->view('matpel/tambah',$data);
     }
 
     public function hapus($id=null)
@@ -59,26 +52,22 @@ class Matpel extends CI_Controller
 
     public function ubah($id=null)
     {
+        if(!isset($id)) redirect('matpel');
         $matpel = $this->Matpel_model;
-        
+        $data['matpel'] = $matpel->getByid($id);
+
+        $validasi = $this->form_validation;
+        $validasi->set_rules($matpel->rules());
+
+        if ($validasi->run()){
+            $matpel->perbarui();
+            $this->session->set_flashdata('success', 'Berhasil');
+        }
+
         $data["title"] = "Ubah Data";
         $data["actor"] = "Kelas";
 
-        $data['matpel'] = $matpel->getByid($id);
-        $this->form_validation->set_rules('matpel_nama','NAMA/ID','required');
-
-
-        if ($this->form_validation->run() == FALSE){
-            $this->load->view('matpel/ubah',$data);
-        } else{
-
-            if(isset($_POST["submit"])) {
-                $matpel->perbarui();
-                $this->session->set_flashdata('flash', 'Ditambahkan');
-            }
-            redirect('matpel');
-        }
-        
+        $this->load->view("matpel/ubah",$data);
     }
 
 }

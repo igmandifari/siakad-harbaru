@@ -11,11 +11,8 @@ class Tutor extends CI_Controller
         }
         $this->load->model("Tutor_model");
         $this->load->library('form_validation');
-        $this->load->library('upload');
+        $this->load->helper('security');
     }
-
-    public $error ="";
-    public $status ="";
 
     public function index()
     {
@@ -39,52 +36,40 @@ class Tutor extends CI_Controller
 
     public function ubah($id=null)
     {
+        if (!isset($id)) redirect('tutor');
+
         $tutor = $this->Tutor_model;
+        $data['tutor'] = $tutor->getByid($id);
         
+        $validasi = $this->form_validation;
+        $validasi->set_rules($tutor->rules());
+        if ($validasi->run()){
+                $tutor->perbarui();
+                $this->session->set_flashdata('success', 'Berhasil');
+            
+        }
         $data["title"] = "Ubah Data";
         $data["actor"] = "Tutor";
 
-        $data['tutor'] = $tutor->getByid($id);
-        
-        $this->form_validation->set_rules('tutor_nip','NIP','required|numeric');
-        $this->form_validation->set_rules('tutor_nama','NAMA','required');
-
-
-        if ($this->form_validation->run() == FALSE){
-            $this->load->view('tutor/ubah',$data);
-        } else{
-
-            if(isset($_POST["submit"])) {
-                $tutor->perbarui();
-                $this->session->set_flashdata('flash', 'Ditambahkan');
-            }
-            redirect('tutor');
-        }
+        $this->load->view('tutor/ubah',$data);
     }
 
-    public function tambah(){
+    public function tambah()
+    {
         $tutor = $this->Tutor_model;
-
+    
+        $validasi = $this->form_validation;
+        $validasi->set_rules($tutor->rules());
+        if ($validasi->run()){
+            
+            $tutor->simpan();
+            $this->session->set_flashdata('success', 'Berhasil');
+        }
+        
         $data["title"] = "Tambah Data";
         $data["actor"] = "Tutor";
-        
-        $this->form_validation->set_rules('tutor_nip','NIP','required|numeric');
-        $this->form_validation->set_rules('tutor_nama','NAMA','required');
-    
 
-        
-        if ($this->form_validation->run() == FALSE){
-            $this->load->view('tutor/tambah',$data);
-        } else{
-
-            if(isset($_POST["submit"])) {
-
-                $tutor->simpan();
-                $this->session->set_flashdata('flash', 'Ditambahkan');
-            }
-            redirect('tutor');
-        }
-
+        $this->load->view('tutor/tambah',$data);
     }
     
 }

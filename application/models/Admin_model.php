@@ -4,9 +4,29 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     Class Admin_model extends CI_Model 
     {
+
         private $_table = "admin";
         public $admin_id;
-      
+
+        public function rules(){
+            return[
+                [
+                    'field' =>'admin_nama',
+                    'label' =>'Nama',
+                    'rules' =>'required|trim|xss_clean'
+                ],
+                [
+                    'field' =>'admin_username',
+                    'label' =>'Username',
+                    'rules' =>'required|trim|callback_username_check_blank|xss_clean'
+                ],
+                [
+                    'field' =>'admin_password',
+                    'label' =>'Password',
+                    'rules' =>'required|min_length[7]'
+                ]
+            ];
+        }
         public function simpan()
         {
            $this->admin_id = uniqid();
@@ -20,6 +40,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
             return $this->db->insert($this->_table, $data);    
         }
+
         private function _uploadImage()
         {
             $config['upload_path']          = './upload/admin/';
@@ -35,6 +56,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             return "default.jpg";
 
         }
+
         private function _deleteImage($id)
         {
             $admin = $this->getById($id);
@@ -43,19 +65,28 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 return array_map('unlink', glob(FCPATH."upload/admin/$filename.*"));
             }
         }
+
         public function perbarui()
         {
             $this->admin_id = $this->input->post("admin_id");
+
+            // check, if admin have foto or not
             if (!empty($_FILES["admin_foto"]["name"])) {
                 $foto = $this->_uploadImage();
             } else {
                 $foto = $this->input->post("old_image");
             }
+            //change password or not
+            if (!empty($this->input->post("admin_password"))){
+                $password = MD5($this->input->post("admin_password"));
+            }else{
+                $password = $this->input->post("admin_old_password");
+            }
 
             $data= array(
                 'admin_nama'        => $this->input->post("admin_nama"),
                 'admin_username'    => $this->input->post("admin_username"),
-                'admin_password'    => MD5($this->input->post("admin_password")),
+                'admin_password'    => $password,
                 'admin_foto'        => $foto
                 
             );
