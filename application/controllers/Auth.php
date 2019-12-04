@@ -9,11 +9,12 @@ class Auth extends CI_Controller
         
         $this->load->model('Auth_model');
         $this->load->library('form_validation');
+        $this->load->helper('security');
     }
     
     public function index(){
         if($this->session->userdata('MASUK') == TRUE){
-            redirect("siswa");
+            redirect("wargabelajar");
         }
         $data["title"] = "Login - Siak Harba";
         $this->load->view('auth/login',$data);
@@ -29,14 +30,14 @@ class Auth extends CI_Controller
             $result = $this->Auth_model->cekLogin($username,$password);
 
                     
-             $this->form_validation->set_rules('username','username','required');
-             $this->form_validation->set_rules('passowrd','password','required');
+             $this->form_validation->set_rules('username','username','required|trim|xss_clean');
+             $this->form_validation->set_rules('passowrd','password','required|xss_clean');
 
 
             if (!empty($result)) {
                 $this->session->set_userdata('MASUK',TRUE);
                 $this->session->set_userdata($result);
-                redirect('siswa');
+                redirect('wargabelajar');
             } else {
                 redirect('auth');
             }
