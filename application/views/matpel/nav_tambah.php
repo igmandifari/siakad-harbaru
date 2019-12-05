@@ -2,17 +2,17 @@
                         <li class="nav-main-item">
                             <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
                                 <i class="nav-main-link-icon si si-energy"></i>
-                                <span class="nav-main-link-name">Siswa</span>
+                                <span class="nav-main-link-name">Warga Belajar</span>
                             </a>
                             <ul class="nav-main-submenu">
                                 <li class="nav-main-item">
-                                    <a class="nav-main-link" href="<?=base_url('siswa/');?>">
-                                        <span class="nav-main-link-name">Daftar Siswa</span>
+                                    <a class="nav-main-link" href="<?=base_url('wargabelajar/');?>">
+                                        <span class="nav-main-link-name">Daftar Warga Belajar</span>
                                     </a>
                                 </li>
                                 <li class="nav-main-item">
-                                    <a class="nav-main-link" href="<?=base_url('siswa/tambah');?>">
-                                        <span class="nav-main-link-name">Tambah Siswa</span>
+                                    <a class="nav-main-link" href="<?=base_url('wargabelajar/tambah');?>">
+                                        <span class="nav-main-link-name">Tambah Warga Belajar</span>
                                     </a>
                                 </li>
                             </ul>
