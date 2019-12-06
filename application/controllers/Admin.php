@@ -8,10 +8,9 @@
     public function __construct()
     {
         parent::__construct();
-        if($this->session->userdata('MASUK') != TRUE){
-            $url=base_url();
-            redirect($url);
-        }
+        $url=base_url();
+        if($this->session->userdata('MASUK') != TRUE)redirect($url);
+        if($this->session->userdata('level') != 0) redirect("dasbor");
         $this->load->model('Admin_model');
         $this->load->library('form_validation');
         $this->load->helper('security');
@@ -73,6 +72,9 @@
         $data["title"] = "Ubah Data";
         $data["actor"] = "admin";
         $data["admin"] = $admin->getByid($id);
+ 
+        if(!$data['admin']) redirect('admin');
+
         $this->load->view('admin/ubah',$data);        
     }
 

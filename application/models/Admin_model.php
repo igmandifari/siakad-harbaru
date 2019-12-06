@@ -43,7 +43,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
         private function _uploadImage()
         {
-            $config['upload_path']          = './upload/admin/';
+            $config['upload_path']          = './upload/images/';
             $config['allowed_types']        = 'jpg|jpeg|png';
             $config['file_name']            = $this->admin_id;
             $config['overwrite']			= true;
@@ -62,7 +62,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             $admin = $this->getById($id);
             if ($admin["admin_foto"] != "default.jpg") {
                 $filename = explode(".", $admin["admin_foto"])[0];
-                return array_map('unlink', glob(FCPATH."upload/admin/$filename.*"));
+                return array_map('unlink', glob(FCPATH."upload/images/$filename.*"));
             }
         }
 

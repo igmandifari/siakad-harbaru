@@ -5,10 +5,9 @@ class Kelas extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        if($this->session->userdata('MASUK') != TRUE){
-            $url=base_url();
-            redirect($url);
-        }
+        $url=base_url();
+        if($this->session->userdata('MASUK') != TRUE)redirect($url);
+        if($this->session->userdata('level') != 0) redirect("dasbor");
         $this->load->model('Kelas_model');
         $this->load->library('form_validation');        
         $this->load->helper('security');
@@ -68,6 +67,8 @@ class Kelas extends CI_Controller
         $data["title"] = "Ubah Data";
         $data["actor"] = "Kelas";
         $data['kelas'] = $kelas->getByid($id);
+
+        if(!$data['kelas']) redirect('kelas');
 
         $this->load->view('kelas/ubah',$data);
 

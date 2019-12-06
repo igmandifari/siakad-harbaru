@@ -4,10 +4,9 @@ class Matpel extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        if($this->session->userdata('MASUK') != TRUE){
-            $url=base_url();
-            redirect($url);
-        }
+        $url=base_url();
+        if($this->session->userdata('MASUK') != TRUE)redirect($url);
+        if($this->session->userdata('level') != 0) redirect("dasbor");
         $this->load->model('Matpel_model');
         $this->load->library('form_validation'); 
         $this->load->helper('security'); 
@@ -55,6 +54,8 @@ class Matpel extends CI_Controller
         if(!isset($id)) redirect('matpel');
         $matpel = $this->Matpel_model;
         $data['matpel'] = $matpel->getByid($id);
+
+        if(!$data['matpel']) redirect('matpel');
 
         $validasi = $this->form_validation;
         $validasi->set_rules($matpel->rules());

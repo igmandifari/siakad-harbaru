@@ -1,5 +1,5 @@
 <?php $this->load->view('head')?>
-<?php $this->load->view('siswa/nav_list')?>
+<?php $this->load->view('wargabelajar/nav_list')?>
 
 <!-- Main Container -->
 <main id="main-container">
@@ -27,7 +27,7 @@
     <div class="block">
         <div class="block-header">
         <div class="block-header">
-            <a href="<?=base_url('siswa/tambah');?>">
+            <a href="<?=base_url('wargabelajar/tambah');?>">
                 <button type="button" class="btn btn-success mr-1 mb-3">
                     <i class="fa fa-fw fa-plus mr-1"></i> Tambah Data
                 </button>
@@ -39,7 +39,7 @@
             <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
                 <thead>
                     <tr>
-                        <th class="text-center" style="width: 80px;">NIS</th>
+                        <th class="text-center" style="width: 80px;">Nomor Induk</th>
                         <th class="text-center" style="width: 80px;">NISN</th>
                         <th class="text-center" style="width: 80px;">Nama</th>
                         <th class="d-none d-sm-table-cell" style="width: 15%;">TTL</th>
@@ -47,28 +47,28 @@
                     </tr>
                 </thead>
                 <tbody>
-                <?php foreach ($siswas as $siswa): ?>
+                <?php foreach ($wargabelajars as $wargabelajar): ?>
 									
                     <tr>
-                        <td class="text-center font-size-sm"><?= $siswa->siswa_nis ?></td>
-                        <td class="text-center font-size-sm"><?= $siswa->siswa_nisn ?></td>
+                        <td class="text-center font-size-sm"><?= $wargabelajar->wargabelajar_nomor_induk ?></td>
+                        <td class="text-center font-size-sm"><?= $wargabelajar->wargabelajar_nisn ?></td>
                         <td class="d-none d-sm-table-cell font-size-sm">
-                        <?= $siswa->siswa_nama ?><em class="text-muted"></em>
+                        <?= $wargabelajar->wargabelajar_nama ?><em class="text-muted"></em>
                         </td>
                         <td class="d-none d-sm-table-scell">
                             <span class="badge badge-success"></span>
                         </td>
                         <td>
-                            <em class="text-muted font-size-sm"><?= $siswa->siswa_tempat_lahir .',' .$siswa->siswa_tanggal_lahir ?></em>
+                            <em class="text-muted font-size-sm"><?= $wargabelajar->wargabelajar_tempat_lahir .',' .$wargabelajar->wargabelajar_tanggal_lahir ?></em>
                         </td>
                         <td class="text-center">
                             <div class="btn-group">
-                                <a href="<?=base_url('siswa/ubah/').$siswa->siswa_id;?>">
+                                <a href="<?=base_url('wargabelajar/ubah/').$wargabelajar->wargabelajar_id;?>">
                                     <button type="button" class="btn btn-sm btn-light js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Ubah">
                                         <i class="fa fa-fw fa-pencil-alt"></i>
                                     </button>
                                 </a>
-                                <a href="<?=base_url('siswa/hapus/').$siswa->siswa_id;?>">
+                                <a href="<?=base_url('wargabelajar/hapus/').$wargabelajar->wargabelajar_id;?>">
                                     <button type="button" class="btn btn-sm btn-light js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Hapus">
                                         <i class="fa fa-fw fa-times"></i>
                                     </button>

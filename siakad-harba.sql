@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 30, 2019 at 11:32 AM
+-- Generation Time: Dec 06, 2019 at 11:30 PM
 -- Server version: 10.0.38-MariaDB-0ubuntu0.16.04.1
--- PHP Version: 7.3.11-1+ubuntu16.04.1+deb.sury.org+1
+-- PHP Version: 7.3.12-1+ubuntu16.04.1+deb.sury.org+1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -41,7 +41,7 @@ CREATE TABLE `admin` (
 INSERT INTO `admin` (`admin_id`, `admin_nama`, `admin_username`, `admin_password`, `admin_foto`) VALUES
 ('5de15e4e0de9d', 'Zam Zam Saeful Bahtiar', 'bekerz18', 'c7625d1ad74993a30b16c81148f141e1', '5de15e4e0de9d.jpeg'),
 ('5de15e8a9ead8', 'Igman Difari', 'igman', '827ccb0eea8a706c4c34a16891f84e7b', '5de15e8a9ead8.jpg'),
-('5de1e955158af', 'Intan', 'intanhartiwan', 'd41d8cd98f00b204e9800998ecf8427e', '5de1e955158af.jpg');
+('5de1e955158af', 'Intan', 'intanhartiwan', 'c7625d1ad74993a30b16c81148f141e1', '5de1e955158af.png');
 
 -- --------------------------------------------------------
 
@@ -88,7 +88,9 @@ INSERT INTO `kelas` (`kelas_id`, `kelas_nama`) VALUES
 ('5ddb9d0159e37', 'Kelas X'),
 ('5ddb9d12213ba', 'Kelas VII'),
 ('5ddb9d1c026c3', 'Kelas VIII'),
-('5ddb9d21eb254', 'Kelas 68');
+('5ddb9d21eb254', 'Kelas 682'),
+('5de342460e692', 'Naonnya'),
+('5de8c07454d02', 'Kelas 5');
 
 -- --------------------------------------------------------
 
@@ -107,75 +109,7 @@ CREATE TABLE `matpel` (
 
 INSERT INTO `matpel` (`matpel_id`, `matpel_nama`) VALUES
 ('5ddcd276be772', 'Matematika'),
-('5ddcd27ce80cd', 'Bahasa Indonesiah');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `siswa`
---
-
-CREATE TABLE `siswa` (
-  `siswa_id` varchar(100) NOT NULL,
-  `siswa_nis` int(11) NOT NULL,
-  `siswa_nisn` int(11) NOT NULL,
-  `siswa_nama` varchar(90) NOT NULL,
-  `siswa_nik` varchar(30) NOT NULL,
-  `siswa_jenis_kelamin` enum('Pria','Wanita') NOT NULL,
-  `siswa_tempat_lahir` varchar(50) DEFAULT NULL,
-  `siswa_tanggal_lahir` date DEFAULT NULL,
-  `siswa_agama` enum('Islam','Kristen Protestan','Katolik','Hindu','Buddha','Kong Hu Cu') DEFAULT NULL,
-  `siswa_kewarganegaraan` enum('WNA','WNI') DEFAULT NULL,
-  `siswa_alamat_jalan` varchar(40) DEFAULT NULL,
-  `siswa_alamat_rtrw` varchar(40) DEFAULT NULL,
-  `siswa_alamat_desa` varchar(30) DEFAULT NULL,
-  `siswa_alamat_kecamatan` varchar(30) DEFAULT NULL,
-  `siswa_alamat_kabupaten` varchar(30) DEFAULT NULL,
-  `siswa_alamat_provinsi` varchar(30) DEFAULT NULL,
-  `siswa_alamat_kodepos` varchar(10) DEFAULT NULL,
-  `siswa_foto` varchar(50) DEFAULT NULL,
-  `siswa_password` varchar(100) NOT NULL,
-  `kelas_id` varchar(100) DEFAULT NULL,
-  `orangtua_ayah_nama` varchar(90) DEFAULT NULL,
-  `orangtua_ayah_nik` varchar(30) NOT NULL,
-  `orangtua_ayah_agama` enum('Islam','Kristen Protestan','Katolik','Hindu','Buddha','Kong Hu Cu') DEFAULT NULL,
-  `orangtua_ayah_kewarganegaraan` enum('WNA','WNI') DEFAULT NULL,
-  `orangtua_ayah_pendidikan_terakhir` varchar(10) DEFAULT NULL,
-  `orangtua_ayah_pekerjaan` varchar(20) DEFAULT NULL,
-  `orangtua_ayah_alamat_jalan` varchar(40) DEFAULT NULL,
-  `orangtua_ayah_alamat_rtrw` varchar(40) DEFAULT NULL,
-  `orangtua_ayah_alamat_desa` varchar(30) DEFAULT NULL,
-  `orangtua_ayah_alamat_kecamatan` varchar(30) DEFAULT NULL,
-  `orangtua_ayah_alamat_kabupaten` varchar(30) DEFAULT NULL,
-  `orangtua_ayah_alamat_provinsi` varchar(30) DEFAULT NULL,
-  `orangtua_ayah_alamat_kodepos` varchar(10) DEFAULT NULL,
-  `orangtua_ibu_nama` varchar(90) DEFAULT NULL,
-  `orangtua_ibu_nik` varchar(30) NOT NULL,
-  `orangtua_ibu_agama` enum('Islam','Kristen Protestan','Katolik','Hindu','Buddha','Kong Hu Cu') DEFAULT NULL,
-  `orangtua_ibu_kewarganegaraan` enum('WNA','WNI') DEFAULT NULL,
-  `orangtua_ibu_pendidikan_terakhir` varchar(10) DEFAULT NULL,
-  `orangtua_ibu_pekerjaan` varchar(20) DEFAULT NULL,
-  `orangtua_ibu_alamat_jalan` varchar(40) DEFAULT NULL,
-  `orangtua_ibu_alamat_rtrw` varchar(40) DEFAULT NULL,
-  `orangtua_ibu_alamat_desa` varchar(30) DEFAULT NULL,
-  `orangtua_ibu_alamat_kecamatan` varchar(30) DEFAULT NULL,
-  `orangtua_ibu_alamat_kabupaten` varchar(30) DEFAULT NULL,
-  `orangtua_ibu_alamat_provinsi` varchar(30) DEFAULT NULL,
-  `orangtua_ibu_alamat_kodepos` varchar(10) DEFAULT NULL,
-  `orangtua_wali_nama` varchar(90) DEFAULT NULL,
-  `orangtua_wali_nik` varchar(30) NOT NULL,
-  `orangtua_wali_agama` enum('Islam','Kristen Protestan','Katolik','Hindu','Buddha','Kong Hu Cu') DEFAULT NULL,
-  `orangtua_wali_kewarganegaraan` enum('WNA','WNI') DEFAULT NULL,
-  `orangtua_wali_pendidikan_terakhir` varchar(10) DEFAULT NULL,
-  `orangtua_wali_pekerjaan` varchar(20) DEFAULT NULL,
-  `orangtua_wali_alamat_jalan` varchar(40) DEFAULT NULL,
-  `orangtua_wali_alamat_rtrw` varchar(40) DEFAULT NULL,
-  `orangtua_wali_alamat_desa` varchar(30) DEFAULT NULL,
-  `orangtua_wali_alamat_kecamatan` varchar(30) DEFAULT NULL,
-  `orangtua_wali_alamat_kabupaten` varchar(30) DEFAULT NULL,
-  `orangtua_wali_alamat_provinsi` varchar(30) DEFAULT NULL,
-  `orangtua_wali_alamat_kodepos` varchar(10) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+('5ddcd27ce80cd', 'Bahasa Indonesia');
 
 -- --------------------------------------------------------
 
@@ -229,9 +163,68 @@ CREATE TABLE `tutor` (
 --
 
 INSERT INTO `tutor` (`tutor_id`, `tutor_nip`, `tutor_nama`, `tutor_jenis_kelamin`, `tutor_tempat_lahir`, `tutor_tanggal_lahir`, `tutor_agama`, `tutor_kewarganegaraan`, `tutor_pendidikan_terakhir`, `tutor_alamat_jalan`, `tutor_alamat_rtrw`, `tutor_alamat_desa`, `tutor_alamat_kecamatan`, `tutor_alamat_kabupaten`, `tutor_alamat_provinsi`, `tutor_alamat_kodepos`, `tutor_foto`) VALUES
-('5dd5c21752159', '11', 'ada', 'Pria', '', '0000-00-00', 'Islam', 'WNA', '0', '    fsf', 'fsfq', 'f', 'wf', 'fwfw', 'f', 'f', NULL),
-('5dd7f94d53468', '0', 'sdfaasd', '', ' ds', NULL, '', NULL, '0', 'fdf', 'ada', 'ada', 'ada', 'ada', 'ada', '', NULL),
+('5dd7f94d53468', '0', 'Zam Zam Saeful Bahtiar', '', 'ds', '0000-00-00', '', NULL, '0', 'fdf', 'ada', 'ada', 'ada', 'ada', 'ada', '', ''),
 ('5dd7f98bc4245', '0', 'teuing', '', 'dada', NULL, '', NULL, '0', '', 'da', 'ada', 'ada', '', 'ada', 'adaa', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `wargabelajar`
+--
+
+CREATE TABLE `wargabelajar` (
+  `wargabelajar_id` varchar(100) NOT NULL,
+  `wargabelajar_nomor_induk` varchar(15) NOT NULL,
+  `wargabelajar_nisn` varchar(15) NOT NULL,
+  `wargabelajar_nama` varchar(90) NOT NULL,
+  `wargabelajar_nik` varchar(30) NOT NULL,
+  `wargabelajar_jenis_kelamin` enum('Pria','Wanita') NOT NULL,
+  `wargabelajar_tempat_lahir` varchar(50) DEFAULT NULL,
+  `wargabelajar_tanggal_lahir` date DEFAULT NULL,
+  `wargabelajar_agama` enum('Islam','Kristen Protestan','Katolik','Hindu','Buddha','Kong Hu Cu') DEFAULT NULL,
+  `wargabelajar_kewarganegaraan` enum('WNA','WNI') DEFAULT NULL,
+  `wargabelajar_alamat_jalan` varchar(40) DEFAULT NULL,
+  `wargabelajar_alamat_rtrw` varchar(10) DEFAULT NULL,
+  `wargabelajar_alamat_desa` varchar(30) DEFAULT NULL,
+  `wargabelajar_alamat_kecamatan` varchar(30) DEFAULT NULL,
+  `wargabelajar_alamat_kabupaten` varchar(30) DEFAULT NULL,
+  `wargabelajar_alamat_provinsi` varchar(30) DEFAULT NULL,
+  `wargabelajar_alamat_kodepos` varchar(10) DEFAULT NULL,
+  `wargabelajar_kejar` varchar(50) DEFAULT NULL,
+  `wargabelajar_kejar_alamat` varchar(150) DEFAULT NULL,
+  `wargabelajar_sttb` varchar(150) DEFAULT NULL,
+  `wargabelajar_masuk` date DEFAULT NULL,
+  `wargabelajar_foto` varchar(100) DEFAULT NULL,
+  `wargabelajar_password` varchar(255) NOT NULL,
+  `kelas_id` varchar(100) DEFAULT NULL,
+  `orangtua_ayah_nama` varchar(90) DEFAULT NULL,
+  `orangtua_ayah_pekerjaan` varchar(20) DEFAULT NULL,
+  `orangtua_ayah_alamat_jalan` varchar(40) DEFAULT NULL,
+  `orangtua_ayah_alamat_rtrw` varchar(40) DEFAULT NULL,
+  `orangtua_ayah_alamat_desa` varchar(30) DEFAULT NULL,
+  `orangtua_ayah_alamat_kecamatan` varchar(30) DEFAULT NULL,
+  `orangtua_ayah_alamat_kabupaten` varchar(30) DEFAULT NULL,
+  `orangtua_ayah_alamat_provinsi` varchar(30) DEFAULT NULL,
+  `orangtua_ayah_alamat_kodepos` varchar(10) DEFAULT NULL,
+  `orangtua_ibu_nama` varchar(90) DEFAULT NULL,
+  `orangtua_wali_nama` varchar(90) DEFAULT NULL,
+  `orangtua_wali_pekerjaan` varchar(20) DEFAULT NULL,
+  `orangtua_wali_alamat_jalan` varchar(40) DEFAULT NULL,
+  `orangtua_wali_alamat_rtrw` varchar(40) DEFAULT NULL,
+  `orangtua_wali_alamat_desa` varchar(30) DEFAULT NULL,
+  `orangtua_wali_alamat_kecamatan` varchar(30) DEFAULT NULL,
+  `orangtua_wali_alamat_kabupaten` varchar(30) DEFAULT NULL,
+  `orangtua_wali_alamat_provinsi` varchar(30) DEFAULT NULL,
+  `orangtua_wali_alamat_kodepos` varchar(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `wargabelajar`
+--
+
+INSERT INTO `wargabelajar` (`wargabelajar_id`, `wargabelajar_nomor_induk`, `wargabelajar_nisn`, `wargabelajar_nama`, `wargabelajar_nik`, `wargabelajar_jenis_kelamin`, `wargabelajar_tempat_lahir`, `wargabelajar_tanggal_lahir`, `wargabelajar_agama`, `wargabelajar_kewarganegaraan`, `wargabelajar_alamat_jalan`, `wargabelajar_alamat_rtrw`, `wargabelajar_alamat_desa`, `wargabelajar_alamat_kecamatan`, `wargabelajar_alamat_kabupaten`, `wargabelajar_alamat_provinsi`, `wargabelajar_alamat_kodepos`, `wargabelajar_kejar`, `wargabelajar_kejar_alamat`, `wargabelajar_sttb`, `wargabelajar_masuk`, `wargabelajar_foto`, `wargabelajar_password`, `kelas_id`, `orangtua_ayah_nama`, `orangtua_ayah_pekerjaan`, `orangtua_ayah_alamat_jalan`, `orangtua_ayah_alamat_rtrw`, `orangtua_ayah_alamat_desa`, `orangtua_ayah_alamat_kecamatan`, `orangtua_ayah_alamat_kabupaten`, `orangtua_ayah_alamat_provinsi`, `orangtua_ayah_alamat_kodepos`, `orangtua_ibu_nama`, `orangtua_wali_nama`, `orangtua_wali_pekerjaan`, `orangtua_wali_alamat_jalan`, `orangtua_wali_alamat_rtrw`, `orangtua_wali_alamat_desa`, `orangtua_wali_alamat_kecamatan`, `orangtua_wali_alamat_kabupaten`, `orangtua_wali_alamat_provinsi`, `orangtua_wali_alamat_kodepos`) VALUES
+('5de73cb301e5e', '181910027', '2928013602', 'Agit Apriyanto', '3278050804920005', 'Pria', 'Tasikmalaya', '1992-08-04', 'Islam', NULL, 'Picungremuk', '002/010', 'Gununggede', 'Kawalu', 'Kota Tasikmalaya', 'Jawa Barat', '46182', '', '', '', '0000-00-00', '5de73cb301e5e.jpg', '181910027', '5ddb9d0159e37', 'Enceng', 'Buruh', 'Picungremuk', '002/010', 'Gununggede', 'Kawalu', 'Kota Tasikmalaya', 'Jawa Barat', '46182', 'Rohimah', '', '', '', '', '', '', '', '', ''),
+('5de8aed595502', '181910028', '2887216215', 'Agus Agustin', '3278050804920005', 'Pria', 'Tasikmalaya', '1988-08-16', 'Islam', '', 'Sindangsuka', '001/009', 'Gununggede', 'Kawalu', 'Kota Tasikmalaya', 'Jawa Barat', '46182', 'SMPN 20 Tasikmalaya', 'Jln Air Tanjung Kawalu Tasikmalaya', 'DN-02 DI 0480369 / 28 Juni 2004', '2018-07-16', 'default.jpg', '181910028', '5ddb9d0159e37', 'Sutisna', 'Buruh', 'Sindangsuka', '001/009', 'Gununggede', 'Kawalu', 'Kota Tasikmalaya', 'Jawa Barat', '46182', 'Siti Maryam', '', '', '', '', '', '', '', '', '');
 
 --
 -- Indexes for dumped tables
@@ -266,13 +259,6 @@ ALTER TABLE `matpel`
   ADD PRIMARY KEY (`matpel_id`);
 
 --
--- Indexes for table `siswa`
---
-ALTER TABLE `siswa`
-  ADD PRIMARY KEY (`siswa_id`),
-  ADD KEY `kelas_id` (`kelas_id`);
-
---
 -- Indexes for table `tbl_level_user`
 --
 ALTER TABLE `tbl_level_user`
@@ -283,6 +269,13 @@ ALTER TABLE `tbl_level_user`
 --
 ALTER TABLE `tutor`
   ADD PRIMARY KEY (`tutor_id`);
+
+--
+-- Indexes for table `wargabelajar`
+--
+ALTER TABLE `wargabelajar`
+  ADD PRIMARY KEY (`wargabelajar_id`),
+  ADD KEY `kelas_id` (`kelas_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -306,9 +299,9 @@ ALTER TABLE `jadwal`
   ADD CONSTRAINT `jadwal_tutor` FOREIGN KEY (`tutor_id`) REFERENCES `tutor` (`tutor_id`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
--- Constraints for table `siswa`
+-- Constraints for table `wargabelajar`
 --
-ALTER TABLE `siswa`
+ALTER TABLE `wargabelajar`
   ADD CONSTRAINT `kelas_siswa` FOREIGN KEY (`kelas_id`) REFERENCES `kelas` (`kelas_id`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

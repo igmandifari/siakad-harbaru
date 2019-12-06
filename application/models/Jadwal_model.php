@@ -3,10 +3,14 @@
 class Jadwal_model extends CI_Model{
 
     private $_table = "jadwal";
-    private $_tutor = "tutor";
-    private $_kelas = "kelas";
-    private $_matpel = "matpel";
 
+    public function rules(){
+        return[
+            [
+
+            ]
+        ];
+    }
     public function simpan()
     {
         $data = array(
@@ -39,14 +43,6 @@ class Jadwal_model extends CI_Model{
     
     public function getAll()
     {
-//         $this->db->select('*');
-//         $this->db->from($this->_table);
-//         $this->db->join($this->_kelas,'kelas.kelas_id=jadwal.kelas_id');
-//         $this->db->join($this->tutor,'tutor.tutor_id=jadwal.tutor_id');
-//         $this->db->join($this->_matpel,'matpel.matpel_id=jadwal.matpel_id');
-        
-//         $query = $this->db->get();
-//  return $query->result();
             $query = $this->db->query("SELECT * FROM jadwal INNER JOIN kelas ON kelas.kelas_id=jadwal.kelas_id INNER JOIN tutor ON tutor.tutor_id=jadwal.tutor_id INNER JOIN matpel ON matpel.matpel_id=jadwal.matpel_id");
             return $query->result();
     }

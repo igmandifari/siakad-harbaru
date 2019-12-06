@@ -5,10 +5,9 @@ class Jadwal extends CI_Controller
     {
         parent::__construct();
 
-        if($this->session->userdata('MASUK') != TRUE){
-            $url=base_url();
-            redirect($url);
-        }
+        $url=base_url();
+        if($this->session->userdata('MASUK') != TRUE)redirect($url);
+        if($this->session->userdata('level') != 0) redirect("dasbor");
 
         $this->load->model("Jadwal_model");
         $this->load->model("Kelas_model");
@@ -38,6 +37,8 @@ class Jadwal extends CI_Controller
             $data["matpels"] = $this->Matpel_model->getAll();
             $data["tutors"] = $this->Tutor_model->getAll();
             $data["jadwal"] = $this->Jadwal_model->getById($id);
+
+            if(!$data['jadwal']) redirect('jadwal');
 
             $this->load->view("jadwal/ubah",$data);
         }
