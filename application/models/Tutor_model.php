@@ -56,7 +56,7 @@
         }
         private function _uploadImage()
         {
-            $config['upload_path']          = './upload/tutor/';
+            $config['upload_path']          = './upload/images/';
             $config['allowed_types']        = 'jpg|jpeg|png';
             $config['file_name']            = $this->tutor_id;
             $config['overwrite']			= true;
@@ -74,7 +74,7 @@
             $tutor = $this->getById($id);
             if ($tutor["tutor_foto"] != "default.jpg") {
                 $filename = explode(".", $tutor["tutor_foto"])[0];
-                return array_map('unlink', glob(FCPATH."upload/tutor/$filename.*"));
+                return array_map('unlink', glob(FCPATH."upload/images/$filename.*"));
             }
         }
         public function simpan(){

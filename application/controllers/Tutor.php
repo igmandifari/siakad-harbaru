@@ -5,10 +5,9 @@ class Tutor extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        if($this->session->userdata('MASUK') != TRUE){
-            $url=base_url();
-            redirect($url);
-        }
+        $url=base_url();
+        if($this->session->userdata('MASUK') != TRUE)redirect($url);
+        if($this->session->userdata('level') != 0) redirect("dasbor");
         $this->load->model("Tutor_model");
         $this->load->library('form_validation');
         $this->load->helper('security');
@@ -40,6 +39,8 @@ class Tutor extends CI_Controller
 
         $tutor = $this->Tutor_model;
         $data['tutor'] = $tutor->getByid($id);
+
+        if(!$data['tutor']) redirect('tutor');
         
         $validasi = $this->form_validation;
         $validasi->set_rules($tutor->rules());
@@ -50,7 +51,7 @@ class Tutor extends CI_Controller
         }
         $data["title"] = "Ubah Data";
         $data["actor"] = "Tutor";
-
+        
         $this->load->view('tutor/ubah',$data);
     }
 

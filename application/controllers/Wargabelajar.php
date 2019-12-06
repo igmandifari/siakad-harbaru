@@ -7,10 +7,9 @@ Class Wargabelajar extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        if($this->session->userdata('MASUK') != TRUE){
-            $url=base_url();
-            redirect($url);
-        }
+        $url=base_url();
+        if($this->session->userdata('MASUK') != TRUE)redirect($url);
+        if($this->session->userdata('level') != 0) redirect("dasbor");
         $this->load->model('Wargabelajar_model');
         $this->load->model('Kelas_model');
         $this->load->library('form_validation');        
@@ -54,6 +53,7 @@ Class Wargabelajar extends CI_Controller
         $data["actor"] = "Warga Belajar";
         $data["kelass"] = $kelas->getAll();
 
+        if(!$data['wargabelajar']) redirect('wargabelajar');
         
         $this->load->view('wargabelajar/ubah',$data);
     }

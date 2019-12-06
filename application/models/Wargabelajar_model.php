@@ -71,7 +71,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
         private function _uploadImage()
         {
-            $config['upload_path']          = './upload/wargabelajar/';
+            $config['upload_path']          = './upload/images/';
             $config['allowed_types']        = 'jpg|jpeg|png';
             $config['file_name']            = $this->wargabelajar_id;
             $config['overwrite']			= true;
@@ -89,7 +89,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             $wargabelajar = $this->getById($id);
             if ($wargabelajar->wargabelajar_foto != "default.jpg") {
                 $filename = explode(".", $wargabelajar->wargabelajar_foto)[0];
-                return array_map('unlink', glob(FCPATH."upload/wargabelajar/$filename.*"));
+                return array_map('unlink', glob(FCPATH."upload/images/$filename.*"));
             }
         }
         public function simpan(){
@@ -211,6 +211,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         public function delete($id){
             $this->_deleteImage($id);
             return $this->db->delete($this->_table, array("wargabelajar_id" => $id));
+        }
+        public function cek_login($username,$password){
+            $this->db->where('wargabelajar_nomor_induk',$username);
+            $this->db->where('wargabelajar_password',$password);
+            $user = $this->db->get('wargabelajar')->row_array();
+            return $user;
         }
     }
 ?>
