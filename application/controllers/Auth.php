@@ -32,6 +32,7 @@ class Auth extends CI_Controller
             $password = $this->input->post('password');
             $Admin = $this->Auth_model->cekLogin($username,$password);
             $WargaBelajar = $this->Wargabelajar_model->cek_login($username,$password);
+            //$Pimpinan = $this->Pimpinan_model->cek_login($username,$password);
 
             if (!empty($Admin)) {
                 $this->session->set_userdata('MASUK',TRUE);
@@ -47,7 +48,7 @@ class Auth extends CI_Controller
                 $this->session->set_userdata('MASUK',TRUE);
                 $session = array(
                     'nama'  => $WargaBelajar['wargabelajar_nama'],
-                    'id'    => $WargaBelajar['wargabelajar_nama'],
+                    'id'    => $WargaBelajar['wargabelajar_id'],
                     'foto'  => $WargaBelajar['wargabelajar_foto'],
                     'level' => 1
                 );

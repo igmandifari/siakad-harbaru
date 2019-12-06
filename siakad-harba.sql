@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.4.1deb2ubuntu2.1
--- http://www.phpmyadmin.net
+-- version 4.8.3
+-- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Dec 06, 2019 at 11:30 PM
--- Server version: 10.0.38-MariaDB-0ubuntu0.16.04.1
--- PHP Version: 7.3.12-1+ubuntu16.04.1+deb.sury.org+1
+-- Host: 127.0.0.1
+-- Generation Time: Dec 06, 2019 at 11:48 PM
+-- Server version: 10.1.37-MariaDB
+-- PHP Version: 7.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -110,6 +112,27 @@ CREATE TABLE `matpel` (
 INSERT INTO `matpel` (`matpel_id`, `matpel_nama`) VALUES
 ('5ddcd276be772', 'Matematika'),
 ('5ddcd27ce80cd', 'Bahasa Indonesia');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pimpinan`
+--
+
+CREATE TABLE `pimpinan` (
+  `pimpinan_id` varchar(100) NOT NULL,
+  `pimpinan_username` varchar(25) NOT NULL,
+  `pimpinan_nama` varchar(100) NOT NULL,
+  `pimpinan_foto` varchar(100) DEFAULT NULL,
+  `pimpinan_password` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pimpinan`
+--
+
+INSERT INTO `pimpinan` (`pimpinan_id`, `pimpinan_username`, `pimpinan_nama`, `pimpinan_foto`, `pimpinan_password`) VALUES
+('5dead68683868', 'igman', 'bapak haji ramlan', '5dead68683868.png', '1234567');
 
 -- --------------------------------------------------------
 
@@ -259,6 +282,13 @@ ALTER TABLE `matpel`
   ADD PRIMARY KEY (`matpel_id`);
 
 --
+-- Indexes for table `pimpinan`
+--
+ALTER TABLE `pimpinan`
+  ADD PRIMARY KEY (`pimpinan_id`),
+  ADD UNIQUE KEY `pimpinan_username` (`pimpinan_username`);
+
+--
 -- Indexes for table `tbl_level_user`
 --
 ALTER TABLE `tbl_level_user`
@@ -286,6 +316,7 @@ ALTER TABLE `wargabelajar`
 --
 ALTER TABLE `tbl_level_user`
   MODIFY `id_level_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 --
 -- Constraints for dumped tables
 --
@@ -303,6 +334,7 @@ ALTER TABLE `jadwal`
 --
 ALTER TABLE `wargabelajar`
   ADD CONSTRAINT `kelas_siswa` FOREIGN KEY (`kelas_id`) REFERENCES `kelas` (`kelas_id`) ON DELETE NO ACTION ON UPDATE CASCADE;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
