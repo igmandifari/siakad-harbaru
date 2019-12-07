@@ -53,6 +53,21 @@
             redirect('admin');
         }
     }
+    public function ubah_password(){
+        $admin = $this->Admin_model;
+
+        $this->form_validation->set_rules('admin_password','Password','min_length[5]');
+
+        if ($this->form_validation->run()){
+           $admin->perbarui_password();
+            $this->session->set_flashdata('success', 'Berhasil');
+            redirect('admin');
+        }
+        else{
+            $this->session->set_flashdata('failed', 'Gagal');
+            redirect('admin');
+        } 
+    }
 
     public function ubah($id=null)
     {
@@ -62,7 +77,7 @@
 
         $this->form_validation->set_rules('admin_nama','Nama','required|trim|xss_clean|min_length[7]');        
         $this->form_validation->set_rules('admin_username','Username','required|trim|callback_username_check_blank|xss_clean|min_length[7]');
-        $this->form_validation->set_rules('admin_password','Password','min_length[7]');
+        //$this->form_validation->set_rules('admin_password','Password','min_length[7]');
 
         if ($this->form_validation->run()){
            $admin->perbarui();
