@@ -34,7 +34,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 'admin_id'          => $this->admin_id,
                 'admin_nama'        => $this->input->post("admin_nama"),
                 'admin_username'    => strtolower($this->input->post("admin_username")),
-                'admin_password'    => MD5($this->input->post("admin_password")),
+                'admin_password'    => MD5(SHA1($this->input->post("admin_password"))),
                 'admin_foto'        => $this->_uploadImage()
                 );
 
@@ -65,6 +65,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 return array_map('unlink', glob(FCPATH."upload/images/$filename.*"));
             }
         }
+        
+        public function perbarui_password()
+        {
+            $this->admin_id = $this->input->post("admin_id");
+            $password = MD5(SHA1($this->input->post("admin_password")));
+        
+            return $this->db->query("UPDATE admin SET admin_password='$password' WHERE admin_id='$this->admin_id'");
+        }
 
         public function perbarui()
         {
@@ -76,19 +84,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             } else {
                 $foto = $this->input->post("old_image");
             }
-            //change password or not
-            if (!empty($this->input->post("admin_password"))){
-                $password = MD5($this->input->post("admin_password"));
-            }else{
-                $password = $this->input->post("admin_old_password");
-            }
+           
 
             $data= array(
                 'admin_nama'        => $this->input->post("admin_nama"),
-                'admin_username'    => $this->input->post("admin_username"),
-                'admin_password'    => $password,
+                'admin_username'    => strtolower($this->input->post("admin_username")),
                 'admin_foto'        => $foto
-                
             );
 
             $this->db->where('admin_id',$this->input->post("admin_id"));
@@ -104,6 +105,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         }
         public function delete($id){
             return $this->db->delete($this->_table, array("admin_id" => $id));
+            $this->_deleteImage($id);
         }
     }
 ?>
