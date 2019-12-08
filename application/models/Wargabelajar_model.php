@@ -7,6 +7,69 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         private $_table = "wargabelajar";
         public $wargabelajar_id;
 
+        public function rules_ortu()
+        {
+            return[
+                ['field'    => 'orangtua_ayah_nama',
+                'label'    => 'Nama',
+                'rules'    => 'trim|xss_clean'],
+                ['field'    => 'orangtua_ibu_nama',
+                'label'    => 'Nama',
+                'rules'    => 'trim|xss_clean'],
+                ['field'    => 'orangtua_ayah_pekerjaan',
+                'label'    => 'Pekerjaan',
+                'rules'    => 'trim|xss_clean'],
+                ['field'    => 'orangtua_ayah_alamat_jalan',
+                'label'    => 'Alamat',
+                'rules'    => 'trim|xss_clean'],
+                ['field'    => 'orangtua_ayah_alamat_rtrw',
+                'label'    => 'RT/RW',
+                'rules'    => 'trim|xss_clean'],
+                ['field'    => 'orangtua_ayah_alamat_desa',
+                'label'    => 'Desa/Kelurahan',
+                'rules'    => 'trim|xss_clean'],
+                ['field'    => 'orangtua_ayah_alamat_kecamatan',
+                'label'    => 'Kecamatan',
+                'rules'    => 'trim|xss_clean'],
+                ['field'    => 'orangtua_ayah_alamat_kabupaten',
+                'label'    => 'Kota/Kabupaten',
+                'rules'    => 'trim|xss_clean'],
+                ['field'    => 'orangtua_ayah_alamat_provinsi',
+                'label'    => 'Provinsi',
+                'rules'    => 'trim|xss_clean'],
+                ['field'    => 'orangtua_ayah_alamat_kodepos',
+                'label'    => 'Kode POS',
+                'rules'    => 'trim|xss_clean'],
+                ['field'    => 'orangtua_wali_nama',
+                'label'    => 'Nama',
+                'rules'    => 'trim|xss_clean'],
+                ['field'    => 'orangtua_wali_pekerjaan',
+                'label'    => 'Pekerjaan',
+                'rules'    => 'trim|xss_clean'],
+                ['field'    => 'orangtua_wali_alamat_jalan',
+                'label'    => 'Alamat',
+                'rules'    => 'trim|xss_clean'],
+                ['field'    => 'orangtua_wali_alamat_rtrw',
+                'label'    => 'RT/RW',
+                'rules'    => 'trim|xss_clean'],
+                ['field'    => 'orangtua_wali_alamat_desa',
+                'label'    => 'Desa/Kelurahan',
+                'rules'    => 'trim|xss_clean'],
+                ['field'    => 'orangtua_wali_alamat_kecamatan',
+                'label'    => 'Kecamatan',
+                'rules'    => 'trim|xss_clean'],
+                ['field'    => 'orangtua_wali_alamat_kabupaten',
+                'label'    => 'Kota/Kabupaten',
+                'rules'    => 'trim|xss_clean'],
+                ['field'    => 'orangtua_wali_alamat_provinsi',
+                'label'    => 'Provinsi',
+                'rules'    => 'trim|xss_clean'],
+                ['field'    => 'orangtua_wali_alamat_kodepos',
+                'label'    => 'Kode POS',
+                'rules'    => 'trim|xss_clean']
+
+            ];
+        }
         public function rules(){
             return[
                 ['field'    => 'wargabelajar_nomor_induk',
@@ -65,7 +128,64 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                  ['field'   => 'wargabelajar_sttb',
                  'label'    => 'Nomor STTB/STSB',
                  'rules'    => 'trim|xss_clean',
-                 ]
+                ],
+                ['field'    => 'orangtua_ayah_nama',
+                'label'    => 'Nama',
+                'rules'    => 'trim|xss_clean'],
+                ['field'    => 'orangtua_ibu_nama',
+                'label'    => 'Nama',
+                'rules'    => 'trim|xss_clean'],
+                ['field'    => 'orangtua_ayah_pekerjaan',
+                'label'    => 'Pekerjaan',
+                'rules'    => 'trim|xss_clean'],
+                ['field'    => 'orangtua_ayah_alamat_jalan',
+                'label'    => 'Alamat',
+                'rules'    => 'trim|xss_clean'],
+                ['field'    => 'orangtua_ayah_alamat_rtrw',
+                'label'    => 'RT/RW',
+                'rules'    => 'trim|xss_clean'],
+                ['field'    => 'orangtua_ayah_alamat_desa',
+                'label'    => 'Desa/Kelurahan',
+                'rules'    => 'trim|xss_clean'],
+                ['field'    => 'orangtua_ayah_alamat_kecamatan',
+                'label'    => 'Kecamatan',
+                'rules'    => 'trim|xss_clean'],
+                ['field'    => 'orangtua_ayah_alamat_kabupaten',
+                'label'    => 'Kota/Kabupaten',
+                'rules'    => 'trim|xss_clean'],
+                ['field'    => 'orangtua_ayah_alamat_provinsi',
+                'label'    => 'Provinsi',
+                'rules'    => 'trim|xss_clean'],
+                ['field'    => 'orangtua_ayah_alamat_kodepos',
+                'label'    => 'Kode POS',
+                'rules'    => 'trim|xss_clean'],
+                ['field'    => 'orangtua_wali_nama',
+                'label'    => 'Nama',
+                'rules'    => 'trim|xss_clean'],
+                ['field'    => 'orangtua_wali_pekerjaan',
+                'label'    => 'Pekerjaan',
+                'rules'    => 'trim|xss_clean'],
+                ['field'    => 'orangtua_wali_alamat_jalan',
+                'label'    => 'Alamat',
+                'rules'    => 'trim|xss_clean'],
+                ['field'    => 'orangtua_wali_alamat_rtrw',
+                'label'    => 'RT/RW',
+                'rules'    => 'trim|xss_clean'],
+                ['field'    => 'orangtua_wali_alamat_desa',
+                'label'    => 'Desa/Kelurahan',
+                'rules'    => 'trim|xss_clean'],
+                ['field'    => 'orangtua_wali_alamat_kecamatan',
+                'label'    => 'Kecamatan',
+                'rules'    => 'trim|xss_clean'],
+                ['field'    => 'orangtua_wali_alamat_kabupaten',
+                'label'    => 'Kota/Kabupaten',
+                'rules'    => 'trim|xss_clean'],
+                ['field'    => 'orangtua_wali_alamat_provinsi',
+                'label'    => 'Provinsi',
+                'rules'    => 'trim|xss_clean'],
+                ['field'    => 'orangtua_wali_alamat_kodepos',
+                'label'    => 'Kode POS',
+                'rules'    => 'trim|xss_clean']
             ];
         }
 
@@ -117,7 +237,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 'wargabelajar_sttb'                => $this->input->post("wargabelajar_sttb"),
                 'wargabelajar_masuk'               => $this->input->post("wargabelajar_masuk"),
                 'wargabelajar_foto'                => $this->_uploadImage(),
-                'wargabelajar_password'            => $this->input->post("wargabelajar_nomor_induk"),
+                'wargabelajar_password'            => md5(sha1($this->input->post("wargabelajar_nomor_induk"))),
                 'kelas_id'                         => $this->input->post("kelas_id"),
 
                 'orangtua_ayah_nama'               => $this->input->post("orangtua_ayah_nama"),
@@ -143,6 +263,40 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
             );
             return $this->db->insert($this->_table, $data);
+        }
+        public function perbarui_password()
+        {
+            $this->wargabelajar_id = $this->input->post("id");
+            $password = MD5(SHA1($this->input->post("wargabelajar_password")));
+        
+            return $this->db->query("UPDATE wargabelajar SET wargabelajar_password='$password' WHERE wargabelajar_id='$this->wargabelajar_id'");
+        }
+        public function perbarui_ortu()
+        {
+            $data = array(
+                'orangtua_ayah_nama'               => $this->input->post("orangtua_ayah_nama"),
+                'orangtua_ibu_nama'                =>$this->input->post("orangtua_ibu_nama"),
+                'orangtua_ayah_pekerjaan'          => $this->input->post("orangtua_ayah_pekerjaan"),
+                'orangtua_ayah_alamat_jalan'       => $this->input->post("orangtua_ayah_alamat_jalan"),
+                'orangtua_ayah_alamat_rtrw'        => $this->input->post("orangtua_ayah_alamat_rtrw"),
+                'orangtua_ayah_alamat_desa'        => $this->input->post("orangtua_ayah_alamat_desa"),
+                'orangtua_ayah_alamat_kecamatan'   => $this->input->post("orangtua_ayah_alamat_kecamatan"),
+                'orangtua_ayah_alamat_kabupaten'   => $this->input->post("orangtua_ayah_alamat_kabupaten"),
+                'orangtua_ayah_alamat_provinsi'    => $this->input->post("orangtua_ayah_alamat_provinsi"),
+                'orangtua_ayah_alamat_kodepos'     => $this->input->post("orangtua_ayah_alamat_kodepos"),
+
+                'orangtua_wali_nama'               => $this->input->post("orangtua_wali_nama"),
+                'orangtua_wali_pekerjaan'          => $this->input->post("orangtua_wali_pekerjaan"),
+                'orangtua_wali_alamat_jalan'       => $this->input->post("orangtua_wali_alamat_jalan"),
+                'orangtua_wali_alamat_rtrw'        => $this->input->post("orangtua_wali_alamat_rtrw"),
+                'orangtua_wali_alamat_desa'        => $this->input->post("orangtua_wali_alamat_desa"),
+                'orangtua_wali_alamat_kecamatan'   => $this->input->post("orangtua_wali_alamat_kecamatan"),
+                'orangtua_wali_alamat_kabupaten'   => $this->input->post("orangtua_wali_alamat_kabupaten"),
+                'orangtua_wali_alamat_provinsi'    => $this->input->post("orangtua_wali_alamat_provinsi"),
+                'orangtua_wali_alamat_kodepos'     => $this->input->post("orangtua_wali_alamat_kodepos")
+            );
+            $this->db->where('wargabelajar_id',$this->input->post("id"));
+            return $this->db->update($this->_table, $data);
         }
         public function perbarui()
         {
@@ -174,29 +328,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 'wargabelajar_sttb'                => $this->input->post("wargabelajar_sttb"),
                 'wargabelajar_masuk'               => $this->input->post("wargabelajar_masuk"),
                 'wargabelajar_foto'                => $foto,
-                'wargabelajar_password'            => $this->input->post("wargabelajar_nomor_induk"),
                 'kelas_id'                         => $this->input->post("kelas_id"),
 
-                'orangtua_ayah_nama'               => $this->input->post("orangtua_ayah_nama"),
-                'orangtua_ibu_nama'                =>$this->input->post("orangtua_ibu_nama"),
-                'orangtua_ayah_pekerjaan'          => $this->input->post("orangtua_ayah_pekerjaan"),
-                'orangtua_ayah_alamat_jalan'       => $this->input->post("orangtua_ayah_alamat_jalan"),
-                'orangtua_ayah_alamat_rtrw'        => $this->input->post("orangtua_ayah_alamat_rtrw"),
-                'orangtua_ayah_alamat_desa'        => $this->input->post("orangtua_ayah_alamat_desa"),
-                'orangtua_ayah_alamat_kecamatan'   => $this->input->post("orangtua_ayah_alamat_kecamatan"),
-                'orangtua_ayah_alamat_kabupaten'   => $this->input->post("orangtua_ayah_alamat_kabupaten"),
-                'orangtua_ayah_alamat_provinsi'    => $this->input->post("orangtua_ayah_alamat_provinsi"),
-                'orangtua_ayah_alamat_kodepos'     => $this->input->post("orangtua_ayah_alamat_kodepos"),
-
-                'orangtua_wali_nama'               => $this->input->post("orangtua_wali_nama"),
-                'orangtua_wali_pekerjaan'          => $this->input->post("orangtua_wali_pekerjaan"),
-                'orangtua_wali_alamat_jalan'       => $this->input->post("orangtua_wali_alamat_jalan"),
-                'orangtua_wali_alamat_rtrw'        => $this->input->post("orangtua_wali_alamat_rtrw"),
-                'orangtua_wali_alamat_desa'        => $this->input->post("orangtua_wali_alamat_desa"),
-                'orangtua_wali_alamat_kecamatan'   => $this->input->post("orangtua_wali_alamat_kecamatan"),
-                'orangtua_wali_alamat_kabupaten'   => $this->input->post("orangtua_wali_alamat_kabupaten"),
-                'orangtua_wali_alamat_provinsi'    => $this->input->post("orangtua_wali_alamat_provinsi"),
-                'orangtua_wali_alamat_kodepos'     => $this->input->post("orangtua_wali_alamat_kodepos")
             );
             $this->db->where('wargabelajar_id',$this->input->post("id"));
             return $this->db->update($this->_table, $data);    
@@ -212,11 +345,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             $this->_deleteImage($id);
             return $this->db->delete($this->_table, array("wargabelajar_id" => $id));
         }
-        public function cek_login($username,$password){
-            $this->db->where('wargabelajar_nomor_induk',$username);
-            $this->db->where('wargabelajar_password',$password);
-            $user = $this->db->get('wargabelajar')->row_array();
-            return $user;
-        }
+        
     }
 ?>

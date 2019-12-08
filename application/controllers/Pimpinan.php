@@ -32,6 +32,8 @@ class Pimpinan extends CI_Controller
     // }
         else{
             $this->Pimpinan_model->delete($id);
+            $this->session->set_flashdata('success', 'Berhasil');
+          
             redirect('pimpinan');
         }
     }
@@ -46,7 +48,8 @@ class Pimpinan extends CI_Controller
         if(!$data['pimpinan']) redirect('pimpinan');
         
         $validasi = $this->form_validation;
-        $validasi->set_rules($pimpinan->rules());
+
+        $validasi->set_rules($pimpinan->rules_edit());
         if ($validasi->run()){
                 $pimpinan->perbarui();
                 $this->session->set_flashdata('success', 'Berhasil');
@@ -56,6 +59,22 @@ class Pimpinan extends CI_Controller
         $data["actor"] = "Pimpinan";
         
         $this->load->view('pimpinan/ubah',$data);
+    }
+
+    public function ubah_password(){
+        $pimpinan = $this->Pimpinan_model;
+
+        $this->form_validation->set_rules('pimpinan_password','Password','min_length[5]');
+
+        if ($this->form_validation->run()){
+           $pimpinan->perbarui_password();
+            $this->session->set_flashdata('success', 'Berhasil');
+            redirect('pimpinan');
+        }
+        else{
+            $this->session->set_flashdata('failed', 'Gagal');
+            redirect('pimpinan');
+        } 
     }
 
     public function tambah()

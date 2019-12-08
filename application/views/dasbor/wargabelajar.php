@@ -1,4 +1,4 @@
-<li class="nav-main-heading">Data Master</li>
+                    <li class="nav-main-heading">Data Master</li>
                         <li class="nav-main-item">
                             <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
                                 <i class="nav-main-link-icon si si-energy"></i>
@@ -24,7 +24,7 @@
                             </a>
                             <ul class="nav-main-submenu">
                                 <li class="nav-main-item">
-                                    <a class="nav-main-link active" href="<?=base_url('tutor/');?>">
+                                    <a class="nav-main-link" href="<?=base_url('tutor/');?>">
                                         <span class="nav-main-link-name">Daftar Tutor</span>
                                     </a>
                                 </li>
@@ -49,11 +49,6 @@
                                 <li class="nav-main-item">
                                     <a class="nav-main-link" href="<?=base_url('kelas/tambah');?>">
                                         <span class="nav-main-link-name">Tambah Kelas</span>
-                                    </a>
-                                </li>
-                                <li class="nav-main-item">
-                                    <a class="nav-main-link" href="<?=base_url('jadwal');?>">
-                                        <span class="nav-main-link-name">Jadwal Mata Pelajaran</span>
                                     </a>
                                 </li>
                             </ul>
@@ -99,14 +94,14 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="nav-main-item open">
+                        <li class="nav-main-item">
                             <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
                                 <i class="nav-main-link-icon si si-energy"></i>
                                 <span class="nav-main-link-name">Pimpinan</span>
                             </a>
                             <ul class="nav-main-submenu">
                                 <li class="nav-main-item">
-                                    <a class="nav-main-link active" href="<?=base_url('pimpinan/');?>">
+                                    <a class="nav-main-link" href="<?=base_url('pimpinan/');?>">
                                         <span class="nav-main-link-name">Daftar Pimpinan</span>
                                     </a>
                                 </li>

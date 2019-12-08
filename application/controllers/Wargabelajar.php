@@ -34,7 +34,38 @@ Class Wargabelajar extends CI_Controller
             redirect('wargabelajar');
         }
     }
+    public function ubah_password(){
+        $wargabelajar = $this->Wargabelajar_model;
 
+        $this->form_validation->set_rules('wargabelajar_password','Password','min_length[5]');
+
+        if ($this->form_validation->run()){
+           $wargabelajar->perbarui_password();
+            $this->session->set_flashdata('success', 'Berhasil');
+            redirect('wargabelajar');
+        }
+        else{
+            $this->session->set_flashdata('failed', 'Gagal');
+            redirect('wargabelajar');
+        } 
+    }
+    public function ubah_orangtua(){
+        $wargabelajar = $this->Wargabelajar_model;
+
+        $validasi = $this->form_validation;
+        $validasi->set_rules($wargabelajar->rules_ortu());
+
+        if ($validasi->run()){
+           $wargabelajar->perbarui_ortu();
+            $this->session->set_flashdata('success', 'Berhasil');
+            redirect('wargabelajar');
+        }
+        else{
+            $this->session->set_flashdata('failed', 'Gagal');
+            redirect('wargabelajar');
+        } 
+
+    }
     public function ubah($id = null)
     {
         if (!isset($id)) redirect('wargabelajar');

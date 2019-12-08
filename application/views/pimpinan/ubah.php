@@ -1,5 +1,5 @@
 <?php $this->load->view('head')?>
-<?php $this->load->view('tutor/nav_tambah')?>
+<?php $this->load->view('pimpinan/nav_tambah')?>
 
 <!-- Main Container -->
 <main id="main-container">
@@ -13,7 +13,7 @@
                     <li class="breadcrumb-item"><?=$actor;?></li>
                     <li class="breadcrumb-item"><?=$title;?></li>
                     <li class="breadcrumb-item" aria-current="page">
-                        <a class="link-fx" href=""><?=$tutor["tutor_nama"];?></a>
+                        <a class="link-fx" href=""><?=$pimpinan["pimpinan_nama"];?></a>
                     </li>
                     
                 </ol>
@@ -37,47 +37,79 @@
             </div>
         </div>
     <?php endif;?>
-        <div class="block-header">
-            <h3 class="block-title">Data Tutor</h3>
-        </div>
-        <div class="block-content block-content-full">
-        <form action="<?php base_url("tutor/ubah")?>" method="post" enctype="multipart/form-data">
-            <input type="hidden" name="id" value="<?=$tutor["tutor_id"];?>">
                 <div class="row push">
-                    <div class="col-lg-12">
-                        <div class="form-group">
-                            <label for="tutor_nama">Nama Lengkap</label>
-                            <input type="text" class="form-control" id="tutor_nama" name="tutor_nama" value="<?=$tutor["tutor_nama"];?>">
-                            <small class="form-text text-danger"><?= form_error('tutor_nama'); ?></small>
-                        </div>
-                        <div class="form-group">
-                            <label>Foto</label>
-                            <div class="custom-file">
-                                <input type="file" class="custom-file-input js-custom-file-input-enabled" data-toggle="custom-file-input" id="tutor_foto" name="tutor_foto">
-                                <label class="custom-file-label" for="example-file-input-custom">Pilih foto:</label>
+                    <div class="col-12">
+                        <div class="block">
+                            <ul class="nav nav-tabs nav-tabs-block" data-toggle="tabs" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="#btabs-animated-slideright-home">Data Pimpinan</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#btabs-animated-slideright-profile">Ubah Password</a>
+                                </li>
+                            </ul>
+                            <div class="block-content tab-content overflow-hidden">
+                                <div class="tab-pane fade fade-right show active" id="btabs-animated-slideright-home" role="tabpanel">
+                                    <form action="<?php base_url("pimpinan/ubah") ?>" method="post" enctype="multipart/form-data">
+                                        <input type="hidden" name="pimpinan_id" value="<?= $pimpinan["pimpinan_id"]; ?>">
+                                        <div class="form-group">
+                                            <label for="pimpinan_nama">Nama Pimpinan</label>
+                                            <input type="text" class="form-control" id="pimpinan_nama" name="pimpinan_nama" value="<?=$pimpinan["pimpinan_nama"];?>">
+                                            <small class="form-text text-danger"><?= form_error('pimpinan_nama'); ?></small>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="username">Username</label>
+                                            <input type="text" class="form-control" id="pimpinan_username" name="pimpinan_username" value="<?=$pimpinan["pimpinan_username"];?>">
+                                            <small class="form-text text-danger"><?= form_error('pimpinan_username'); ?></small>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Foto</label>
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input js-custom-file-input-enabled" data-toggle="custom-file-input" id="pimpinan_foto" name="pimpinan_foto">
+                                                <label class="custom-file-label" for="pimpinan_foto">Pilih foto:</label>
+                                                <input type="hidden" name="old_image" value="<?php echo $pimpinan["pimpinan_foto"] ?>" />
+                                            </div>
+                                        </div>
+                                        <div class="row push">
+                                            <div class="col-lg-4">
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <button type="submit" name="submit" class="btn btn-primary">Simpan</button>
+                                                <button type="reset" name="reset" class="btn btn-secondary">Hapus</button>
+                                            </div>
+                                            <div class="col-lg-4">
+                                            </div>
+                                        </div> 
+                                    </form>
+                                    
+                                </div>
+                                    <div class="tab-pane fade fade-right" id="btabs-animated-slideright-profile" role="tabpanel">
+                                    <form action="<?php echo base_url("pimpinan/ubah_password") ?>" method="post" enctype="multipart/form-data">
+                                        <input type="hidden" name="pimpinan_id" value="<?= $pimpinan["pimpinan_id"]; ?>">
+                                        <div class="form-group">
+                                            <label for="password">Password Baru</label>
+                                            <input type="password" class="form-control" id="pimpinan_password" name="pimpinan_password" placeholder="Masukan Password Baru">
+                                            <small class="form-text text-danger"><?= form_error('pimpinan_password'); ?></small>
+                                        </div>
+                                        <div class="row push">
+                                            <div class="col-lg-4">
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <button type="submit" name="submit" class="btn btn-primary">Simpan</button>
+                                                <button type="reset" name="reset" class="btn btn-secondary">Hapus</button>
+                                            </div>
+                                            <div class="col-lg-4">
+                                            </div>
+                                        </div>     
+                                    </form>                                    
+                                    </div>
+                                </div>
                             </div>
-                            <input type="hidden" name="old_image" value="<?=$tutor["tutor_foto"]?>">
                         </div>
-                    </div>
-                </div>
-                <div class="row push">
-                    <div class="col-lg-4">
-
-                    </div>
-                    <div class="col-lg-4">
-                        <button type="submit" name="submit" class="btn btn-primary">Simpan</button>
-                        <button type="reset" name="reset" class="btn btn-secondary">Hapus</button>
-                    </div>
-                    <div class="col-lg-4">
                         
                     </div>
-                </div>
-            </form>
-        </div>
     </div>
-    <!-- END Basic -->
-
-</div>
+</div
 <!-- END Page Content -->
 
 </main>

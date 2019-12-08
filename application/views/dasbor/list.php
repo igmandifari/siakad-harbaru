@@ -1,5 +1,5 @@
 <?php $this->load->view('head')?>
-<?php $this->load->view('admin/nav_list')?>
+<?php $this->load->view('kelas/nav_list')?>
 
 <!-- Main Container -->
 <main id="main-container">
@@ -26,54 +26,33 @@
     <!-- Dynamic Table Full -->
     <div class="block">
         <div class="block-header">
-            <a href="<?=base_url('admin/tambah');?>">
+            <a href="<?=base_url('kelas/tambah');?>">
                 <button type="button" class="btn btn-success mr-1 mb-3">
-                    <i class="fa fa-fw fa-plus mr-1"></i>Tambah Data
+                    <i class="fa fa-fw fa-plus mr-1"></i> Tambah Data
                 </button>
             </a>
         </div>
         <div class="block-content block-content-full">
-        <?php if ($this->session->flashdata('success')): ?>
-        <div class="alert alert-success d-flex align-items-center" role="alert">
-            <div class="flex-00-auto">
-                <i class="fa fa-fw fa-check"></i>
-            </div>
-            <div class="flex-fill ml-3">
-                <p class="mb-0"><?php echo $this->session->flashdata('success'); ?></p>
-            </div>
-        </div>
-        <?php elseif ($this->session->flashdata('failed')): ?>
-        <div class="alert alert-danger d-flex align-items-center justify-content-between" role="alert">
-            <div class="flex-00-auto">
-                <i class="fa fa-fw fa-check"></i>
-            </div>
-            <div class="flex-fill ml-3">
-                <p class="mb-0"><?php echo $this->session->flashdata('failed'); ?></p>
-            </div>
-        </div>
-        <?php endif;?>
             <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _es6/pages/be_tables_datatables.js -->
             <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
                                 <thead>
                                     <tr>
-                                        <th class="text-center">Nama Admin</th>
-                                        <th class="text-center">Username</th>
-                                        <th class="text-center" style="width: 15%;">Aksi</th>
+                                        <th>Nama Kelas</th>
+                                        <th style="width: 15%;">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach($admins as $admin):?>
+                                    <?php foreach($kelass as $kelas):?>
                                         <tr>
-                                            <td><?=$admin->admin_nama;?>
-                                            <td><?=$admin->admin_username;?>
+                                            <td><?=$kelas->kelas_nama;?>
                                             <td class="text-center">
                                                 <div class="btn-group">
-                                                    <a href="<?=base_url('admin/ubah/').$admin->admin_id;?>">
+                                                    <a href="<?=base_url('kelas/ubah/').$kelas->kelas_id;?>">
                                                         <button type="button" class="btn btn-sm btn-light js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Ubah">
                                                             <i class="fa fa-fw fa-pencil-alt"></i>
                                                         </button>
                                                     </a>
-                                                    <a href="<?=base_url('admin/hapus/').$admin->admin_id;?>">
+                                                    <a href="<?=base_url('kelas/hapus/').$kelas->kelas_id;?>">
                                                         <button type="button" class="btn btn-sm btn-light js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Hapus">
                                                             <i class="fa fa-fw fa-times"></i>
                                                         </button>

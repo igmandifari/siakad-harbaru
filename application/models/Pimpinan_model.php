@@ -24,6 +24,22 @@
                 ]
             ];
         }
+        public function rules_edit()
+        {
+            return[
+                [
+                    'field' =>'pimpinan_nama',
+                    'label' =>'Nama',
+                    'rules' =>'required|trim|xss_clean'
+                ],
+                [
+                    'field' =>'pimpinan_username',
+                    'label' =>'Username',
+                    'rules' =>'required|trim|callback_username_check_blank|xss_clean'
+                
+                ]
+            ];
+        }
         private function _uploadImage()
         {
             $config['upload_path']          = './upload/images/';
@@ -53,27 +69,32 @@
                 'pimpinan_id'                       => $this->pimpinan_id,
                 'pimpinan_nama'                     => $this->input->post("pimpinan_nama"),
                 'pimpinan_username'                 => $this->input->post("pimpinan_username"),
-                'pimpinan_password'                 => $this->input->post("pimpinan_password"),
+                'pimpinan_password'                 => md5(sha1($this->input->post("pimpinan_password"))),
                 'pimpinan_foto'                     => $this->_uploadImage()
             );
             return $this->db->insert($this->_table, $data);
         }
+        public function perbarui_password()
+        {
+            $this->pimpinan_id = $this->input->post("pimpinan_id");
+            $password = md5(sha1($this->input->post("pimpinan_password")));
+        
+            return $this->db->query("UPDATE pimpinan SET pimpinan_password='$password' WHERE pimpinan_id='$this->pimpinan_id'");
+        }
         public function perbarui()
         {
-            $this->pimpinan_id = $this->input->post("id");
+            $this->pimpinan_id = $this->input->post("pimpinan_id");
             if (!empty($_FILES["pimpinan_foto"]["name"])) {
                 $foto = $this->_uploadImage();
             } else {
                 $foto = $this->input->post("old_image");
             }
             $data= array(
-                'pimpinan_id'                       => $this->pimpinan_id,
                 'pimpinan_nama'                     => $this->input->post("pimpinan_nama"),
                 'pimpinan_username'                 => $this->input->post("pimpinan_username"),
-                'pimpinan_password'                 => $this->input->post("pimpinan_password"),
-                'pimpinan_foto'                     => $this->_uploadImage()
+                'pimpinan_foto'                     => $foto
             );
-            $this->db->where('pimpinan_id',$this->input->post("id"));
+            $this->db->where('pimpinan_id',$this->pimpinan_id);
             return $this->db->update($this->_table, $data);    
         }
         public function getAll(){
@@ -87,8 +108,6 @@
             $this->_deleteImage($id);
             return $this->db->delete($this->_table, array("pimpinan_id" => $id));
         }
-        public function cek_login($username,$password){
-
-        }
+        
     }
 ?>

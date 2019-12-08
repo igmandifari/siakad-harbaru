@@ -33,11 +33,30 @@
             </a>
         </div>
         <div class="block-content block-content-full">
+        <?php if ($this->session->flashdata('success')): ?>
+        <div class="alert alert-success d-flex align-items-center" role="alert">
+            <div class="flex-00-auto">
+                <i class="fa fa-fw fa-check"></i>
+            </div>
+            <div class="flex-fill ml-3">
+                <p class="mb-0"><?php echo $this->session->flashdata('success'); ?></p>
+            </div>
+        </div>
+        <?php elseif ($this->session->flashdata('failed')): ?>
+        <div class="alert alert-danger d-flex align-items-center justify-content-between" role="alert">
+            <div class="flex-00-auto">
+                <i class="fa fa-fw fa-check"></i>
+            </div>
+            <div class="flex-fill ml-3">
+                <p class="mb-0"><?php echo $this->session->flashdata('failed'); ?></p>
+            </div>
+        </div>
+        <?php endif;?>
             <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _es6/pages/be_tables_datatables.js -->
             <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
                                 <thead>
                                     <tr>
-                                        <th class="text-center" style="width: 80px;">NIP</th>
+                                        <th class="text-center" style="width: 80px;">Nomor Induk</th>
                                         <th>Nama Lengkap</th>
                                         <th class="d-none d-sm-table-cell" style="width: 15%;">Jenis Kelamin</th>
                                         <th class="d-none d-sm-table-cell" style="width: 30%;">TTL</th>
@@ -47,7 +66,7 @@
                                 <tbody>
                                     <?php foreach($tutors as $tutor):?>
                                         <tr>
-                                            <td><?=$tutor->tutor_nip;?>
+                                            <td><?=$tutor->tutor_nomor_induk;?>
                                             <td><?=$tutor->tutor_nama;?>
                                             <td><?=$tutor->tutor_jenis_kelamin;?>
                                             <td><?=$tutor->tutor_tempat_lahir;?>, <?=$tutor->tutor_tanggal_lahir;?></td>

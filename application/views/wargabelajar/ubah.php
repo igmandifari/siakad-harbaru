@@ -39,7 +39,6 @@
                     </div>
                 </div>
             <?php endif; ?>
-            <form action="<?php base_url("wargabelajar/ubah") ?>" method="post" enctype="multipart/form-data">
                 <div class="row push">
 
                     <div class="col-12">
@@ -51,9 +50,13 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="#btabs-animated-slideright-profile">Orang Tua/Wali</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#ubah-password">Ubah Password</a>
+                                </li>
                             </ul>
                             <div class="block-content tab-content overflow-hidden">
                                 <div class="tab-pane fade fade-right show active" id="btabs-animated-slideright-home" role="tabpanel">
+                                <form action="<?php base_url("wargabelajar/ubah") ?>" method="post" enctype="multipart/form-data">
                                     <input type="hidden" name="id" value="<?= $wargabelajar->wargabelajar_id; ?>">
                                     <div class="form-group">
                                         <label for="wargabelajar_nomor_induk">Nomor Induk</label>
@@ -183,20 +186,33 @@
                                                 <?php endforeach; ?>
                                             </select>
                                     </div>
+                                    <div class="row push">
+                                        <div class="col-lg-4">
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <button type="submit" name="submit" class="btn btn-primary">Simpan</button>
+                                            <button type="reset" name="reset" class="btn btn-secondary">Hapus</button>
+                                        </div>
+                                        <div class="col-lg-4">
+                                        </div>
+                                    </div>
+                                </form>
                                 </div>
-                                    <div class="tab-pane fade fade-right" id="btabs-animated-slideright-profile" role="tabpanel">
-                                        <div class="form-group">
-                                            <label for="orangtua_ayah_nama">Nama Lengkap Ayah</label>
-                                            <input type="text" class="form-control" id="orangtua_ayah_nama" name="orangtua_ayah_nama" value="<?= $wargabelajar->orangtua_ayah_nama; ?>">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="orangtua_ibu_nama">Nama Lengkap Ibu</label>
-                                            <input type="text" class="form-control" id="orangtua_ibu_nama" name="orangtua_ibu_nama" value="<?= $wargabelajar->orangtua_ibu_nama; ?>">
-                                        </div>
-                                        <div class="form-grup">
-                                            <label for="orangtua_ayah_pekerjaan">Pekerjaan</label>
-                                            <input type="text" class="form-control" id="orangtua_ayah_pekerjaan" name="orangtua_ayah_pekerjaan" value="<?= $wargabelajar->orangtua_ayah_pekerjaan; ?>">
-                                        </div>
+                                <div class="tab-pane fade fade-right" id="btabs-animated-slideright-profile" role="tabpanel">
+                                <form action="<?php echo base_url("wargabelajar/ubah_orangtua") ?>" method="post" enctype="multipart/form-data">
+                                <input type="hidden" name="id" value="<?= $wargabelajar->wargabelajar_id; ?>">
+                                    <div class="form-group">
+                                        <label for="orangtua_ayah_nama">Nama Lengkap Ayah</label>
+                                        <input type="text" class="form-control" id="orangtua_ayah_nama" name="orangtua_ayah_nama" value="<?= $wargabelajar->orangtua_ayah_nama; ?>">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="orangtua_ibu_nama">Nama Lengkap Ibu</label>
+                                        <input type="text" class="form-control" id="orangtua_ibu_nama" name="orangtua_ibu_nama" value="<?= $wargabelajar->orangtua_ibu_nama; ?>">
+                                    </div>
+                                    <div class="form-grup">
+                                        <label for="orangtua_ayah_pekerjaan">Pekerjaan</label>
+                                        <input type="text" class="form-control" id="orangtua_ayah_pekerjaan" name="orangtua_ayah_pekerjaan" value="<?= $wargabelajar->orangtua_ayah_pekerjaan; ?>">
+                                    </div>
                                         <div class="form-grup">
                                             <label for="orangtua_ayah_alamat_jalan">Alamat</label>
                                             <input type="text" class="form-control" id="orangtua_ayah_alamat_jalan" name="orangtua_ayah_alamat_jalan" value="<?= $wargabelajar->orangtua_ayah_alamat_jalan; ?>">
@@ -261,21 +277,44 @@
                                             <label for="orangtua_wali_alamat_kodepos">KODE POS</label>
                                             <input type="text" class="form-control" id="orangtua_wali_alamat_kodepos" name="orangtua_wali_alamat_kodepos" value="<?= $wargabelajar->orangtua_wali_alamat_kodepos; ?>">
                                         </div>
+                                        <div class="row push">
+                                        <div class="col-lg-4">
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <button type="submit" name="submit" class="btn btn-primary">Simpan</button>
+                                            <button type="reset" name="reset" class="btn btn-secondary">Hapus</button>
+                                        </div>
+                                        <div class="col-lg-4">
+                                        </div>
                                     </div>
+                                </form>
+                                </div>
+                                <div class="tab-pane fade fade-right" id="ubah-password">
+                                <form action="<?php echo base_url("wargabelajar/ubah_password") ?>" method="post" enctype="multipart/form-data">
+                                    <input type="hidden" name="id" value="<?= $wargabelajar->wargabelajar_id; ?>">
+                                        <div class="form-group">
+                                            <label for="password">Password Baru</label>
+                                            <input type="password" class="form-control" id="wargabelajar_password" name="wargabelajar_password" placeholder="Masukan Password Baru">
+                                            <small class="form-text text-danger"><?= form_error('wargabelajar_password'); ?></small>
+                                        </div>
+                                        <div class="row push">
+                                            <div class="col-lg-4">
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <button type="submit" name="submit" class="btn btn-primary">Simpan</button>
+                                                <button type="reset" name="reset" class="btn btn-secondary">Hapus</button>
+                                            </div>
+                                            <div class="col-lg-4">
+                                            </div>
+                                        </div>     
+                                    </form>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-lg-4">
-
-                        </div>
-                        <div class="col-lg-4">
-                            <button type="submit" name="submit" class="btn btn-primary">Simpan</button>
-                            <button type="reset" name="reset" class="btn btn-secondary">Hapus</button>
-                        </div>
-                        <div class="col-lg-4">
+                            
+                            </div>
                         </div>
                     </div>
-            </form>
+            
         </div>
     </div>
     <!-- END Page Content -->
