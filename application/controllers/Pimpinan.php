@@ -33,6 +33,7 @@ class Pimpinan extends CI_Controller
         else{
             $this->Pimpinan_model->delete($id);
             $this->session->set_flashdata('success', 'Berhasil');
+          
             redirect('pimpinan');
         }
     }
@@ -47,6 +48,7 @@ class Pimpinan extends CI_Controller
         if(!$data['pimpinan']) redirect('pimpinan');
         
         $validasi = $this->form_validation;
+
         $validasi->set_rules($pimpinan->rules_edit());
         if ($validasi->run()){
                 $pimpinan->perbarui();
@@ -58,6 +60,7 @@ class Pimpinan extends CI_Controller
         
         $this->load->view('pimpinan/ubah',$data);
     }
+
     public function ubah_password(){
         $pimpinan = $this->Pimpinan_model;
 
@@ -73,6 +76,7 @@ class Pimpinan extends CI_Controller
             redirect('pimpinan');
         } 
     }
+
     public function tambah()
     {
         $pimpinan = $this->Pimpinan_model;
