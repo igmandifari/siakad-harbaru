@@ -43,9 +43,9 @@
                 <div class="row push">
                     <div class="col-lg-12">
                         <div class="form-group">
-                            <label for="tutor_nip">NIP</label>
-                            <input type="text" class="form-control" id="tutor_nip" name="tutor_nip" placeholder="Masukan NIP">
-                            <small class="form-text text-danger"><?= form_error('tutor_nip'); ?></small>
+                            <label for="tutor_nomor_induk">Nomor Induk</label>
+                            <input type="text" class="form-control" id="tutor_nomor_induk" name="tutor_nomor_induk" placeholder="Masukan Nomor Induk">
+                            <small class="form-text text-danger"><?= form_error('tutor_nomor_induk'); ?></small>
                         </div>
                         <div class="form-group">
                             <label for="tutor_nama">Nama Lengkap</label>

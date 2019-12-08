@@ -1,5 +1,5 @@
 <?php $this->load->view('head')?>
-<?php $this->load->view('tutor/nav_list')?>
+<?php $this->load->view('pimpinan/nav_list')?>
 
 <!-- Main Container -->
 <main id="main-container">
@@ -26,7 +26,7 @@
     <!-- Dynamic Table Full -->
     <div class="block">
         <div class="block-header">
-            <a href="<?=base_url('tutor/tambah');?>">
+            <a href="<?=base_url('pimpinan/tambah');?>">
                 <button type="button" class="btn btn-success mr-1 mb-3">
                     <i class="fa fa-fw fa-plus mr-1"></i> Tambah Data
                 </button>
@@ -56,28 +56,22 @@
             <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
                                 <thead>
                                     <tr>
-                                        <th class="text-center" style="width: 80px;">Nomor Induk</th>
                                         <th>Nama Lengkap</th>
-                                        <th class="d-none d-sm-table-cell" style="width: 15%;">Jenis Kelamin</th>
-                                        <th class="d-none d-sm-table-cell" style="width: 30%;">TTL</th>
                                         <th style="width: 15%;">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach($tutors as $tutor):?>
+                                    <?php foreach($pimpinans as $pimpinan):?>
                                         <tr>
-                                            <td><?=$tutor->tutor_nomor_induk;?>
-                                            <td><?=$tutor->tutor_nama;?>
-                                            <td><?=$tutor->tutor_jenis_kelamin;?>
-                                            <td><?=$tutor->tutor_tempat_lahir;?>, <?=$tutor->tutor_tanggal_lahir;?></td>
+                                            <td><?=$pimpinan->pimpinan_nama;?>
                                             <td class="text-center">
                                                 <div class="btn-group">
-                                                    <a href="<?=base_url('tutor/ubah/').$tutor->tutor_id;?>">
+                                                    <a href="<?=base_url('pimpinan/ubah/').$pimpinan->pimpinan_id;?>">
                                                         <button type="button" class="btn btn-sm btn-light js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Ubah">
                                                             <i class="fa fa-fw fa-pencil-alt"></i>
                                                         </button>
                                                     </a>
-                                                    <a href="<?=base_url('tutor/hapus/').$tutor->tutor_id;?>">
+                                                    <a href="<?=base_url('pimpinan/hapus/').$pimpinan->pimpinan_id;?>">
                                                         <button type="button" class="btn btn-sm btn-light js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Hapus">
                                                             <i class="fa fa-fw fa-times"></i>
                                                         </button>

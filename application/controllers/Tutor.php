@@ -29,10 +29,25 @@ class Tutor extends CI_Controller
         }
         else{
             $this->Tutor_model->delete($id);
+            $this->session->set_flashdata('success', 'Berhasil');
             redirect('tutor');
         }
     }
+    public function ubah_password(){
+        $tutor = $this->Tutor_model;
 
+        $this->form_validation->set_rules('tutor_password','Password','min_length[5]');
+
+        if ($this->form_validation->run()){
+           $tutor->perbarui_password();
+            $this->session->set_flashdata('success', 'Berhasil');
+            redirect('tutor');
+        }
+        else{
+            $this->session->set_flashdata('failed', 'Gagal');
+            redirect('tutor');
+        } 
+    }
     public function ubah($id=null)
     {
         if (!isset($id)) redirect('tutor');
@@ -48,6 +63,8 @@ class Tutor extends CI_Controller
                 $tutor->perbarui();
                 $this->session->set_flashdata('success', 'Berhasil');
             
+        }else{
+            $this->session->set_flashdata('failed', 'Gagal');
         }
         $data["title"] = "Ubah Data";
         $data["actor"] = "Tutor";

@@ -8,7 +8,7 @@
         {
             return[
                 [
-                    'field' => 'tutor_nip',
+                    'field' => 'tutor_nomor_induk',
                     'label' => 'NIP',
                     'rules' => 'required|trim|numeric|xss_clean',
                 ],
@@ -81,7 +81,7 @@
             $this->tutor_id = uniqid();
             $data= array(
                 'tutor_id'                  => $this->tutor_id,
-                'tutor_nip'                 => $this->input->post("tutor_nip"),
+                'tutor_nomor_induk'                 => $this->input->post("tutor_nomor_induk"),
                 'tutor_nama'                => $this->input->post("tutor_nama"),
                 'tutor_jenis_kelamin'       => $this->input->post("tutor_jenis_kelamin"),
                 'tutor_tempat_lahir'        => $this->input->post("tutor_tempat_lahir"),
@@ -96,9 +96,17 @@
                 'tutor_alamat_kabupaten'    => $this->input->post("tutor_alamat_kabupaten"),
                 'tutor_alamat_provinsi'     => $this->input->post("tutor_alamat_provinsi"),
                 'tutor_alamat_kodepos'      => $this->input->post("tutor_alamat_kodepos"),
+                'tutor_password'            => md5(sha1($this->input->post("tutor_nomor_induk"))),
                 'tutor_foto'                => $this->_uploadImage()
             );
             return $this->db->insert($this->_table, $data);
+        }
+        public function perbarui_password()
+        {
+            $this->tutor_id = $this->input->post("id");
+            $password = md5(sha1($this->input->post("tutor_password")));
+        
+            return $this->db->query("UPDATE tutor SET tutor_password='$password' WHERE tutor_id='$this->tutor_id'");
         }
         public function perbarui()
         {
@@ -109,7 +117,7 @@
                 $foto = $this->input->post("old_image");
             }
             $data= array(
-                'tutor_nip'                 => $this->input->post("tutor_nip"),
+                'tutor_nomor_induk'         => $this->input->post("tutor_nomor_induk"),
                 'tutor_nama'                => $this->input->post("tutor_nama"),
                 'tutor_jenis_kelamin'       => $this->input->post("tutor_jenis_kelamin"),
                 'tutor_tempat_lahir'        => $this->input->post("tutor_tempat_lahir"),
@@ -140,5 +148,6 @@
             $this->_deleteImage($id);
             return $this->db->delete($this->_table, array("tutor_id" => $id));
         }
+        
     }
 ?>

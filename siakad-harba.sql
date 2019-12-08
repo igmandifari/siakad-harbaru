@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Dec 08, 2019 at 06:54 AM
+-- Generation Time: Dec 08, 2019 at 10:22 PM
 -- Server version: 10.0.38-MariaDB-0ubuntu0.16.04.1
 -- PHP Version: 7.3.12-1+ubuntu16.04.1+deb.sury.org+1
 
@@ -52,7 +52,7 @@ INSERT INTO `admin` (`admin_id`, `admin_nama`, `admin_username`, `admin_password
 CREATE TABLE `jadwal` (
   `jadwal_id` varchar(100) NOT NULL,
   `jadwal_hari` varchar(15) NOT NULL,
-  `tutor_id` varchar(100) NOT NULL,
+  `tutor_id` varchar(100) DEFAULT NULL,
   `matpel_id` varchar(100) NOT NULL,
   `kelas_id` varchar(100) NOT NULL,
   `jadwal_jam_mulai` varchar(10) NOT NULL,
@@ -64,8 +64,8 @@ CREATE TABLE `jadwal` (
 --
 
 INSERT INTO `jadwal` (`jadwal_id`, `jadwal_hari`, `tutor_id`, `matpel_id`, `kelas_id`, `jadwal_jam_mulai`, `jadwal_jam_berakhir`) VALUES
-('5ddcd4551c97f', 'Jum\'at', '5dd7f98bc4245', '5ddcd276be772', '5ddb9cf0d13fc', '13:00', '14:00'),
-('5ddd1084114ea', 'Jum\'at', '5dd7f94d53468', '5ddcd276be772', '5ddb9cf8d41fd', '15:00', '16:00');
+('5ddcd4551c97f', 'Jum\'at', NULL, '5ddcd276be772', '5ddb9cf0d13fc', '13:00', '14:00'),
+('5ddd1084114ea', 'Jum\'at', NULL, '5ddcd276be772', '5ddb9cf8d41fd', '15:00', '16:00');
 
 -- --------------------------------------------------------
 
@@ -130,28 +130,7 @@ CREATE TABLE `pimpinan` (
 --
 
 INSERT INTO `pimpinan` (`pimpinan_id`, `pimpinan_username`, `pimpinan_nama`, `pimpinan_foto`, `pimpinan_password`) VALUES
-('5dead68683868', 'igman', 'bapak haji ramlan', '5dead68683868.png', '1234567');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tbl_level_user`
---
-
-CREATE TABLE `tbl_level_user` (
-  `id_level_user` int(11) NOT NULL,
-  `nama_level` varchar(15) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `tbl_level_user`
---
-
-INSERT INTO `tbl_level_user` (`id_level_user`, `nama_level`) VALUES
-(1, 'Admin'),
-(2, 'Guru'),
-(3, 'Siswa'),
-(4, 'Kepsek');
+('5ded07350f828', 'iyep', 'Iyep Saepumilah SH.I, M.Ag', '5ded07350f828.jpg', 'd93a5def7511da3d0f2d171d9c344e91');
 
 -- --------------------------------------------------------
 
@@ -161,14 +140,14 @@ INSERT INTO `tbl_level_user` (`id_level_user`, `nama_level`) VALUES
 
 CREATE TABLE `tutor` (
   `tutor_id` varchar(100) NOT NULL,
-  `tutor_nip` varchar(20) NOT NULL,
+  `tutor_nomor_induk` varchar(20) NOT NULL,
   `tutor_nama` varchar(90) DEFAULT NULL,
-  `tutor_jenis_kelamin` enum('Pria','Wanita','','') NOT NULL,
+  `tutor_jenis_kelamin` enum('Pria','Wanita') NOT NULL,
   `tutor_tempat_lahir` varchar(50) DEFAULT NULL,
   `tutor_tanggal_lahir` date DEFAULT NULL,
   `tutor_agama` enum('Islam','Kristen Protestan','Katolik','Hindu','Buddha','Kong Hu Cu') DEFAULT NULL,
   `tutor_kewarganegaraan` enum('WNA','WNI') DEFAULT NULL,
-  `tutor_pendidikan_terakhir` varchar(10) DEFAULT NULL,
+  `tutor_pendidikan_terakhir` varchar(25) DEFAULT NULL,
   `tutor_alamat_jalan` varchar(40) DEFAULT NULL,
   `tutor_alamat_rtrw` varchar(40) DEFAULT NULL,
   `tutor_alamat_desa` varchar(30) DEFAULT NULL,
@@ -176,16 +155,16 @@ CREATE TABLE `tutor` (
   `tutor_alamat_kabupaten` varchar(30) DEFAULT NULL,
   `tutor_alamat_provinsi` varchar(30) DEFAULT NULL,
   `tutor_alamat_kodepos` varchar(10) DEFAULT NULL,
-  `tutor_foto` varchar(50) DEFAULT NULL
+  `tutor_foto` varchar(100) DEFAULT NULL,
+  `tutor_password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tutor`
 --
 
-INSERT INTO `tutor` (`tutor_id`, `tutor_nip`, `tutor_nama`, `tutor_jenis_kelamin`, `tutor_tempat_lahir`, `tutor_tanggal_lahir`, `tutor_agama`, `tutor_kewarganegaraan`, `tutor_pendidikan_terakhir`, `tutor_alamat_jalan`, `tutor_alamat_rtrw`, `tutor_alamat_desa`, `tutor_alamat_kecamatan`, `tutor_alamat_kabupaten`, `tutor_alamat_provinsi`, `tutor_alamat_kodepos`, `tutor_foto`) VALUES
-('5dd7f94d53468', '0', 'Zam Zam Saeful Bahtiar', '', 'ds', '0000-00-00', '', NULL, '0', 'fdf', 'ada', 'ada', 'ada', 'ada', 'ada', '', ''),
-('5dd7f98bc4245', '0', 'teuing', '', 'dada', NULL, '', NULL, '0', '', 'da', 'ada', 'ada', '', 'ada', 'adaa', NULL);
+INSERT INTO `tutor` (`tutor_id`, `tutor_nomor_induk`, `tutor_nama`, `tutor_jenis_kelamin`, `tutor_tempat_lahir`, `tutor_tanggal_lahir`, `tutor_agama`, `tutor_kewarganegaraan`, `tutor_pendidikan_terakhir`, `tutor_alamat_jalan`, `tutor_alamat_rtrw`, `tutor_alamat_desa`, `tutor_alamat_kecamatan`, `tutor_alamat_kabupaten`, `tutor_alamat_provinsi`, `tutor_alamat_kodepos`, `tutor_foto`, `tutor_password`) VALUES
+('5ded0e21b5aea', '982032', 'Zam Zam Saeful Bahtiar', 'Pria', 'Tasikmalaya', '1999-05-18', 'Islam', 'WNI', 'SLTA Sederajat', 'Cihonje', '002/002', 'Karanganyar', 'Kawalu', 'Tasikmalaya', 'Jawa Barat', '46182', '5ded0e21b5aea.png', 'b5be1ec647cc6d4786921e92e34eee1a');
 
 -- --------------------------------------------------------
 
@@ -287,12 +266,6 @@ ALTER TABLE `pimpinan`
   ADD UNIQUE KEY `pimpinan_username` (`pimpinan_username`);
 
 --
--- Indexes for table `tbl_level_user`
---
-ALTER TABLE `tbl_level_user`
-  ADD PRIMARY KEY (`id_level_user`);
-
---
 -- Indexes for table `tutor`
 --
 ALTER TABLE `tutor`
@@ -306,15 +279,6 @@ ALTER TABLE `wargabelajar`
   ADD KEY `kelas_id` (`kelas_id`);
 
 --
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `tbl_level_user`
---
-ALTER TABLE `tbl_level_user`
-  MODIFY `id_level_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
---
 -- Constraints for dumped tables
 --
 
@@ -323,8 +287,8 @@ ALTER TABLE `tbl_level_user`
 --
 ALTER TABLE `jadwal`
   ADD CONSTRAINT `jadwal_kelas` FOREIGN KEY (`kelas_id`) REFERENCES `kelas` (`kelas_id`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  ADD CONSTRAINT `jadwal_matpel` FOREIGN KEY (`matpel_id`) REFERENCES `matpel` (`matpel_id`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  ADD CONSTRAINT `jadwal_tutor` FOREIGN KEY (`tutor_id`) REFERENCES `tutor` (`tutor_id`) ON DELETE NO ACTION ON UPDATE CASCADE;
+  ADD CONSTRAINT `jadwal_matpel` FOREIGN KEY (`matpel_id`) REFERENCES `matpel` (`matpel_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `tutor_id` FOREIGN KEY (`tutor_id`) REFERENCES `tutor` (`tutor_id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
 -- Constraints for table `wargabelajar`

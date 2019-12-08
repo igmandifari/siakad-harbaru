@@ -345,11 +345,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             $this->_deleteImage($id);
             return $this->db->delete($this->_table, array("wargabelajar_id" => $id));
         }
-        public function cek_login($username,$password){
-            $this->db->where('wargabelajar_nomor_induk',$username);
-            $this->db->where('wargabelajar_password',md5(sha1($password)));
-            $user = $this->db->get('wargabelajar')->row_array();
-            return $user;
-        }
+        
     }
 ?>
