@@ -37,7 +37,7 @@
             </div>
         </div>
     <?php endif;?>
-    <form action="<?php base_url("wargabelajar/tambah")?>" method="post" enctype="multipart/form-data">
+    <form action="<?php base_url("wargabelajar/tambah")?>" method="post" enctype="multipart/form-data" id="form">
         <div class="row push">
         
             <div class="col-12">
@@ -164,6 +164,16 @@
                                     <label for="wargabelajar_masuk">Tanggal Masuk</label>
                                     <input type="date" class="js-flatpickr form-control bg-white js-flatpickr-enabled flatpickr-input active" id="wargabelajar_masuk" name="wargabelajar_masuk">
                                 </div>
+                                <div class="form-grup">
+                                    <label for="wargabelajar_alamat_kabupaten">Tahun Ajaran Masuk</label>
+                                    <select class="custom-select" id="tahunajaran_id" name="tahunajaran_id" required>
+                                        <option>Silahkan Pilih</option>
+                                        <?php foreach($tahunajaran_all as $tahunajaran) :?>
+                                            <option value="<?=$tahunajaran->tahunajaran_id?>"><?=$tahunajaran->tahunajaran_nama?></option>
+                                        <?php endforeach;?>
+                                    </select>
+                                    <small class="form-text text-danger"><?= form_error('tahunajaran_id'); ?></small>
+                                </div>
                                 <div class="form-group">
                                     <label>Foto Warga Belajar</label>
                                     <div class="custom-file">
@@ -171,15 +181,6 @@
                                         <input type="file" class="custom-file-input js-custom-file-input-enabled" data-toggle="custom-file-input" id="wargabelajar_foto" name="wargabelajar_foto">
                                         <label class="custom-file-label" for="wargabelajar_foto">Silahkan masukan foto</label>
                                     </div>
-                                </div>
-                                <div class="form-grup">
-                                    <label for="wargabelajar_alamat_kabupaten">Kelas</label>
-                                    <select class="custom-select" id="kelas_id" name="kelas_id" required>
-                                        <option value="0">Silahkan Pilih</option>
-                                        <?php foreach($kelass as $kelas) :?>
-                                            <option value="<?=$kelas->kelas_id?>"><?=$kelas->kelas_nama?></option>
-                                        <?php endforeach;?>
-                                    </select>
                                 </div>
                             </div>
                             <div class="tab-pane fade fade-right" id="btabs-animated-slideright-profile" role="tabpanel">
