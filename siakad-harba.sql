@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.4.1deb2ubuntu2.1
--- http://www.phpmyadmin.net
+-- version 4.8.3
+-- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Dec 08, 2019 at 10:22 PM
--- Server version: 10.0.38-MariaDB-0ubuntu0.16.04.1
--- PHP Version: 7.3.12-1+ubuntu16.04.1+deb.sury.org+1
+-- Host: 127.0.0.1
+-- Generation Time: Dec 09, 2019 at 03:01 AM
+-- Server version: 10.1.37-MariaDB
+-- PHP Version: 7.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -131,6 +133,17 @@ CREATE TABLE `pimpinan` (
 
 INSERT INTO `pimpinan` (`pimpinan_id`, `pimpinan_username`, `pimpinan_nama`, `pimpinan_foto`, `pimpinan_password`) VALUES
 ('5ded07350f828', 'iyep', 'Iyep Saepumilah SH.I, M.Ag', '5ded07350f828.jpg', 'd93a5def7511da3d0f2d171d9c344e91');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tahunajaran`
+--
+
+CREATE TABLE `tahunajaran` (
+  `tahunajaran_id` varchar(50) NOT NULL,
+  `tahunajaran_nama` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -295,6 +308,7 @@ ALTER TABLE `jadwal`
 --
 ALTER TABLE `wargabelajar`
   ADD CONSTRAINT `kelas_siswa` FOREIGN KEY (`kelas_id`) REFERENCES `kelas` (`kelas_id`) ON DELETE NO ACTION ON UPDATE CASCADE;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
