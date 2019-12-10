@@ -121,6 +121,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                  'label'    => 'Nama Sekolah/Kejar',
                  'rules'    => 'trim|xss_clean',
                 ],
+                ['field'   => 'tahunajaran_id',
+                 'label'    => 'Tahun Ajaran Masuk',
+                 'rules'    => 'required|trim|xss_clean',
+                ],
                  ['field'   => 'wargabelajar_kejar_alamat',
                  'label'    => 'Alamat Sekolah/Kejar',
                  'rules'    => 'trim|xss_clean',
@@ -238,7 +242,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 'wargabelajar_masuk'               => $this->input->post("wargabelajar_masuk"),
                 'wargabelajar_foto'                => $this->_uploadImage(),
                 'wargabelajar_password'            => md5(sha1($this->input->post("wargabelajar_nomor_induk"))),
-                'kelas_id'                         => $this->input->post("kelas_id"),
+                'tahunajaran_id'                   => $this->input->post("tahunajaran_id"),
 
                 'orangtua_ayah_nama'               => $this->input->post("orangtua_ayah_nama"),
                 'orangtua_ibu_nama'                =>$this->input->post("orangtua_ibu_nama"),
@@ -328,7 +332,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 'wargabelajar_sttb'                => $this->input->post("wargabelajar_sttb"),
                 'wargabelajar_masuk'               => $this->input->post("wargabelajar_masuk"),
                 'wargabelajar_foto'                => $foto,
-                'kelas_id'                         => $this->input->post("kelas_id"),
+                'tahunajaran_id'                   => $this->input->post("tahunajaran_id"),
 
             );
             $this->db->where('wargabelajar_id',$this->input->post("id"));
@@ -344,6 +348,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         public function delete($id){
             $this->_deleteImage($id);
             return $this->db->delete($this->_table, array("wargabelajar_id" => $id));
+        }
+        public function getTahunAjaran(){
+            return $this->db->get('tahunajaran')->result();
         }
         
     }

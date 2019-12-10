@@ -11,7 +11,6 @@ Class Wargabelajar extends CI_Controller
         if($this->session->userdata('MASUK') != TRUE)redirect($url);
         if($this->session->userdata('level') != 0) redirect("dasbor");
         $this->load->model('Wargabelajar_model');
-        $this->load->model('Kelas_model');
         $this->load->library('form_validation');        
         $this->load->helper('security');
 
@@ -71,7 +70,7 @@ Class Wargabelajar extends CI_Controller
         if (!isset($id)) redirect('wargabelajar');
 
         $wargabelajar = $this->Wargabelajar_model;
-        $kelas =$this->Kelas_model;        
+     
         $validasi = $this->form_validation;
         $validasi->set_rules($wargabelajar->rules());
 
@@ -82,7 +81,8 @@ Class Wargabelajar extends CI_Controller
         $data['wargabelajar'] = $wargabelajar->getByid($id);
         $data["title"] = "Ubah Data";
         $data["actor"] = "Warga Belajar";
-        $data["kelass"] = $kelas->getAll();
+        $data["tahunajaran_all"] = $wargabelajar->getTahunAjaran();
+        
 
         if(!$data['wargabelajar']) redirect('wargabelajar');
         
@@ -92,7 +92,7 @@ Class Wargabelajar extends CI_Controller
     public function tambah()
     {
         $wargabelajar = $this->Wargabelajar_model;
-        $kelas = $this->Kelas_model;
+        
 
         $validasi =  $this->form_validation;
         $validasi->set_rules($wargabelajar->rules());
@@ -103,7 +103,7 @@ Class Wargabelajar extends CI_Controller
         } 
         $data["title"] = "Tambah Data";
         $data["actor"] = "Warga Belajar";
-        $data["kelass"] = $kelas->getAll();
+        $data["tahunajaran_all"] = $wargabelajar->getTahunAjaran();
 
         $this->load->view('wargabelajar/tambah',$data);
     }

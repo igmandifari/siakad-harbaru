@@ -53,6 +53,9 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="#ubah-password">Ubah Password</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#data-kelulusan">Data Kelulusan</a>
+                                </li>
                             </ul>
                             <div class="block-content tab-content overflow-hidden">
                                 <div class="tab-pane fade fade-right show active" id="btabs-animated-slideright-home" role="tabpanel">
@@ -168,6 +171,15 @@
                                         <label for="wargabelajar_masuk">Tanggal Masuk</label>
                                         <input type="date" class="js-flatpickr form-control bg-white js-flatpickr-enabled flatpickr-input active" id="wargabelajar_masuk" name="wargabelajar_masuk">
                                     </div>
+                                    <div class="form-grup">
+                                        <label for="wargabelajar_alamat_kabupaten">Tahun Ajaran Masuk</label>
+                                        <select class="custom-select" id="tahunajaran_id" name="tahunajaran_id">
+                                            <option>Silahkan Pilih</option>
+                                                <?php foreach ($tahunajaran_all as $tahunajaran) : ?>
+                                                    <option value="<?= $tahunajaran->tahunajaran_id ?>" <?php if ($wargabelajar->tahunajaran_id == $tahunajaran->tahunajaran_id) echo 'selected' ?>><?= $tahunajaran->tahunajaran_nama ?></option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                    </div>
                                     <div class="form-group">
                                         <label>Foto Warga Belajar</label>
                                         <div class="custom-file">
@@ -176,15 +188,6 @@
                                             <label class="custom-file-label" for="wargabelajar_foto">Silahkan masukan foto</label>
                                             <input type="hidden" name="old_image" value="<?= $wargabelajar->wargabelajar_foto ?>">
                                         </div>
-                                    </div>
-                                    <div class="form-grup">
-                                        <label for="wargabelajar_alamat_kabupaten">Kelas</label>
-                                        <select class="custom-select" id="kelas_id" name="kelas_id">
-                                            <option value="0">Silahkan Pilih</option>
-                                                <?php foreach ($kelass as $kelas) : ?>
-                                                    <option value="<?= $kelas->kelas_id ?>" <?php if ($wargabelajar->kelas_id == $kelas->kelas_id) echo 'selected' ?>><?= $kelas->kelas_nama ?></option>
-                                                <?php endforeach; ?>
-                                            </select>
                                     </div>
                                     <div class="row push">
                                         <div class="col-lg-4">
@@ -308,6 +311,9 @@
                                             </div>
                                         </div>     
                                     </form>
+                                </div>
+                                <div class="tab-pane fade fade-right" id="data-kelulusan">
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi perspiciatis recusandae aspernatur facilis ipsa hic, temporibus labore voluptate aut reiciendis a voluptatibus expedita sit iusto fugiat alias! Eveniet, autem impedit.</p>
                                 </div>
                             </div>
                             
