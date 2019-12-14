@@ -33,11 +33,23 @@
             </a>
         </div>
         <div class="block-content block-content-full">
+        <?php if ($this->session->flashdata('success')): ?>
+        <div class="alert alert-success d-flex align-items-center" role="alert">
+            <div class="flex-00-auto">
+                <i class="fa fa-fw fa-check"></i>
+            </div>
+            <div class="flex-fill ml-3">
+                <p class="mb-0"><?php echo $this->session->flashdata('success'); ?></p>
+            </div>
+        </div>
+        <?php endif;?>
             <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _es6/pages/be_tables_datatables.js -->
             <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
                                 <thead>
                                     <tr>
                                         <th>Nama Mata Pelajaran</th>
+                                        <th>Nama Tutor</th>
+                                        <th>Jenis Pembelajaran</th>
                                         <th style="width: 15%;">Aksi</th>
                                     </tr>
                                 </thead>
@@ -45,6 +57,8 @@
                                     <?php foreach($matpels as $matpel):?>
                                         <tr>
                                             <td><?=$matpel->matpel_nama;?>
+                                            <td><?=$matpel->tutor_nama;?>
+                                            <td><?=$matpel->tipe_pembelajaran;?>
                                             <td class="text-center">
                                                 <div class="btn-group">
                                                     <a href="<?=base_url('matpel/ubah/').$matpel->matpel_id;?>">

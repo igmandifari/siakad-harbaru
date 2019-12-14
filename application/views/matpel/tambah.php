@@ -25,16 +25,6 @@
 <div class="content">
     <!-- Basic -->
     <div class="block">
-    <?php if ($this->session->flashdata('success')): ?>
-        <div class="alert alert-success d-flex align-items-center" role="alert">
-            <div class="flex-00-auto">
-                <i class="fa fa-fw fa-check"></i>
-            </div>
-            <div class="flex-fill ml-3">
-                <p class="mb-0"><?php echo $this->session->flashdata('success'); ?></p>
-            </div>
-        </div>
-    <?php endif;?>
         <div class="block-header">
             <h3 class="block-title">Data Mata Pelajaran</h3>
         </div>
@@ -46,7 +36,27 @@
                             <label for="matpel_nama">Nama Mata Pelajaran</label>
                             <input type="text" class="form-control" id="matpel_nama" name="matpel_nama" placeholder="Masukan Nama atau Kode Mata Pelajaran">
                             <small class="form-text text-danger"><?= form_error('matpel_nama'); ?></small>
-                        </div>                        
+                        </div>
+                        <div class="form-group">
+                            <label for="tutor_id">Jenis Pembelajaran</label>
+                            <select class="custom-select" id="tipe_pembelajaran" name="tipe_pembelajaran">
+                                        <option value="0">Silahkan Pilih Tutor</option>
+                                        <option value="Tatap Muka">Tatap Muka</option>
+                                        <option value="Mandiri">Mandiri</option>
+                                        <option value="Tutorial">Tutorial</option>
+                            </select>
+                            <small class="form-text text-danger"><?= form_error('tipe_pembelajaran'); ?></small>
+                        </div>   
+                        <div class="form-group">
+                            <label for="tutor_id">Nama Tutor</label>
+                            <select class="custom-select" id="tutor_id" name="tutor_id">
+                                        <option value="0">Silahkan Pilih Tutor</option>
+                                        <?php foreach($tutors as $tutor) :?>
+                                            <option value="<?=$tutor->tutor_id?>"><?=$tutor->tutor_nama?></option>
+                                        <?php endforeach;?>
+                            </select>
+                            <small class="form-text text-danger"><?= form_error('tutor_id'); ?></small>
+                        </div>                       
                     </div>
                 </div>
                 <div class="row push">

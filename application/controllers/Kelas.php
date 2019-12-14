@@ -22,7 +22,10 @@ class Kelas extends CI_Controller
     
         $this->load->view('kelas/list',$data);
     }
-
+    public function tambahWargaBelajar(){
+        $data["title"] = "Masukan Warga Belajar";
+        $data["actor"] = "Kelas";
+    }
     public function tambah()
     {
         $kelas = $this->Kelas_model;
@@ -32,7 +35,8 @@ class Kelas extends CI_Controller
 
         if ($validasi->run()){
             $kelas->simpan();
-            $this->session->set_flashdata('success', 'Berhasil'); 
+            $this->session->set_flashdata('success', 'Berhasil');
+            redirect("kelas"); 
         }
 
         $data["title"] = "Tambah Data";
@@ -74,4 +78,33 @@ class Kelas extends CI_Controller
 
     }
 
+    public function rombel_tambah($id=null)
+    {
+        $kelas_model = $this->Kelas_model;
+        $validasi = $this->form_validation;
+        $validasi->set_rules($kelas_model->rules_rombel());
+
+        if($validasi->run()){
+            $kelas_model->rombel_save();
+            $this->session->set_flashdata('success', 'Berhasil dimasukan');
+        }
+
+        $data["title"] = "Tambah Rombel";
+        $data["actor"] = "Rombongan Belajar";
+        $data["kelasAll"]= $kelas_model->getAll();
+        $data["tahunAjaranAll"]= $kelas_model->getTahunAjaran();
+        $data["wargabelajarAll"]= $kelas_model->getWargaBelajar();
+
+        $this->load->view("kelas/rombel/tambah",$data);
+        
+    }
+    function select_validate($param)
+    {
+        if($param=="0"){
+            $this->form_validation->set_message('select_validate', 'Mohon untuk memilih {field}');
+            return false;
+        } else{
+            return true;
+        }
+    }
 }

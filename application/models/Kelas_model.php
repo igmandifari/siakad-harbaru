@@ -14,18 +14,34 @@
                 ]
             ];
         }
-      
+        public function rules_rombel()
+        {
+            return[
+                [
+                    'field' => 'kelas_id',
+                    'label' => 'Kelas',
+                    'rules' => 'required|trim|xss_clean|callback_select_validate',
+                ],
+                [
+                    'field' => 'tahunajaran_id',
+                    'label' => 'Tahun Ajaran',
+                    'rules' => 'required|trim|xss_clean|callback_select_validate',
+                ]
+            ];
+        }
         public function simpan(){
             $data= array(
                 'kelas_id'                  => uniqid(),
-                'kelas_nama'                => $this->input->post("kelas_nama")
+                'kelas_nama'                => $this->input->post("kelas_nama"),
+                'created_at'                => date('Y-m-d H:i:s')
                 );
             return $this->db->insert($this->_table, $data);
         }
         public function perbarui()
         {
             $data= array(
-                'kelas_nama'                => $this->input->post("kelas_nama")
+                'kelas_nama'                => $this->input->post("kelas_nama"),
+                'updated_at'                => date('Y-m-d H:i:s')
             );
             $this->db->where('kelas_id',$this->input->post("kelas_id"));
             return $this->db->update($this->_table, $data);    
@@ -39,6 +55,21 @@
         }
         public function delete($id){
             return $this->db->delete($this->_table, array("kelas_id" => $id));
+        }
+        public function getTahunAjaran(){
+            return $this->db->get('tahunajaran')->result();
+        }
+        public function getWargaBelajar(){
+            return $this->db->get('wargabelajar')->result();
+        }
+        public function rombel_save(){
+            $data = array(
+                'kelas_id'              => $this->input->post("kelas_id"),
+                'tahunajaran_id'        => $this->input->post("tahunajaran_id"),
+                'wargabelajar_id'        => $this->input->post("wargabelajar_id"),
+                'created_at'                => date('Y-m-d H:i:s')
+            );
+            return $this->db->insert("kelas_details",$data);
         }
     }
 ?>
