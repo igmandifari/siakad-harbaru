@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
--- https://www.phpmyadmin.net/
+-- version 4.5.4.1deb2ubuntu2.1
+-- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Dec 09, 2019 at 03:01 AM
--- Server version: 10.1.37-MariaDB
--- PHP Version: 7.2.12
+-- Host: localhost
+-- Generation Time: Dec 15, 2019 at 08:55 AM
+-- Server version: 10.0.38-MariaDB-0ubuntu0.16.04.1
+-- PHP Version: 7.3.12-1+ubuntu16.04.1+deb.sury.org+1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -33,17 +31,19 @@ CREATE TABLE `admin` (
   `admin_nama` varchar(50) NOT NULL,
   `admin_username` varchar(35) NOT NULL,
   `admin_password` varchar(255) NOT NULL,
-  `admin_foto` varchar(100) DEFAULT NULL
+  `admin_foto` varchar(100) DEFAULT NULL,
+  `created_at` date DEFAULT NULL,
+  `updated_at` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `admin`
 --
 
-INSERT INTO `admin` (`admin_id`, `admin_nama`, `admin_username`, `admin_password`, `admin_foto`) VALUES
-('5de15e4e0de9d', 'Zam Zam Saeful Bahtiar', 'bekerz18', 'a31c86d61e1c1773167ca7b5bf023f98', '5de15e4e0de9d.jpeg'),
-('5de15e8a9ead8', 'Igman Difari', 'igman', 'b714337aa8007c433329ef43c7b8252c', '5de15e8a9ead8.jpg'),
-('5de1e955158af', 'Intan Hartiwan', 'intanhartiwan', 'a31c86d61e1c1773167ca7b5bf023f98', '5de1e955158af.png');
+INSERT INTO `admin` (`admin_id`, `admin_nama`, `admin_username`, `admin_password`, `admin_foto`, `created_at`, `updated_at`) VALUES
+('5de15e4e0de9d', 'Zam Zam Saeful Bahtiar', 'bekerz18', 'a31c86d61e1c1773167ca7b5bf023f98', '5de15e4e0de9d.jpeg', NULL, NULL),
+('5de15e8a9ead8', 'Igman Difari', 'igman', 'b714337aa8007c433329ef43c7b8252c', '5de15e8a9ead8.jpg', NULL, NULL),
+('5de1e955158af', 'Intan Hartiwan', 'intanhartiwan', 'a31c86d61e1c1773167ca7b5bf023f98', '5de1e955158af.png', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -53,21 +53,25 @@ INSERT INTO `admin` (`admin_id`, `admin_nama`, `admin_username`, `admin_password
 
 CREATE TABLE `jadwal` (
   `jadwal_id` varchar(100) NOT NULL,
-  `jadwal_hari` varchar(15) NOT NULL,
-  `tutor_id` varchar(100) DEFAULT NULL,
+  `jadwal_tipe_pembelajaran` enum('Tatap Muka','Mandiri','Tutorial') NOT NULL,
+  `jadwal_hari` varchar(15) DEFAULT NULL,
   `matpel_id` varchar(100) NOT NULL,
   `kelas_id` varchar(100) NOT NULL,
-  `jadwal_jam_mulai` varchar(10) NOT NULL,
-  `jadwal_jam_berakhir` varchar(10) NOT NULL
+  `jadwal_waktu` varchar(15) DEFAULT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `jadwal`
 --
 
-INSERT INTO `jadwal` (`jadwal_id`, `jadwal_hari`, `tutor_id`, `matpel_id`, `kelas_id`, `jadwal_jam_mulai`, `jadwal_jam_berakhir`) VALUES
-('5ddcd4551c97f', 'Jum\'at', NULL, '5ddcd276be772', '5ddb9cf0d13fc', '13:00', '14:00'),
-('5ddd1084114ea', 'Jum\'at', NULL, '5ddcd276be772', '5ddb9cf8d41fd', '15:00', '16:00');
+INSERT INTO `jadwal` (`jadwal_id`, `jadwal_tipe_pembelajaran`, `jadwal_hari`, `matpel_id`, `kelas_id`, `jadwal_waktu`, `created_at`, `updated_at`) VALUES
+('5df4e405df2a4', 'Tatap Muka', 'Sabtu', '5df4e3ca31a5c', '5df3b87c5b9f1', '13:00-14:00', '2019-12-14 20:30:45', '2019-12-15 03:52:37'),
+('5df55eadd490d', 'Tatap Muka', 'Jum\'at', '5df4e3ca31a5c', '5df3b8828ef3f', '13:00-14:00', '2019-12-15 05:14:05', '0000-00-00 00:00:00'),
+('5df55ef07c125', 'Tatap Muka', 'Minggu', '5df4e3ca31a5c', '5df3b8828ef3f', '16:00-17:00', '2019-12-15 05:15:12', '2019-12-15 05:18:01'),
+('5df55f201c07c', 'Tatap Muka', 'Jum\'at', '5df4e3ca31a5c', '5df3b887206bf', '13:00-14:00', '2019-12-15 05:16:00', '0000-00-00 00:00:00'),
+('5df55f4142ac0', 'Tatap Muka', 'Sabtu', '5df4e3dfc0268', '5df3b87c5b9f1', '14:00-15:00', '2019-12-15 05:16:33', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -77,22 +81,19 @@ INSERT INTO `jadwal` (`jadwal_id`, `jadwal_hari`, `tutor_id`, `matpel_id`, `kela
 
 CREATE TABLE `kelas` (
   `kelas_id` varchar(100) NOT NULL,
-  `kelas_nama` varchar(20) NOT NULL
+  `kelas_nama` varchar(20) NOT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `kelas`
 --
 
-INSERT INTO `kelas` (`kelas_id`, `kelas_nama`) VALUES
-('5ddb9cf0d13fc', 'Kelas XII'),
-('5ddb9cf8d41fd', 'Kelas XI'),
-('5ddb9d0159e37', 'Kelas X'),
-('5ddb9d12213ba', 'Kelas VII'),
-('5ddb9d1c026c3', 'Kelas VIII'),
-('5ddb9d21eb254', 'Kelas 682'),
-('5de342460e692', 'Naonnya'),
-('5de8c07454d02', 'Kelas 5');
+INSERT INTO `kelas` (`kelas_id`, `kelas_nama`, `created_at`, `updated_at`) VALUES
+('5df3b87c5b9f1', 'Kelas IX', '2019-12-13 23:12:44', '2019-12-13 23:13:13'),
+('5df3b8828ef3f', 'Kelas XI', '2019-12-13 23:12:50', NULL),
+('5df3b887206bf', 'Kelas XII', '2019-12-13 23:12:55', NULL);
 
 -- --------------------------------------------------------
 
@@ -102,16 +103,19 @@ INSERT INTO `kelas` (`kelas_id`, `kelas_nama`) VALUES
 
 CREATE TABLE `matpel` (
   `matpel_id` varchar(100) NOT NULL,
-  `matpel_nama` varchar(50) NOT NULL
+  `matpel_nama` varchar(50) NOT NULL,
+  `tutor_id` varchar(100) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `matpel`
 --
 
-INSERT INTO `matpel` (`matpel_id`, `matpel_nama`) VALUES
-('5ddcd276be772', 'Matematika'),
-('5ddcd27ce80cd', 'Bahasa Indonesia');
+INSERT INTO `matpel` (`matpel_id`, `matpel_nama`, `tutor_id`, `created_at`, `updated_at`) VALUES
+('5df4e3ca31a5c', 'Matematika', '5ded0e21b5aea', '0000-00-00 00:00:00', NULL),
+('5df4e3dfc0268', 'Bahasa Indonesia', '5ded0e21b5aea', '0000-00-00 00:00:00', NULL);
 
 -- --------------------------------------------------------
 
@@ -141,9 +145,16 @@ INSERT INTO `pimpinan` (`pimpinan_id`, `pimpinan_username`, `pimpinan_nama`, `pi
 --
 
 CREATE TABLE `tahunajaran` (
-  `tahunajaran_id` varchar(50) NOT NULL,
+  `tahunajaran_id` varchar(100) NOT NULL,
   `tahunajaran_nama` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tahunajaran`
+--
+
+INSERT INTO `tahunajaran` (`tahunajaran_id`, `tahunajaran_nama`) VALUES
+('5deece94c9ee3', '2017/2018');
 
 -- --------------------------------------------------------
 
@@ -177,7 +188,8 @@ CREATE TABLE `tutor` (
 --
 
 INSERT INTO `tutor` (`tutor_id`, `tutor_nomor_induk`, `tutor_nama`, `tutor_jenis_kelamin`, `tutor_tempat_lahir`, `tutor_tanggal_lahir`, `tutor_agama`, `tutor_kewarganegaraan`, `tutor_pendidikan_terakhir`, `tutor_alamat_jalan`, `tutor_alamat_rtrw`, `tutor_alamat_desa`, `tutor_alamat_kecamatan`, `tutor_alamat_kabupaten`, `tutor_alamat_provinsi`, `tutor_alamat_kodepos`, `tutor_foto`, `tutor_password`) VALUES
-('5ded0e21b5aea', '982032', 'Zam Zam Saeful Bahtiar', 'Pria', 'Tasikmalaya', '1999-05-18', 'Islam', 'WNI', 'SLTA Sederajat', 'Cihonje', '002/002', 'Karanganyar', 'Kawalu', 'Tasikmalaya', 'Jawa Barat', '46182', '5ded0e21b5aea.png', 'b5be1ec647cc6d4786921e92e34eee1a');
+('5ded0e21b5aea', '982032', 'Zam Zam Saeful Bahtiar', 'Pria', 'Tasikmalaya', '1999-05-18', 'Islam', 'WNI', 'SLTA Sederajat', 'Cihonje', '002/002', 'Karanganyar', 'Kawalu', 'Tasikmalaya', 'Jawa Barat', '46182', '5ded0e21b5aea.png', 'b5be1ec647cc6d4786921e92e34eee1a'),
+('5df4f42689c9e', '191212121', 'Ir. Code Igniter', 'Wanita', 'Tasikmalaya', '2019-06-06', 'Islam', 'WNI', 'SLTA Sederajat', 'Cibeutui', '02/02', 'Cibeuti', 'Kawalu', 'Kota Tasikmalaya', 'Jawa Barat', '46182', 'default.jpg', '49ae1756b829cea3969be0ad484b1129');
 
 -- --------------------------------------------------------
 
@@ -207,9 +219,11 @@ CREATE TABLE `wargabelajar` (
   `wargabelajar_kejar_alamat` varchar(150) DEFAULT NULL,
   `wargabelajar_sttb` varchar(150) DEFAULT NULL,
   `wargabelajar_masuk` date DEFAULT NULL,
+  `tahunajaran_id` varchar(100) NOT NULL,
+  `wargabelajar_status` enum('Aktif','Tidak') NOT NULL,
+  `kelas_id` varchar(100) NOT NULL,
   `wargabelajar_foto` varchar(100) DEFAULT NULL,
   `wargabelajar_password` varchar(255) NOT NULL,
-  `kelas_id` varchar(100) DEFAULT NULL,
   `orangtua_ayah_nama` varchar(90) DEFAULT NULL,
   `orangtua_ayah_pekerjaan` varchar(20) DEFAULT NULL,
   `orangtua_ayah_alamat_jalan` varchar(40) DEFAULT NULL,
@@ -235,9 +249,9 @@ CREATE TABLE `wargabelajar` (
 -- Dumping data for table `wargabelajar`
 --
 
-INSERT INTO `wargabelajar` (`wargabelajar_id`, `wargabelajar_nomor_induk`, `wargabelajar_nisn`, `wargabelajar_nama`, `wargabelajar_nik`, `wargabelajar_jenis_kelamin`, `wargabelajar_tempat_lahir`, `wargabelajar_tanggal_lahir`, `wargabelajar_agama`, `wargabelajar_kewarganegaraan`, `wargabelajar_alamat_jalan`, `wargabelajar_alamat_rtrw`, `wargabelajar_alamat_desa`, `wargabelajar_alamat_kecamatan`, `wargabelajar_alamat_kabupaten`, `wargabelajar_alamat_provinsi`, `wargabelajar_alamat_kodepos`, `wargabelajar_kejar`, `wargabelajar_kejar_alamat`, `wargabelajar_sttb`, `wargabelajar_masuk`, `wargabelajar_foto`, `wargabelajar_password`, `kelas_id`, `orangtua_ayah_nama`, `orangtua_ayah_pekerjaan`, `orangtua_ayah_alamat_jalan`, `orangtua_ayah_alamat_rtrw`, `orangtua_ayah_alamat_desa`, `orangtua_ayah_alamat_kecamatan`, `orangtua_ayah_alamat_kabupaten`, `orangtua_ayah_alamat_provinsi`, `orangtua_ayah_alamat_kodepos`, `orangtua_ibu_nama`, `orangtua_wali_nama`, `orangtua_wali_pekerjaan`, `orangtua_wali_alamat_jalan`, `orangtua_wali_alamat_rtrw`, `orangtua_wali_alamat_desa`, `orangtua_wali_alamat_kecamatan`, `orangtua_wali_alamat_kabupaten`, `orangtua_wali_alamat_provinsi`, `orangtua_wali_alamat_kodepos`) VALUES
-('5de73cb301e5e', '181910027', '2928013602', 'Agit Apriyanto', '3278050804920005', 'Pria', 'Tasikmalaya', '1992-08-04', 'Islam', NULL, 'Picungremuk', '002/010', 'Gununggede', 'Kawalu', 'Kota Tasikmalaya', 'Jawa Barat', '46182', '', '', '', '0000-00-00', '5de73cb301e5e.jpg', '1e0e0a4c9faa61fab181a23a20161bd4', '5ddb9d0159e37', 'Enceng', 'Buruh', 'Picungremuk', '002/010', 'Gununggede', 'Kawalu', 'Kota Tasikmalaya', 'Jawa Barat', '46182', 'Rohimah', '', '', '', '', '', '', '', '', ''),
-('5de8aed595502', '181910028', '2887216215', 'Agus Agustin', '3278050804920005', 'Pria', 'Tasikmalaya', '1988-08-16', 'Islam', '', 'Sindangsuka', '001/009', 'Gununggede', 'Kawalu', 'Kota Tasikmalaya', 'Jawa Barat', '46182', 'SMPN 20 Tasikmalaya', 'Jln Air Tanjung Kawalu Tasikmalaya', 'DN-02 DI 0480369 / 28 Juni 2004', '2018-07-16', 'default.jpg', 'bd831c57c8c6eaf78b66fe8884ccd025', '5ddb9d0159e37', 'Sutisna', 'Buruh', 'Sindangsuka', '001/009', 'Gununggede', 'Kawalu', 'Kota Tasikmalaya', 'Jawa Barat', '46182', 'Siti Maryam', '', '', '', '', '', '', '', '', '');
+INSERT INTO `wargabelajar` (`wargabelajar_id`, `wargabelajar_nomor_induk`, `wargabelajar_nisn`, `wargabelajar_nama`, `wargabelajar_nik`, `wargabelajar_jenis_kelamin`, `wargabelajar_tempat_lahir`, `wargabelajar_tanggal_lahir`, `wargabelajar_agama`, `wargabelajar_kewarganegaraan`, `wargabelajar_alamat_jalan`, `wargabelajar_alamat_rtrw`, `wargabelajar_alamat_desa`, `wargabelajar_alamat_kecamatan`, `wargabelajar_alamat_kabupaten`, `wargabelajar_alamat_provinsi`, `wargabelajar_alamat_kodepos`, `wargabelajar_kejar`, `wargabelajar_kejar_alamat`, `wargabelajar_sttb`, `wargabelajar_masuk`, `tahunajaran_id`, `wargabelajar_status`, `kelas_id`, `wargabelajar_foto`, `wargabelajar_password`, `orangtua_ayah_nama`, `orangtua_ayah_pekerjaan`, `orangtua_ayah_alamat_jalan`, `orangtua_ayah_alamat_rtrw`, `orangtua_ayah_alamat_desa`, `orangtua_ayah_alamat_kecamatan`, `orangtua_ayah_alamat_kabupaten`, `orangtua_ayah_alamat_provinsi`, `orangtua_ayah_alamat_kodepos`, `orangtua_ibu_nama`, `orangtua_wali_nama`, `orangtua_wali_pekerjaan`, `orangtua_wali_alamat_jalan`, `orangtua_wali_alamat_rtrw`, `orangtua_wali_alamat_desa`, `orangtua_wali_alamat_kecamatan`, `orangtua_wali_alamat_kabupaten`, `orangtua_wali_alamat_provinsi`, `orangtua_wali_alamat_kodepos`) VALUES
+('5de73cb301e5e', '181910027', '2928013602', 'Agit Apriyanto', '3278050804920005', 'Pria', 'Tasikmalaya', '1992-08-04', 'Islam', NULL, 'Picungremuk', '002/010', 'Gununggede', 'Kawalu', 'Kota Tasikmalaya', 'Jawa Barat', '46182', '', '', '', '0000-00-00', '5deece94c9ee3', 'Aktif', '5df3b8828ef3f', '5de73cb301e5e.jpg', '1e0e0a4c9faa61fab181a23a20161bd4', 'Enceng', 'Buruh', 'Picungremuk', '002/010', 'Gununggede', 'Kawalu', 'Kota Tasikmalaya', 'Jawa Barat', '46182', 'Rohimah', '', '', '', '', '', '', '', '', ''),
+('5de8aed595502', '181910028', '2887216215', 'Agus Agustin', '3278050804920005', 'Pria', 'Tasikmalaya', '1988-08-16', 'Islam', NULL, 'Sindangsuka', '001/009', 'Gununggede', 'Kawalu', 'Kota Tasikmalaya', 'Jawa Barat', '46182', '', '', '', '0000-00-00', '5deece94c9ee3', 'Aktif', '5df3b887206bf', 'default.jpg', 'bd831c57c8c6eaf78b66fe8884ccd025', 'Sutisna', 'Buruh', 'Sindangsuka', '001/009', 'Gununggede', 'Kawalu', 'Kota Tasikmalaya', 'Jawa Barat', '46182', 'Siti Maryam', '', '', '', '', '', '', '', '', '');
 
 --
 -- Indexes for dumped tables
@@ -255,7 +269,6 @@ ALTER TABLE `admin`
 --
 ALTER TABLE `jadwal`
   ADD PRIMARY KEY (`jadwal_id`),
-  ADD KEY `jadwaLtutor` (`tutor_id`),
   ADD KEY `jadwal_kelas` (`kelas_id`),
   ADD KEY `jadwal_matpel` (`matpel_id`);
 
@@ -269,7 +282,8 @@ ALTER TABLE `kelas`
 -- Indexes for table `matpel`
 --
 ALTER TABLE `matpel`
-  ADD PRIMARY KEY (`matpel_id`);
+  ADD PRIMARY KEY (`matpel_id`),
+  ADD KEY `tutor_id` (`tutor_id`);
 
 --
 -- Indexes for table `pimpinan`
@@ -277,6 +291,12 @@ ALTER TABLE `matpel`
 ALTER TABLE `pimpinan`
   ADD PRIMARY KEY (`pimpinan_id`),
   ADD UNIQUE KEY `pimpinan_username` (`pimpinan_username`);
+
+--
+-- Indexes for table `tahunajaran`
+--
+ALTER TABLE `tahunajaran`
+  ADD PRIMARY KEY (`tahunajaran_id`);
 
 --
 -- Indexes for table `tutor`
@@ -289,6 +309,7 @@ ALTER TABLE `tutor`
 --
 ALTER TABLE `wargabelajar`
   ADD PRIMARY KEY (`wargabelajar_id`),
+  ADD KEY `tahun_ajaran_id_masuk` (`tahunajaran_id`),
   ADD KEY `kelas_id` (`kelas_id`);
 
 --
@@ -300,15 +321,20 @@ ALTER TABLE `wargabelajar`
 --
 ALTER TABLE `jadwal`
   ADD CONSTRAINT `jadwal_kelas` FOREIGN KEY (`kelas_id`) REFERENCES `kelas` (`kelas_id`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  ADD CONSTRAINT `jadwal_matpel` FOREIGN KEY (`matpel_id`) REFERENCES `matpel` (`matpel_id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `tutor_id` FOREIGN KEY (`tutor_id`) REFERENCES `tutor` (`tutor_id`) ON DELETE SET NULL ON UPDATE CASCADE;
+  ADD CONSTRAINT `jadwal_matpel` FOREIGN KEY (`matpel_id`) REFERENCES `matpel` (`matpel_id`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `matpel`
+--
+ALTER TABLE `matpel`
+  ADD CONSTRAINT `tutor` FOREIGN KEY (`tutor_id`) REFERENCES `tutor` (`tutor_id`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `wargabelajar`
 --
 ALTER TABLE `wargabelajar`
-  ADD CONSTRAINT `kelas_siswa` FOREIGN KEY (`kelas_id`) REFERENCES `kelas` (`kelas_id`) ON DELETE NO ACTION ON UPDATE CASCADE;
-COMMIT;
+  ADD CONSTRAINT `kelas_id` FOREIGN KEY (`kelas_id`) REFERENCES `kelas` (`kelas_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `tahun_masuk_ajaran` FOREIGN KEY (`tahunajaran_id`) REFERENCES `tahunajaran` (`tahunajaran_id`) ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
