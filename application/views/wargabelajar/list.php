@@ -58,28 +58,20 @@
             <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
                 <thead>
                     <tr>
-                        <th class="text-center" style="width: 80px;">Nomor Induk</th>
-                        <th class="text-center" style="width: 80px;">NISN</th>
-                        <th class="text-center" style="width: 80px;">Nama</th>
-                        <th class="d-none d-sm-table-cell" style="width: 15%;">TTL</th>
-                        <th class="text-center" style="width: 15%;">Aksi</th>
+                        <th>Nomor Induk</th>
+                        <th>NISN</th>
+                        <th>Nama</th>
+                        <th>TTL</th>
+                        <th style="width: 15%;">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
-                <?php foreach ($wargabelajars as $wargabelajar): ?>
-									
+                <?php foreach($wargabelajars as $wargabelajar):?>
                     <tr>
-                        <td class="text-center font-size-sm"><?= $wargabelajar->wargabelajar_nomor_induk ?></td>
-                        <td class="text-center font-size-sm"><?= $wargabelajar->wargabelajar_nisn ?></td>
-                        <td class="d-none d-sm-table-cell font-size-sm">
-                        <?= $wargabelajar->wargabelajar_nama ?><em class="text-muted"></em>
-                        </td>
-                        <td class="d-none d-sm-table-scell">
-                            <span class="badge badge-success"></span>
-                        </td>
-                        <td>
-                            <em class="text-muted font-size-sm"><?= $wargabelajar->wargabelajar_tempat_lahir .',' .$wargabelajar->wargabelajar_tanggal_lahir ?></em>
-                        </td>
+                        <td><?=$wargabelajar->wargabelajar_nomor_induk;?>
+                        <td><?=$wargabelajar->wargabelajar_nisn;?>
+                        <td><?=$wargabelajar->wargabelajar_nama;?>
+                        <td><?=$wargabelajar->wargabelajar_tempat_lahir . $wargabelajar->wargabelajar_tanggal_lahir;?>
                         <td class="text-center">
                             <div class="btn-group">
                                 <a href="<?=base_url('wargabelajar/ubah/').$wargabelajar->wargabelajar_id;?>">
@@ -95,7 +87,6 @@
                             </div>
                         </td>
                     </tr>
-                    <tr>
                 <?php endforeach;?>
                 </tbody>
             </table>

@@ -31,11 +31,12 @@ class Matpel extends CI_Controller
         if ($validasi->run()){
             $matpel->simpan();
             $this->session->set_flashdata('success', 'Berhasil');
+            redirect("matpel");
         }
 
         $data["title"] = "Tambah Data";
         $data["actor"] = "Mata Pelajaran";
-
+        $data["tutors"] = $matpel->getTutor();
         $this->load->view('matpel/tambah',$data);
     }
 
@@ -67,8 +68,18 @@ class Matpel extends CI_Controller
 
         $data["title"] = "Ubah Data";
         $data["actor"] = "Kelas";
+        $data["tutors"] = $matpel->getTutor();
 
         $this->load->view("matpel/ubah",$data);
+    }
+    function select_validate($param)
+    {
+        if($param=="0"){
+            $this->form_validation->set_message('select_validate', 'Mohon untuk memilih {field}');
+            return false;
+        } else{
+            return true;
+        }
     }
 
 }

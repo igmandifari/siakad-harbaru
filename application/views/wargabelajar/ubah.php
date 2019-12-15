@@ -180,6 +180,16 @@
                                                 <?php endforeach; ?>
                                             </select>
                                     </div>
+                                    <div class="form-grup">
+                                        <label for="kelas_id">Kelas</label>
+                                        <select class="custom-select" id="kelas_id" name="kelas_id">
+                                            <option>Silahkan Pilih</option>
+                                                <?php foreach ($kelas_all as $kelas) : ?>
+                                                    <option value="<?= $kelas->kelas_id ?>" <?php if ($wargabelajar->kelas_id == $kelas->kelas_id) echo 'selected' ?>><?= $kelas->kelas_nama ?></option>
+                                                <?php endforeach; ?>
+                                            <option value="Lulus">Lulus</option>
+                                        </select>
+                                    </div>
                                     <div class="form-group">
                                         <label>Foto Warga Belajar</label>
                                         <div class="custom-file">

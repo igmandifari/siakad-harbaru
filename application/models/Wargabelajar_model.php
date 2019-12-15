@@ -123,7 +123,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 ],
                 ['field'   => 'tahunajaran_id',
                  'label'    => 'Tahun Ajaran Masuk',
-                 'rules'    => 'required|trim|xss_clean',
+                 'rules'    => 'required|trim|xss_clean|callback_select_validate',
+                ],
+                [
+                    'field' => 'wargabelajar_agama',
+                    'label' => 'Agama',
+                    'rules'    => 'required|trim|xss_clean|callback_select_validate',
+                ],
+                [
+                    'field' => 'kelas_id',
+                    'label' => 'Kelas',
+                    'rules'    => 'required|trim|xss_clean|callback_select_validate',
                 ],
                  ['field'   => 'wargabelajar_kejar_alamat',
                  'label'    => 'Alamat Sekolah/Kejar',
@@ -243,6 +253,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 'wargabelajar_foto'                => $this->_uploadImage(),
                 'wargabelajar_password'            => md5(sha1($this->input->post("wargabelajar_nomor_induk"))),
                 'tahunajaran_id'                   => $this->input->post("tahunajaran_id"),
+                'kelas_id'                         => $this->input->post("kelas_id"),
 
                 'orangtua_ayah_nama'               => $this->input->post("orangtua_ayah_nama"),
                 'orangtua_ibu_nama'                =>$this->input->post("orangtua_ibu_nama"),
@@ -333,6 +344,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 'wargabelajar_masuk'               => $this->input->post("wargabelajar_masuk"),
                 'wargabelajar_foto'                => $foto,
                 'tahunajaran_id'                   => $this->input->post("tahunajaran_id"),
+                'kelas_id'                         => $this->input->post("kelas_id"),
 
             );
             $this->db->where('wargabelajar_id',$this->input->post("id"));
@@ -351,6 +363,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         }
         public function getTahunAjaran(){
             return $this->db->get('tahunajaran')->result();
+        }
+        public function getKelas(){
+            return $this->db->get('kelas')->result();
         }
         
     }

@@ -104,6 +104,7 @@
                                         <option value="Buddha">Buddha</option>
                                         <option value="Kong Hu Cu">Kong Hu Cu</option>
                                     </select>
+                                    <small class="form-text text-danger"><?= form_error('wargabelajar_agama'); ?></small>
                                 </div>
                                 <div class="form-group">
                                     <label class="d-block">Kewarganegaraan</label>
@@ -166,13 +167,23 @@
                                 </div>
                                 <div class="form-grup">
                                     <label for="wargabelajar_alamat_kabupaten">Tahun Ajaran Masuk</label>
-                                    <select class="custom-select" id="tahunajaran_id" name="tahunajaran_id" required>
-                                        <option>Silahkan Pilih</option>
+                                    <select class="custom-select" id="tahunajaran_id" name="tahunajaran_id">
+                                        <option value="0">Silahkan Pilih</option>
                                         <?php foreach($tahunajaran_all as $tahunajaran) :?>
                                             <option value="<?=$tahunajaran->tahunajaran_id?>"><?=$tahunajaran->tahunajaran_nama?></option>
                                         <?php endforeach;?>
                                     </select>
                                     <small class="form-text text-danger"><?= form_error('tahunajaran_id'); ?></small>
+                                </div>
+                                <div class="form-grup">
+                                    <label for="kelas_id">Kelas</label>
+                                    <select class="custom-select" id="kelas_id" name="kelas_id">
+                                        <option value="0">Silahkan Pilih</option>
+                                        <?php foreach($kelas_all as $kelas) :?>
+                                            <option value="<?=$kelas->kelas_id?>"><?=$kelas->kelas_nama?></option>
+                                        <?php endforeach;?>
+                                    </select>
+                                    <small class="form-text text-danger"><?= form_error('kelas_id'); ?></small>
                                 </div>
                                 <div class="form-group">
                                     <label>Foto Warga Belajar</label>
@@ -261,11 +272,14 @@
                                     <input type="text" class="form-control" id="orangtua_wali_alamat_kodepos" name="orangtua_wali_alamat_kodepos" placeholder="KODE POS">
                                 </div>
                             </div>
-                        </div>
+                            <!-- <div class="tab-pane fade fade-right" id="Kelas" role="tabpanel"> -->
+                                
+                        <!-- </div> -->
                     
                 
                 </div>
             </div>
+            <div class="row push">
             <div class="col-lg-4">
 
             </div>
@@ -274,6 +288,7 @@
                 <button type="reset" name="reset" class="btn btn-secondary">Hapus</button>
             </div>
             <div class="col-lg-4">
+            </div>
             </div>
         </div>
         </form>

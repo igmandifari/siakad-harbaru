@@ -22,7 +22,6 @@ class Kelas extends CI_Controller
     
         $this->load->view('kelas/list',$data);
     }
-
     public function tambah()
     {
         $kelas = $this->Kelas_model;
@@ -32,7 +31,8 @@ class Kelas extends CI_Controller
 
         if ($validasi->run()){
             $kelas->simpan();
-            $this->session->set_flashdata('success', 'Berhasil'); 
+            $this->session->set_flashdata('success', 'Berhasil');
+            redirect("kelas"); 
         }
 
         $data["title"] = "Tambah Data";
@@ -73,5 +73,4 @@ class Kelas extends CI_Controller
         $this->load->view('kelas/ubah',$data);
 
     }
-
 }
