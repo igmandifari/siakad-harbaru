@@ -50,7 +50,25 @@
                                     <!-- Sign In Form -->
                                     <!-- jQuery Validation (.js-validation-signin class is initialized in js/pages/op_auth_signin.min.js which was auto compiled from _es6/pages/op_auth_signin.js) -->
                                     <!-- For more info and examples you can check out https://github.com/jzaefferer/jquery-validation -->
-        
+                                    <?php if($this->session->flashdata('failed')){?>
+                                        <div class="alert alert-danger d-flex align-items-center justify-content-between" role="alert">
+                                            <div class="flex-fill mr-3">
+                                                <p class="mb-0"><?=$this->session->flashdata('failed')?></p>
+                                            </div>
+                                            <div class="flex-00-auto">
+                                                <i class="fa fa-fw fa-times-circle"></i>
+                                            </div>
+                                        </div>
+                                    <?php } else if($this->session->flashdata('warning')){?>
+                                        <div class="alert alert-warning d-flex align-items-center justify-content-between" role="alert">
+                                            <div class="flex-fill mr-3">
+                                                <p class="mb-0"><?=$this->session->flashdata('warning')?></p>
+                                            </div>
+                                            <div class="flex-00-auto">
+                                                <i class="fa fa-fw fa-exclamation-circle"></i>
+                                            </div>
+                                        </div>
+                                    <?php }?>
                                     <?= form_open ('auth/cek_login','class="js-validation-signin"'); ?>
                                         <div class="py-3">
                                             <div class="form-group">

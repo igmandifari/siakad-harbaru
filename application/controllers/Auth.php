@@ -34,8 +34,7 @@ class Auth extends CI_Controller
             $WargaBelajar   = $this->Auth_model->cek_login_wargabelajar($username,$password);
             $Pimpinan       = $this->Auth_model->cek_login_pimpinan($username,$password);
             $tutor          = $this->Auth_model->cekLogin_tutor($username,$password);
-            //$Tutor = $this->Tutor_model->cek_login($username,$password);
-
+            
             if (!empty($Admin)) {
                 $this->session->set_userdata('MASUK',TRUE);
                 $session = array(
@@ -45,7 +44,7 @@ class Auth extends CI_Controller
                     'level' => 0
                 );
                 $this->session->set_userdata($session);
-                redirect('wargabelajar');
+                redirect('dasbor');
             }elseif(!empty($WargaBelajar)){
                 $this->session->set_userdata('MASUK',TRUE);
                 $session = array(
@@ -77,9 +76,11 @@ class Auth extends CI_Controller
                 $this->session->set_userdata($session);
                 redirect('dasbor');
             }else {
-            redirect('auth');
-        }
+                $this->session->set_flashdata('warning', 'Silahkan cek kembali');
+                redirect('auth');
+            }
     }else{
+        $this->session->set_flashdata('failed', 'Akun tidak ditemukan');
         redirect('auth');
     }
 }

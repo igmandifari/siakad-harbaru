@@ -1,9 +1,32 @@
 <?php
 class Dasbor extends CI_Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->model('Dasbor_model');   
+    }
     public function index(){
+        $dasbor = $this->Dasbor_model;
         $data["title"] = "Dasbor";
-        $this->load->view('head',$data);
-        $this->load->view('foot');
+
+
+        if($this->session->userdata('level') == 0){
+            $data["countWargaBelajar"] = $dasbor->countWargaBelajar();
+            $data["countAdmin"] = $dasbor->countAdmin();
+            $data["countTutor"] = $dasbor->countTutor();
+            $data["countPimpinan"] = $dasbor->countPimpinan();
+            $this->load->view('dasbor/dasbor_admin',$data);
+        }
+        else if($this->session->userdata('level') == 1){
+            $this->load->view('dasbor/dasbor_wargabelajar',$data);
+        }else if($this->session->userdata('level') == 2)
+        {
+            $this->load->view('dasbor/dasbor_pimpinan',$data);
+        }else if($this->session->userdata('level') == 3)
+        {
+            $this->load->view('dasbor/dasbor_tutor',$data);
+        }
+
     }
 }

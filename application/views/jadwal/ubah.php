@@ -29,37 +29,36 @@
             <h3 class="block-title">Data Mata Pelajaran</h3>
         </div>
         <div class="block-content block-content-full">
-            <form action="<?=base_url('jadwal/ubah');?>" method="POST" enctype="multipart/form-data">
+        <?php if ($this->session->flashdata('success')): ?>
+        <div class="alert alert-success d-flex align-items-center" role="alert">
+            <div class="flex-00-auto">
+                <i class="fa fa-fw fa-check"></i>
+            </div>
+            <div class="flex-fill ml-3">
+                <p class="mb-0"><?php echo $this->session->flashdata('success'); ?></p>
+            </div>
+        </div>
+        <?php elseif ($this->session->flashdata('failed')): ?>
+        <div class="alert alert-danger d-flex align-items-center justify-content-between" role="alert">
+            <div class="flex-00-auto">
+                <i class="fa fa-fw fa-check"></i>
+            </div>
+            <div class="flex-fill ml-3">
+                <p class="mb-0"><?php echo $this->session->flashdata('failed'); ?></p>
+            </div>
+        </div>
+        <?php endif;?>
+        <?php if($jadwal["jadwal_tipe_pembelajaran"] != "Tatap Muka"){?>
+                <form action="<?php echo site_url('jadwal/update_tutorial_mandiri');?>" method="post">
                 <div class="row push">
                     <div class="col-lg-12">
                         <div class="form-group">
+                            <label for="jadwal_tipe_pembelajaran">Tipe Pembelajaran</label>
                             <input type="hidden" name="id" value="<?=$jadwal["jadwal_id"]?>">
-                            <label for="kelas_id">Hari</label>
-                            <select class="custom-select" id="jadwal_hari" name="jadwal_hari">
+                            <select class="custom-select" id="jadwal_tipe_pembelajaran" name="jadwal_tipe_pembelajaran">
                                 <option value="0">Silahkan Pilih</option>
-                                <option value="Jum'at"<?php if($jadwal["jadwal_hari"] == "Jum'at") echo 'selected'?>>Jum'at</option>
-                                <option value="Sabtu" <?php if($jadwal["jadwal_hari"] == "Sabtu") echo 'selected'?>>Sabtu</option>
-                                <option value="Minggu" <?php if($jadwal["jadwal_hari"] == "Minggu") echo 'selected'?>>Minggu</option>
-                            </select>
-                        </div> 
-                        <div class="form-group">
-                            <label for="kelas_id">Jam Mulai</label>
-                            <select class="custom-select" id="jadwal_jam_mulai" name="jadwal_jam_mulai">
-                                <option value="0">Silahkan Pilih</option>
-                                <option value="13:00" <?php if($jadwal["jadwal_jam_mulai"] == "13:00") echo 'selected'?>>13:00</option>
-                                <option value="14:00" <?php if($jadwal["jadwal_jam_mulai"] == "14:00") echo 'selected'?>>14:00</option>
-                                <option value="15:00" <?php if($jadwal["jadwal_jam_mulai"] == "15:00") echo 'selected'?>>15:00</option>
-                                <option value="16:00" <?php if($jadwal["jadwal_jam_mulai"] == "16:00") echo 'selected'?>>16:00</option>
-                            </select>
-                        </div> 
-                        <div class="form-group">
-                            <label for="kelas_id">Jam Selesai</label>
-                            <select class="custom-select" id="jadwal_jam_berakhir" name="jadwal_jam_berakhir">
-                                <option value="0">Silahkan Pilih</option>
-                                <option value="14:00" <?php if($jadwal["jadwal_jam_berakhir"] == "14:00") echo 'selected'?>>14:00</option>
-                                <option value="15:00" <?php if($jadwal["jadwal_jam_berakhir"] == "15:00") echo 'selected'?>>15:00</option>
-                                <option value="16:00" <?php if($jadwal["jadwal_jam_berakhir"] == "16:00") echo 'selected'?>>16:00</option>
-                                <option value="17:00" <?php if($jadwal["jadwal_jam_berakhir"] == "17:00") echo 'selected'?>>17:00</option>
+                                <option value="Mandiri" <?php if($jadwal["jadwal_tipe_pembelajaran"]=="Mandiri") echo"selected"?>>Mandiri</option>
+                                <option value="Tutorial"<?php if($jadwal["jadwal_tipe_pembelajaran"]=="Tutorial") echo"selected"?>>Tutorial</option>
                             </select>
                         </div> 
                         <div class="form-group">
@@ -79,16 +78,7 @@
                                     <option value="<?=$kelas->kelas_id?>"<?php if($jadwal["kelas_id"]==$kelas->kelas_id) echo 'selected'?>><?=$kelas->kelas_nama?></option>
                                 <?php endforeach;?>
                             </select>
-                        </div> 
-                        <div class="form-group">
-                            <label for="kelas_id">Tutor</label>
-                            <select class="custom-select" id="tutor_id" name="tutor_id">
-                                <option value="0">Silahkan Pilih</option>
-                                <?php foreach($tutors as $tutor ):?>
-                                    <option value="<?=$tutor->tutor_id?>" <?php if($jadwal["tutor_id"]==$tutor->tutor_id) echo 'selected'?>><?=$tutor->tutor_nama?></option>
-                                <?php endforeach;?>
-                            </select>
-                        </div>                        
+                        </div>                         
                     </div>
                 </div>
                 <div class="row push">
@@ -104,6 +94,65 @@
                     </div>
                 </div>
             </form>
+
+            <?php } else{?>
+                <form action="<?php base_url('jadwal/ubah');?>" method="post">
+                <div class="row push">
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <input type="hidden" name="id" value="<?=$jadwal["jadwal_id"]?>">
+                            <label for="kelas_id">Hari</label>
+                            <select class="custom-select" id="jadwal_hari" name="jadwal_hari">
+                                <option value="0">Silahkan Pilih</option>
+                                <option value="Jum'at"<?php if($jadwal["jadwal_hari"] == "Jum'at") echo 'selected'?>>Jum'at</option>
+                                <option value="Sabtu" <?php if($jadwal["jadwal_hari"] == "Sabtu") echo 'selected'?>>Sabtu</option>
+                                <option value="Minggu" <?php if($jadwal["jadwal_hari"] == "Minggu") echo 'selected'?>>Minggu</option>
+                            </select>
+                        </div> 
+                        <div class="form-group">
+                            <label for="kelas_id">Waktu</label>
+                            <select class="custom-select" id="jadwal_waktu" name="jadwal_waktu">
+                                <option value="0">Silahkan Pilih</option>
+                                <option value="13:00-14:00" <?php if($jadwal["jadwal_waktu"] == "13:00-14:00") echo 'selected'?>>13:00-14:00</option>
+                                <option value="14:00-15:00" <?php if($jadwal["jadwal_waktu"] == "14:00-15:00") echo 'selected'?>>14:00-15:00</option>
+                                <option value="16:00-17:00" <?php if($jadwal["jadwal_waktu"] == "16:00-17:00") echo 'selected'?>>16:00-17:00</option>
+                            </select>
+                        </div>  
+                        <div class="form-group">
+                            <label for="kelas_id">Mata Pelajaran</label>
+                            <select class="custom-select" id="matpel_id" name="matpel_id">
+                                <option value="0">Silahkan Pilih</option>
+                                <?php foreach($matpels as $matpel ):?>
+                                    <option value="<?=$matpel->matpel_id?>"<?php if($jadwal["matpel_id"]==$matpel->matpel_id) echo 'selected'?>><?=$matpel->matpel_nama?></option>
+                                <?php endforeach;?>
+                            </select>
+                        </div> 
+                        <div class="form-group">
+                            <label for="kelas_id">Kelas</label>
+                            <select class="custom-select" id="kelas_id" name="kelas_id">
+                                <option value="0">Silahkan Pilih</option>
+                                <?php foreach($kelass as $kelas ):?>
+                                    <option value="<?=$kelas->kelas_id?>"<?php if($jadwal["kelas_id"]==$kelas->kelas_id) echo 'selected'?>><?=$kelas->kelas_nama?></option>
+                                <?php endforeach;?>
+                            </select>
+                        </div>                         
+                    </div>
+                </div>
+                <div class="row push">
+                    <div class="col-lg-4">
+
+                    </div>
+                    <div class="col-lg-4">
+                        <button type="submit" name="submit" class="btn btn-primary">Simpan</button>
+                        <button type="reset" name="reset" class="btn btn-secondary">Hapus</button>
+                    </div>
+                    <div class="col-lg-4">
+                        
+                    </div>
+                </div>
+            </form>
+            <?php }?>
+            
         </div>
     </div>
     <!-- END Basic -->
