@@ -103,7 +103,7 @@ class Jadwal_model extends CI_Model{
     }
     public function getAll()
     {
-            $query = $this->db->query("select * from jadwal inner join matpel on matpel.matpel_id = jadwal.matpel_id INNER JOIN kelas on kelas.kelas_id = jadwal.kelas_id inner join tutor on tutor.tutor_id = matpel.tutor_id;");
+            $query = $this->db->query("select * from jadwal inner join matpel on matpel.matpel_id = jadwal.matpel_id INNER JOIN kelas on kelas.kelas_id = jadwal.kelas_id inner join tutor on tutor.tutor_id = matpel.tutor_id");
             return $query->result();
     }
     public function getById($id)

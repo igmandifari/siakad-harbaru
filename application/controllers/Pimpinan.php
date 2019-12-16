@@ -87,6 +87,8 @@ class Pimpinan extends CI_Controller
             
             $pimpinan->simpan();
             $this->session->set_flashdata('success', 'Berhasil');
+
+            redirect('pimpinan');
         }
         
         $data["title"] = "Tambah Data";

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Dec 15, 2019 at 08:55 AM
+-- Generation Time: Dec 16, 2019 at 10:01 AM
 -- Server version: 10.0.38-MariaDB-0ubuntu0.16.04.1
 -- PHP Version: 7.3.12-1+ubuntu16.04.1+deb.sury.org+1
 
@@ -42,8 +42,7 @@ CREATE TABLE `admin` (
 
 INSERT INTO `admin` (`admin_id`, `admin_nama`, `admin_username`, `admin_password`, `admin_foto`, `created_at`, `updated_at`) VALUES
 ('5de15e4e0de9d', 'Zam Zam Saeful Bahtiar', 'bekerz18', 'a31c86d61e1c1773167ca7b5bf023f98', '5de15e4e0de9d.jpeg', NULL, NULL),
-('5de15e8a9ead8', 'Igman Difari', 'igman', 'b714337aa8007c433329ef43c7b8252c', '5de15e8a9ead8.jpg', NULL, NULL),
-('5de1e955158af', 'Intan Hartiwan', 'intanhartiwan', 'a31c86d61e1c1773167ca7b5bf023f98', '5de1e955158af.png', NULL, NULL);
+('5de15e8a9ead8', 'Igman Difari', 'igman', 'b714337aa8007c433329ef43c7b8252c', '5de15e8a9ead8.jpg', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -71,7 +70,8 @@ INSERT INTO `jadwal` (`jadwal_id`, `jadwal_tipe_pembelajaran`, `jadwal_hari`, `m
 ('5df55eadd490d', 'Tatap Muka', 'Jum\'at', '5df4e3ca31a5c', '5df3b8828ef3f', '13:00-14:00', '2019-12-15 05:14:05', '0000-00-00 00:00:00'),
 ('5df55ef07c125', 'Tatap Muka', 'Minggu', '5df4e3ca31a5c', '5df3b8828ef3f', '16:00-17:00', '2019-12-15 05:15:12', '2019-12-15 05:18:01'),
 ('5df55f201c07c', 'Tatap Muka', 'Jum\'at', '5df4e3ca31a5c', '5df3b887206bf', '13:00-14:00', '2019-12-15 05:16:00', '0000-00-00 00:00:00'),
-('5df55f4142ac0', 'Tatap Muka', 'Sabtu', '5df4e3dfc0268', '5df3b87c5b9f1', '14:00-15:00', '2019-12-15 05:16:33', '0000-00-00 00:00:00');
+('5df55f4142ac0', 'Tatap Muka', 'Sabtu', '5df4e3dfc0268', '5df3b87c5b9f1', '14:00-15:00', '2019-12-15 05:16:33', '0000-00-00 00:00:00'),
+('5df6eb73ae944', 'Tutorial', NULL, '5df4e3dfc0268', '5df3b87c5b9f1', NULL, '2019-12-16 09:26:59', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -115,7 +115,7 @@ CREATE TABLE `matpel` (
 
 INSERT INTO `matpel` (`matpel_id`, `matpel_nama`, `tutor_id`, `created_at`, `updated_at`) VALUES
 ('5df4e3ca31a5c', 'Matematika', '5ded0e21b5aea', '0000-00-00 00:00:00', NULL),
-('5df4e3dfc0268', 'Bahasa Indonesia', '5ded0e21b5aea', '0000-00-00 00:00:00', NULL);
+('5df4e3dfc0268', 'Bahasa Indonesia', '5df4f42689c9e', '0000-00-00 00:00:00', NULL);
 
 -- --------------------------------------------------------
 
@@ -154,7 +154,10 @@ CREATE TABLE `tahunajaran` (
 --
 
 INSERT INTO `tahunajaran` (`tahunajaran_id`, `tahunajaran_nama`) VALUES
-('5deece94c9ee3', '2017/2018');
+('5deece94c9ee3', '2017/2018'),
+('5df697e059583', '2018/2019'),
+('5df69814bc6c1', '2019/2020'),
+('5df69834a6584', '2016/2017');
 
 -- --------------------------------------------------------
 
@@ -188,8 +191,9 @@ CREATE TABLE `tutor` (
 --
 
 INSERT INTO `tutor` (`tutor_id`, `tutor_nomor_induk`, `tutor_nama`, `tutor_jenis_kelamin`, `tutor_tempat_lahir`, `tutor_tanggal_lahir`, `tutor_agama`, `tutor_kewarganegaraan`, `tutor_pendidikan_terakhir`, `tutor_alamat_jalan`, `tutor_alamat_rtrw`, `tutor_alamat_desa`, `tutor_alamat_kecamatan`, `tutor_alamat_kabupaten`, `tutor_alamat_provinsi`, `tutor_alamat_kodepos`, `tutor_foto`, `tutor_password`) VALUES
-('5ded0e21b5aea', '982032', 'Zam Zam Saeful Bahtiar', 'Pria', 'Tasikmalaya', '1999-05-18', 'Islam', 'WNI', 'SLTA Sederajat', 'Cihonje', '002/002', 'Karanganyar', 'Kawalu', 'Tasikmalaya', 'Jawa Barat', '46182', '5ded0e21b5aea.png', 'b5be1ec647cc6d4786921e92e34eee1a'),
-('5df4f42689c9e', '191212121', 'Ir. Code Igniter', 'Wanita', 'Tasikmalaya', '2019-06-06', 'Islam', 'WNI', 'SLTA Sederajat', 'Cibeutui', '02/02', 'Cibeuti', 'Kawalu', 'Kota Tasikmalaya', 'Jawa Barat', '46182', 'default.jpg', '49ae1756b829cea3969be0ad484b1129');
+('5ded0e21b5aea', '982032', 'Zam Zam Saeful Bahtiar', 'Pria', 'Tasikmalaya', '1999-05-18', 'Islam', 'WNI', 'SLTA Sederajat', 'Cihonje', '002/002', 'Karanganyar', 'Kawalu', 'Tasikmalaya', 'Jawa Barat', '46182', 'default.jpg', 'b5be1ec647cc6d4786921e92e34eee1a'),
+('5df4f42689c9e', '191212121', 'Ir. Code Igniter', 'Wanita', 'Tasikmalaya', '2019-06-06', 'Islam', 'WNI', 'SLTA Sederajat', 'Cibeutui', '02/02', 'Cibeuti', 'Kawalu', 'Kota Tasikmalaya', 'Jawa Barat', '46182', 'default.jpg', '49ae1756b829cea3969be0ad484b1129'),
+('5df69881a9a58', '5999999', 'Dewi Fortuna Kamila', 'Wanita', 'Tasikmalaya', '1999-12-16', 'Islam', 'WNI', 'SLTA Sederajat', 'Cijerah', '003/005', 'Karanganyar', 'Kawalu', 'Kota Tasikmalaya', 'Jawa Barat', '46182', 'default.jpg', 'b3aa34645bc463218f17d9364d4c204e');
 
 -- --------------------------------------------------------
 

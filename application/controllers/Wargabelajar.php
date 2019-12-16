@@ -101,6 +101,8 @@ Class Wargabelajar extends CI_Controller
         if ($validasi->run()){
             $wargabelajar->simpan();
             $this->session->set_flashdata('success', 'Berhasil');
+
+            redirect('wargabelajar');
         } 
         $data["title"] = "Tambah Data";
         $data["actor"] = "Warga Belajar";
