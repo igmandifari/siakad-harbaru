@@ -13,10 +13,24 @@
 
         public function index()
         {
+            // if(!isset($kelas)){
+            $presensi = $this->Presensi_model;
+
             $data["title"] = "Daftar Kelas";
             $data["actor"] ="Presensi Kehadiran";
+            $data["SemuaKelas"] = $presensi->getKelas();
             
-
             $this->load->view('tutor/presensi',$data);
         }
+        public function kelas($id=null)
+        {
+            if(!isset($id)) redirect('presensi');
+
+            $presensi = $this->Presensi_model;
+
+            $data[kelas] = $presensi->getPertemuan($id);
+
+            
+        }
+        
     }

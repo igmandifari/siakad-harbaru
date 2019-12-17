@@ -9,8 +9,8 @@
             return[
                 [
                     'field' => 'tutor_nomor_induk',
-                    'label' => 'NIP',
-                    'rules' => 'required|trim|numeric|xss_clean',
+                    'label' => 'Nomor Induk',
+                    'rules' => 'required|trim|numeric|xss_clean|is_unique[tutor.tutor_nomor_induk]',
                 ],
                 [
                     'field' => 'tutor_nama',
@@ -145,9 +145,8 @@
             return $this->db->get_where($this->_table, ["tutor_id" => $id])->row_array();
         }
         public function delete($id){
-            $this->_deleteImage($id);
             return $this->db->delete($this->_table, array("tutor_id" => $id));
+            $this->_deleteImage($id);
         }
         
     }
-?>

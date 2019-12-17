@@ -28,8 +28,14 @@ class Tutor extends CI_Controller
             redirect('siswa');
         }
         else{
+            try{
             $this->Tutor_model->delete($id);
             $this->session->set_flashdata('success', 'Berhasil');
+        }catch( Exception $e ) {
+            redirect('dasbor');
+        }
+
+            
             redirect('tutor');
         }
     }

@@ -13,11 +13,6 @@
                     'rules' => 'required|trim|xss_clean',
                 ],
                 [
-                    'field' => 'tipe_pembelajaran',
-                    'label' => 'Jenis Pembelajaran',
-                    'rules' => 'required|trim|xss_clean|callback_select_validate',
-                ],
-                [
                     'field' => 'tutor_id',
                     'label' => 'Tutor',
                     'rules' => 'required|callback_select_validate|xss_clean',
@@ -30,8 +25,7 @@
                 'matpel_id'                  => uniqid(),
                 'matpel_nama'                => $this->input->post("matpel_nama"),
                 'tutor_id'                   => $this->input->post("tutor_id"),
-                'tipe_pembelajaran'          => $this->input->post("tipe_pembelajaran"),
-                'created_at'                 => CURRENT_TIMESTAMP
+                'created_at'                 => date('Y-m-d H:i:s')
                 );
             return $this->db->insert($this->_table, $data);
         }
@@ -40,8 +34,7 @@
             $data= array(
                 'matpel_nama'                => $this->input->post("matpel_nama"),
                 'tutor_id'                   => $this->input->post("tutor_id"),
-                'tipe_pembelajaran'          => $this->input->post("tipe_pembelajaran"),
-                'updated_at'                 => CURRENT_TIMESTAMP
+                'updated_at'                 => date('Y-m-d H:i:s')
             );
             $this->db->where('matpel_id',$this->input->post("matpel_id"));
             return $this->db->update($this->_table, $data);    
