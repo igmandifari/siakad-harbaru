@@ -31,6 +31,7 @@ class Matpel extends CI_Controller
         if ($validasi->run()){
             $matpel->simpan();
             $this->session->set_flashdata('success', 'Berhasil');
+            
             redirect("matpel");
         }
 

@@ -35,6 +35,7 @@
         if ($validasi->run()){
             $admin->simpan();
             $this->session->set_flashdata('success', 'Berhasil');
+            redirect('admin');
             
         }
 

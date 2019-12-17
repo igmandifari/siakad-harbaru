@@ -82,6 +82,7 @@ class Tutor extends CI_Controller
             
             $tutor->simpan();
             $this->session->set_flashdata('success', 'Berhasil');
+            redirect('tutor');
         }
         
         $data["title"] = "Tambah Data";

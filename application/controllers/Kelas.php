@@ -32,6 +32,7 @@ class Kelas extends CI_Controller
         if ($validasi->run()){
             $kelas->simpan();
             $this->session->set_flashdata('success', 'Berhasil');
+            
             redirect("kelas"); 
         }
 

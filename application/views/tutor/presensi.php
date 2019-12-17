@@ -18,6 +18,10 @@
         <!-- END Icons -->
 
         <!-- Stylesheets -->
+        
+        <!-- Page JS Plugins CSS -->
+        <link rel="stylesheet" href="assets/js/plugins/datatables/dataTables.bootstrap4.css">
+        <link rel="stylesheet" href="assets/js/plugins/datatables/buttons-bs4/buttons.bootstrap4.min.css">
         <!-- Fonts and OneUI framework -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400italic,600,700%7COpen+Sans:300,400,400italic,600,700">
         <link rel="stylesheet" id="css-main" href="assets/css/oneui.min.css">
@@ -122,13 +126,13 @@
                 <div class="content-side content-side-full">
                     <ul class="nav-main">
                         <li class="nav-main-item">
-                            <a class="nav-main-link active" href="<?=base_url('dasbor')?>">
+                            <a class="nav-main-link" href="<?=base_url('dasbor')?>">
                                 <i class="nav-main-link-icon si si-speedometer"></i>
                                 <span class="nav-main-link-name">Dasbor</span>
                             </a>
                         </li>
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="<?=base_url('jadwalmengajar')?>">
+                            <a class="nav-main-link active" href="<?=base_url('jadwalmengajar')?>">
                             <i class="nav-main-link-icon far fa-calendar-times"></i>
                                 <span class="nav-main-link-name">Jadwal</span>
                             </a>
@@ -180,7 +184,6 @@
                         </button>
                         <!-- END Toggle Mini Sidebar -->
 
-                        <!-- END Apps Modal -->
 
                         
                     </div>
@@ -231,24 +234,60 @@
 
             <!-- Main Container -->
             <main id="main-container">
-
                 <!-- Hero -->
-                <div class="bg-image overflow-hidden" style="background-image: url('assets/media/photos/photo3@2x.jpg');">
-                    <div class="bg-primary-dark-op">
-                        <div class="content content-narrow content-full">
-                            <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center mt-5 mb-2 text-center text-sm-left">
-                                <div class="flex-sm-fill">
-                                    <h1 class="font-w600 text-white mb-0 invisible" data-toggle="appear"><?=$title?></h1>
-                                    <h2 class="h4 font-w400 text-white-75 mb-0 invisible" data-toggle="appear" data-timeout="250">Selamat Datang <?= $this->session->userdata('nama');?></h2>
-                                </div>
-                            </div>
+                <div class="bg-body-light">
+                    <div class="content content-full">
+                        <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
+                            
+                            <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
+                                <ol class="breadcrumb breadcrumb-alt">
+                                    <li class="breadcrumb-item"><?=$actor;?></li>
+                                    <li class="breadcrumb-item" aria-current="page">
+                                        <a class="link-fx" href=""><?=$title;?></a>
+                                    </li>
+                                </ol>
+                            </nav>
                         </div>
                     </div>
                 </div>
                 <!-- END Hero -->
 
                 <!-- Page Content -->
-              
+                <div class="content">
+                    <!-- Jadwal -->
+                    <div class="block">
+                        <div class="block-header">
+                            <h3 class="block-title">Dynamic Table <small>Full</small></h3>
+                        </div>
+                        <div class="block-content block-content-full">
+                            <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _es6/pages/be_tables_datatables.js -->
+                            <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
+                                <thead>
+                                    <tr>
+                                        <th>Tipe Pembelajaran</th>
+                                        <th>Mata Pelajaran</th>
+                                        <th>Kelas</th>
+                                        <th>Hari</th>
+                                        <th>Waktu</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach($all_jadwal_mengajar as $jadwalmengajar):?>
+                                        <tr>
+                                            <td><?=$jadwalmengajar->jadwal_tipe_pembelajaran?></td>
+                                            <td><?=$jadwalmengajar->matpel_nama?></td>
+                                            <td><?=$jadwalmengajar->kelas_nama?></td>
+                                            <td><?=$jadwalmengajar->jadwal_hari?></td>
+                                            <td><?=$jadwalmengajar->jadwal_waktu?></td>
+                                        </tr>
+                                    <?php endforeach;?>
+                                </tbody>
+                                
+                            </table>
+                        </div>
+                    </div>
+                    <!-- End Jadwal -->
+                </div>
                 <!-- END Page Content -->
 
             </main>
@@ -298,10 +337,17 @@
         -->
         <script src="assets/js/oneui.app.min.js"></script>
 
+
         <!-- Page JS Plugins -->
-        <script src="assets/js/plugins/chart.js/Chart.bundle.min.js"></script>
+        <script src="assets/js/plugins/datatables/jquery.dataTables.min.js"></script>
+        <script src="assets/js/plugins/datatables/dataTables.bootstrap4.min.js"></script>
+        <script src="assets/js/plugins/datatables/buttons/dataTables.buttons.min.js"></script>
+        <script src="assets/js/plugins/datatables/buttons/buttons.print.min.js"></script>
+        <script src="assets/js/plugins/datatables/buttons/buttons.html5.min.js"></script>
+        <script src="assets/js/plugins/datatables/buttons/buttons.flash.min.js"></script>
+        <script src="assets/js/plugins/datatables/buttons/buttons.colVis.min.js"></script>
 
         <!-- Page JS Code -->
-        <script src="assets/js/pages/be_pages_dashboard.min.js"></script>
+        <script src="assets/js/pages/be_tables_datatables.min.js"></script>
     </body>
 </html>

@@ -31,6 +31,8 @@ class Tahunajaran extends CI_Controller
         if ($validasi->run()){
             $tahunajaran->simpan();
             $this->session->set_flashdata('success', 'Berhasil');
+
+            redirect('tahunajaran');
         }
 
         $data["title"] = "Tambah Data";
