@@ -72,7 +72,7 @@ Class Wargabelajar extends CI_Controller
         $wargabelajar = $this->Wargabelajar_model;
      
         $validasi = $this->form_validation;
-        $validasi->set_rules($wargabelajar->rules());
+        $validasi->set_rules($wargabelajar->rules_2());
 
         if ($validasi->run()){
             $wargabelajar->perbarui();
@@ -81,7 +81,6 @@ Class Wargabelajar extends CI_Controller
         $data['wargabelajar'] = $wargabelajar->getByid($id);
         $data["title"] = "Ubah Data";
         $data["actor"] = "Warga Belajar";
-        $data["kelas_all"] = $wargabelajar->getKelas();
         $data["tahunajaran_all"] = $wargabelajar->getTahunAjaran();
         
 
@@ -106,7 +105,6 @@ Class Wargabelajar extends CI_Controller
         } 
         $data["title"] = "Tambah Data";
         $data["actor"] = "Warga Belajar";
-        $data["kelas_all"] = $wargabelajar->getKelas();
         $data["tahunajaran_all"] = $wargabelajar->getTahunAjaran();
 
         $this->load->view('wargabelajar/tambah',$data);

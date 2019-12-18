@@ -26,7 +26,7 @@
     <!-- Dynamic Table Full -->
     <div class="block">
         <div class="block-header">
-            <a href="<?=base_url('jadwal/tambah');?>">
+            <a href="<?=base_url('jadwal/matpel_tambah/').$this->uri->segment('3');?>">
                 <button type="button" class="btn btn-success mr-1 mb-3">
                     <i class="fa fa-fw fa-plus mr-1"></i> Tambah Data
                 </button>
@@ -56,6 +56,7 @@
             <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
                                 <thead>
                                     <tr>
+                                        <th>NO</th>
                                         <th>Tipe Pembelajaran</th>
                                         <th>Hari</th>
                                         <th>Mata Pelajaran</th>
@@ -66,8 +67,9 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach($jadwals as $jadwal):?>
+                                    <?php $no=0; foreach($jadwals as $jadwal):$no++?>
                                         <tr>
+                                            <td><?=$no;?></td>
                                             <td><?=$jadwal->jadwal_tipe_pembelajaran?></td>
                                             <td><?=$jadwal->jadwal_hari;?>
                                             <td><?=$jadwal->matpel_nama;?>
@@ -76,7 +78,7 @@
                                             <td><?=$jadwal->jadwal_waktu;?></td>
                                             <td class="text-center">
                                                 <div class="btn-group">
-                                                    <a href="<?=base_url('jadwal/ubah/').$jadwal->jadwal_id;?>">
+                                                    <a href="<?=base_url('jadwal/ubah/').$jadwal->tahunajaran_id.'/'.$jadwal->jadwal_id;?>">
                                                         <button type="button" class="btn btn-sm btn-light js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Ubah">
                                                             <i class="fa fa-fw fa-pencil-alt"></i>
                                                         </button>

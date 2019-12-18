@@ -1,6 +1,7 @@
 <?php
 class Tahunajaran extends CI_Controller
 {
+    private $tahunajaran;
     public function __construct()
     {
         parent::__construct();
@@ -29,7 +30,23 @@ class Tahunajaran extends CI_Controller
         $validasi->set_rules($tahunajaran->rules());
 
         if ($validasi->run()){
-            $tahunajaran->simpan();
+            $semua_kelas = $tahunajaran->getKelas();
+            $this->tahunajaran_id = uniqid();
+                    
+                $simpan_tahun_ajaran =  $tahunajaran->simpan(array(
+                    'tahunajaran_id'                  => $this->tahunajaran_id,
+                    'tahunajaran_nama'                => $this->input->post("tahunajaran_nama")
+                ));
+                foreach($semua_kelas as $kelas){
+                    $simpan_rombel = $tahunajaran->simpan_rombel(array(
+                        'rombel_id'         => uniqid(),
+                        'tahunajaran_id'    => $this->tahunajaran_id,
+                        'kelas_id'          => $kelas->kelas_id,
+                        'created_at'        => date('Y-m-d H:i:s')
+                    ));
+                }
+            
+            // $tahunajaran->simpan();
             $this->session->set_flashdata('success', 'Berhasil');
 
             redirect('tahunajaran');

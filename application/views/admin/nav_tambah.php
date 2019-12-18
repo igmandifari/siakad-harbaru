@@ -51,6 +51,11 @@
                                         <span class="nav-main-link-name">Tambah Kelas</span>
                                     </a>
                                 </li>
+                                <li class="nav-main-item">
+                                    <a class="nav-main-link" href="<?=base_url('kelas/rombel');?>">
+                                        <span class="nav-main-link-name">Rombel</span>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                         <li class="nav-main-item">

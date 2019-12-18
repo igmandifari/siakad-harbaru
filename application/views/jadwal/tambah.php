@@ -49,7 +49,7 @@
 
                     <div class="block-content tab-content overflow-hidden">
                         <div class="tab-pane fade fade-left show active" id="tatap-muka" role="tabpanel">
-                            <form action="<?php base_url('jadwal/tambah')?>" method="post">
+                            <form action="<?php base_url('jadwal/matpel_tambah')?>" method="post">
                                 <div class="form-group">
                                     <label for="jadwal_hari">Hari</label>
                                     <select class="custom-select" id="jadwal_hari" name="jadwal_hari">
@@ -68,6 +68,7 @@
                                         <option value="14:00-15:00">14:00-15:00</option>
                                         <option value="16:00-17:00">16:00-17:00</option>
                                     </select>
+                                    <small class="form-text text-danger"><?= form_error('jadwal_waktu'); ?></small>
                                 </div> 
                                 <div class="form-group">
                                     <label for="matpel_id">Mata Pelajaran</label>
@@ -81,13 +82,13 @@
                                 </div> 
                                 <div class="form-group">
                                     <label for="kelas_id">Kelas</label>
-                                    <select class="custom-select" id="kelas_id" name="kelas_id">
+                                    <select class="custom-select" id="rombel_id" name="rombel_id">
                                         <option value="0">Silahkan Pilih</option>
                                         <?php foreach($kelas_all as $kelas ):?>
-                                            <option value="<?=$kelas->kelas_id?>"><?=$kelas->kelas_nama?></option>
+                                            <option value="<?=$kelas->rombel_id?>"><?=$kelas->kelas_nama?></option>
                                         <?php endforeach;?>
                                     </select>
-                                    <small class="form-text text-danger"><?= form_error('kelas_id'); ?></small>
+                                    <small class="form-text text-danger"><?= form_error('rombel_id'); ?></small>
                                 </div>
                                 
 
@@ -101,6 +102,7 @@
                         </div>
                         <div class="tab-pane fade fade-right show" id="tutorial-mandiri" role="tabpanel">
                             <form action="<?php echo base_url('jadwal/tambah_tutorial_mandiri')?>" method="post">
+                            <input type="hidden" name="tahunajaran_id" value="<?=$this->uri->segment('3')?>">
                                 <div class="form-group">
                                     <label for="jadwal_tipe_pembelajaran">Tipe Pembelajaran</label>
                                     <select class="custom-select" id="jadwal_tipe_pembelajaran" name="jadwal_tipe_pembelajaran">
@@ -111,7 +113,7 @@
                                     <small class="form-text text-danger"><?= form_error('jadwal_tipe_pembelajaran'); ?></small>
                                 </div>
                                 <div class="form-group">
-                                    <label for="kelas_id">Mata Pelajaran</label>
+                                    <label for="matpel_id">Mata Pelajaran</label>
                                     <select class="custom-select" id="matpel_id" name="matpel_id">
                                         <option value="0">Silahkan Pilih</option>
                                         <?php foreach($matpel_all as $matpel ):?>
@@ -122,13 +124,13 @@
                                 </div> 
                                 <div class="form-group">
                                     <label for="kelas_id">Kelas</label>
-                                    <select class="custom-select" id="kelas_id" name="kelas_id">
+                                    <select class="custom-select" id="rombel_id" name="rombel_id">
                                         <option value="0">Silahkan Pilih</option>
                                         <?php foreach($kelas_all as $kelas ):?>
-                                            <option value="<?=$kelas->kelas_id?>"><?=$kelas->kelas_nama?></option>
+                                            <option value="<?=$kelas->rombel_id?>"><?=$kelas->kelas_nama?></option>
                                         <?php endforeach;?>
                                     </select>
-                                    <small class="form-text text-danger"><?= form_error('kelas_id'); ?></small>
+                                    <small class="form-text text-danger"><?= form_error('rombel_id'); ?></small>
                                 </div>
                                 
                                 

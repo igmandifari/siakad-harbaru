@@ -1,5 +1,5 @@
 <?php $this->load->view('head')?>
-<?php $this->load->view('matpel/nav_list')?>
+<?php $this->load->view('kelas/nav_rombel')?>
 
 <!-- Main Container -->
 <main id="main-container">
@@ -26,7 +26,7 @@
     <!-- Dynamic Table Full -->
     <div class="block">
         <div class="block-header">
-            <a href="<?=base_url('matpel/tambah');?>">
+            <a href="<?=base_url('kelas/rombel_tambah/'.$this->uri->segment('3'));?>">
                 <button type="button" class="btn btn-success mr-1 mb-3">
                     <i class="fa fa-fw fa-plus mr-1"></i> Tambah Data
                 </button>
@@ -43,40 +43,40 @@
             </div>
         </div>
         <?php endif;?>
+        <div class='text-center'>
+            <div class="block-content">
+                <h3>Data Warga Belajar</h3>
+                <p>Kelas        : <?=$kelas["kelas_nama"]?></p>
+                <p>Tahun Ajaran : <?=$kelas["tahunajaran_nama"]?></p>
+            </div>
+          </div>
             <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _es6/pages/be_tables_datatables.js -->
             <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
-                <thead>
+              <thead class="text-center">
+                <tr>
+                    <th>No</th>
+                    <th>Nama</th>
+                    <th>No Induk</th>
+                    <th>NISN</th>
+                    <th style="width: 15%;">Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php $no=0;foreach($semua_wargabelajar as $wargabelajar):$no++;?>
                     <tr>
-                        <th>NO</th>
-                        <th>Nama Mata Pelajaran</th>
-                        <th>Nama Tutor</th>
-                        <th style="width: 15%;">Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                <?php $no=0; foreach($matpels as $matpel):$no++?>
-                    <tr>
-                        <td><?=$no;?></td>
-                        <td><?=$matpel->matpel_nama;?>
-                        <td><?=$matpel->tutor_nama;?>
+                        <td class="text-center"><?=$no?></td>
+                        <td><?=$wargabelajar->wargabelajar_nama;?>
+                        <td><?=$wargabelajar->wargabelajar_nomor_induk;?>
+                        <td><?=$wargabelajar->wargabelajar_nisn;?>
                         <td class="text-center">
-                            <div class="btn-group">
-                                <a href="<?=base_url('matpel/ubah/').$matpel->matpel_id;?>">
-                                    <button type="button" class="btn btn-sm btn-light js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Ubah">
-                                        <i class="fa fa-fw fa-pencil-alt"></i>
-                                    </button>
-                                </a>
-                                <a href="<?=base_url('matpel/hapus/').$matpel->matpel_id;?>">
-                                    <button type="button" class="btn btn-sm btn-light js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Hapus">
-                                        <i class="fa fa-fw fa-times"></i>
-                                    </button>
-                                </a>
-                            </div>
+                            <a href="<?=base_url('kelas/rombel_det_hapus/').$wargabelajar->rombel_details_id.'/'.$wargabelajar->rombel_id?>">
+                                <button id="<?=$no?>" type="submit" class="btn btn-outline-secondary">Hapus</button>
+                            </a>  
                         </td>
                     </tr>
                 <?php endforeach;?>
-                </tbody>
-            </table>
+            </tbody>
+        </table>
         </div>
     </div>
     <!-- END Dynamic Table Full -->

@@ -63,11 +63,6 @@
                                     <small class="form-text text-danger"><?= form_error('wargabelajar_nisn'); ?></small>
                                 </div>
                                 <div class="form-group">
-                                    <label for="wargabelajar_nik">NIK</label>
-                                    <input type="text" class="form-control" id="wargabelajar_nik" name="wargabelajar_nik" placeholder="Masukan NIK">
-                                    <small class="form-text text-danger"><?= form_error('wargabelajar_nik'); ?></small>
-                                </div>
-                                <div class="form-group">
                                     <label for="wargabelajar_nama">Nama Lengkap</label>
                                     <input type="text" class="form-control" id="wargabelajar_nama" name="wargabelajar_nama" placeholder="Masukan Nama Lengkap">
                                     <small class="form-text text-danger"><?= form_error('wargabelajar_nama'); ?></small>
@@ -175,16 +170,7 @@
                                     </select>
                                     <small class="form-text text-danger"><?= form_error('tahunajaran_id'); ?></small>
                                 </div>
-                                <div class="form-grup">
-                                    <label for="kelas_id">Kelas</label>
-                                    <select class="custom-select" id="kelas_id" name="kelas_id">
-                                        <option value="0">Silahkan Pilih</option>
-                                        <?php foreach($kelas_all as $kelas) :?>
-                                            <option value="<?=$kelas->kelas_id?>"><?=$kelas->kelas_nama?></option>
-                                        <?php endforeach;?>
-                                    </select>
-                                    <small class="form-text text-danger"><?= form_error('kelas_id'); ?></small>
-                                </div>
+                               
                                 <div class="form-group">
                                     <label>Foto Warga Belajar</label>
                                     <div class="custom-file">
