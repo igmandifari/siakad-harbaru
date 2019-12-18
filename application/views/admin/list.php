@@ -56,14 +56,16 @@
             <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
                                 <thead>
                                     <tr>
+                                        <th>No</th>
                                         <th class="text-center">Nama Admin</th>
                                         <th class="text-center">Username</th>
                                         <th class="text-center" style="width: 15%;">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach($admins as $admin):?>
+                                    <?php $no=0; foreach($admins as $admin):$no++?>
                                         <tr>
+                                            <td><?=$no;?></td>
                                             <td><?=$admin->admin_nama;?>
                                             <td><?=$admin->admin_username;?>
                                             <td class="text-center">

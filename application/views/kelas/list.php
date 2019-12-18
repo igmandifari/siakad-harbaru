@@ -45,15 +45,21 @@
         <?php endif;?>
             <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _es6/pages/be_tables_datatables.js -->
             <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
-                                <thead>
+                                <thead class="text-center">
                                     <tr>
+                                        <th>No</th>
                                         <th>Nama Kelas</th>
                                         <th style="width: 15%;">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach($kelass as $kelas):?>
+                                    <?php $no=0;
+                                    foreach($kelass as $kelas):
+                                        $no++;
+                                    ?>
+                                    
                                         <tr>
+                                            <td class="text-center"><?=$no?></td>
                                             <td><?=$kelas->kelas_nama;?>
                                             <td class="text-center">
                                                 <div class="btn-group">

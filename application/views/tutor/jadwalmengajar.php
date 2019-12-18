@@ -12,22 +12,22 @@
 
         <!-- Icons -->
         <!-- The following icons can be replaced with your own, they are used by desktop and mobile browsers -->
-        <link rel="shortcut icon" href="assets/media/favicons/favicon.png">
-        <link rel="icon" type="image/png" sizes="192x192" href="assets/media/favicons/favicon-192x192.png">
-        <link rel="apple-touch-icon" sizes="180x180" href="assets/media/favicons/apple-touch-icon-180x180.png">
+        <link rel="shortcut icon" href="<?=base_url('assets/media/favicons/favicon.png')?>">
+        <link rel="icon" type="image/png" sizes="192x192" href="<?=base_url('assets/media/favicons/favicon-192x192.png')?>">
+        <link rel="apple-touch-icon" sizes="180x180" href="<?=base_url('assets/media/favicons/apple-touch-icon-180x180.png')?>">
         <!-- END Icons -->
 
         <!-- Stylesheets -->
         
         <!-- Page JS Plugins CSS -->
-        <link rel="stylesheet" href="assets/js/plugins/datatables/dataTables.bootstrap4.css">
-        <link rel="stylesheet" href="assets/js/plugins/datatables/buttons-bs4/buttons.bootstrap4.min.css">
+        <link rel="stylesheet" href="<?=base_url('assets/js/plugins/datatables/dataTables.bootstrap4.css')?>">
+        <link rel="stylesheet" href="<?=base_url('assets/js/plugins/datatables/buttons-bs4/buttons.bootstrap4.min.css')?>">
         <!-- Fonts and OneUI framework -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400italic,600,700%7COpen+Sans:300,400,400italic,600,700">
-        <link rel="stylesheet" id="css-main" href="assets/css/oneui.min.css">
+        <link rel="stylesheet" id="css-main" href="<?=base_url('assets/css/oneui.min.css')?>">
 
         <!-- You can include a specific file from css/themes/ folder to alter the default color theme of the template. eg: -->
-        <!-- <link rel="stylesheet" id="css-theme" href="assets/css/themes/amethyst.min.css"> -->
+        <!-- <link rel="stylesheet" id="css-theme" href="<?=base_url('assets/css/themes/amethyst.min.css')?>"> -->
         <!-- END Stylesheets -->
     </head>
     <body>
@@ -327,7 +327,7 @@
             assets/js/core/jquery.appear.min.js
             assets/js/core/js.cookie.min.js
         -->
-        <script src="assets/js/oneui.core.min.js"></script>
+        <script src="<?=base_url('assets/js/oneui.core.min.js')?>"></script>
 
         <!--
             OneUI JS
@@ -335,19 +335,19 @@
             Custom functionality including Blocks/Layout API as well as other vital and optional helpers
             webpack is putting everything together at assets/_es6/main/app.js
         -->
-        <script src="assets/js/oneui.app.min.js"></script>
+        <script src="<?=base_url('assets/js/oneui.app.min.js')?>"></script>
 
 
         <!-- Page JS Plugins -->
-        <script src="assets/js/plugins/datatables/jquery.dataTables.min.js"></script>
-        <script src="assets/js/plugins/datatables/dataTables.bootstrap4.min.js"></script>
-        <script src="assets/js/plugins/datatables/buttons/dataTables.buttons.min.js"></script>
-        <script src="assets/js/plugins/datatables/buttons/buttons.print.min.js"></script>
-        <script src="assets/js/plugins/datatables/buttons/buttons.html5.min.js"></script>
-        <script src="assets/js/plugins/datatables/buttons/buttons.flash.min.js"></script>
-        <script src="assets/js/plugins/datatables/buttons/buttons.colVis.min.js"></script>
+        <script src="<?=base_url('assets/js/plugins/datatables/jquery.dataTables.min.js')?>"></script>
+        <script src="<?=base_url('assets/js/plugins/datatables/dataTables.bootstrap4.min.js')?>"></script>
+        <script src="<?=base_url('assets/js/plugins/datatables/buttons/dataTables.buttons.min.js')?>"></script>
+        <script src="<?=base_url('assets/js/plugins/datatables/buttons/buttons.print.min.js')?>"></script>
+        <script src="<?=base_url('assets/js/plugins/datatables/buttons/buttons.html5.min.js')?>"></script>
+        <script src="<?=base_url('assets/js/plugins/datatables/buttons/buttons.flash.min.js')?>"></script>
+        <script src="<?=base_url('assets/js/plugins/datatables/buttons/buttons.colVis.min.js')?>"></script>
 
         <!-- Page JS Code -->
-        <script src="assets/js/pages/be_tables_datatables.min.js"></script>
+        <script src="<?=base_url('assets/js/pages/be_tables_datatables.min.js')?>"></script>
     </body>
 </html>

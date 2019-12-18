@@ -36,17 +36,7 @@
                             <label for="matpel_nama">Nama Mata Pelajaran</label>
                             <input type="text" class="form-control" id="matpel_nama" name="matpel_nama" placeholder="Masukan Nama atau Kode Mata Pelajaran">
                             <small class="form-text text-danger"><?= form_error('matpel_nama'); ?></small>
-                        </div>
-                        <div class="form-group">
-                            <label for="tutor_id">Jenis Pembelajaran</label>
-                            <select class="custom-select" id="tipe_pembelajaran" name="tipe_pembelajaran">
-                                        <option value="0">Silahkan Pilih Tutor</option>
-                                        <option value="Tatap Muka">Tatap Muka</option>
-                                        <option value="Mandiri">Mandiri</option>
-                                        <option value="Tutorial">Tutorial</option>
-                            </select>
-                            <small class="form-text text-danger"><?= form_error('tipe_pembelajaran'); ?></small>
-                        </div>   
+                        </div>  
                         <div class="form-group">
                             <label for="tutor_id">Nama Tutor</label>
                             <select class="custom-select" id="tutor_id" name="tutor_id">

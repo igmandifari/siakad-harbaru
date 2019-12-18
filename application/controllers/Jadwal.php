@@ -17,14 +17,14 @@ class Jadwal extends CI_Controller
     {
         $jadwal = $this->Jadwal_model;
 
-        $data["jadwals"] = $jadwal->getAll();
+        $data["tahuns"] = $jadwal->getTahunajaran();
         $data["title"] = "Jadwal Mata Pelajaran";
         $data["actor"] = "Mata Pelajaran";
         
 
-        $this->load->view('jadwal/list',$data);
+        $this->load->view('jadwal/list_tahun',$data);
     }
-    public function ubah($id=null)
+    public function ubah($tahun=null,$id=null)
     {
         if(!isset($id))redirect('jadwal');
 
@@ -41,7 +41,7 @@ class Jadwal extends CI_Controller
         
         $data["title"] = "Ubah Jadwal Mata Pelajaran";
         $data["actor"] = "Jadwal";
-        $data["kelass"] = $jadwal->getKelas();
+        $data["kelass"] = $jadwal->getKelas($tahun);
         $data["matpels"] = $jadwal->getMatpel();
         $data["jadwal"] = $jadwal->getById($id);
 
@@ -50,8 +50,10 @@ class Jadwal extends CI_Controller
         $this->load->view("jadwal/ubah",$data);
     }
 
-    public function tambah()
+    public function matpel_tambah($tahun=null)
     {
+        if(!isset($tahun)) redirect('jadwal');
+
         $jadwal = $this->Jadwal_model;
         $validasi = $this->form_validation;
         $validasi->set_rules($jadwal->rules());
@@ -66,14 +68,26 @@ class Jadwal extends CI_Controller
         
         $data["title"] = "Tambah Jadwal Mata Pelajaran";
         $data["actor"] = "Jadwal";
-        $data["kelas_all"] = $jadwal->getKelas();
+        $data["kelas_all"] = $jadwal->getKelas($tahun);
         $data["matpel_all"] = $jadwal->getMatpel();
         
         $this->load->view("jadwal/tambah",$data);
     }
+    public function matpel_lihat($tahun=null){
+        if(!isset($tahun)) redirect('jadwal');
+
+        $jadwal = $this->Jadwal_model;
+        $data["jadwals"] =$jadwal->getMatpelTahun($tahun);
+        $data["title"] = "Jadwal Mata Pelajaran";
+        $data["actor"] = "Jadwal";
+
+        if(!$data['jadwals']) redirect('jadwal');
+
+        $this->load->view('jadwal/list',$data);
+    }
     public function hapus($id=null){
         $jadwal = $this->Jadwal_model;
-
+        $tahun = $this->uri->segment('3');
         $data['jadwal'] = $jadwal->getById($id);
 
         if(!isset($id)) redirect('jadwal');
@@ -83,7 +97,7 @@ class Jadwal extends CI_Controller
         }else{
             $jadwal->delete($id);
             $this->session->set_flashdata('success', 'Berhasil Dihapus');
-            redirect('jadwal');
+            redirect('jadwal/matpel_lihat/').$tahun;
         }
 
         
@@ -94,12 +108,13 @@ class Jadwal extends CI_Controller
         $validasi->set_rules($jadwal->rules_tutorial_mandiri());
 
         if($validasi->run()){
+            $tahun = $this->uri->segment('3');
             $jadwal->save_tutorial_mandiri();
             $this->session->set_flashdata('success', 'Berhasil Ditambahkan');
             
-            redirect('jadwal');
+            redirect('jadwal/matpel_lihat/').$this->input->post('tahunajaran_id');
         }else{
-            redirect('jadwal/tambah#tutorial-mandiri');
+            redirect('jadwal/matpel_tambah#tutorial-mandiri');
             $this->session->set_flashdata('failed', 'Gagal');
         }
     }

@@ -56,7 +56,8 @@
             <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
                                 <thead>
                                     <tr>
-                                        <th class="text-center" style="width: 80px;">Nomor Induk</th>
+                                        <th>NO</th>
+                                        <th class="text-center">Nomor Induk</th>
                                         <th>Nama Lengkap</th>
                                         <th class="d-none d-sm-table-cell" style="width: 15%;">Jenis Kelamin</th>
                                         <th class="d-none d-sm-table-cell" style="width: 30%;">TTL</th>
@@ -64,8 +65,9 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach($tutors as $tutor):?>
+                                    <?php $no=0;foreach($tutors as $tutor):$no++?>
                                         <tr>
+                                            <td><?=$no;?></td>
                                             <td><?=$tutor->tutor_nomor_induk;?>
                                             <td><?=$tutor->tutor_nama;?>
                                             <td><?=$tutor->tutor_jenis_kelamin;?>

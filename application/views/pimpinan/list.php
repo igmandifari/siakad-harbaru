@@ -56,13 +56,15 @@
             <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
                                 <thead>
                                     <tr>
+                                        <th>NO</th>
                                         <th>Nama Lengkap</th>
                                         <th style="width: 15%;">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach($pimpinans as $pimpinan):?>
+                                    <?php $no=0; foreach($pimpinans as $pimpinan):$no++?>
                                         <tr>
+                                            <td><?=$no;?></td>
                                             <td><?=$pimpinan->pimpinan_nama;?>
                                             <td class="text-center">
                                                 <div class="btn-group">

@@ -52,8 +52,8 @@
                                     </a>
                                 </li>
                                 <li class="nav-main-item">
-                                    <a class="nav-main-link" href="<?=base_url('jadwal');?>">
-                                        <span class="nav-main-link-name">Jadwal Mata Pelajaran</span>
+                                    <a class="nav-main-link" href="<?=base_url('kelas/rombel');?>">
+                                        <span class="nav-main-link-name">Rombel</span>
                                     </a>
                                 </li>
                             </ul>

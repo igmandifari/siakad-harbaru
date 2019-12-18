@@ -51,6 +51,7 @@ class Kelas extends CI_Controller
             redirect('kelas');
         }
     }
+    
 
     public function ubah($id=null)
     {
@@ -73,5 +74,59 @@ class Kelas extends CI_Controller
 
         $this->load->view('kelas/ubah',$data);
 
+    }
+    public function rombel()
+    {
+        $kelas = $this->Kelas_model;
+
+        $data["actor"] = "Rombel";
+        $data["title"] = "Daftar Rombel";
+        $data["SemuaRombel"] = $kelas->getRombel();
+
+        $this->load->view('kelas/rombel_list',$data);
+    }
+    public function rombel_tambah($id=null){
+        if (!isset($id)) redirect('kelas/rombel');
+        $kelas = $this->Kelas_model;
+        $data['kelas'] = $kelas->getRombelbyId($id);
+        $data['semua_wargabelajar'] = $kelas->getWargaBelajarNonRombel();
+        $data['actor'] = 'Rombel';
+        $data['title'] = 'Masukan Ke Rombel';
+        if(!$data['kelas']) redirect('kelas/rombel');
+
+        $this->load->view('kelas/rombel_tambah',$data);
+        
+    }
+    public function rombel_lihat($id){
+        if (!isset($id)) redirect('kelas/rombel');
+        $kelas = $this->Kelas_model;
+        $data['kelas'] = $kelas->getRombelbyId($id);
+        $data['semua_wargabelajar'] = $kelas->getRombelDetbyId($id);
+        $data['actor'] = 'Rombel';
+        $data['title'] = 'Lihat Rombel';
+        if(!$data['semua_wargabelajar']) redirect('kelas/rombel');
+
+        $this->load->view('kelas/rombel_lihat',$data);
+    }
+    public function rombel_simpan(){
+        $validasi = $this->form_validation;
+        $kelas = $this->Kelas_model;
+        if($this->input->method()=="post"){
+            $kelas->rombelsave();            
+            redirect('kelas/rombel_tambah/'.$this->input->post('rombel_id'));
+        }
+        else{
+            redirect('kelas/rombel');
+        }
+    }
+
+    public function rombel_det_hapus($id=null,$rombel_id=null)
+    {
+        if(!isset($id)){
+            redirect('kelas/rombel_lihat/'.$rombel_id);
+        }else{
+            $this->Kelas_model->rombelDet($id);
+            redirect('kelas/rombel_lihat/'.$rombel_id);
+        }
     }
 }

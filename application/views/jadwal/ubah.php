@@ -62,7 +62,7 @@
                             </select>
                         </div> 
                         <div class="form-group">
-                            <label for="kelas_id">Mata Pelajaran</label>
+                            <label for="matpel_id">Mata Pelajaran</label>
                             <select class="custom-select" id="matpel_id" name="matpel_id">
                                 <option value="0">Silahkan Pilih</option>
                                 <?php foreach($matpels as $matpel ):?>
@@ -71,11 +71,11 @@
                             </select>
                         </div> 
                         <div class="form-group">
-                            <label for="kelas_id">Kelas</label>
-                            <select class="custom-select" id="kelas_id" name="kelas_id">
+                            <label for="rombel_id">Kelas</label>
+                            <select class="custom-select" id="rombel_id" name="rombel_id">
                                 <option value="0">Silahkan Pilih</option>
                                 <?php foreach($kelass as $kelas ):?>
-                                    <option value="<?=$kelas->kelas_id?>"<?php if($jadwal["kelas_id"]==$kelas->kelas_id) echo 'selected'?>><?=$kelas->kelas_nama?></option>
+                                    <option value="<?=$kelas->rombel_id?>"<?php if($jadwal["rombel_id"]==$kelas->rombel_id) echo 'selected'?>><?=$kelas->kelas_nama?></option>
                                 <?php endforeach;?>
                             </select>
                         </div>                         
@@ -101,7 +101,7 @@
                     <div class="col-lg-12">
                         <div class="form-group">
                             <input type="hidden" name="id" value="<?=$jadwal["jadwal_id"]?>">
-                            <label for="kelas_id">Hari</label>
+                            <label for="jadwal_hari">Hari</label>
                             <select class="custom-select" id="jadwal_hari" name="jadwal_hari">
                                 <option value="0">Silahkan Pilih</option>
                                 <option value="Jum'at"<?php if($jadwal["jadwal_hari"] == "Jum'at") echo 'selected'?>>Jum'at</option>
@@ -110,7 +110,7 @@
                             </select>
                         </div> 
                         <div class="form-group">
-                            <label for="kelas_id">Waktu</label>
+                            <label for="jadwal_waktu">Waktu</label>
                             <select class="custom-select" id="jadwal_waktu" name="jadwal_waktu">
                                 <option value="0">Silahkan Pilih</option>
                                 <option value="13:00-14:00" <?php if($jadwal["jadwal_waktu"] == "13:00-14:00") echo 'selected'?>>13:00-14:00</option>
@@ -119,7 +119,7 @@
                             </select>
                         </div>  
                         <div class="form-group">
-                            <label for="kelas_id">Mata Pelajaran</label>
+                            <label for="matpel_id">Mata Pelajaran</label>
                             <select class="custom-select" id="matpel_id" name="matpel_id">
                                 <option value="0">Silahkan Pilih</option>
                                 <?php foreach($matpels as $matpel ):?>
@@ -128,11 +128,11 @@
                             </select>
                         </div> 
                         <div class="form-group">
-                            <label for="kelas_id">Kelas</label>
-                            <select class="custom-select" id="kelas_id" name="kelas_id">
+                            <label for="rombel_id">Kelas</label>
+                            <select class="custom-select" id="rombel_id" name="rombel_id">
                                 <option value="0">Silahkan Pilih</option>
                                 <?php foreach($kelass as $kelas ):?>
-                                    <option value="<?=$kelas->kelas_id?>"<?php if($jadwal["kelas_id"]==$kelas->kelas_id) echo 'selected'?>><?=$kelas->kelas_nama?></option>
+                                    <option value="<?=$kelas->rombel_id?>"<?php if($jadwal["rombel_id"]==$kelas->rombel_id) echo 'selected'?>><?=$kelas->kelas_nama?></option>
                                 <?php endforeach;?>
                             </select>
                         </div>                         

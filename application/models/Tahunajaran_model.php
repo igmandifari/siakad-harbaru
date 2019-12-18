@@ -10,16 +10,14 @@
                 [
                     'field' => 'tahunajaran_nama',
                     'label' => 'Nama Tahun Ajaran',
-                    'rules' => 'required|trim|xss_clean',
+                    'rules' => 'required|trim|xss_clean|is_unique[tahunajaran.tahunajaran_nama]',
                 ]
             ];
         }
-
-        public function simpan(){
-            $data= array(
-                'tahunajaran_id'                  => uniqid(),
-                'tahunajaran_nama'                => $this->input->post("tahunajaran_nama")
-                );
+        public function simpan_rombel($data=array()){
+            return $this->db->insert('rombel',$data);
+        }
+        public function simpan($data=array()){
             return $this->db->insert($this->_table, $data);
         }
         public function perbarui()
@@ -39,6 +37,9 @@
         }
         public function delete($id){
             return $this->db->delete($this->_table, array("tahunajaran_id" => $id));
+        }
+        public function getKelas(){
+            return $this->db->get('kelas')->result();
         }
     }
 ?>

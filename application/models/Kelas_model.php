@@ -10,7 +10,7 @@
                 [
                     'field' => 'kelas_nama',
                     'label' => 'Nama Kelas',
-                    'rules' => 'required|trim|xss_clean',
+                    'rules' => 'required|trim|xss_clean|is_unique[kelas.kelas_nama]',
                 ]
             ];
         }
@@ -71,5 +71,29 @@
             );
             return $this->db->insert("kelas_details",$data);
         }
+
+        public function getRombel()
+        {
+            return $this->db->query('SELECT rombel.rombel_id, kelas.kelas_nama, tahunajaran.tahunajaran_nama FROM rombel inner join kelas on kelas.kelas_id = rombel.kelas_id INNER join tahunajaran on tahunajaran.tahunajaran_id = rombel.tahunajaran_id')->result();
+        }
+        public function getRombelbyId($id){
+            return $this->db->query("select kelas.kelas_id,kelas.kelas_nama, tahunajaran.tahunajaran_id, tahunajaran.tahunajaran_nama,rombel_id from rombel inner join kelas on kelas.kelas_id=rombel.kelas_id INNER join tahunajaran on tahunajaran.tahunajaran_id=rombel.tahunajaran_id where rombel_id = '$id' ")->row_array();
+        }
+        public function getWargaBelajarNonRombel(){
+            return $this->db->query("SELECT wargabelajar.wargabelajar_nama, wargabelajar.wargabelajar_id,wargabelajar.wargabelajar_nisn, wargabelajar.wargabelajar_nomor_induk from wargabelajar")->result();
+        }
+       public function rombelsave(){
+           $data = array(
+               'rombel_id'          => $this->input->post('rombel_id'),
+               'wargabelajar_id'    => $this->input->post('wargabelajar_id')
+           );
+           return $this->db->insert('rombel_details',$data);
+       }
+       public function getRombelDetbyId($id){
+           return $this->db->query("SELECT tahunajaran.tahunajaran_nama, kelas.kelas_nama, wargabelajar.wargabelajar_nama, wargabelajar.wargabelajar_id,wargabelajar.wargabelajar_nisn, wargabelajar.wargabelajar_nomor_induk, rombel_details.rombel_id, rombel_details.rombel_details_id from wargabelajar left join rombel_details on rombel_details.wargabelajar_id = wargabelajar.wargabelajar_id left join rombel on rombel.rombel_id='$id' LEFT JOIN kelas on kelas.kelas_id = rombel.kelas_id  LEFT JOIN tahunajaran on tahunajaran.tahunajaran_id=rombel.tahunajaran_id WHERE rombel_details.rombel_id='$id'")->result();
+       }
+       public function rombelDet($id){
+        return $this->db->delete(rombel_details, array("rombel_details_id" => $id));
     }
-?>
+}
+    

@@ -76,10 +76,6 @@
                                         <input type="text" class="form-control" id="wargabelajar_nama" name="wargabelajar_nama" value="<?= $wargabelajar->wargabelajar_nama; ?>">
                                         <small class="form-text text-danger"><?= form_error('wargabelajar_nama'); ?></small>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="wargabelajar_nik">NIK</label>
-                                        <input type="text" class="form-control" id="wargabelajar_nik" name="wargabelajar_nik" value="<?= $wargabelajar->wargabelajar_nik ?>">
-                                    </div>
                                     <div class="form-grup">
                                         <label class="d-block">Jenis Kelamin</label>
                                         <div class="custom-control custom-radio custom-control-inline">
@@ -154,22 +150,22 @@
                                     </div>
                                     <div class="form-grup">
                                         <label for="wargabelajar_alamat_jalan">Nama Sekolah/Kejar</label>
-                                        <input type="text" class="form-control" id="wargabelajar_kejar" name="wargabelajar_kejar" placeholder="SD/SMP ">
+                                        <input type="text" class="form-control" id="wargabelajar_kejar" name="wargabelajar_kejar" value="<?=$wargabelajar->wargabelajar_kejar?>">
                                         <small class="form-text text-danger"><?= form_error('wargabelajar_kejar'); ?></small>
                                     </div>
                                     <div class="form-grup">
                                         <label for="wargabelajar_alamat_jalan">Alamat Sekolah Kejar</label>
-                                        <input type="text" class="form-control" id="wargabelajar_kejar_alamat" name="wargabelajar_kejar_alamat" placeholder="Jl. ">
+                                        <input type="text" class="form-control" id="wargabelajar_kejar_alamat" name="wargabelajar_kejar_alamat" value="<?=$wargabelajar->wargabelajar_kejar_alamat?>">
                                         <small class="form-text text-danger"><?= form_error('wargabelajar_kejar_alamat'); ?></small>
                                     </div>
                                     <div class="form-grup">
                                         <label for="wargabelajar_sttb">Nomor dan Tahun STTB/STSB</label>
-                                        <input type="text" class="form-control" id="wargabelajar_sttb" name="wargabelajar_sttb" placeholder="DN-02 DI 0480369 / 28 Juni 2019 ">
+                                        <input type="text" class="form-control" id="wargabelajar_sttb" name="wargabelajar_sttb" value="<?=$wargabelajar->wargabelajar_sttb?>">
                                         <small class="form-text text-danger"><?= form_error('wargabelajar_sttb'); ?></small>
                                     </div>
                                     <div class="form-grup">
                                         <label for="wargabelajar_masuk">Tanggal Masuk</label>
-                                        <input type="date" class="js-flatpickr form-control bg-white js-flatpickr-enabled flatpickr-input active" id="wargabelajar_masuk" name="wargabelajar_masuk">
+                                        <input type="date" class="js-flatpickr form-control bg-white js-flatpickr-enabled flatpickr-input active" id="wargabelajar_masuk" name="wargabelajar_masuk" value="<?=$wargabelajar->wargabelajar_masuk?>">
                                     </div>
                                     <div class="form-grup">
                                         <label for="wargabelajar_alamat_kabupaten">Tahun Ajaran Masuk</label>
@@ -180,16 +176,7 @@
                                                 <?php endforeach; ?>
                                             </select>
                                     </div>
-                                    <div class="form-grup">
-                                        <label for="kelas_id">Kelas</label>
-                                        <select class="custom-select" id="kelas_id" name="kelas_id">
-                                            <option>Silahkan Pilih</option>
-                                                <?php foreach ($kelas_all as $kelas) : ?>
-                                                    <option value="<?= $kelas->kelas_id ?>" <?php if ($wargabelajar->kelas_id == $kelas->kelas_id) echo 'selected' ?>><?= $kelas->kelas_nama ?></option>
-                                                <?php endforeach; ?>
-                                            <option value="Lulus">Lulus</option>
-                                        </select>
-                                    </div>
+                                    
                                     <div class="form-group">
                                         <label>Foto Warga Belajar</label>
                                         <div class="custom-file">

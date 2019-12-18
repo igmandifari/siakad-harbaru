@@ -47,17 +47,7 @@
                             <label for="matpel_nama">Nama Kelas</label>
                             <input type="text" class="form-control" id="matpel_nama" name="matpel_nama" value="<?=$matpel["matpel_nama"];?>" autofocus>
                             <small class="form-text text-danger"><?= form_error('matpel_nama'); ?></small>
-                        </div>
-                        <div class="form-group">
-                            <label for="tutor_id">Jenis Pembelajaran</label>
-                            <select class="custom-select" id="tipe_pembelajaran" name="tipe_pembelajaran">
-                                        <option value="0">Silahkan Pilih Tutor</option>
-                                        <option value="Tatap Muka"<?php if($matpel["tipe_pembelajaran"] =="Tatap Muka") echo "selected";?>>Tatap Muka</option>
-                                        <option value="Mandiri" <?php if($matpel["tipe_pembelajaran"] =="Mandiri") echo "selected";?>>Mandiri</option>
-                                        <option value="Tutorial" <?php if($matpel["tipe_pembelajaran"] =="Tutorial") echo "selected";?>>Tutorial</option>
-                            </select>
-                            <small class="form-text text-danger"><?= form_error('tipe_pembelajaran'); ?></small>
-                        </div>   
+                        </div> 
                         <div class="form-group">
                             <label for="tutor_id">Nama Tutor</label>
                             <select class="custom-select" id="tutor_id" name="tutor_id">

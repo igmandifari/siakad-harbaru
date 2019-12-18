@@ -57,30 +57,30 @@
             <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _es6/pages/be_tables_datatables.js -->
             <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
                 <thead>
-                    <tr>
+                    <tr class="text-center">
+                        <th>No</th>
                         <th>Nomor Induk</th>
                         <th>NISN</th>
                         <th>Nama</th>
-                        <th>TTL</th>
                         <th style="width: 15%;">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
-                <?php foreach($wargabelajars as $wargabelajar):?>
+                <?php $no=0;foreach($wargabelajars as $wargabelajar):$no++?>
                     <tr>
+                        <td class="text-center"><?=$no;?></td>
                         <td><?=$wargabelajar->wargabelajar_nomor_induk;?>
                         <td><?=$wargabelajar->wargabelajar_nisn;?>
                         <td><?=$wargabelajar->wargabelajar_nama;?>
-                        <td><?=$wargabelajar->wargabelajar_tempat_lahir . $wargabelajar->wargabelajar_tanggal_lahir;?>
                         <td class="text-center">
                             <div class="btn-group">
-                                <a href="<?=base_url('wargabelajar/ubah/').$wargabelajar->wargabelajar_id;?>">
-                                    <button type="button" class="btn btn-sm btn-light js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Ubah">
+                                <a title="Ubah Data" href="<?=base_url('wargabelajar/ubah/').$wargabelajar->wargabelajar_id;?>">
+                                    <button title="Ubah Data" type="button" class="btn btn-sm btn-light js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Ubah">
                                         <i class="fa fa-fw fa-pencil-alt"></i>
                                     </button>
                                 </a>
-                                <a href="<?=base_url('wargabelajar/hapus/').$wargabelajar->wargabelajar_id;?>">
-                                    <button type="button" class="btn btn-sm btn-light js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Hapus">
+                                <a title="Hapus Data" href="<?=base_url('wargabelajar/hapus/').$wargabelajar->wargabelajar_id;?>">
+                                    <button title="Hapus Data" type="button" class="btn btn-sm btn-light js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Hapus">
                                         <i class="fa fa-fw fa-times"></i>
                                     </button>
                                 </a>

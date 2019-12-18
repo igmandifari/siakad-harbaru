@@ -7,7 +7,7 @@ class Jadwal_model extends CI_Model{
     public function rules(){
         return[
             [
-                'field' => 'kelas_id',
+                'field' => 'rombel_id',
                 'label' => 'Kelas',
                 'rules'    => 'required|trim|xss_clean|callback_select_validate',
             ],
@@ -32,7 +32,7 @@ class Jadwal_model extends CI_Model{
     public function rules_tutorial_mandiri(){
         return[
             [
-                'field' => 'kelas_id',
+                'field' => 'rombel_id',
                 'label' => 'Kelas',
                 'rules'    => 'required|trim|xss_clean|callback_select_validate',
             ],
@@ -54,7 +54,8 @@ class Jadwal_model extends CI_Model{
             'jadwal_id'                 => uniqid(),
             'jadwal_hari'               => $this->input->post("jadwal_hari"),
             'matpel_id'                 => $this->input->post("matpel_id"),
-            'kelas_id'                  => $this->input->post("kelas_id"),
+            'rombel_id'                 => $this->input->post("rombel_id"),
+            'tahunajaran_id'            => $this->uri->segment('3'),
             'jadwal_waktu'              => $this->input->post("jadwal_waktu"),
             'jadwal_tipe_pembelajaran'  => 'Tatap Muka',
             'created_at'                => date('Y-m-d H:i:s')
@@ -68,8 +69,8 @@ class Jadwal_model extends CI_Model{
         $data = array(
             'jadwal_hari'           => $this->input->post("jadwal_hari"),
             'matpel_id'             => $this->input->post("matpel_id"),
-            'kelas_id'              => $this->input->post("kelas_id"),
-            'jadwal_waktu'              => $this->input->post("jadwal_waktu"),
+            'rombel_id'             => $this->input->post("rombel_id"),
+            'jadwal_waktu'          => $this->input->post("jadwal_waktu"),
             'updated_at'            => date('Y-m-d H:i:s')
 
         );
@@ -82,8 +83,9 @@ class Jadwal_model extends CI_Model{
         $data = array(
             'jadwal_id'                 => uniqid(),
             'jadwal_tipe_pembelajaran'  => $this->input->post("jadwal_tipe_pembelajaran"),
+            'tahunajaran_id'            => $this->input->post("tahunajaran_id"),
             'matpel_id'                 => $this->input->post("matpel_id"),
-            'kelas_id'                  => $this->input->post("kelas_id"),
+            'rombel_id'                  => $this->input->post("rombel_id"),
             'created_at'                => date('Y-m-d H:i:s')
 
         );
@@ -92,10 +94,10 @@ class Jadwal_model extends CI_Model{
     public function update_tutorial_mandiri()
     {
         $data = array(
-            'matpel_id'                      => $this->input->post("matpel_id"),
-            'kelas_id'                       => $this->input->post("kelas_id"),
-            'jadwal_tipe_pembelajaran'       => $this->input->post("jadwal_tipe_pembelajaran"),
-            'updated_at'                     => date('Y-m-d H:i:s')
+            'matpel_id'                     => $this->input->post("matpel_id"),
+            'rombel_id'                     => $this->input->post("rombel_id"),
+            'jadwal_tipe_pembelajaran'      => $this->input->post("jadwal_tipe_pembelajaran"),
+            'updated_at'                    => date('Y-m-d H:i:s')
 
         );
         $this->db->where('jadwal_id',$this->input->post("id"));
@@ -114,10 +116,16 @@ class Jadwal_model extends CI_Model{
     public function delete($id){
         return $this->db->delete($this->_table, array("jadwal_id" => $id));
     }
-    public function getKelas(){
-        return $this->db->get("kelas")->result();
+    public function getKelas($tahun){
+        return $this->db->query("select rombel.rombel_id, kelas_nama from kelas inner join rombel on rombel.kelas_id=kelas.kelas_id where rombel.tahunajaran_id='$tahun'")->result();
     }
     public function getMatpel(){
         return $this->db->get("matpel")->result();
+    }
+    public function getTahunajaran(){
+        return $this->db->get("tahunajaran")->result();
+    }
+    public function getMatpelTahun($tahun){
+        return $this->db->query("SELECT tahunajaran.tahunajaran_nama,tutor.tutor_nama, tahunajaran.tahunajaran_id, jadwal_id, jadwal_hari, matpel_nama, kelas_nama, jadwal_waktu, jadwal_tipe_pembelajaran FROM jadwal left join tahunajaran on tahunajaran.tahunajaran_id = jadwal.tahunajaran_id RIGHT join rombel on rombel.rombel_id = jadwal.rombel_id inner join kelas on kelas.kelas_id = rombel.kelas_id LEFT join matpel on matpel.matpel_id=jadwal.matpel_id  INNER join tutor on tutor.tutor_id = matpel.tutor_id where jadwal.tahunajaran_id ='$tahun'")->result();
     }
 }
