@@ -17,6 +17,7 @@ class Auth extends CI_Controller
             redirect("wargabelajar");
         }
         $data["title"] = "Login - Siak Harba";
+        $data["tahunajaranAll"] = $this->Auth_model->getTahunAjaran();
         $this->load->view('auth/login',$data);
          
     }
@@ -27,13 +28,15 @@ class Auth extends CI_Controller
 
         if ($validasi->run()) {
           
-            $username = $this->input->post('username');
-            $password = $this->input->post('password');
+            $username    = $this->input->post('login-username');
+            $password    = $this->input->post('login-password');
+            $tahunajaran = $this->input->post('tahunajaran_id');
 
             $Admin          = $this->Auth_model->cekLogin($username,$password);
             $WargaBelajar   = $this->Auth_model->cek_login_wargabelajar($username,$password);
             $Pimpinan       = $this->Auth_model->cek_login_pimpinan($username,$password);
             $tutor          = $this->Auth_model->cekLogin_tutor($username,$password);
+            $tahun          = $this->Auth_model->getAjaranByID($tahunajaran);
             
             if (!empty($Admin)) {
                 $this->session->set_userdata('MASUK',TRUE);
@@ -48,10 +51,12 @@ class Auth extends CI_Controller
             }elseif(!empty($WargaBelajar)){
                 $this->session->set_userdata('MASUK',TRUE);
                 $session = array(
-                    'nama'  => $WargaBelajar['wargabelajar_nama'],
-                    'id'    => $WargaBelajar['wargabelajar_id'],
-                    'foto'  => $WargaBelajar['wargabelajar_foto'],
-                    'level' => 1
+                    'nama'                  => $WargaBelajar['wargabelajar_nama'],
+                    'id'                    => $WargaBelajar['wargabelajar_id'],
+                    'foto'                  => $WargaBelajar['wargabelajar_foto'],
+                    'level'                 => 1,
+                    'tahunajaran_id'        => $tahun['tahunajaran_id'],
+                    'tahunajaran_nama'      => $tahun['tahunajaran_nama'],
                 );
                 $this->session->set_userdata($session);
                 redirect('dasbor');
@@ -68,10 +73,12 @@ class Auth extends CI_Controller
             } elseif(!empty($tutor)){
                 $this->session->set_userdata('MASUK',TRUE);
                 $session = array(
-                    'nama'  => $tutor['tutor_nama'],
-                    'id'    => $tutor['tutor_id'],
-                    'foto'  => $tutor['tutor_foto'],
-                    'level' => 3
+                    'nama'                  => $tutor['tutor_nama'],
+                    'id'                    => $tutor['tutor_id'],
+                    'foto'                  => $tutor['tutor_foto'],
+                    'level'                 => 3,
+                    'tahunajaran_id'        => $tahun['tahunajaran_id'],
+                    'tahunajaran_nama'      => $tahun['tahunajaran_nama'],
                 );
                 $this->session->set_userdata($session);
                 redirect('dasbor');
@@ -88,6 +95,15 @@ class Auth extends CI_Controller
     public function logout(){
         $this->session->sess_destroy();
         redirect('auth');
+    }
+    function select_validate($param)
+    {
+        if($param=="0"){
+            $this->form_validation->set_message('select_validate', 'Mohon untuk memilih {field}');
+            return false;
+        } else{
+            return true;
+        }
     }
 
 }

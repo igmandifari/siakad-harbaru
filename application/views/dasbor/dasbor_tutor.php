@@ -151,6 +151,18 @@
                                 <span class="nav-main-link-name">Pengaturan</span>
                             </a>
                         </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="<?=base_url('profil')?>">
+                            <i class="nav-main-link-icon si si-user ml-1"></i>
+                                <span class="nav-main-link-name">Profil</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="<?=base_url('auth/logut')?>">
+                            <i class="nav-main-link-icon si si-logout ml-1"></i>
+                                <span class="nav-main-link-name">Keluar</span>
+                            </a>
+                        </li>
                         
                    
                        
@@ -178,6 +190,7 @@
                         <button type="button" class="btn btn-sm btn-dual mr-2 d-none d-lg-inline-block" data-toggle="layout" data-action="sidebar_mini_toggle">
                             <i class="fa fa-fw fa-ellipsis-v"></i>
                         </button>
+                        <span class="badge badge-pill badge-info"><i class="fa fa-info-circle"></i> Tahun Ajaran <?=$this->session->userdata('tahunajaran_nama');?></span>
                         <!-- END Toggle Mini Sidebar -->
 
                         <!-- END Apps Modal -->

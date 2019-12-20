@@ -13,6 +13,8 @@
         <link rel="apple-touch-icon" sizes="180x180" href="<?=base_url('assets/media/favicons/apple-touch-icon-180x180.png')?>">
         <!-- END Icons -->
 
+        <!-- Page JS Plugins CSS -->
+        <link rel="stylesheet" href="<?=base_url('assets/js/plugins/select2/css/select2.min.css')?>">
         <!-- Stylesheets -->
         <!-- Fonts and OneUI framework -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400italic,600,700%7COpen+Sans:300,400,400italic,600,700">
@@ -72,30 +74,34 @@
                                     <?= form_open ('auth/cek_login','class="js-validation-signin"'); ?>
                                         <div class="py-3">
                                             <div class="form-group">
-                                                <input type="text" class="form-control form-control-lg form-control-alt" id="username" name="username" placeholder="Masukan nama pengguna" required>
+                                                <input type="text" class="form-control form-control-lg form-control-alt" id="login-username" name="login-username" placeholder="Masukan nama pengguna" required>
                                             </div>
                                             <div class="form-group">
-                                                <input type="password" class="form-control form-control-lg form-control-alt" id="password" name="password" placeholder="Masukan kata sandi" required>
+                                                <input type="password" class="form-control form-control-lg form-control-alt" id="login-password" name="login-password" placeholder="Masukan kata sandi" required>
                                             </div>
                                             <div class="form-group">
-                                                <div class="d-md-flex align-items-md-center justify-content-md-between">
-                                                    <div class="custom-control custom-switch">
-                                                        <input type="checkbox" class="custom-control-input" id="remember" name="remember">
-                                                        <label class="custom-control-label font-w400" for="remember">Remember Me</label>
-                                                    </div>
-                                                    <div class="py-2">
-                                                        <a class="font-size-sm">Forgot Password?</a>
-                                                    </div>
-                                                </div>
+                                                <select class="js-select2 form-control" id="tahunajaran_id" name="tahunajaran_id" style="width: 100%;" data-placeholder="Silahkan pilih tahun ajaran">
+                                                    <option value=""></option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
+                                                    <?php foreach($tahunajaranAll as $tahunajaran):?>
+                                                        <option value="<?=$tahunajaran->tahunajaran_id?>"><?=$tahunajaran->tahunajaran_nama?></option>
+                                                    <?php endforeach;?>
+                                                </select>
+                                                <small class="form-text text-danger"><?= form_error('tahunajaran_id'); ?></small>
                                             </div>
                                         </div>
                                         <div class="form-group row justify-content-center mb-0">
                                             <div class="col-md-6 col-xl-5">
                                                 <button type="submit" name="submit" class="btn btn-block btn-primary">
-                                                    <i class="fa fa-fw fa-sign-in-alt mr-1"></i> Sign In
+                                                    Masuk
+                                                </button>
+                                            </div>
+                                            <div class="col-md-6 col-xl-5">
+                                                <button type="button" class="btn btn-block btn-light push"  data-toggle="modal" data-target="#modal-block-small">
+                                                    Lupa?
                                                 </button>
                                             </div>
                                         </div>
+                                        
                                     </form>
                                     <!-- END Sign In Form -->
                                 </div>
@@ -110,8 +116,31 @@
                         <!-- END Footer -->
                     </div>
                 </div>
+                <div class="modal" id="modal-block-small" tabindex="-1" role="dialog" aria-labelledby="modal-block-small" aria-hidden="true" style="display: none;">
+            <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content">
+                    <div class="block block-themed block-transparent mb-0">
+                        <div class="block-header bg-primary-light">
+                            <h3 class="block-title"></h3>
+                            <div class="block-options">
+                                <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
+                                    <i class="fa fa-fw fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="block-content font-size-sm">
+                            <p>Silahkan hubungi operator</p>
+                        </div>
+                        <div class="block-content block-content-full text-right border-top">
+                            <button type="button" class="btn btn-sm btn-light" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal"><i class="fa fa-check mr-1"></i>Ok</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
                 <!-- END Page Content -->
-
+                
             </main>
             <!-- END Main Container -->
         </div>
@@ -122,11 +151,12 @@
 
         <!-- Page JS Plugins -->
         <script src="<?=base_url('assets/js/plugins/jquery-validation/jquery.validate.min.js');?>"></script>
+        <script src="<?=base_url('assets/js/plugins/select2/js/select2.full.min.js');?>"></script>
 
         <!-- Page JS Code -->
         <script src="<?=base_url('assets/js/pages/op_auth_signin.min.js');?>"></script>
         
-        <script src="<?=base_url('assets/js/plugins/bootstrap-notify/bootstrap-notify.min.js');?>"></script>
-        <script>jQuery(function(){ One.helpers('notify'); });</script>
+       <!-- Page JS Helpers-->
+       <script>jQuery(function(){ One.helpers(['select2']); });</script>
     </body>
 </html>

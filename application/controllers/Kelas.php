@@ -85,6 +85,24 @@ class Kelas extends CI_Controller
 
         $this->load->view('kelas/rombel_list',$data);
     }
+    public function tambah_rombel(){
+        $kelas = $this->Kelas_model;
+        $validasi = $this->form_validation;
+        $validasi->set_rules($kelas->rules_tambah_rombel());
+
+        if($validasi->run()){
+            $kelas->saveRombel();
+            $this->session->set_flashdata('success', 'Berhasil'); 
+
+            redirect('kelas/rombel');
+        }
+        $data['title'] = "Tambah Rombel";
+        $data['actor'] = "Rombel";
+        $data['getKelas'] = $kelas->getKelas();
+        $data['getTahun'] = $kelas->getTahun();
+
+        $this->load->view('kelas/tambah_rombel',$data);
+    }
     public function rombel_tambah($id=null){
         if (!isset($id)) redirect('kelas/rombel');
         $kelas = $this->Kelas_model;
@@ -112,7 +130,8 @@ class Kelas extends CI_Controller
         $validasi = $this->form_validation;
         $kelas = $this->Kelas_model;
         if($this->input->method()=="post"){
-            $kelas->rombelsave();            
+            $kelas->rombelsave();
+            $this->session->set_flashdata('success', 'Berhasil');            
             redirect('kelas/rombel_tambah/'.$this->input->post('rombel_id'));
         }
         else{
@@ -126,7 +145,28 @@ class Kelas extends CI_Controller
             redirect('kelas/rombel_lihat/'.$rombel_id);
         }else{
             $this->Kelas_model->rombelDet($id);
+            $this->session->set_flashdata('success', 'Berhasil dihapus');
             redirect('kelas/rombel_lihat/'.$rombel_id);
+        }
+    }
+    public function rombel_hapus($id=null){
+        $kelas = $this->Kelas_model;
+            
+        if(!isset($id)){
+            redirect('kelas/rombel');
+        }else{
+            $kelas->delRombel($id);
+            $this->session->set_flashdata('success', 'Berhasil Dihapus');
+            redirect('kelas/rombel');
+        }
+    }
+    function select_validate($param)
+    {
+        if($param=="0"){
+            $this->form_validation->set_message('select_validate', 'Mohon untuk memilih {field}');
+            return false;
+        } else{
+            return true;
         }
     }
 }

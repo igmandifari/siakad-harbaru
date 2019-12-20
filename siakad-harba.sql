@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Dec 18, 2019 at 09:20 AM
+-- Generation Time: Dec 20, 2019 at 10:47 AM
 -- Server version: 10.0.38-MariaDB-0ubuntu0.16.04.1
 -- PHP Version: 7.3.12-1+ubuntu16.04.1+deb.sury.org+1
 
@@ -62,15 +62,6 @@ CREATE TABLE `jadwal` (
   `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `jadwal`
---
-
-INSERT INTO `jadwal` (`jadwal_id`, `jadwal_tipe_pembelajaran`, `jadwal_hari`, `tahunajaran_id`, `matpel_id`, `rombel_id`, `jadwal_waktu`, `created_at`, `updated_at`) VALUES
-('5df9860969011', 'Tutorial', NULL, '5df8cc9748bba', '5df84eb0476f9', '5df8cc9788218', NULL, '2019-12-18 08:51:05', '0000-00-00 00:00:00'),
-('5df988f7e00e0', 'Tatap Muka', 'Minggu', '5df8a99827fe6', '5df84e99f335f', '5df8a9984f627', '13:00-14:00', '2019-12-18 09:03:35', '0000-00-00 00:00:00'),
-('5df9892ad14d7', 'Tutorial', NULL, '5df8a99827fe6', '5df84eb0476f9', '5df8a9984f627', NULL, '2019-12-18 09:04:26', '0000-00-00 00:00:00');
-
 -- --------------------------------------------------------
 
 --
@@ -117,6 +108,37 @@ CREATE TABLE `matpel` (
 INSERT INTO `matpel` (`matpel_id`, `matpel_nama`, `tutor_id`, `created_at`, `updated_at`) VALUES
 ('5df84e99f335f', 'Bahasa Indonesia', '5df69881a9a58', '2019-12-17 10:42:17', NULL),
 ('5df84eb0476f9', 'Teknologi Informasi dan Komunikasi', '5ded0e21b5aea', '2019-12-17 10:42:40', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `nilai`
+--
+
+CREATE TABLE `nilai` (
+  `nilai_id` varchar(100) NOT NULL,
+  `rombel_id` varchar(100) NOT NULL,
+  `wargabelajar_id` varchar(100) NOT NULL,
+  `nilai_semester` enum('Ganjil','Genap') NOT NULL,
+  `created_at` int(11) NOT NULL,
+  `updated_at` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `nilai_details`
+--
+
+CREATE TABLE `nilai_details` (
+  `nilai_details_id` int(11) NOT NULL,
+  `nilai_id` varchar(100) NOT NULL,
+  `matpel_id` varchar(100) NOT NULL,
+  `nilai_details_jenis` enum('Tugas','Harian','UTS','UAS') NOT NULL,
+  `nilai_details_nilai` int(10) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -187,30 +209,18 @@ CREATE TABLE `rombel` (
 --
 
 INSERT INTO `rombel` (`rombel_id`, `tahunajaran_id`, `kelas_id`, `created_at`, `updated_at`) VALUES
-('5df88d6fbe737', '5df88d6faa2f7', '5df888a6aba4d', '2019-12-17 15:10:23', '0000-00-00 00:00:00'),
-('5df88d6fcebfd', '5df88d6faa2f7', '5df888aea0fba', '2019-12-17 15:10:23', '0000-00-00 00:00:00'),
-('5df88d6fe7431', '5df88d6faa2f7', '5df888b63addd', '2019-12-17 15:10:23', '0000-00-00 00:00:00'),
-('5df88d70166de', '5df88d6faa2f7', '5df888bcc9c18', '2019-12-17 15:10:24', '0000-00-00 00:00:00'),
-('5df88d702c470', '5df88d6faa2f7', '5df888c17d8f0', '2019-12-17 15:10:24', '0000-00-00 00:00:00'),
-('5df88d7044b80', '5df88d6faa2f7', '5df888c9667b5', '2019-12-17 15:10:24', '0000-00-00 00:00:00'),
-('5df8a99834146', '5df8a99827fe6', '5df888a6aba4d', '2019-12-17 17:10:32', '0000-00-00 00:00:00'),
-('5df8a99841c22', '5df8a99827fe6', '5df888aea0fba', '2019-12-17 17:10:32', '0000-00-00 00:00:00'),
-('5df8a9984f627', '5df8a99827fe6', '5df888b63addd', '2019-12-17 17:10:32', '0000-00-00 00:00:00'),
-('5df8a99870108', '5df8a99827fe6', '5df888bcc9c18', '2019-12-17 17:10:32', '0000-00-00 00:00:00'),
-('5df8a9987b040', '5df8a99827fe6', '5df888c17d8f0', '2019-12-17 17:10:32', '0000-00-00 00:00:00'),
-('5df8a99885deb', '5df8a99827fe6', '5df888c9667b5', '2019-12-17 17:10:32', '0000-00-00 00:00:00'),
-('5df8cc97570e2', '5df8cc9748bba', '5df888a6aba4d', '2019-12-17 19:39:51', '0000-00-00 00:00:00'),
-('5df8cc9767632', '5df8cc9748bba', '5df888aea0fba', '2019-12-17 19:39:51', '0000-00-00 00:00:00'),
-('5df8cc97750ad', '5df8cc9748bba', '5df888b63addd', '2019-12-17 19:39:51', '0000-00-00 00:00:00'),
-('5df8cc9788218', '5df8cc9748bba', '5df888bcc9c18', '2019-12-17 19:39:51', '0000-00-00 00:00:00'),
-('5df8cc97a8cea', '5df8cc9748bba', '5df888c17d8f0', '2019-12-17 19:39:51', '0000-00-00 00:00:00'),
-('5df8cc97b3b1c', '5df8cc9748bba', '5df888c9667b5', '2019-12-17 19:39:51', '0000-00-00 00:00:00'),
-('5df8cca693981', '5df8cca67ed4a', '5df888a6aba4d', '2019-12-17 19:40:06', '0000-00-00 00:00:00'),
-('5df8cca6b721c', '5df8cca67ed4a', '5df888aea0fba', '2019-12-17 19:40:06', '0000-00-00 00:00:00'),
-('5df8cca6c4b9a', '5df8cca67ed4a', '5df888b63addd', '2019-12-17 19:40:06', '0000-00-00 00:00:00'),
-('5df8cca6cf9f7', '5df8cca67ed4a', '5df888bcc9c18', '2019-12-17 19:40:06', '0000-00-00 00:00:00'),
-('5df8cca6da890', '5df8cca67ed4a', '5df888c17d8f0', '2019-12-17 19:40:06', '0000-00-00 00:00:00'),
-('5df8cca6e56c0', '5df8cca67ed4a', '5df888c9667b5', '2019-12-17 19:40:06', '0000-00-00 00:00:00');
+('5dfc396714d60', '5dfc3966f0b29', '5df888a6aba4d', '2019-12-20 10:00:55', '0000-00-00 00:00:00'),
+('5dfc3967257d5', '5dfc3966f0b29', '5df888aea0fba', '2019-12-20 10:00:55', '0000-00-00 00:00:00'),
+('5dfc396733282', '5dfc3966f0b29', '5df888b63addd', '2019-12-20 10:00:55', '0000-00-00 00:00:00'),
+('5dfc39676ef18', '5dfc3966f0b29', '5df888c17d8f0', '2019-12-20 10:00:55', '0000-00-00 00:00:00'),
+('5dfc39677f441', '5dfc3966f0b29', '5df888c9667b5', '2019-12-20 10:00:55', '0000-00-00 00:00:00'),
+('5dfc39711aace', '5dfc3970e4387', '5df888a6aba4d', '2019-12-20 10:01:05', '0000-00-00 00:00:00'),
+('5dfc397145b65', '5dfc3970e4387', '5df888aea0fba', '2019-12-20 10:01:05', '0000-00-00 00:00:00'),
+('5dfc397155e30', '5dfc3970e4387', '5df888b63addd', '2019-12-20 10:01:05', '0000-00-00 00:00:00'),
+('5dfc397173d8b', '5dfc3970e4387', '5df888bcc9c18', '2019-12-20 10:01:05', '0000-00-00 00:00:00'),
+('5dfc397184367', '5dfc3970e4387', '5df888c17d8f0', '2019-12-20 10:01:05', '0000-00-00 00:00:00'),
+('5dfc39718f162', '5dfc3970e4387', '5df888c9667b5', '2019-12-20 10:01:05', '0000-00-00 00:00:00'),
+('5dfc43248a286', '5dfc3966f0b29', '5df888bcc9c18', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -225,17 +235,6 @@ CREATE TABLE `rombel_details` (
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `rombel_details`
---
-
-INSERT INTO `rombel_details` (`rombel_details_id`, `rombel_id`, `wargabelajar_id`, `created_at`, `updated_at`) VALUES
-(8, '5df8a9984f627', '5df8c2b2d14b8', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(9, '5df8a9984f627', '5df8c9b8e20e9', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(10, '5df8a9984f627', '5df8cbbfd492d', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(11, '5df8a9984f627', '5df8cc7a68b47', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(12, '5df8a9984f627', '5df8ce3c7570f', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -253,10 +252,8 @@ CREATE TABLE `tahunajaran` (
 --
 
 INSERT INTO `tahunajaran` (`tahunajaran_id`, `tahunajaran_nama`) VALUES
-('5df8cc9748bba', '2015/2016'),
-('5df8cca67ed4a', '2016/2017'),
-('5df88d6faa2f7', '2017/2018'),
-('5df8a99827fe6', '2018/2019');
+('5dfc3966f0b29', '2017/2018'),
+('5dfc3970e4387', '2018/2019');
 
 -- --------------------------------------------------------
 
@@ -350,11 +347,12 @@ CREATE TABLE `wargabelajar` (
 --
 
 INSERT INTO `wargabelajar` (`wargabelajar_id`, `wargabelajar_nomor_induk`, `wargabelajar_nisn`, `wargabelajar_nama`, `wargabelajar_jenis_kelamin`, `wargabelajar_tempat_lahir`, `wargabelajar_tanggal_lahir`, `wargabelajar_agama`, `wargabelajar_kewarganegaraan`, `wargabelajar_alamat_jalan`, `wargabelajar_alamat_rtrw`, `wargabelajar_alamat_desa`, `wargabelajar_alamat_kecamatan`, `wargabelajar_alamat_kabupaten`, `wargabelajar_alamat_provinsi`, `wargabelajar_alamat_kodepos`, `wargabelajar_kejar`, `wargabelajar_kejar_alamat`, `wargabelajar_sttb`, `wargabelajar_masuk`, `tahunajaran_id`, `wargabelajar_status`, `wargabelajar_foto`, `wargabelajar_password`, `orangtua_ayah_nama`, `orangtua_ayah_pekerjaan`, `orangtua_ayah_alamat_jalan`, `orangtua_ayah_alamat_rtrw`, `orangtua_ayah_alamat_desa`, `orangtua_ayah_alamat_kecamatan`, `orangtua_ayah_alamat_kabupaten`, `orangtua_ayah_alamat_provinsi`, `orangtua_ayah_alamat_kodepos`, `orangtua_ibu_nama`, `orangtua_wali_nama`, `orangtua_wali_pekerjaan`, `orangtua_wali_alamat_jalan`, `orangtua_wali_alamat_rtrw`, `orangtua_wali_alamat_desa`, `orangtua_wali_alamat_kecamatan`, `orangtua_wali_alamat_kabupaten`, `orangtua_wali_alamat_provinsi`, `orangtua_wali_alamat_kodepos`) VALUES
-('5df8c2b2d14b8', '161707010', '9999744534', 'Ikhwan Sopyan', 'Pria', 'Kota Tasikmalaya', '1999-02-08', 'Islam', 'WNI', 'Sukagenah', '003/004', 'Sambongjaya', 'Mangkubumi', 'Kota Tasikmalaya', 'Jawa Barat', '46182', 'SDN Sambong Permai', 'Sambong Permai', 'DN-02 Dd 0447031', '2016-08-18', '5df8cca67ed4a', 'Aktif', 'default.jpg', '6e05318127e5514d96409809949da34a', 'Yayan Sopyan', 'Wiraswasta', 'Sukagenah', '003/004', 'Sambongjaya', 'Mangkubumi', 'Kota Tasikmalaya', 'Jawa Barat', '46182', 'Ika Sumartika', '', '', '', '', '', '', '', '', ''),
-('5df8c9b8e20e9', '161707011', '0001162375', 'Maulana Sabirin', 'Pria', 'Tasikmalaya', '2000-01-25', 'Islam', NULL, 'Citamiang', '004/008', 'Tanjung', 'Kawalu', 'Kota Tasikmalaya', 'Jawa Barat', '46182', 'SDN Tanjung I', '', 'DN-02 Dd 0743335', '2016-07-18', '5df8cca67ed4a', 'Aktif', 'default.jpg', 'dfae2d4281483cbe50273b4f97fbcfb3', 'E. Sutisna', 'Buruh', 'Citamiang', '004/008', 'Tanjung', 'Kawalu', 'Kota Tasikmalaya', 'Jawa Barat', '46182', 'Empay', '', '', '', '', '', '', '', '', ''),
-('5df8cbbfd492d', '161707012', '0028750718', 'Muhammad Ramadhani', 'Pria', 'Ciamis', '2002-11-18', 'Islam', NULL, 'Ciherang', '021/008', 'Sukasenang', 'Sindangkasih', 'Kabupaten Ciamis', 'Jawa Barat', '', 'SDN 2 Sukasenang', '', 'DN-02 Dd 0393525', '2016-07-18', '5df8cca67ed4a', 'Aktif', 'default.jpg', '25dbb894dd9067163c225ca7ea7cf928', 'Sopyan Saori', 'Buruh', 'Ciherang', '021/008', 'Sukasenang', 'Sindangkasih', 'Kabupaten Ciamis', 'Jawa Barat', '', 'Nunung Nurjanah', '', '', '', '', '', '', '', '', ''),
-('5df8cc7a68b47', '161707013', '9957772263', 'Nanang Nurdiana', 'Pria', 'Tasikmalaya', '1995-10-17', 'Islam', NULL, 'Gargadung', '003/004', 'Cigantang', 'Mangkubumi', 'Kota Tasikmalaya', 'Jawa Barat', '46181', 'SDN Cigantang II', '', 'DN-02Dd 0652357', '2016-07-18', '5df8cca67ed4a', 'Aktif', 'default.jpg', 'fb732a75ae4b8582e748b6bbf73f9b2e', 'Juju', 'Buruh', 'Gargadung', '003/004', 'Cigantang', 'Mangkubumi', 'Kota Tasikmalaya', 'Jawa Barat', '46181', 'Maesaroh', '', '', '', '', '', '', '', '', ''),
-('5df8ce3c7570f', '161707014', '9809430487', 'Nia Kurniawati', 'Wanita', 'Tasikmalaya', '1980-07-06', 'Islam', '', 'Gargadung', '001/004', 'Cigantang', 'Mangkubumi', 'Kota Tasikmalaya', 'Jawa Barat', '46181', 'SDN Sambongpari', '', '02 0A oa 0684123', '2016-07-18', '5df8cca67ed4a', 'Aktif', 'default.jpg', '4f2e28bffc5afa0a85b13e8c033a3d00', 'Ano Karno', 'Buruh', 'Gargadung', '001/004', 'Cigantang', 'Mangkubumi', 'Kota Tasikmalaya', 'Jawa Barat', '46181', 'Maryati', '', '', '', '', '', '', '', '', '');
+('5df8c2b2d14b8', '171807010', '9999744534', 'Ikhwan Sopyan', 'Pria', 'Kota Tasikmalaya', '1999-02-08', 'Islam', 'WNI', 'Sukagenah', '003/004', 'Sambongjaya', 'Mangkubumi', 'Kota Tasikmalaya', 'Jawa Barat', '46182', 'SDN Sambong Permai', 'Sambong Permai', 'DN-02 Dd 0447031', '2017-07-18', '5dfc3966f0b29', 'Aktif', 'default.jpg', '6e05318127e5514d96409809949da34a', 'Yayan Sopyan', 'Wiraswasta', 'Sukagenah', '003/004', 'Sambongjaya', 'Mangkubumi', 'Kota Tasikmalaya', 'Jawa Barat', '46182', 'Ika Sumartika', '', '', '', '', '', '', '', '', ''),
+('5df8c9b8e20e9', '171807011', '0001162375', 'Maulana Sabirin', 'Pria', 'Tasikmalaya', '2000-01-25', 'Islam', NULL, 'Citamiang', '004/008', 'Tanjung', 'Kawalu', 'Kota Tasikmalaya', 'Jawa Barat', '46182', 'SDN Tanjung I', '', 'DN-02 Dd 0743335', '2017-07-18', '5dfc3966f0b29', 'Aktif', 'default.jpg', 'dfae2d4281483cbe50273b4f97fbcfb3', 'E. Sutisna', 'Buruh', 'Citamiang', '004/008', 'Tanjung', 'Kawalu', 'Kota Tasikmalaya', 'Jawa Barat', '46182', 'Empay', '', '', '', '', '', '', '', '', ''),
+('5df8cbbfd492d', '171807012', '0028750718', 'Muhammad Ramadhani', 'Pria', 'Ciamis', '2002-11-18', 'Islam', NULL, 'Ciherang', '021/008', 'Sukasenang', 'Sindangkasih', 'Kabupaten Ciamis', 'Jawa Barat', '', 'SDN 2 Sukasenang', '', 'DN-02 Dd 0393525', '2017-07-18', '5dfc3966f0b29', 'Aktif', 'default.jpg', '25dbb894dd9067163c225ca7ea7cf928', 'Sopyan Saori', 'Buruh', 'Ciherang', '021/008', 'Sukasenang', 'Sindangkasih', 'Kabupaten Ciamis', 'Jawa Barat', '', 'Nunung Nurjanah', '', '', '', '', '', '', '', '', ''),
+('5df8cc7a68b47', '171807013', '9957772263', 'Nanang Nurdiana', 'Pria', 'Tasikmalaya', '1995-10-17', 'Islam', NULL, 'Gargadung', '003/004', 'Cigantang', 'Mangkubumi', 'Kota Tasikmalaya', 'Jawa Barat', '46181', 'SDN Cigantang II', '', 'DN-02Dd 0652357', '2017-07-18', '5dfc3966f0b29', 'Aktif', 'default.jpg', 'fb732a75ae4b8582e748b6bbf73f9b2e', 'Juju', 'Buruh', 'Gargadung', '003/004', 'Cigantang', 'Mangkubumi', 'Kota Tasikmalaya', 'Jawa Barat', '46181', 'Maesaroh', '', '', '', '', '', '', '', '', ''),
+('5df8ce3c7570f', '171807014', '9809430487', 'Nia Kurniawati', 'Wanita', 'Tasikmalaya', '1980-07-06', 'Islam', NULL, 'Gargadung', '001/004', 'Cigantang', 'Mangkubumi', 'Kota Tasikmalaya', 'Jawa Barat', '46181', 'SDN Sambongpari', '', '02 0A oa 0684123', '2017-07-18', '5dfc3966f0b29', 'Aktif', 'default.jpg', '4f2e28bffc5afa0a85b13e8c033a3d00', 'Ano Karno', 'Buruh', 'Gargadung', '001/004', 'Cigantang', 'Mangkubumi', 'Kota Tasikmalaya', 'Jawa Barat', '46181', 'Maryati', '', '', '', '', '', '', '', '', ''),
+('5dfc3f1b90991', '171807015', '9980731840', 'Amat Rustendi', 'Pria', 'Tasikmalaya', '2018-07-16', 'Islam', '', '', '', '', '', '', '', '', 'SMPN 20 Tasikmalaya', '', 'DN-02 DI 0117579/14 Juni 2014', '2017-07-18', '5dfc3966f0b29', 'Aktif', 'default.jpg', '065f88a9a7f82a0baec5a6e337ed5a8a', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
 
 --
 -- Indexes for dumped tables
@@ -389,6 +387,22 @@ ALTER TABLE `kelas`
 ALTER TABLE `matpel`
   ADD PRIMARY KEY (`matpel_id`),
   ADD KEY `tutor_id` (`tutor_id`);
+
+--
+-- Indexes for table `nilai`
+--
+ALTER TABLE `nilai`
+  ADD PRIMARY KEY (`nilai_id`),
+  ADD KEY `rombel_id` (`rombel_id`),
+  ADD KEY `wargabelajar_id` (`wargabelajar_id`);
+
+--
+-- Indexes for table `nilai_details`
+--
+ALTER TABLE `nilai_details`
+  ADD PRIMARY KEY (`nilai_details_id`),
+  ADD KEY `nilai_id` (`nilai_id`),
+  ADD KEY `matpel_id` (`matpel_id`);
 
 --
 -- Indexes for table `pimpinan`
@@ -457,6 +471,11 @@ ALTER TABLE `wargabelajar`
 --
 
 --
+-- AUTO_INCREMENT for table `nilai_details`
+--
+ALTER TABLE `nilai_details`
+  MODIFY `nilai_details_id` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT for table `presensi_details`
 --
 ALTER TABLE `presensi_details`
@@ -465,7 +484,7 @@ ALTER TABLE `presensi_details`
 -- AUTO_INCREMENT for table `rombel_details`
 --
 ALTER TABLE `rombel_details`
-  MODIFY `rombel_details_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `rombel_details_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- Constraints for dumped tables
 --
@@ -483,6 +502,20 @@ ALTER TABLE `jadwal`
 --
 ALTER TABLE `matpel`
   ADD CONSTRAINT `tutor` FOREIGN KEY (`tutor_id`) REFERENCES `tutor` (`tutor_id`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `nilai`
+--
+ALTER TABLE `nilai`
+  ADD CONSTRAINT `ke rombel` FOREIGN KEY (`rombel_id`) REFERENCES `rombel` (`rombel_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `ke wargabelajar` FOREIGN KEY (`wargabelajar_id`) REFERENCES `wargabelajar` (`wargabelajar_id`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `nilai_details`
+--
+ALTER TABLE `nilai_details`
+  ADD CONSTRAINT `ke matpel` FOREIGN KEY (`matpel_id`) REFERENCES `matpel` (`matpel_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `ke nilai` FOREIGN KEY (`nilai_id`) REFERENCES `nilai` (`nilai_id`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `presensi_details`
@@ -509,7 +542,7 @@ ALTER TABLE `rombel_details`
 -- Constraints for table `wargabelajar`
 --
 ALTER TABLE `wargabelajar`
-  ADD CONSTRAINT `tahun_masuk_ajaran` FOREIGN KEY (`tahunajaran_id`) REFERENCES `tahunajaran` (`tahunajaran_id`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `x` FOREIGN KEY (`tahunajaran_id`) REFERENCES `tahunajaran` (`tahunajaran_id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

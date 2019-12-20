@@ -55,22 +55,11 @@
         <script src="<?=base_url('assets/js/plugins/datatables/buttons/buttons.colVis.min.js');?>"></script>
 
         <!-- Page JS Code -->
-        <script src="<?=base_url('assets/js/plugins/bootstrap-notify/bootstrap-notify.min.js');?>"></script>
+        <script src="<?=base_url('assets/js/plugins/select2/js/select2.full.min.js');?>"></script>
         <script src="<?=base_url('assets/js/pages/be_tables_datatables.min.js');?>"></script>
-        <script>
-            $(function()
-            {
-                $("#form").validate(
-                    {
-                        rules: 
-                        {
-                            tahunajaran_id: 
-                            {
-                                required: true
-                            }
-                        }
-                    });	
-            })
-        </script>
+
+        <!-- Page JS Helpers-->
+       <script>jQuery(function(){ One.helpers(['select2']); });</script>
+        
     </body>
 </html>

@@ -26,7 +26,11 @@
     <!-- Dynamic Table Full -->
     <div class="block">
         <div class="block-header">
-            
+            <a href="<?=base_url('kelas/tambah_rombel')?>">
+                <button type="button" class="btn btn-success mr-1 mb-3">
+                    <i class="fa fa-fw fa-plus mr-1"></i> Tambah Data
+                </button>
+            </a>
         </div>
         <div class="block-content block-content-full">
         <?php if ($this->session->flashdata('success')): ?>
@@ -58,10 +62,13 @@
                         <td class="text-center">
                             <div class="btn-group btn-group-sm" role="group" aria-label="Small Outline Primary">
                                 <a href="<?=base_url('kelas/rombel_tambah/').$rombel->rombel_id;?>">
-                                    <button type="button" class="btn btn-outline-secondary">Masukan</button>
+                                    <button type="button" class="btn btn-outline-secondary btn-sm">Masukan</button>
                                 </a>
                                 <a href="<?=base_url('kelas/rombel_lihat/').$rombel->rombel_id;?>">
-                                    <button type="button" class="btn btn-outline-secondary">Lihat</button>
+                                    <button type="button" class="btn btn-outline-secondary btn-sm">Lihat</button>
+                                </a>
+                                <a href="<?=base_url('kelas/rombel_hapus/').$rombel->rombel_id;?>">
+                                    <button type="button" class="btn btn-outline-secondary btn-sm">Hapus</button>
                                 </a>
                             </div>
                         </td>

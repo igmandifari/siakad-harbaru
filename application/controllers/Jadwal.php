@@ -133,6 +133,17 @@ class Jadwal extends CI_Controller
             $this->session->set_flashdata('failed', 'Gagal');
         }
     }
+    public function delTahun($id=null){
+        $jadwal = $this->Jadwal_model;
+            
+        if(!isset($id)){
+            redirect('jadwal');
+        }else{
+            $jadwal->delTahun($id);
+            $this->session->set_flashdata('success', 'Berhasil Dihapus');
+            redirect('jadwal');
+        }
+    }
     function select_validate($param)
     {
         if($param=="0"){

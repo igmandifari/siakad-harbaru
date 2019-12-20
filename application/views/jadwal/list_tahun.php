@@ -64,10 +64,13 @@
                             <td class="text-center">
                                 <div class="btn-group btn-group-sm" role="group" aria-label="Small Outline Primary">
                                     <a href="<?=base_url('jadwal/matpel_tambah/').$tahun->tahunajaran_id?>">
-                                        <button type="button" class="btn btn-outline-secondary">Masukan</button>
+                                        <button type="button" class="btn btn-outline-secondary btn-sm">Masukan</button>
                                     </a>
                                     <a href="<?=base_url('jadwal/matpel_lihat/').$tahun->tahunajaran_id?>">
-                                        <button type="button" class="btn btn-outline-secondary">Lihat</button>
+                                        <button type="button" class="btn btn-outline-secondary btn-sm">Lihat</button>
+                                    </a>
+                                    <a href="<?=base_url('jadwal/delTahun/').$tahun->tahunajaran_id?>">
+                                        <button type="button" class="btn btn-outline-secondary btn-sm">Hapus</button>
                                     </a>
                                 </div>
                             </td>

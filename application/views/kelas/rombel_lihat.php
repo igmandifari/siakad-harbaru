@@ -70,7 +70,7 @@
                         <td><?=$wargabelajar->wargabelajar_nisn;?>
                         <td class="text-center">
                             <a href="<?=base_url('kelas/rombel_det_hapus/').$wargabelajar->rombel_details_id.'/'.$wargabelajar->rombel_id?>">
-                                <button id="<?=$no?>" type="submit" class="btn btn-outline-secondary">Hapus</button>
+                                <button id="<?=$no?>" type="submit" class="btn btn-outline-secondary btn-sm">Hapus</button>
                             </a>  
                         </td>
                     </tr>
