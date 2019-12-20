@@ -264,6 +264,7 @@
                             <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
                                 <thead>
                                     <tr>
+                                        <th>NO</th>
                                         <th>Tipe Pembelajaran</th>
                                         <th>Mata Pelajaran</th>
                                         <th>Kelas</th>
@@ -272,8 +273,9 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach($all_jadwal_mengajar as $jadwalmengajar):?>
+                                    <?php $no=0; foreach($all_jadwal_mengajar as $jadwalmengajar):$no++?>
                                         <tr>
+                                            <td><?=$no?></td>
                                             <td><?=$jadwalmengajar->jadwal_tipe_pembelajaran?></td>
                                             <td><?=$jadwalmengajar->matpel_nama?></td>
                                             <td><?=$jadwalmengajar->kelas_nama?></td>
