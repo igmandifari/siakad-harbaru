@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Dec 20, 2019 at 10:47 AM
+-- Generation Time: Dec 22, 2019 at 11:51 AM
 -- Server version: 10.0.38-MariaDB-0ubuntu0.16.04.1
 -- PHP Version: 7.3.12-1+ubuntu16.04.1+deb.sury.org+1
 
@@ -62,6 +62,20 @@ CREATE TABLE `jadwal` (
   `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `jadwal`
+--
+
+INSERT INTO `jadwal` (`jadwal_id`, `jadwal_tipe_pembelajaran`, `jadwal_hari`, `tahunajaran_id`, `matpel_id`, `rombel_id`, `jadwal_waktu`, `created_at`, `updated_at`) VALUES
+('5dfc9c4b29ca8', 'Tatap Muka', 'Jum\'at', '5dfc3970e4387', '5dfc9b6d70641', '5dfc397184367', '13:00-14:00', '2019-12-20 17:02:51', '0000-00-00 00:00:00'),
+('5dfc9d1b7968b', 'Tatap Muka', 'Jum\'at', '5dfc3970e4387', '5dfc9b3db0980', '5dfc397184367', '14:00-15:00', '2019-12-20 17:06:19', '0000-00-00 00:00:00'),
+('5dfc9d36a3f25', 'Tatap Muka', 'Sabtu', '5dfc3970e4387', '5dfc9b496c0f2', '5dfc397184367', '13:00-14:00', '2019-12-20 17:06:46', '0000-00-00 00:00:00'),
+('5dfc9d620f773', 'Tatap Muka', 'Sabtu', '5dfc3970e4387', '5dfc9b5f4c607', '5dfc397184367', '14:00-15:00', '2019-12-20 17:07:30', '0000-00-00 00:00:00'),
+('5dfc9da09b91e', 'Tatap Muka', 'Minggu', '5dfc3970e4387', '5df84e99f335f', '5dfc397184367', '13:00-14:00', '2019-12-20 17:08:32', '0000-00-00 00:00:00'),
+('5dfc9dd11bb3f', 'Mandiri', NULL, '5dfc3970e4387', '5dfc9c2a3f68d', '5dfc397184367', NULL, '2019-12-20 17:09:21', '0000-00-00 00:00:00'),
+('5dfc9ded08c0c', 'Tutorial', NULL, '5dfc3970e4387', '5df84eb0476f9', '5dfc397184367', NULL, '2019-12-20 17:09:49', '0000-00-00 00:00:00'),
+('5dfc9e164dcf0', 'Tatap Muka', 'Minggu', '5dfc3970e4387', '5dfc9b8d1a405', '5dfc397184367', '14:00-15:00', '2019-12-20 17:10:30', '0000-00-00 00:00:00');
+
 -- --------------------------------------------------------
 
 --
@@ -107,7 +121,13 @@ CREATE TABLE `matpel` (
 
 INSERT INTO `matpel` (`matpel_id`, `matpel_nama`, `tutor_id`, `created_at`, `updated_at`) VALUES
 ('5df84e99f335f', 'Bahasa Indonesia', '5df69881a9a58', '2019-12-17 10:42:17', NULL),
-('5df84eb0476f9', 'Teknologi Informasi dan Komunikasi', '5ded0e21b5aea', '2019-12-17 10:42:40', NULL);
+('5df84eb0476f9', 'Teknologi Informasi dan Komunikasi', '5ded0e21b5aea', '2019-12-17 10:42:40', NULL),
+('5dfc9b3db0980', 'Geografi', '5dfc9a88e27cb', '2019-12-20 16:58:21', NULL),
+('5dfc9b496c0f2', 'Matematika', '5dfc9aab6ada9', '2019-12-20 16:58:33', NULL),
+('5dfc9b5f4c607', 'Sosiologi', '5dfc9a88e27cb', '2019-12-20 16:58:55', NULL),
+('5dfc9b6d70641', 'Ekonomi', '5dfc9b297a427', '2019-12-20 16:59:09', NULL),
+('5dfc9b8d1a405', 'Pendidikan Pancasila dan Kewarganegaraan', '5df69881a9a58', '2019-12-20 16:59:41', NULL),
+('5dfc9c2a3f68d', 'Pendidikan Agama Islam', '5dfc9bafd6bb6', '2019-12-20 17:02:18', NULL);
 
 -- --------------------------------------------------------
 
@@ -119,6 +139,7 @@ CREATE TABLE `nilai` (
   `nilai_id` varchar(100) NOT NULL,
   `rombel_id` varchar(100) NOT NULL,
   `wargabelajar_id` varchar(100) NOT NULL,
+  `matpel_id` varchar(100) NOT NULL,
   `nilai_semester` enum('Ganjil','Genap') NOT NULL,
   `created_at` int(11) NOT NULL,
   `updated_at` int(11) NOT NULL
@@ -133,7 +154,6 @@ CREATE TABLE `nilai` (
 CREATE TABLE `nilai_details` (
   `nilai_details_id` int(11) NOT NULL,
   `nilai_id` varchar(100) NOT NULL,
-  `matpel_id` varchar(100) NOT NULL,
   `nilai_details_jenis` enum('Tugas','Harian','UTS','UAS') NOT NULL,
   `nilai_details_nilai` int(10) NOT NULL,
   `created_at` datetime NOT NULL,
@@ -236,6 +256,18 @@ CREATE TABLE `rombel_details` (
   `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `rombel_details`
+--
+
+INSERT INTO `rombel_details` (`rombel_details_id`, `rombel_id`, `wargabelajar_id`, `created_at`, `updated_at`) VALUES
+(1, '5dfc397184367', '5df8c2b2d14b8', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(2, '5dfc397184367', '5df8c9b8e20e9', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(3, '5dfc397184367', '5df8cbbfd492d', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(4, '5dfc397184367', '5df8cc7a68b47', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(5, '5dfc397184367', '5df8ce3c7570f', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(6, '5dfc397184367', '5dfc3f1b90991', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+
 -- --------------------------------------------------------
 
 --
@@ -288,7 +320,11 @@ CREATE TABLE `tutor` (
 
 INSERT INTO `tutor` (`tutor_id`, `tutor_nomor_induk`, `tutor_nama`, `tutor_jenis_kelamin`, `tutor_tempat_lahir`, `tutor_tanggal_lahir`, `tutor_agama`, `tutor_kewarganegaraan`, `tutor_pendidikan_terakhir`, `tutor_alamat_jalan`, `tutor_alamat_rtrw`, `tutor_alamat_desa`, `tutor_alamat_kecamatan`, `tutor_alamat_kabupaten`, `tutor_alamat_provinsi`, `tutor_alamat_kodepos`, `tutor_foto`, `tutor_password`) VALUES
 ('5ded0e21b5aea', '982032', 'Zam Zam Saeful Bahtiar', 'Pria', 'Tasikmalaya', '1999-05-18', 'Islam', 'WNI', 'SLTA Sederajat', 'Cihonje', '002/002', 'Karanganyar', 'Kawalu', 'Tasikmalaya', 'Jawa Barat', '46182', 'default.jpg', 'b5be1ec647cc6d4786921e92e34eee1a'),
-('5df69881a9a58', '5999999', 'Dewi Fortuna Kamila', 'Wanita', 'Tasikmalaya', '1999-12-16', 'Islam', 'WNI', 'SLTA Sederajat', 'Cijerah', '003/005', 'Karanganyar', 'Kawalu', 'Kota Tasikmalaya', 'Jawa Barat', '46182', 'default.jpg', 'b3aa34645bc463218f17d9364d4c204e');
+('5df69881a9a58', '5999999', 'Dewi Fortuna Kamila', 'Wanita', 'Tasikmalaya', '1999-12-16', 'Islam', 'WNI', 'SLTA Sederajat', 'Cijerah', '003/005', 'Karanganyar', 'Kawalu', 'Kota Tasikmalaya', 'Jawa Barat', '46182', 'default.jpg', 'b3aa34645bc463218f17d9364d4c204e'),
+('5dfc9a88e27cb', '0923092', 'Neneng', 'Wanita', 'Tasikmalaya', '1989-10-20', 'Islam', 'WNI', 'S1', '', '', '', '', '', '', '', 'default.jpg', '5bca3ef34535aa78d0deb95a9441e018'),
+('5dfc9aab6ada9', '023920', 'Syamsul Azis S.Pd', 'Pria', 'Tasikmalaya', '1993-08-08', 'Islam', 'WNI', 'S1', '', '', '', '', '', '', '', 'default.jpg', '0c986e38ec013846cc6fdfb84e0618d0'),
+('5dfc9b297a427', '92302184104', 'Wildan Rahmah Hakim, S.Pd', 'Wanita', 'Tasikmalaya', '1987-11-05', 'Islam', 'WNI', 'S1', '', '', '', '', '', '', '', 'default.jpg', 'd995862d22262d60114145c621020a64'),
+('5dfc9bafd6bb6', '903284093', 'Hendra', 'Pria', 'Tasikmalaya', '1978-10-02', 'Islam', 'WNI', 'S1', '', '', '', '', '', '', '', 'default.jpg', 'be0ca000923be805c0e10a7419786dfa');
 
 -- --------------------------------------------------------
 
@@ -394,15 +430,15 @@ ALTER TABLE `matpel`
 ALTER TABLE `nilai`
   ADD PRIMARY KEY (`nilai_id`),
   ADD KEY `rombel_id` (`rombel_id`),
-  ADD KEY `wargabelajar_id` (`wargabelajar_id`);
+  ADD KEY `wargabelajar_id` (`wargabelajar_id`),
+  ADD KEY `matpel_id` (`matpel_id`);
 
 --
 -- Indexes for table `nilai_details`
 --
 ALTER TABLE `nilai_details`
   ADD PRIMARY KEY (`nilai_details_id`),
-  ADD KEY `nilai_id` (`nilai_id`),
-  ADD KEY `matpel_id` (`matpel_id`);
+  ADD KEY `nilai_id` (`nilai_id`);
 
 --
 -- Indexes for table `pimpinan`
@@ -484,7 +520,7 @@ ALTER TABLE `presensi_details`
 -- AUTO_INCREMENT for table `rombel_details`
 --
 ALTER TABLE `rombel_details`
-  MODIFY `rombel_details_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `rombel_details_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- Constraints for dumped tables
 --
@@ -508,13 +544,13 @@ ALTER TABLE `matpel`
 --
 ALTER TABLE `nilai`
   ADD CONSTRAINT `ke rombel` FOREIGN KEY (`rombel_id`) REFERENCES `rombel` (`rombel_id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `ke wargabelajar` FOREIGN KEY (`wargabelajar_id`) REFERENCES `wargabelajar` (`wargabelajar_id`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `ke wargabelajar` FOREIGN KEY (`wargabelajar_id`) REFERENCES `wargabelajar` (`wargabelajar_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `matpeell` FOREIGN KEY (`matpel_id`) REFERENCES `matpel` (`matpel_id`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `nilai_details`
 --
 ALTER TABLE `nilai_details`
-  ADD CONSTRAINT `ke matpel` FOREIGN KEY (`matpel_id`) REFERENCES `matpel` (`matpel_id`) ON UPDATE CASCADE,
   ADD CONSTRAINT `ke nilai` FOREIGN KEY (`nilai_id`) REFERENCES `nilai` (`nilai_id`) ON UPDATE CASCADE;
 
 --
