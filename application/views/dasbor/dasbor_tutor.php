@@ -12,15 +12,15 @@
 
         <!-- Icons -->
         <!-- The following icons can be replaced with your own, they are used by desktop and mobile browsers -->
-        <link rel="shortcut icon" href="assets/media/favicons/favicon.png">
-        <link rel="icon" type="image/png" sizes="192x192" href="assets/media/favicons/favicon-192x192.png">
-        <link rel="apple-touch-icon" sizes="180x180" href="assets/media/favicons/apple-touch-icon-180x180.png">
+        <link rel="shortcut icon" href="<?=base_url('assets/media/favicons/favicon.png')?>">
+        <link rel="icon" type="image/png" sizes="192x192" href="<?=base_url('assets/media/favicons/favicon-192x192.png')?>">
+        <link rel="apple-touch-icon" sizes="180x180" href="<?=base_url('assets/media/favicons/apple-touch-icon-180x180.png')?>">
         <!-- END Icons -->
 
         <!-- Stylesheets -->
         <!-- Fonts and OneUI framework -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400italic,600,700%7COpen+Sans:300,400,400italic,600,700">
-        <link rel="stylesheet" id="css-main" href="assets/css/oneui.min.css">
+        <link rel="stylesheet" id="css-main" href="<?=base_url('assets/css/oneui.min.css')?>">
 
         <!-- You can include a specific file from css/themes/ folder to alter the default color theme of the template. eg: -->
         <!-- <link rel="stylesheet" id="css-theme" href="assets/css/themes/amethyst.min.css"> -->
@@ -151,6 +151,18 @@
                                 <span class="nav-main-link-name">Pengaturan</span>
                             </a>
                         </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="<?=base_url('profil')?>">
+                            <i class="nav-main-link-icon si si-user ml-1"></i>
+                                <span class="nav-main-link-name">Profil</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="<?=base_url('auth/logut')?>">
+                            <i class="nav-main-link-icon si si-logout ml-1"></i>
+                                <span class="nav-main-link-name">Keluar</span>
+                            </a>
+                        </li>
                         
                    
                        
@@ -178,6 +190,7 @@
                         <button type="button" class="btn btn-sm btn-dual mr-2 d-none d-lg-inline-block" data-toggle="layout" data-action="sidebar_mini_toggle">
                             <i class="fa fa-fw fa-ellipsis-v"></i>
                         </button>
+                        <span class="badge badge-pill badge-info"><i class="fa fa-info-circle"></i> Tahun Ajaran <?=$this->session->userdata('tahunajaran_nama');?></span>
                         <!-- END Toggle Mini Sidebar -->
 
                         <!-- END Apps Modal -->
@@ -288,7 +301,7 @@
             assets/js/core/jquery.appear.min.js
             assets/js/core/js.cookie.min.js
         -->
-        <script src="assets/js/oneui.core.min.js"></script>
+        <script src="<?=base_url('assets/js/oneui.core.min.js')?>"></script>
 
         <!--
             OneUI JS
@@ -296,12 +309,12 @@
             Custom functionality including Blocks/Layout API as well as other vital and optional helpers
             webpack is putting everything together at assets/_es6/main/app.js
         -->
-        <script src="assets/js/oneui.app.min.js"></script>
+        <script src="<?=base_url('assets/js/oneui.app.min.js')?>"></script>
 
         <!-- Page JS Plugins -->
-        <script src="assets/js/plugins/chart.js/Chart.bundle.min.js"></script>
+        <script src="<?=base_url('assets/js/plugins/chart.js/Chart.bundle.min.js')?>"></script>
 
         <!-- Page JS Code -->
-        <script src="assets/js/pages/be_pages_dashboard.min.js"></script>
+        <script src="<?=base_url('assets/js/pages/be_pages_dashboard.min.js')?>"></script>
     </body>
 </html>

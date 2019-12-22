@@ -66,7 +66,7 @@
                             <form method="post" action="<?=base_url('kelas/rombel_simpan')?>">
                                 <input type="hidden" name="rombel_id" value="<?=$this->uri->segment('3')?>">
                                 <input type="hidden" name="wargabelajar_id" value="<?=$wargabelajar->wargabelajar_id?>">
-                                <button id="tambah<?=$no?>" type="submit" class="btn btn-outline-secondary">Masukan</button>
+                                <button id="tambah<?=$no?>" type="submit" class="btn btn-outline-secondary btn-sm">Masukan</button>
                             </a>
                             </form>    
                         </td>

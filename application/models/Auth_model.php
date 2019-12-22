@@ -6,15 +6,20 @@ class Auth_model extends CI_Model {
         return[
            
             [
-                'field'     => 'username',
+                'field'     => 'login-username',
                 'label'     => 'username',
                 'rules'     => 'required|trim|xss_clean',
 
             ],
             [
-                'field'     => 'password',
+                'field'     => 'login-password',
                 'label'     => 'password',
                 'rules'     => 'required|xss_clean',
+            ],
+            [
+                'field'     => 'tahunajaran_id',
+                'label'     => 'Tahun Ajaran',
+                'rules'     => 'required|xss_clean|callback_select_validate',
             ]
         ];
     }
@@ -43,5 +48,12 @@ class Auth_model extends CI_Model {
         $this->db->where('wargabelajar_password',md5(sha1($password)));
         $user = $this->db->get('wargabelajar')->row_array();
         return $user;
+    }
+    public function getTahunAjaran(){
+        return $this->db->get('tahunajaran')->result();
+    }
+    public function getAjaranByID($tahunajaran){
+        $this->db->where('tahunajaran_id', $tahunajaran);
+        return $this->db->get('tahunajaran')->row_array();
     }
 } 

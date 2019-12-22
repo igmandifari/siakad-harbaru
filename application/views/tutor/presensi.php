@@ -18,7 +18,6 @@
         <!-- END Icons -->
 
         <!-- Stylesheets -->
-        
         <!-- Page JS Plugins CSS -->
         <link rel="stylesheet" href="<?=base_url('assets/js/plugins/datatables/dataTables.bootstrap4.css')?>">
         <link rel="stylesheet" href="<?=base_url('assets/js/plugins/datatables/buttons-bs4/buttons.bootstrap4.min.css')?>">
@@ -155,6 +154,18 @@
                                 <span class="nav-main-link-name">Pengaturan</span>
                             </a>
                         </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="<?=base_url('profil')?>">
+                            <i class="nav-main-link-icon si si-user ml-1"></i>
+                                <span class="nav-main-link-name">Profil</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="<?=base_url('auth/logut')?>">
+                            <i class="nav-main-link-icon si si-logout ml-1"></i>
+                                <span class="nav-main-link-name">Keluar</span>
+                            </a>
+                        </li>
                         
                    
                        
@@ -182,8 +193,10 @@
                         <button type="button" class="btn btn-sm btn-dual mr-2 d-none d-lg-inline-block" data-toggle="layout" data-action="sidebar_mini_toggle">
                             <i class="fa fa-fw fa-ellipsis-v"></i>
                         </button>
+                        <span class="badge badge-pill badge-info"><i class="fa fa-info-circle"></i> Tahun Ajaran <?=$this->session->userdata('tahunajaran_nama');?></span>
                         <!-- END Toggle Mini Sidebar -->
 
+                        <!-- END Apps Modal -->
 
                         
                     </div>
@@ -234,26 +247,24 @@
 
             <!-- Main Container -->
             <main id="main-container">
+
                 <!-- Hero -->
-                <div class="bg-body-light">
-                    <div class="content content-full">
-                        <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
-                            
-                            <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
-                                <ol class="breadcrumb breadcrumb-alt">
-                                    <li class="breadcrumb-item"><?=$actor;?></li>
-                                    <li class="breadcrumb-item" aria-current="page">
-                                        <a class="link-fx" href=""><?=$title;?></a>
-                                    </li>
-                                </ol>
-                            </nav>
+                <div class="bg-image overflow-hidden" style="background-image: url('assets/media/photos/photo3@2x.jpg');">
+                    <div class="bg-primary-dark-op">
+                        <div class="content content-narrow content-full">
+                            <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center mt-5 mb-2 text-center text-sm-left">
+                                <div class="flex-sm-fill">
+                                    <h1 class="font-w600 text-white mb-0 invisible" data-toggle="appear"><?=$title?></h1>
+                                    <h2 class="h4 font-w400 text-white-75 mb-0 invisible" data-toggle="appear" data-timeout="250">Selamat Datang <?= $this->session->userdata('nama');?></h2>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <!-- END Hero -->
 
-                <!-- Page Content -->
-                <div class="content">
+                                <!-- Page Content -->
+                                <div class="content">
                     <!-- Jadwal -->
                     <div class="block">
                         <div class="block-header">
@@ -265,6 +276,7 @@
                             <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
                                 <thead class="text-center">
                                     <tr>
+                                        <th>NO</th>
                                         <th>Mata Pelajaran</th>
                                         <th>Kelas</th>
                                         <th>Hari</th>
@@ -273,15 +285,16 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach($SemuaKelas as $kelas):?>
+                                    <?php $no=0;foreach($SemuaKelas as $kelas):$no++?>
                                         <tr>
+                                            <td><?=$no?></td>
                                             <td><?=$kelas->matpel_nama?></td>
                                             <td><?=$kelas->kelas_nama?></td>
                                             <td><?=$kelas->jadwal_hari?></td>
                                             <td><?=$kelas->jadwal_waktu?></td>
                                             <td class="text-center">
                                                 <a href="<?=base_url('presensi/jadwal/'.$kelas->jadwal_id.'')?>">
-                                                <button type="button" class="btn btn-secondary">Lakukan Presensi!</button>
+                                                <button type="button" class="btn btn-secondary btn-sm">Lakukan Presensi!</button>
                                             </a>
                                         </td>
                                         </tr>
@@ -342,15 +355,10 @@
         -->
         <script src="<?=base_url('assets/js/oneui.app.min.js')?>"></script>
 
-
         <!-- Page JS Plugins -->
         <script src="<?=base_url('assets/js/plugins/datatables/jquery.dataTables.min.js')?>"></script>
         <script src="<?=base_url('assets/js/plugins/datatables/dataTables.bootstrap4.min.js')?>"></script>
-        <script src="<?=base_url('assets/js/plugins/datatables/buttons/dataTables.buttons.min.js')?>"></script>
-        <script src="<?=base_url('assets/js/plugins/datatables/buttons/buttons.print.min.js')?>"></script>
-        <script src="<?=base_url('assets/js/plugins/datatables/buttons/buttons.html5.min.js')?>"></script>
-        <script src="<?=base_url('assets/js/plugins/datatables/buttons/buttons.flash.min.js')?>"></script>
-        <script src="<?=base_url('assets/js/plugins/datatables/buttons/buttons.colVis.min.js')?>"></script>
+        
 
         <!-- Page JS Code -->
         <script src="<?=base_url('assets/js/pages/be_tables_datatables.min.js')?>"></script>

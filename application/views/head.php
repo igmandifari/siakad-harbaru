@@ -9,12 +9,8 @@
         
         <!-- Stylesheets -->
         <!-- Page JS Plugins CSS -->
-        <?php
-            if($title=="Tambah Data"){
-                echo '<link rel="stylesheet" href="'.base_url("assets/js/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css").'">';
-                echo '<link rel="stylesheet" href="'.base_url("assets/js/plugins/flatpickr/flatpickr.min.css").'">';
-            }
-        ?>
+        
+        <link rel="stylesheet" href="<?=base_url('assets/js/plugins/select2/css/select2.min.css')?>">
         <link rel="stylesheet" id="css-main" href="<?=base_url('assets/js/plugins/datatables/dataTables.bootstrap4.css');?>">
         <link rel="stylesheet" id="css-main" href="<?=base_url('assets/js/plugins/datatables/buttons-bs4/buttons.bootstrap4.min.css');?>">        
         <!-- Fonts and OneUI framework -->

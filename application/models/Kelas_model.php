@@ -3,7 +3,20 @@
     Class Kelas_model extends CI_Model 
     {
         private $_table = "kelas";
-
+        public function rules_tambah_rombel(){
+            return[
+                [
+                    'field' => 'kelas_id',
+                    'label' => 'Kelas',
+                    'rules' => 'required|trim|xss_clean|callback_select_validate',
+                ],
+                [
+                    'field' => 'tahunajaran_id',
+                    'label' => 'Tahun Ajaran',
+                    'rules' => 'required|trim|xss_clean|callback_select_validate',
+                ]
+            ];
+        }
         public function rules()
         {
             return[
@@ -74,7 +87,7 @@
 
         public function getRombel()
         {
-            return $this->db->query('SELECT rombel.rombel_id, kelas.kelas_nama, tahunajaran.tahunajaran_nama FROM rombel inner join kelas on kelas.kelas_id = rombel.kelas_id INNER join tahunajaran on tahunajaran.tahunajaran_id = rombel.tahunajaran_id')->result();
+            return $this->db->query('SELECT rombel.rombel_id, kelas.kelas_nama, tahunajaran.tahunajaran_nama FROM rombel inner join kelas on kelas.kelas_id = rombel.kelas_id INNER join tahunajaran on tahunajaran.tahunajaran_id = rombel.tahunajaran_id order by tahunajaran.tahunajaran_id desc')->result();
         }
         public function getRombelbyId($id){
             return $this->db->query("select kelas.kelas_id,kelas.kelas_nama, tahunajaran.tahunajaran_id, tahunajaran.tahunajaran_nama,rombel_id from rombel inner join kelas on kelas.kelas_id=rombel.kelas_id INNER join tahunajaran on tahunajaran.tahunajaran_id=rombel.tahunajaran_id where rombel_id = '$id' ")->row_array();
@@ -94,6 +107,23 @@
        }
        public function rombelDet($id){
         return $this->db->delete(rombel_details, array("rombel_details_id" => $id));
+    }
+    public function delRombel($id){
+        return $this->db->delete('rombel', array("rombel_id" => $id));
+    }
+    public function getKelas(){
+        return $this->db->get('kelas')->result();
+    }
+    public function getTahun(){
+        return $this->db->get('tahunajaran')->result();
+    }
+    public function saveRombel(){
+        $data=array(
+            'rombel_id'         => uniqid(),
+            'kelas_id'          => $this->input->post('kelas_id'),
+            'tahunajaran_id'    => $this->input->post('tahunajaran_id')
+        );
+        return $this->db->insert('rombel',$data);
     }
 }
     
