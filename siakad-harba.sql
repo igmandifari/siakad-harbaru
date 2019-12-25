@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Dec 22, 2019 at 11:51 AM
+-- Generation Time: Dec 24, 2019 at 12:00 AM
 -- Server version: 10.0.38-MariaDB-0ubuntu0.16.04.1
--- PHP Version: 7.3.12-1+ubuntu16.04.1+deb.sury.org+1
+-- PHP Version: 7.3.13-1+ubuntu16.04.1+deb.sury.org+1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -190,12 +190,17 @@ INSERT INTO `pimpinan` (`pimpinan_id`, `pimpinan_username`, `pimpinan_nama`, `pi
 CREATE TABLE `presensi` (
   `presensi_id` varchar(100) NOT NULL,
   `jadwal_id` varchar(100) NOT NULL,
-  `tutor_id` varchar(100) NOT NULL,
   `presensi_tanggal` date NOT NULL,
-  `presensi_keterangan` varchar(255) NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `presensi`
+--
+
+INSERT INTO `presensi` (`presensi_id`, `jadwal_id`, `presensi_tanggal`, `created_at`, `updated_at`) VALUES
+('5e00eef6213b9', '5dfc9da09b91e', '2019-12-23', '2019-12-23 23:44:45', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -209,6 +214,17 @@ CREATE TABLE `presensi_details` (
   `wargabelajar_id` varchar(100) NOT NULL,
   `presensi_det_ket` enum('A','H','I','S') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `presensi_details`
+--
+
+INSERT INTO `presensi_details` (`presensi_det_id`, `presensi_id`, `wargabelajar_id`, `presensi_det_ket`) VALUES
+(11, '5e00eef6213b9', '5df8c9b8e20e9', 'H'),
+(12, '5e00eef6213b9', '5df8cbbfd492d', 'I'),
+(13, '5e00eef6213b9', '5df8cc7a68b47', 'S'),
+(14, '5e00eef6213b9', '5df8ce3c7570f', 'A'),
+(15, '5e00eef6213b9', '5dfc3f1b90991', 'H');
 
 -- --------------------------------------------------------
 
@@ -261,7 +277,6 @@ CREATE TABLE `rombel_details` (
 --
 
 INSERT INTO `rombel_details` (`rombel_details_id`, `rombel_id`, `wargabelajar_id`, `created_at`, `updated_at`) VALUES
-(1, '5dfc397184367', '5df8c2b2d14b8', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (2, '5dfc397184367', '5df8c9b8e20e9', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (3, '5dfc397184367', '5df8cbbfd492d', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (4, '5dfc397184367', '5df8cc7a68b47', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
@@ -452,8 +467,7 @@ ALTER TABLE `pimpinan`
 --
 ALTER TABLE `presensi`
   ADD PRIMARY KEY (`presensi_id`),
-  ADD KEY `jadwal_id` (`jadwal_id`),
-  ADD KEY `tutor_id` (`tutor_id`);
+  ADD KEY `jadwal_id` (`jadwal_id`);
 
 --
 -- Indexes for table `presensi_details`
@@ -515,7 +529,7 @@ ALTER TABLE `nilai_details`
 -- AUTO_INCREMENT for table `presensi_details`
 --
 ALTER TABLE `presensi_details`
-  MODIFY `presensi_det_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `presensi_det_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT for table `rombel_details`
 --
