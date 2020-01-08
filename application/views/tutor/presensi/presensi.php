@@ -271,20 +271,13 @@
                                         <tr>
                                             <td class="text-center"><?=$no?></td>
                                             <td><?=$wargabelajar->wargabelajar_nama?></td>
-                                            <td class="text-center"><span id="status"><?=$wargabelajar->presensi_det_ket?></span></td>
+                                            <td class="text-center"><span id="<?=$wargabelajar->presensi_det_id?>"><?=$wargabelajar->presensi_det_ket?></span></td>
                                             <td class="text-center">
                                                 <div class="btn-group btn-group-sm mr-2 mb-2" role="group" aria-label="Small Primary First group">
-                                                    <a href="<?=base_url('presensi/update_presensi_det/').$this->uri->segment(3).'/'.$this->uri->segment(4).'/'.$wargabelajar->presensi_det_id.'/H'?>">    
-                                                        <button type="button" class="btn btn-primary js-click-ripple-enabled btn-sm" data-toggle="click-ripple" style="overflow: hidden; position: relative; z-index: 1;">H</button>
-                                                    </a>
-                                                    <a href="<?=base_url('presensi/update_presensi_det/').$this->uri->segment(3).'/'.$this->uri->segment(4).'/'.$wargabelajar->presensi_det_id.'/I'?>">
-                                                        <button type="button" class="btn btn-success js-click-ripple-enabled btn-sm" data-toggle="click-ripple" style="overflow: hidden; position: relative; z-index: 1;">I</button>
-                                                    <a href="<?=base_url('presensi/update_presensi_det/').$this->uri->segment(3).'/'.$this->uri->segment(4).'/'.$wargabelajar->presensi_det_id.'/S'?>">
-                                                        <button type="button" class="btn btn-warning js-click-ripple-enabled btn-sm" data-toggle="click-ripple" style="overflow: hidden; position: relative; z-index: 1;">S</button>
-                                                    </a>
-                                                    <a href="<?=base_url('presensi/update_presensi_det/').$this->uri->segment(3).'/'.$this->uri->segment(4).'/'.$wargabelajar->presensi_det_id.'/A'?>">
-                                                        <button type="button" class="btn btn-danger js-click-ripple-enabled btn-sm" data-toggle="click-ripple" style="overflow: hidden; position: relative; z-index: 1;">A</button>
-                                                    </a>
+                                                   <button type="button" class="do_presensi btn btn-primary js-click-ripple-enabled btn-sm" data-toggle="click-ripple" style="overflow: hidden; position: relative; z-index: 1;" data-status="H" data-id="<?=$wargabelajar->presensi_det_id?>">H</button>
+                                                   <button type="button" class="do_presensi btn btn-success js-click-ripple-enabled btn-sm" data-toggle="click-ripple" style="overflow: hidden; position: relative; z-index: 1;"data-status="I" data-id="<?=$wargabelajar->presensi_det_id?>">I</button>
+                                                   <button type="button" class="do_presensi btn btn-warning js-click-ripple-enabled btn-sm" data-toggle="click-ripple" style="overflow: hidden; position: relative; z-index: 1;"data-status="S" data-id="<?=$wargabelajar->presensi_det_id?>">S</button>
+                                                   <button type="button" class="do_presensi btn btn-danger js-click-ripple-enabled btn-sm" data-toggle="click-ripple" style="overflow: hidden; position: relative; z-index: 1;"data-status="A" data-id="<?=$wargabelajar->presensi_det_id?>">A</button>
                                                 </div>
                                             </td>
                                         </tr>
@@ -358,5 +351,24 @@
         <!-- Page JS Code -->
         <script src="<?=base_url('assets/js/pages/be_tables_datatables.min.js')?>"></script>
         
+        <script>
+            $(document).ready(function(){
+                $(".do_presensi").click(function(){
+                    var status = $(this).data("status");
+                    var id = $(this).data("id");
+                    
+                    $("#"+id+"").text("loading....");
+                    $.ajax({
+                        type:"POST",
+                        url:"<?=base_url('presensi/update_presensi_det/')?>",
+                        data:{status:status,id:id},
+                        success: function(data){
+                            $("#"+id+"").text(status);
+                        }
+                    });
+                });              
+            });
+        </script>
+
     </body>
 </html>
