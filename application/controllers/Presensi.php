@@ -69,4 +69,11 @@
             }
         }
         
+        public function details($jadwal=null){
+            if(!isset($jadwal)) redirect('presensi');
+            $details = $this->Presensi_model;
+            print_r($details->details($jadwal));
+            // $this->load->view('tutor/presensi/rekap');
+        }
+        
     }

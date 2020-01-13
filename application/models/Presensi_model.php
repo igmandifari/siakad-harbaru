@@ -36,4 +36,7 @@
             $this->db->where('presensi_det_id',$presensi_det_id);
             return $this->db->update('presensi_details',$data);
         }
+        public function details($jadwal){
+            return $this->db->query("SELECT sum(presensi_details.presensi_det_ket='A') as alpa,sum(presensi_details.presensi_det_ket='H') as hadir,sum(presensi_details.presensi_det_ket='I') as izin,sum(presensi_details.presensi_det_ket='S') as sakit, wargabelajar.wargabelajar_id, wargabelajar.wargabelajar_nama, presensi_details.presensi_id, presensi_details.presensi_det_id,presensi_details.presensi_det_ket from presensi_details INNER JOIN wargabelajar on wargabelajar.wargabelajar_id=presensi_details.wargabelajar_id inner join presensi on presensi.presensi_id=presensi_details.presensi_id WHERE presensi.jadwal_id='$jadwal'")->row_array();
+        }
     }

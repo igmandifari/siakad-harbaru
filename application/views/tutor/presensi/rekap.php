@@ -5,7 +5,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
-        <title><?=$title?></title>
+        <title>Presensi <?=$title?></title>
 
         <meta name="robots" content="noindex, nofollow">
 
@@ -247,24 +247,8 @@
 
             <!-- Main Container -->
             <main id="main-container">
-
-                <!-- Hero -->
-                <div class="bg-image overflow-hidden" style="background-image: url('assets/media/photos/photo3@2x.jpg');">
-                    <div class="bg-primary-dark-op">
-                        <div class="content content-narrow content-full">
-                            <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center mt-5 mb-2 text-center text-sm-left">
-                                <div class="flex-sm-fill">
-                                    <h1 class="font-w600 text-white mb-0 invisible" data-toggle="appear"><?=$title?></h1>
-                                    <h2 class="h4 font-w400 text-white-75 mb-0 invisible" data-toggle="appear" data-timeout="250">Selamat Datang <?= $this->session->userdata('nama');?></h2>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- END Hero -->
-
-                                <!-- Page Content -->
-                                <div class="content">
+            <!-- Page Content -->
+                <div class="content">
                     <!-- Jadwal -->
                     <div class="block">
                         <div class="block-header">
@@ -276,36 +260,35 @@
                             <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
                                 <thead class="text-center">
                                     <tr>
-                                        <th>NO</th>
-                                        <th>Mata Pelajaran</th>
-                                        <th>Kelas</th>
-                                        <th>Hari</th>
-                                        <th>Waktu</th>
-                                        <th>Aksi</th>
+                                        <th rowspan="2" style="vertical-align:middle;width:8%;">NO</th>
+                                        <th rowspan="2" style="vertical-align:middle;">Nama</th>
+                                        <th colspan="4" style="vertical-align:middle;">Keterangan</th>
+                                    </tr>
+                                    <tr>
+                                        <th width="5%">H</th>
+                                        <th width="5%">I</th>
+                                        <th width="5%">S</th>
+                                        <th width="5%">A</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php $no=0;foreach($SemuaKelas as $kelas):$no++?>
-                                        <tr>
-                                            <td><?=$no?></td>
-                                            <td><?=$kelas->matpel_nama?></td>
-                                            <td><?=$kelas->kelas_nama?></td>
-                                            <td><?=$kelas->jadwal_hari?></td>
-                                            <td><?=$kelas->jadwal_waktu?></td>
-                                            <td class="text-center">
-                                                <a href="<?=base_url('presensi/jadwal/'.$kelas->jadwal_id.'')?>">
-                                                    <button type="button" class="btn btn-secondary btn-sm">Lakukan Presensi!</button>
-                                                </a>
-                                                <a href="<?=base_url('presensi/details/'.$kelas->jadwal_id.'')?>">
-                                                    <button type="button" class="btn btn-secondary btn-sm">Detail</button>
-                                                </a>
-                                                
-                                        </td>
-                                        </tr>
-                                    <?php endforeach;?>
+                                    
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Zam Zam</td>
+                                        <td>1</td>
+                                        <td>2</td>
+                                        <td>3</td>
+                                        <td>4</td>
+                                    </tr>
                                 </tbody>
                                 
                             </table>
+                            <div class="col-sm-12 text-center">
+                                <a href="<?=base_url('presensi/jadwal/').$this->uri->segment(3)?>">
+                                    <button type="button" class="btn btn-primary js-click-ripple-enabled" data-toggle="click-ripple" style="overflow: hidden; position: relative; z-index: 1;"><span class="click-ripple animate" style="height: 87.2656px; width: 87.2656px; top: -21.625px; left: 31.375px;"></span>Kembali</button>
+                                </a>
+                            </div>
                         </div>
                     </div>
                     <!-- End Jadwal -->
@@ -366,12 +349,25 @@
 
         <!-- Page JS Code -->
         <script src="<?=base_url('assets/js/pages/be_tables_datatables.min.js')?>"></script>
+        
         <script>
             $(document).ready(function(){
-                // $("").DataTable( {
-                //     responsive: true
-                //     });
+                $(".do_presensi").click(function(){
+                    var status = $(this).data("status");
+                    var id = $(this).data("id");
+                    
+                    $("#"+id+"").text("loading....");
+                    $.ajax({
+                        type:"POST",
+                        url:"<?=base_url('presensi/update_presensi_det/')?>",
+                        data:{status:status,id:id},
+                        success: function(data){
+                            $("#"+id+"").text(status);
+                        }
+                    });
+                });              
             });
         </script>
+
     </body>
 </html>
