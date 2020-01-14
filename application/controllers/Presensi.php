@@ -60,13 +60,20 @@
             }               
         }
         
-        public function update_presensi_det($jadwal_id,$presensi_id,$presensi_det_id,$status){
+        public function update_presensi_det(){
             $presensi= $this->Presensi_model;
-            $presensi->updatePresensiDet(array(
-                'presensi_det_ket'  => $status
-            ),$presensi_det_id);
-
-            redirect('presensi/jadwal/'.$jadwal_id.'/'.$presensi_id);
+            if($this->input->method()=="post"){
+                $presensi->updatePresensiDet(array(
+                    'presensi_det_ket'  => $this->input->post('status')
+                ),$this->input->post('id'));
+            }
+        }
+        
+        public function details($jadwal=null){
+            if(!isset($jadwal)) redirect('presensi');
+            $details = $this->Presensi_model;
+            print_r($details->details($jadwal));
+            // $this->load->view('tutor/presensi/rekap');
         }
         
     }

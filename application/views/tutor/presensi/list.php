@@ -294,8 +294,12 @@
                                             <td><?=$kelas->jadwal_waktu?></td>
                                             <td class="text-center">
                                                 <a href="<?=base_url('presensi/jadwal/'.$kelas->jadwal_id.'')?>">
-                                                <button type="button" class="btn btn-secondary btn-sm">Lakukan Presensi!</button>
-                                            </a>
+                                                    <button type="button" class="btn btn-secondary btn-sm">Lakukan Presensi!</button>
+                                                </a>
+                                                <a href="<?=base_url('presensi/details/'.$kelas->jadwal_id.'')?>">
+                                                    <button type="button" class="btn btn-secondary btn-sm">Detail</button>
+                                                </a>
+                                                
                                         </td>
                                         </tr>
                                     <?php endforeach;?>
@@ -362,5 +366,12 @@
 
         <!-- Page JS Code -->
         <script src="<?=base_url('assets/js/pages/be_tables_datatables.min.js')?>"></script>
+        <script>
+            $(document).ready(function(){
+                // $("").DataTable( {
+                //     responsive: true
+                //     });
+            });
+        </script>
     </body>
 </html>
