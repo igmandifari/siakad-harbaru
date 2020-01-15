@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 14, 2020 at 06:07 AM
+-- Generation Time: Jan 15, 2020 at 08:56 AM
 -- Server version: 10.0.38-MariaDB-0ubuntu0.16.04.1
 -- PHP Version: 7.3.13-1+ubuntu16.04.1+deb.sury.org+1
 
@@ -101,6 +101,29 @@ INSERT INTO `kelas` (`kelas_id`, `kelas_nama`, `created_at`, `updated_at`) VALUE
 ('5df888bcc9c18', 'Kelas X', '2019-12-17 14:50:20', NULL),
 ('5df888c17d8f0', 'Kelas XI', '2019-12-17 14:50:25', NULL),
 ('5df888c9667b5', 'Kelas XII', '2019-12-17 14:50:33', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `masukan`
+--
+
+CREATE TABLE `masukan` (
+  `masukan_id` varchar(100) NOT NULL,
+  `masukan` text NOT NULL,
+  `status` enum('0','1','2') NOT NULL,
+  `tahunajaran_id` varchar(100) NOT NULL,
+  `wargabelajar_id` varchar(100) NOT NULL,
+  `created_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `masukan`
+--
+
+INSERT INTO `masukan` (`masukan_id`, `masukan`, `status`, `tahunajaran_id`, `wargabelajar_id`, `created_at`) VALUES
+('5e1e590242e1c', 'Tolong tambahkan fitur ganti foto profil dong', '0', '5dfc3970e4387', '5df8c2b2d14b8', '2020-01-15 07:12:50'),
+('5e1e6d2736a82', 'aduh', '0', '5dfc3970e4387', '5df8c2b2d14b8', '2020-01-15 08:38:47');
 
 -- --------------------------------------------------------
 
@@ -451,6 +474,12 @@ ALTER TABLE `jadwal`
 ALTER TABLE `kelas`
   ADD PRIMARY KEY (`kelas_id`),
   ADD UNIQUE KEY `kelas_nama` (`kelas_nama`);
+
+--
+-- Indexes for table `masukan`
+--
+ALTER TABLE `masukan`
+  ADD PRIMARY KEY (`masukan_id`);
 
 --
 -- Indexes for table `matpel`
