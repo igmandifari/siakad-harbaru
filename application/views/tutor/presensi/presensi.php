@@ -250,12 +250,21 @@
             <!-- Page Content -->
                 <div class="content">
                     <!-- Jadwal -->
+                    <?php foreach($pertemuans as $data){
+                            $kelas = $data->kelas_nama;
+                            $matpel = $data->matpel_nama;
+                            $tanggal = $data->presensi_tanggal;
+                        }
+                        ?>
                     <div class="block">
                         <div class="block-header">
-                            <!-- <h3 class="block-title">Dynamic Table <small>Full</small></h3> -->
+                            <h3 class="block-title"><?php echo "Presensi ".$kelas." Mata Pelajaran ".$matpel;?></h3>
                         </div>
                         
                         <div class="block-content block-content-full">
+                            <p>
+                                Silahkan memasukan data presensi pada tanggal <?php echo $tanggal;?>
+                            </p>
                             <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _es6/pages/be_tables_datatables.js -->
                             <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
                                 <thead class="text-center">

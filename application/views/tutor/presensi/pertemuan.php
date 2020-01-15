@@ -166,9 +166,6 @@
                                 <span class="nav-main-link-name">Keluar</span>
                             </a>
                         </li>
-                        
-                   
-                       
                     </ul>
                 </div>
                 <!-- END Side Navigation -->
@@ -250,12 +247,20 @@
             <!-- Page Content -->
                 <div class="content">
                     <!-- Jadwal -->
+                    <?php foreach($pertemuans as $data){
+                            $kelas = $data->kelas_nama;
+                            $matpel = $data->matpel_nama;
+                        }
+                        ?>
                     <div class="block">
                         <div class="block-header">
-                            <!-- <h3 class="block-title">Dynamic Table <small>Full</small></h3> -->
+                            <h3 class="block-title"><?php echo "Data Pertemuan ".$kelas;?> </h3>
                         </div>
-                        
+
                         <div class="block-content block-content-full">
+                            <p>
+                                Berikut ini data-data presensi Tatap Muka yang Ibu/Bapak pernah lakukan pada mata pelajaran <?php echo $matpel;?>.
+                            </p>
                             <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _es6/pages/be_tables_datatables.js -->
                             <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
                                 <thead class="text-center">
@@ -267,25 +272,31 @@
                                 <tbody>
                                     <?php $no=0;foreach($pertemuans as $pertemuan):$no++?>
                                         <tr>
-                                            <td class="text-center"><?=$no?></td>
+                                            <td class="text-center"><?=$no;?></td>
                                             <td>
                                                 <a href="<?=base_url('presensi/jadwal/').$this->uri->segment(3).'/'.$pertemuan->presensi_id?>">
                                                 <button type="button" class="btn btn-info js-click-ripple-enabled btn-lg" data-toggle="click-ripple" style="overflow: hidden; position: relative; z-index: 1; width:100%;"><span class="click-ripple animate" style="height: 87.2656px; width: 87.2656px; top: -21.625px; left: 31.375px;"></span><?=$pertemuan->presensi_tanggal?></button></td>
                                             </a>
                                         </tr>
+                                        
+                                            
                                     <?php endforeach;?>
                                 </tbody>
                                 
                             </table>
-                            <div class="col-sm-12 text-center">
-                                <form action="<?=base_url('presensi/presensi_baru')?>" method="post">
-                                    <input type="hidden" name="jadwal_id" value="<?=$this->uri->segment(3)?>">
-                                    <input type="hidden" name="presensi_id" value="<?=uniqid()?>">
-                                <!-- <a href="<?=base_url('presensi/jadwal/').$this->uri->segment(3).'/'.uniqid()?>"> -->
-                                    <button type="submit" class="btn btn-primary js-click-ripple-enabled" data-toggle="click-ripple" style="overflow: hidden; position: relative; z-index: 1;"><span class="click-ripple animate" style="height: 87.2656px; width: 87.2656px; top: -21.625px; left: 31.375px;"></span>Tambah Presensi</button>
-                                <!-- </a> -->
-                                </form>
+                            <div class="row push">
+                                <div class="col-sm-12 text-center">
+                                        <form action="<?=base_url('presensi/presensi_baru')?>" method="post">
+                                            <input type="hidden" name="jadwal_id" value="<?=$this->uri->segment(3)?>">
+                                            <input type="hidden" name="presensi_id" value="<?=uniqid()?>">
+                                            <button type="submit" class="btn btn-success js-click-ripple-enabled" data-toggle="click-ripple" style="overflow: hidden; position: relative; z-index: 1;"><span class="click-ripple animate" style="height: 87.2656px; width: 87.2656px; top: -21.625px; left: 31.375px;"></span>Tambah Presensi</button>
+                                        </form><br>
+                                         <a href="<?=base_url('presensi');?>">
+                                            <button type="button" class="btn btn-light js-click-ripple-enabled" data-toggle="click-ripple" style="overflow: hidden; position: relative; z-index: 1;"><span class="click-ripple animate" style="height: 87.2656px; width: 87.2656px; top: -21.625px; left: 31.375px;"></span>Kembali Ke Halaman Presensi</button>
+                                        </a>
+                             
                             </div>
+                          
                         </div>
                     </div>
                     <!-- End Jadwal -->
