@@ -41,9 +41,11 @@ class Auth extends CI_Controller
             if (!empty($Admin)) {
                 $this->session->set_userdata('MASUK',TRUE);
                 $session = array(
-                    'nama'  => $Admin['admin_nama'],
-                    'id'    => $Admin['admin_id'],
-                    'foto'  => $Admin['admin_foto'],
+                    'nama'                  => $Admin['admin_nama'],
+                    'id'                    => $Admin['admin_id'],
+                    'foto'                  => $Admin['admin_foto'],
+                    'tahunajaran_id'        => $tahun['tahunajaran_id'],
+                    'tahunajaran_nama'      => $tahun['tahunajaran_nama'],
                     'level' => 0
                 );
                 $this->session->set_userdata($session);

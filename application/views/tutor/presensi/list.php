@@ -161,7 +161,7 @@
                             </a>
                         </li>
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="<?=base_url('auth/logut')?>">
+                            <a class="nav-main-link" href="<?=base_url('auth/logout')?>">
                             <i class="nav-main-link-icon si si-logout ml-1"></i>
                                 <span class="nav-main-link-name">Keluar</span>
                             </a>

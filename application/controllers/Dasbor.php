@@ -19,7 +19,7 @@ class Dasbor extends CI_Controller
             $this->load->view('dasbor/dasbor_admin',$data);
         }
         else if($this->session->userdata('level') == 1){
-            $this->load->view('dasbor/dasbor_wargabelajar',$data);
+            $this->load->view('dasbor/wargabelajar/dasbor_wargabelajar',$data);
         }else if($this->session->userdata('level') == 2)
         {
             $this->load->view('dasbor/dasbor_pimpinan',$data);
