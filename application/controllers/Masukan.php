@@ -4,7 +4,10 @@ Class Masukan extends CI_Controller{
 	public function __construct()
 	{
 		parent::__construct();
-
+        $url=base_url();
+        if($this->session->userdata('MASUK') != TRUE)redirect($url);
+        if($this->session->userdata('level') != 1) redirect("dasbor");
+        
 		$this->load->model('Masukan_model');
 		$this->load->helper("security");
 	}

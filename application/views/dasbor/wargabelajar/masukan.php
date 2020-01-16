@@ -129,7 +129,7 @@
                             </a>
                         </li>
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="<?=base_url('jadwalmengajar')?>">
+                            <a class="nav-main-link" href="<?=base_url('jadwalbelajar')?>">
                             <i class="nav-main-link-icon far fa-calendar-times"></i>
                                 <span class="nav-main-link-name">Jadwal</span>
                             </a>
