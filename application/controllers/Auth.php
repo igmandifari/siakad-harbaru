@@ -28,9 +28,9 @@ class Auth extends CI_Controller
 
         if ($validasi->run()) {
           
-            $username    = $this->input->post('login-username');
-            $password    = $this->input->post('login-password');
-            $tahunajaran = $this->input->post('tahunajaran_id');
+            $username    = $this->security->xss_clean($this->input->post('login-username'));
+            $password    = $this->security->xss_clean($this->input->post('login-password'));
+            $tahunajaran = $this->security->xss_clean($this->input->post('tahunajaran_id'));
 
             $Admin          = $this->Auth_model->cekLogin($username,$password);
             $WargaBelajar   = $this->Auth_model->cek_login_wargabelajar($username,$password);
