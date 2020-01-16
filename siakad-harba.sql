@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 15, 2020 at 08:56 AM
+-- Generation Time: Jan 16, 2020 at 07:01 AM
 -- Server version: 10.0.38-MariaDB-0ubuntu0.16.04.1
 -- PHP Version: 7.3.13-1+ubuntu16.04.1+deb.sury.org+1
 
@@ -123,7 +123,8 @@ CREATE TABLE `masukan` (
 
 INSERT INTO `masukan` (`masukan_id`, `masukan`, `status`, `tahunajaran_id`, `wargabelajar_id`, `created_at`) VALUES
 ('5e1e590242e1c', 'Tolong tambahkan fitur ganti foto profil dong', '0', '5dfc3970e4387', '5df8c2b2d14b8', '2020-01-15 07:12:50'),
-('5e1e6d2736a82', 'aduh', '0', '5dfc3970e4387', '5df8c2b2d14b8', '2020-01-15 08:38:47');
+('5e1e6d2736a82', 'aduh', '0', '5dfc3970e4387', '5df8c2b2d14b8', '2020-01-15 08:38:47'),
+('5e1fa61501b8b', 'Tolong adakan kipas angin...', '0', '5dfc3970e4387', '5df8c9b8e20e9', '2020-01-16 06:53:57');
 
 -- --------------------------------------------------------
 
@@ -228,7 +229,9 @@ CREATE TABLE `presensi` (
 INSERT INTO `presensi` (`presensi_id`, `jadwal_id`, `presensi_tanggal`, `created_at`, `updated_at`) VALUES
 ('5e044c4414491', '5dfc9da09b91e', '2019-12-26', '2019-12-26 13:03:12', '0000-00-00 00:00:00'),
 ('5e045396c1109', '5dfc9da09b91e', '2019-12-26', '2019-12-26 13:30:58', '0000-00-00 00:00:00'),
-('5e1ced951caa1', '5dfc9da09b91e', '2020-01-14', '2020-01-14 05:22:41', '0000-00-00 00:00:00');
+('5e1ced951caa1', '5dfc9da09b91e', '2020-01-14', '2020-01-14 05:22:41', '0000-00-00 00:00:00'),
+('5e1ec915beb0b', '5dfc9c4b29ca8', '2020-01-15', '2020-01-15 15:11:04', '0000-00-00 00:00:00'),
+('5e1f9a9a7c99f', '5dfc9d1b7968b', '2020-01-16', '2020-01-16 06:05:00', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -263,7 +266,17 @@ INSERT INTO `presensi_details` (`presensi_det_id`, `presensi_id`, `wargabelajar_
 (32, '5e1ced951caa1', '5df8cbbfd492d', 'H', '0000-00-00 00:00:00'),
 (33, '5e1ced951caa1', '5df8cc7a68b47', 'A', '0000-00-00 00:00:00'),
 (34, '5e1ced951caa1', '5df8ce3c7570f', 'S', '0000-00-00 00:00:00'),
-(35, '5e1ced951caa1', '5dfc3f1b90991', 'I', '0000-00-00 00:00:00');
+(35, '5e1ced951caa1', '5dfc3f1b90991', 'I', '0000-00-00 00:00:00'),
+(36, '5e1ec915beb0b', '5df8c9b8e20e9', 'A', '0000-00-00 00:00:00'),
+(37, '5e1ec915beb0b', '5df8cbbfd492d', 'H', '0000-00-00 00:00:00'),
+(38, '5e1ec915beb0b', '5df8cc7a68b47', 'H', '0000-00-00 00:00:00'),
+(39, '5e1ec915beb0b', '5df8ce3c7570f', 'A', '0000-00-00 00:00:00'),
+(40, '5e1ec915beb0b', '5dfc3f1b90991', 'H', '0000-00-00 00:00:00'),
+(41, '5e1f9a9a7c99f', '5df8c9b8e20e9', 'S', '0000-00-00 00:00:00'),
+(42, '5e1f9a9a7c99f', '5df8cbbfd492d', 'I', '0000-00-00 00:00:00'),
+(43, '5e1f9a9a7c99f', '5df8cc7a68b47', 'H', '0000-00-00 00:00:00'),
+(44, '5e1f9a9a7c99f', '5df8ce3c7570f', 'S', '0000-00-00 00:00:00'),
+(45, '5e1f9a9a7c99f', '5dfc3f1b90991', 'H', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -578,7 +591,7 @@ ALTER TABLE `nilai_details`
 -- AUTO_INCREMENT for table `presensi_details`
 --
 ALTER TABLE `presensi_details`
-  MODIFY `presensi_det_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `presensi_det_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 --
 -- AUTO_INCREMENT for table `rombel_details`
 --
