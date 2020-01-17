@@ -43,10 +43,10 @@
                 <div class="row push">
                     <div class="col-lg-12">
                         <div class="form-group">
-                            <input type="hidden" name="matpel_id" value="<?=$tahunajaran["matpel_id"];?>"">
-                            <label for="matpel_nama">Nama Kelas</label>
-                            <input type="text" class="form-control" id="matpel_nama" name="matpel_nama" value="<?=$tahunajaran["matpel_nama"];?>" autofocus>
-                            <small class="form-text text-danger"><?= form_error('matpel_nama'); ?></small>
+                            <input type="hidden" name="tahunajaran_id" value="<?=$tahunajaran["tahunajaran_id"];?>"">
+                            <label for="tahunajaran_nama">Nama Tahun Ajaran</label>
+                            <input type="text" class="form-control" id="tahunajaran_nama" name="tahunajaran_nama" value="<?=$tahunajaran["tahunajaran_nama"];?>" autofocus>
+                            <small class="form-text text-danger"><?= form_error('tahunajaran_nama'); ?></small>
                         </div>                        
                     </div>
                 </div>
@@ -63,6 +63,11 @@
                     </div>
                 </div>
             </form>
+            <div class="row push text-center">
+                <a href="<?=base_url('tahunajaran');?>">
+                    <button type="buttn" class="btn btn-light">Kembali</button>
+                </a>
+            </div>
         </div>
     </div>
     <!-- END Basic -->

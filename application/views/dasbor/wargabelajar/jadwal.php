@@ -5,7 +5,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
-        <title>Presensi <?=$title?></title>
+        <title><?=$title?></title>
 
         <meta name="robots" content="noindex, nofollow">
 
@@ -18,15 +18,12 @@
         <!-- END Icons -->
 
         <!-- Stylesheets -->
-        <!-- Page JS Plugins CSS -->
-        <link rel="stylesheet" href="<?=base_url('assets/js/plugins/datatables/dataTables.bootstrap4.css')?>">
-        <link rel="stylesheet" href="<?=base_url('assets/js/plugins/datatables/buttons-bs4/buttons.bootstrap4.min.css')?>">
         <!-- Fonts and OneUI framework -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400italic,600,700%7COpen+Sans:300,400,400italic,600,700">
         <link rel="stylesheet" id="css-main" href="<?=base_url('assets/css/oneui.min.css')?>">
 
         <!-- You can include a specific file from css/themes/ folder to alter the default color theme of the template. eg: -->
-        <!-- <link rel="stylesheet" id="css-theme" href="<?=base_url('assets/css/themes/amethyst.min.css')?>"> -->
+        <!-- <link rel="stylesheet" id="css-theme" href="assets/css/themes/amethyst.min.css"> -->
         <!-- END Stylesheets -->
     </head>
     <body>
@@ -131,13 +128,13 @@
                             </a>
                         </li>
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="<?=base_url('jadwalmengajar')?>">
+                            <a class="nav-main-link active" href="<?=base_url('jadwalbelajar')?>">
                             <i class="nav-main-link-icon far fa-calendar-times"></i>
                                 <span class="nav-main-link-name">Jadwal</span>
                             </a>
                         </li>
                         <li class="nav-main-item">
-                            <a class="nav-main-link active" href="<?=base_url('presensi')?>">
+                            <a class="nav-main-link" href="<?=base_url('presensi')?>">
                             <i class="nav-main-link-icon si si-note"></i>
                                 <span class="nav-main-link-name">Presensi</span>
                             </a>
@@ -158,6 +155,12 @@
                             <a class="nav-main-link" href="<?=base_url('profil')?>">
                             <i class="nav-main-link-icon si si-user ml-1"></i>
                                 <span class="nav-main-link-name">Profil</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="<?=base_url('masukan')?>">
+                            <i class="nav-main-link-icon fab fa-rocketchat ml-1"></i>
+                                <span class="nav-main-link-name">Kirim Masukan</span>
                             </a>
                         </li>
                         <li class="nav-main-item">
@@ -247,61 +250,74 @@
 
             <!-- Main Container -->
             <main id="main-container">
-            <!-- Page Content -->
-                <div class="content">
-                    <!-- Jadwal -->
-                    <?php foreach($pertemuans as $data){
-                            $kelas = $data->kelas_nama;
-                            $matpel = $data->matpel_nama;
-                            $tanggal = $data->presensi_tanggal;
-                        }
-                        ?>
-                    <div class="block">
-                        <div class="block-header">
-                            <h3 class="block-title"><?php echo "Presensi ".$kelas." Mata Pelajaran ".$matpel;?></h3>
-                        </div>
-                        
-                        <div class="block-content block-content-full">
-                            <p>
-                                Silahkan memasukan data presensi pada tanggal <?php echo $tanggal;?>
-                            </p>
-                            <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _es6/pages/be_tables_datatables.js -->
-                            <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
-                                <thead class="text-center">
-                                    <tr>
-                                        <th width="10%">NO</th>
-                                        <th>Nama</th>
-                                        <th width="10%">Status</th>
-                                        <th width="15%">Keterangan</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php $no=0;foreach($wargabelajars as $wargabelajar):$no++?>
-                                        <tr>
-                                            <td class="text-center"><?=$no?></td>
-                                            <td><?=$wargabelajar->wargabelajar_nama?></td>
-                                            <td class="text-center"><span id="<?=$wargabelajar->presensi_det_id?>"><?=$wargabelajar->presensi_det_ket?></span></td>
-                                            <td class="text-center">
-                                                <div class="btn-group btn-group-sm mr-2 mb-2" role="group" aria-label="Small Primary First group">
-                                                   <button type="button" class="do_presensi btn btn-primary js-click-ripple-enabled btn-sm" data-toggle="click-ripple" style="overflow: hidden; position: relative; z-index: 1;" data-status="H" data-id="<?=$wargabelajar->presensi_det_id?>">H</button>
-                                                   <button type="button" class="do_presensi btn btn-success js-click-ripple-enabled btn-sm" data-toggle="click-ripple" style="overflow: hidden; position: relative; z-index: 1;"data-status="I" data-id="<?=$wargabelajar->presensi_det_id?>">I</button>
-                                                   <button type="button" class="do_presensi btn btn-warning js-click-ripple-enabled btn-sm" data-toggle="click-ripple" style="overflow: hidden; position: relative; z-index: 1;"data-status="S" data-id="<?=$wargabelajar->presensi_det_id?>">S</button>
-                                                   <button type="button" class="do_presensi btn btn-danger js-click-ripple-enabled btn-sm" data-toggle="click-ripple" style="overflow: hidden; position: relative; z-index: 1;"data-status="A" data-id="<?=$wargabelajar->presensi_det_id?>">A</button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    <?php endforeach;?>
-                                </tbody>
-                                
-                            </table>
-                            <div class="col-sm-12 text-center">
-                                <a href="<?=base_url('presensi/jadwal/').$this->uri->segment(3)?>">
-                                    <button type="button" class="btn btn-primary js-click-ripple-enabled" data-toggle="click-ripple" style="overflow: hidden; position: relative; z-index: 1;"><span class="click-ripple animate" style="height: 87.2656px; width: 87.2656px; top: -21.625px; left: 31.375px;"></span>Kembali</button>
-                                </a>
+
+                <!-- Hero -->
+                <div class="bg-image overflow-hidden" style="background-image: url('assets/media/photos/photo3@2x.jpg');">
+                    <div class="bg-primary-dark-op">
+                        <div class="content content-narrow content-full">
+                            <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center mt-5 mb-2 text-center text-sm-left">
+                                <div class="flex-sm-fill">
+                                    <h1 class="font-w600 text-white mb-0 invisible" data-toggle="appear"><?=$title?></h1>
+                                    <h2 class="h4 font-w400 text-white-75 mb-0 invisible" data-toggle="appear" data-timeout="250">Selamat Datang <?= $this->session->userdata('nama');?></h2>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <!-- End Jadwal -->
+                </div>
+                <!-- END Hero -->
+
+                <!-- Page Content -->
+                <div class="content">
+            
+                    <!-- data -->
+                    <div class="block">
+                        <div class="block-header">
+                            <h3 class="block-title">Daftar <?php echo $title;?>
+                            </h3>
+                        </div>
+                        <div class="block-content block-content-full">
+                            <div class="row push">
+                                <div class="col-lg-12">
+                                    <p class="font-size-sm text-muted">
+                                        Berikut ini jadwal mata pelajaran yang harus kamu ikuti!
+                                    </p>
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered table-striped table-vcenter">
+                                            <thead>
+                                                <tr class="text-center">
+                                                    <th>NO</th>
+                                                    <th>Tipe Pembelajaran</th>
+                                                    <th>Hari</th>
+                                                    <th>Mata Pelajaran</th>
+                                                    <th>Tutor</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php $no=0; foreach($jadwals as $jadwal):$no++?>
+                                                    <tr>
+                                                        <td>
+                                                            <?php echo $no;?>
+                                                        </td>
+                                                        <td>
+                                                            <?php echo $jadwal["jadwal_tipe_pembelajaran"];?>
+                                                        </td>
+                                                        <td>
+                                                            <?php echo $jadwal["jadwal_hari"];?>
+                                                        </td>
+                                                        <td><?php echo $jadwal["matpel_nama"];?>
+                                                        </td>
+                                                        <td><?php echo $jadwal["tutor_nama"];?></td>
+
+                                                    </tr>
+                                                <?php endforeach;?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end data -->
                 </div>
                 <!-- END Page Content -->
 
@@ -351,33 +367,6 @@
             webpack is putting everything together at assets/_es6/main/app.js
         -->
         <script src="<?=base_url('assets/js/oneui.app.min.js')?>"></script>
-
-        <!-- Page JS Plugins -->
-        <script src="<?=base_url('assets/js/plugins/datatables/jquery.dataTables.min.js')?>"></script>
-        <script src="<?=base_url('assets/js/plugins/datatables/dataTables.bootstrap4.min.js')?>"></script>
-        
-
-        <!-- Page JS Code -->
-        <script src="<?=base_url('assets/js/pages/be_tables_datatables.min.js')?>"></script>
-        
-        <script>
-            $(document).ready(function(){
-                $(".do_presensi").click(function(){
-                    var status = $(this).data("status");
-                    var id = $(this).data("id");
-                    
-                    $("#"+id+"").text("loading....");
-                    $.ajax({
-                        type:"POST",
-                        url:"<?=base_url('presensi/update_presensi_det/')?>",
-                        data:{status:status,id:id},
-                        success: function(data){
-                            $("#"+id+"").text(status);
-                        }
-                    });
-                });              
-            });
-        </script>
 
     </body>
 </html>

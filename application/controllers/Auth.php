@@ -28,9 +28,9 @@ class Auth extends CI_Controller
 
         if ($validasi->run()) {
           
-            $username    = $this->input->post('login-username');
-            $password    = $this->input->post('login-password');
-            $tahunajaran = $this->input->post('tahunajaran_id');
+            $username    = $this->security->xss_clean($this->input->post('login-username'));
+            $password    = $this->security->xss_clean($this->input->post('login-password'));
+            $tahunajaran = $this->security->xss_clean($this->input->post('tahunajaran_id'));
 
             $Admin          = $this->Auth_model->cekLogin($username,$password);
             $WargaBelajar   = $this->Auth_model->cek_login_wargabelajar($username,$password);
@@ -41,9 +41,11 @@ class Auth extends CI_Controller
             if (!empty($Admin)) {
                 $this->session->set_userdata('MASUK',TRUE);
                 $session = array(
-                    'nama'  => $Admin['admin_nama'],
-                    'id'    => $Admin['admin_id'],
-                    'foto'  => $Admin['admin_foto'],
+                    'nama'                  => $Admin['admin_nama'],
+                    'id'                    => $Admin['admin_id'],
+                    'foto'                  => $Admin['admin_foto'],
+                    'tahunajaran_id'        => $tahun['tahunajaran_id'],
+                    'tahunajaran_nama'      => $tahun['tahunajaran_nama'],
                     'level' => 0
                 );
                 $this->session->set_userdata($session);

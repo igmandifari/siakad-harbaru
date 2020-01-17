@@ -10,7 +10,7 @@
         }
         public function getPertemuan($id)
         {
-            return $this->db->get_where('presensi', ["jadwal_id" => $id])->result();   
+            return $this->db->query("SELECT presensi.presensi_id,presensi.jadwal_id,presensi.presensi_tanggal,kelas.kelas_nama,matpel.matpel_nama FROM presensi INNER JOIN jadwal ON jadwal.jadwal_id=presensi.jadwal_id INNER JOIN rombel on rombel.rombel_id=jadwal.rombel_id INNER JOIN kelas ON kelas.kelas_id=rombel.kelas_id INNER JOIN matpel ON matpel.matpel_id=jadwal.matpel_id WHERE presensi.jadwal_id='$id'")->result();
         }
         public function getSiswaByRombel($id){
             return $this->db->query("select wargabelajar.wargabelajar_id, wargabelajar.wargabelajar_nama from wargabelajar INNER JOIN rombel_details on rombel_details.wargabelajar_id=wargabelajar.wargabelajar_id INNER JOIN jadwal on jadwal.rombel_id=rombel_details.rombel_id WHERE jadwal.jadwal_id='$id'")->result();

@@ -79,13 +79,15 @@
                                             <td class="text-center">
                                                 <div class="btn-group">
                                                     <a href="<?=base_url('jadwal/ubah/').$jadwal->tahunajaran_id.'/'.$jadwal->jadwal_id;?>">
-                                                        <button type="button" class="btn btn-sm btn-light js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Ubah">
+                                                        <button type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Ubah">
                                                             <i class="fa fa-fw fa-pencil-alt"></i>
+                                                            Ubah
                                                         </button>
                                                     </a>
                                                     <a href="<?=base_url('jadwal/hapus/').$jadwal->jadwal_id;?>">
-                                                        <button type="button" class="btn btn-sm btn-light js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Hapus">
+                                                        <button type="button" class="btn btn-sm btn-warning js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Hapus">
                                                             <i class="fa fa-fw fa-times"></i>
+                                                            Hapus
                                                         </button>
                                                     </a>
                                                 </div>
@@ -94,6 +96,11 @@
                                     <?php endforeach;?>
                                 </tbody>
                             </table>
+                            <div class="row push text-center">
+                <a href="<?=base_url('jadwal');?>">
+                    <button type="buttn" class="btn btn-light">Kembali</button>
+                </a>
+            </div>
         </div>
     </div>
     <!-- END Dynamic Table Full -->

@@ -44,7 +44,7 @@
                     <div class="col-lg-12">
                         <div class="form-group">
                             <input type="hidden" name="matpel_id" value="<?=$matpel["matpel_id"];?>"">
-                            <label for="matpel_nama">Nama Kelas</label>
+                            <label for="matpel_nama">Nama Mata Pelajaran</label>
                             <input type="text" class="form-control" id="matpel_nama" name="matpel_nama" value="<?=$matpel["matpel_nama"];?>" autofocus>
                             <small class="form-text text-danger"><?= form_error('matpel_nama'); ?></small>
                         </div> 
@@ -73,6 +73,11 @@
                     </div>
                 </div>
             </form>
+            <div class="row push text-center">
+                <a href="<?=base_url('matpel');?>">
+                    <button type="buttn" class="btn btn-light">Kembali</button>
+                </a>
+            </div>
         </div>
     </div>
     <!-- END Basic -->

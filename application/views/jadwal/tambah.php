@@ -99,6 +99,11 @@
                               
                                 
                             </form>
+                            <div class="row push text-center">
+                <a href="<?=base_url('jadwal/matpel_lihat/').$this->uri->segment(3);?>">
+                    <button type="buttn" class="btn btn-light">Kembali</button>
+                </a>
+            </div>
                         </div>
                         <div class="tab-pane fade fade-right show" id="tutorial-mandiri" role="tabpanel">
                             <form action="<?php echo base_url('jadwal/tambah_tutorial_mandiri')?>" method="post">
@@ -141,6 +146,11 @@
                               
                                 
                             </form>
+                            <div class="row push text-center">
+                <a href="<?=base_url('jadwal/matpel_lihat/').$this->uri->segment(3);?>">
+                    <button type="buttn" class="btn btn-light">Kembali</button>
+                </a>
+            </div>
                         </div>
                 </div>
             </div>

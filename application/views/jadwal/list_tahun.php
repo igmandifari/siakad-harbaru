@@ -67,10 +67,10 @@
                                         <button type="button" class="btn btn-outline-secondary btn-sm">Masukan</button>
                                     </a>
                                     <a href="<?=base_url('jadwal/matpel_lihat/').$tahun->tahunajaran_id?>">
-                                        <button type="button" class="btn btn-outline-secondary btn-sm">Lihat</button>
+                                        <button type="button" class="btn btn-outline-info btn-sm">Lihat</button>
                                     </a>
                                     <a href="<?=base_url('jadwal/delTahun/').$tahun->tahunajaran_id?>">
-                                        <button type="button" class="btn btn-outline-secondary btn-sm">Hapus</button>
+                                        <button type="button" class="btn btn-outline-warning btn-sm">Hapus</button>
                                     </a>
                                 </div>
                             </td>
@@ -78,6 +78,11 @@
                     <?php endforeach;?>
                 </tbody>
             </table>
+            <div class="row push text-center">
+                <a href="<?=base_url('dasbor').$this->uri->segment(3);?>">
+                    <button type="buttn" class="btn btn-light">Kembali Ke Dasbor</button>
+                </a>
+            </div>
         </div>
     </div>
     <!-- END Dynamic Table Full -->

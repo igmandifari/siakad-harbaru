@@ -174,6 +174,11 @@
                                         </div>
                                     </div>
                                 </form>
+                                <div class="row push text-center">
+                <a href="<?=base_url('tutor');?>">
+                    <button type="buttn" class="btn btn-light">Kembali</button>
+                </a>
+            </div>
                                 </div>
                                 <div class="tab-pane fade fade-right" id="ubah-password">
                                 <form action="<?php echo base_url("tutor/ubah_password") ?>" method="post" enctype="multipart/form-data">
@@ -194,6 +199,11 @@
                                             </div>
                                         </div>     
                                     </form>
+                                    <div class="row push text-center">
+                <a href="<?=base_url('tutor');?>">
+                    <button type="buttn" class="btn btn-light">Kembali</button>
+                </a>
+            </div>
                                 </div>
                             </div>
                             

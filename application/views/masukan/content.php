@@ -1,3 +1,4 @@
+<?php $this->load->view('head')?>
 <li class="nav-main-heading">Data Master</li>
                         <li class="nav-main-item">
                             <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
@@ -24,7 +25,7 @@
                             </a>
                             <ul class="nav-main-submenu">
                                 <li class="nav-main-item">
-                                    <a class="nav-main-link active" href="<?=base_url('tutor/');?>">
+                                    <a class="nav-main-link" href="<?=base_url('tutor/');?>">
                                         <span class="nav-main-link-name">Daftar Tutor</span>
                                     </a>
                                 </li>
@@ -99,14 +100,14 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="nav-main-item open">
+                        <li class="nav-main-item">
                             <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
                                 <i class="nav-main-link-icon si si-energy"></i>
                                 <span class="nav-main-link-name">Pimpinan</span>
                             </a>
                             <ul class="nav-main-submenu">
                                 <li class="nav-main-item">
-                                    <a class="nav-main-link active" href="<?=base_url('pimpinan/');?>">
+                                    <a class="nav-main-link" href="<?=base_url('pimpinan/');?>">
                                         <span class="nav-main-link-name">Daftar Pimpinan</span>
                                     </a>
                                 </li>
@@ -136,7 +137,7 @@
                             </ul>
                         </li>
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="<?=base_url('masukan')?>">
+                            <a class="nav-main-link active" href="<?=base_url('masukan')?>">
                             <i class="nav-main-link-icon fab fa-rocketchat ml-1"></i>
                                 <span class="nav-main-link-name">Data Masukan</span>
                             </a>
@@ -216,3 +217,75 @@
 
             </header>
             <!-- END Header -->
+            <!-- Main Container -->
+<main id="main-container">
+
+<!-- Hero -->
+<div class="bg-body-light">
+    <div class="content content-full">
+        <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
+            <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
+                <ol class="breadcrumb breadcrumb-alt">
+                    <li class="breadcrumb-item"><?=$title;?></li>
+                    <li class="breadcrumb-item" aria-current="page">
+                        <a class="link-fx" href=""><?=$title;?></a>
+                    </li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</div>
+<!-- END Hero -->
+
+<!-- Page Content -->
+<div class="content">
+    <!-- Basic -->
+    <div class="block">
+        <div class="block-header">
+            <h3 class="block-title">Data Masukan</h3>
+        </div>
+        <div class="block-content block-content-full">
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped table-vcenter">
+                    <thead>
+                        <tr class="text-center">
+                            <th>NO</th>
+                            <th>Tanggal</th>
+                            <th>Nama</th>
+                            <th>Masukan</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="riwayat-masukan">
+                        <?php $no=0;foreach($masukans as $masukan):$no++?>
+                            <tr>
+                                <td><?=$no;?></td>
+                                <td><?=$masukan["created_at"];?></td>
+                                <td><?=$masukan["wargabelajar_nama"];?></td>
+                                <td><?=$masukan["masukan"];?></td>
+                                <td>
+                                    <a href="<?=base_url('rekapmasukan/index/').$masukan['masukan_id'];?>">
+                                        <button type="button" class="btn btn-warning">Hapus
+                                        </button>
+                                    </a>
+                                </td>
+                            </tr>
+                        <?php endforeach;?>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row push text-center">
+                <a href="<?=base_url('dasbor');?>">
+                    <button type="button" class="btn btn-light">Kembali Ke Dasbor</button>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- END Basic -->
+
+</div>
+<!-- END Page Content -->
+
+</main>
+<!-- END Main Container -->
+            <?php $this->load->view('foot')?>

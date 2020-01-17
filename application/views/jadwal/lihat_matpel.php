@@ -50,7 +50,7 @@
             <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _es6/pages/be_tables_datatables.js -->
             <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
                 <thead>
-                        <tr class="text-center">
+                    <tr class="text-center">
                         <th>NO</th>
                         <th>Tahun Ajaran</th>
                         <th style="width: 15%;">Aksi</th>
@@ -75,6 +75,11 @@
                     <?php endforeach;?>
                 </tbody>
             </table>
+            <div class="row push text-center">
+                <a href="<?=base_url('jadwal');?>">
+                    <button type="buttn" class="btn btn-light">Kembali</button>
+                </a>
+            </div>
         </div>
     </div>
     <!-- END Dynamic Table Full -->

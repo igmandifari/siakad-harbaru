@@ -81,7 +81,11 @@
                                             </div>
                                         </div> 
                                     </form>
-                                    
+                                    <div class="row push text-center">
+                <a href="<?=base_url('pimpinan');?>">
+                    <button type="buttn" class="btn btn-light">Kembali</button>
+                </a>
+            </div>
                                 </div>
                                     <div class="tab-pane fade fade-right" id="btabs-animated-slideright-profile" role="tabpanel">
                                     <form action="<?php echo base_url("pimpinan/ubah_password") ?>" method="post" enctype="multipart/form-data">
@@ -101,7 +105,12 @@
                                             <div class="col-lg-4">
                                             </div>
                                         </div>     
-                                    </form>                                    
+                                    </form>    
+                                    <div class="row push text-center">
+                <a href="<?=base_url('pimpinan');?>">
+                    <button type="buttn" class="btn btn-light">Kembali</button>
+                </a>
+            </div>                                
                                     </div>
                                 </div>
                             </div>

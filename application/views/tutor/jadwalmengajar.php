@@ -155,9 +155,18 @@
                                 <span class="nav-main-link-name">Pengaturan</span>
                             </a>
                         </li>
-                        
-                   
-                       
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="<?=base_url('profil')?>">
+                            <i class="nav-main-link-icon si si-user ml-1"></i>
+                                <span class="nav-main-link-name">Profil</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="<?=base_url('auth/logout')?>">
+                            <i class="nav-main-link-icon si si-logout ml-1"></i>
+                                <span class="nav-main-link-name">Keluar</span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
                 <!-- END Side Navigation -->
@@ -257,9 +266,12 @@
                     <!-- Jadwal -->
                     <div class="block">
                         <div class="block-header">
-                            <h3 class="block-title">Dynamic Table <small>Full</small></h3>
+                            <h3 class="block-title"><?php echo $title;?></h3>
                         </div>
                         <div class="block-content block-content-full">
+                            <p>
+                                Berikut ini daftar mata pelajaran yang Ibu/Bapak harus ajarkan ke warga belajar.
+                            </p>
                             <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _es6/pages/be_tables_datatables.js -->
                             <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
                                 <thead>
@@ -284,8 +296,10 @@
                                         </tr>
                                     <?php endforeach;?>
                                 </tbody>
-                                
                             </table>
+                            <a href="<?=base_url('dasbor');?>">
+                                <button type="button" class="btn btn-light js-click-ripple-enabled" data-toggle="click-ripple" style="overflow: hidden; position: relative; z-index: 1;"><span class="click-ripple animate" style="height: 87.2656px; width: 87.2656px; top: -21.625px; left: 31.375px;"></span>Kembali Ke Halaman Dasbor</button>
+                            </a>
                         </div>
                     </div>
                     <!-- End Jadwal -->
