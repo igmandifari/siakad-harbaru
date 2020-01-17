@@ -94,6 +94,11 @@
                     </div>
                 </div>
             </form>
+            <div class="row push text-center">
+                <a href="<?=base_url('jadwal/matpel_lihat/').$this->uri->segment(3);?>">
+                    <button type="buttn" class="btn btn-light">Kembali</button>
+                </a>
+            </div>
 
             <?php } else{?>
                 <form action="<?php base_url('jadwal/ubah');?>" method="post">
@@ -151,6 +156,11 @@
                     </div>
                 </div>
             </form>
+            <div class="row push text-center">
+                <a href="<?=base_url('jadwal/matpel_lihat/').$this->uri->segment(3);?>">
+                    <button type="buttn" class="btn btn-light">Kembali</button>
+                </a>
+            </div>
             <?php }?>
             
         </div>

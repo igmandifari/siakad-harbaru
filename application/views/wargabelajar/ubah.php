@@ -53,9 +53,6 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="#ubah-password">Ubah Password</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#data-kelulusan">Data Kelulusan</a>
-                                </li>
                             </ul>
                             <div class="block-content tab-content overflow-hidden">
                                 <div class="tab-pane fade fade-right show active" id="btabs-animated-slideright-home" role="tabpanel">
@@ -197,6 +194,11 @@
                                         </div>
                                     </div>
                                 </form>
+                                <div class="row push text-center">
+                <a href="<?=base_url('wargabelajar');?>">
+                    <button type="button" class="btn btn-light">Kembali</button>
+                </a>
+            </div>
                                 </div>
                                 <div class="tab-pane fade fade-right" id="btabs-animated-slideright-profile" role="tabpanel">
                                 <form action="<?php echo base_url("wargabelajar/ubah_orangtua") ?>" method="post" enctype="multipart/form-data">
@@ -288,6 +290,11 @@
                                         </div>
                                     </div>
                                 </form>
+                                <div class="row push text-center">
+                <a href="<?=base_url('wargabelajar');?>">
+                    <button type="button" class="btn btn-light">Kembali</button>
+                </a>
+            </div>
                                 </div>
                                 <div class="tab-pane fade fade-right" id="ubah-password">
                                 <form action="<?php echo base_url("wargabelajar/ubah_password") ?>" method="post" enctype="multipart/form-data">
@@ -308,9 +315,11 @@
                                             </div>
                                         </div>     
                                     </form>
-                                </div>
-                                <div class="tab-pane fade fade-right" id="data-kelulusan">
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi perspiciatis recusandae aspernatur facilis ipsa hic, temporibus labore voluptate aut reiciendis a voluptatibus expedita sit iusto fugiat alias! Eveniet, autem impedit.</p>
+                                    <div class="row push text-center">
+                <a href="<?=base_url('wargabelajar');?>">
+                    <button type="button" class="btn btn-light">Kembali</button>
+                </a>
+            </div>
                                 </div>
                             </div>
                             

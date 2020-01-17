@@ -65,10 +65,10 @@
                                     <button type="button" class="btn btn-outline-secondary btn-sm">Masukan</button>
                                 </a>
                                 <a href="<?=base_url('kelas/rombel_lihat/').$rombel->rombel_id;?>">
-                                    <button type="button" class="btn btn-outline-secondary btn-sm">Lihat</button>
+                                    <button type="button" class="btn btn-outline-info btn-sm">Lihat</button>
                                 </a>
                                 <a href="<?=base_url('kelas/rombel_hapus/').$rombel->rombel_id;?>">
-                                    <button type="button" class="btn btn-outline-secondary btn-sm">Hapus</button>
+                                    <button type="button" class="btn btn-outline-warning btn-sm">Hapus</button>
                                 </a>
                             </div>
                         </td>
@@ -76,6 +76,11 @@
                     <?php endforeach;?>
                 </tbody>
             </table>
+            <div class="row push text-center">
+                <a href="<?=base_url('dasbor');?>">
+                    <button type="buttn" class="btn btn-light">Kembali Ke Dasbor</button>
+                </a>
+            </div>
         </div>
     </div>
     <!-- END Dynamic Table Full -->

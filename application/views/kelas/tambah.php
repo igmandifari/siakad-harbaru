@@ -62,6 +62,11 @@
                     </div>
                 </div>
             </form>
+            <div class="row push text-center">
+                <a href="<?=base_url('kelas');?>">
+                    <button type="buttn" class="btn btn-light">Kembali</button>
+                </a>
+            </div>
         </div>
     </div>
     <!-- END Basic -->

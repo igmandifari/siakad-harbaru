@@ -279,6 +279,11 @@
         </div>
         </form>
     </div>
+     <div class="row push text-center">
+                <a href="<?=base_url('wargabelajar');?>">
+                    <button type="button" class="btn btn-light">Kembali</button>
+                </a>
+            </div>
 </div>
 <!-- END Page Content -->
 
