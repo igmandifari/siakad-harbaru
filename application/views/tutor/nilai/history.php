@@ -5,7 +5,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
-        <title><?=$title?></title>
+        <title><?php echo $title." Semester ".$this->uri->segment(3)." ".$wb['wargabelajar_nama'];?></title>
 
         <meta name="robots" content="noindex, nofollow">
 
@@ -21,6 +21,8 @@
         <!-- Page JS Plugins CSS -->
         <link rel="stylesheet" href="<?=base_url('assets/js/plugins/datatables/dataTables.bootstrap4.css')?>">
         <link rel="stylesheet" href="<?=base_url('assets/js/plugins/datatables/buttons-bs4/buttons.bootstrap4.min.css')?>">
+        <link rel="stylesheet" href="<?=base_url('assets/js/plugins/select2/css/select2.min.css');?>">
+        <link rel="stylesheet" href="<?=base_url('assets/js/plugins/sweetalert2/sweetalert2.min.css');?>">
         <!-- Fonts and OneUI framework -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400italic,600,700%7COpen+Sans:300,400,400italic,600,700">
         <link rel="stylesheet" id="css-main" href="<?=base_url('assets/css/oneui.min.css')?>">
@@ -332,9 +334,8 @@
                     </div>
                 </div>
                 <!-- END Hero -->
-
-                                <!-- Page Content -->
-                                <div class="content">
+                <!-- Page Content -->
+                <div class="content">
                     <!-- Jadwal -->
                     <div class="block">
                         <div class="block-header block-header-default">
@@ -346,13 +347,7 @@
                                     </button>
                                 </a>
 
-                                <a href="<?=base_url('jadwalmengajar');?>">
-                                    <button type="button" class="btn btn-sm btn-info">
-                                        Jadwal
-                                    </button>
-                                </a>
-
-                                <a href="<?=base_url();?>">
+                                <a href="<?=base_url('dashboard');?>">
                                     <button type="button" class="btn btn-sm btn-light">
                                         Kembali
                                     </button>
@@ -361,40 +356,55 @@
                         </div>
                         <div class="block-content block-content-full">
                             <p>
-                                Berikut ini daftar kelas Ibu/Bapak mengajar. Baik Tatap Muka, Tutorial dan Mandiri.
+                                Berikut ini daftar nilai dari:
                             </p>
+                                <input type="hidden" id="nilai_id" value="<?php echo $idnilai["nilai_id"];?>">
+                                    <table>
+                                        <tr>
+                                            <td><strong>Nomor Induk</strong></td>
+                                            <td><strong>: <?php echo $wb["wargabelajar_nomor_induk"];?></strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>NISN</strong></td>
+                                            <td><strong>: <?php echo $wb["wargabelajar_nisn"];?></strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Nama</strong></td>
+                                            <td><strong>: <?php echo $wb["wargabelajar_nama"];?></strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Mata Pelajaran</strong></td>
+                                            <td><strong>: <?php echo $matpel["matpel_nama"];?></strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Semester</strong></td>
+                                            <td><strong>: <?php echo $this->uri->segment(3);?></strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Guru</strong></td>
+                                            <td><strong>: <?php echo $this->session->userdata('nama');?></strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">
+                                                <button type="button" class="btn btn-sm btn-success push" data-toggle="modal" data-target="#tambah-nilai">+Tambah Nilai</button>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </strong>
+
+                            
                             <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _es6/pages/be_tables_datatables.js -->
                             <div class="table-responsive">
                                 <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
                                     <thead class="text-center">
                                         <tr>
                                             <th>NO</th>
-                                            <th>Mata Pelajaran</th>
-                                            <th>Kelas</th>
-                                            <th>Tipe</th>
-                                            <th>Hari</th>
-                                            <th>Waktu</th>
+                                            <th>Jenis</th>
+                                            <th>Nilai</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <?php $no=0;foreach($SemuaKelas as $kelas):$no++?>
-                                            <tr>
-                                                <td><?=$no?></td>
-                                                <td><?=$kelas->matpel_nama?></td>
-                                                <td><?=$kelas->kelas_nama?></td>
-                                                <td><?=$kelas->jadwal_tipe_pembelajaran?></td>
-                                                <td><?=$kelas->jadwal_hari?></td>
-                                                <td><?=$kelas->jadwal_waktu?></td>
-                                                <td class="text-center">
-                                                        <button type="button" class="nilai btn btn-secondary btn-sm" data-toggle="modal" data-target="#modal-block-popout" data-matpel="<?=$kelas->jadwal_id?>">Masukan Nilai</button>
-                                                    <a href="<?=base_url('nilai/rekap/'.$kelas->jadwal_id.'')?>">
-                                                        <button type="button" class="btn btn-secondary btn-sm">Rekap</button>
-                                                    </a>
-                                                    
-                                            </td>
-                                            </tr>
-                                        <?php endforeach;?>
+                                    <tbody id="table-details-nilai">
                                     </tbody>
                                 </table>
                             </div>
@@ -405,47 +415,45 @@
                     </div>
                     <!-- End List Matpel -->
 
-                    <!-- Pop Out Block Modal -->
-                    <div class="modal fade" id="modal-block-popout" tabindex="-1" role="dialog" aria-labelledby="modal-block-popout" aria-hidden="true">
+                    <div class="modal fade" id="tambah-nilai" tabindex="-1" role="dialog" aria-labelledby="modal-block-popout" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-popout" role="document">
                             <div class="modal-content">
                                 <div class="block block-themed block-transparent mb-0">
                                     <div class="block-header bg-primary-dark">
-                                        <h3 class="block-title">Daftar Warga Belajar</h3>
+                                        <h3 class="block-title">Tambahkan Nilai</h3>
                                         <div class="block-options">
                                             <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
                                                 <i class="fa fa-fw fa-times"></i>
                                             </button>
                                         </div>
                                     </div>
-                                    <div class="block-content">
-                                        <p>Pilih warga belajar untuk memasukan nilai!</p>
-                                        <div class="table-responsive">
-                                            <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
-                                                <thead class="text-center">
-                                                    <tr>
-                                                        <th>NO</th>
-                                                        <th>Nama</th>
-                                                        <th>Aksi</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody id="data-warga-belajar">
-                                                    
-                                                </tbody>
-                                            </table>
+                                    <div class="block-content font-size-sm">
+                                        <p>Silahkan masukan nilai pada kolom dibawah ini</p>
+                                        <div class="form-group">
+                                            <label for="nilai_details_jenis">Jenis</label>
+                                            <select class="js-select2 form-control" id="nilai_details_jenis" style="width: 100%;" data-placeholder="Silahkan Pilih.." required>
+                                                <option></option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
+                                                <option value="Tugas">Tugas</option>
+                                                <option value="Harian">Harian</option>
+                                                <option value="UTS">UTS</option>
+                                                <option value="UAS">UAS</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="nilai_details_nilai"> Jumlah Nilai(0-100)</label>
+                                            <input type="text" class="form-control" id="nilai_details_nilai" placeholder="Masukan Jumlah Nilai Dari 1-100">
                                         </div>
                                     </div>
                                     <div class="block-content block-content-full text-right border-top">
-                                        <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal"><i class="fa fa-check mr-1"></i>Tutup</button>
+                                        <button type="button" class="btn btn-sm btn-light" data-dismiss="modal">Tutup</button>
+                                        <button type="button" id="simpan-tambah-nilai" class="btn btn-sm btn-primary"><i class="fa fa-check mr-1"></i>Simpan</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!-- END Pop Out Block Modal -->
                 </div>
                 <!-- END Page Content -->
-
             </main>
             <!-- END Main Container -->
 
@@ -496,32 +504,87 @@
         <!-- Page JS Plugins -->
         <script src="<?=base_url('assets/js/plugins/datatables/jquery.dataTables.min.js')?>"></script>
         <script src="<?=base_url('assets/js/plugins/datatables/dataTables.bootstrap4.min.js')?>"></script>
-        
+        <script src="<?=base_url('assets/js/plugins/select2/js/select2.full.min.js')?>"></script>
+        <script src="<?=base_url('assets/js/plugins/bootstrap-notify/bootstrap-notify.min.js');?>"></script>
+        <!-- Page JS Plugins -->
+        <script src="<?=base_url('assets/js/plugins/es6-promise/es6-promise.auto.min.js');?>"></script>
+        <script src="<?=base_url('assets/js/plugins/sweetalert2/sweetalert2.min.js');?>"></script>
+        <script src="<?=base_url('assets/js/plugins/es6-promise/es6-promise.auto.min.js');?>"></script>
+        <script src="<?=base_url('assets/js/plugins/sweetalert2/sweetalert2.min.js');?>"></script>
+
+        <!-- Page JS Code -->
+        <script src="<?=base_url('assets/js/pages/be_comp_dialogs.min.js');?>"></script>
 
         <!-- Page JS Code -->
         <script src="<?=base_url('assets/js/pages/be_tables_datatables.min.js')?>"></script>
         <!-- Custom -->
         <script>
             jQuery(function(){
-                const $btnClick = $(".nilai");
+                One.helpers(['select2']);
+                getNilai();
+                
+                
+                const $tambah = $("#simpan-tambah-nilai");
+                const $ubah = $("#simpan-ubah-nilai");
+                const $id = $("#nilai_id").val();
 
-                $btnClick.click(function(){
-                    var $idmatpel = $(this).data("matpel");
-                    var $tempWarga;
-                    const $WargaBelajars = $("#data-warga-belajar");
+                $tambah.click(function(){
+                    var $jenis = $("#nilai_details_jenis").val();
+                    var $nilai = $("#nilai_details_nilai").val();
 
+                    // Before add to database must be validated
+
+                    if($jenis == "" || $nilai==""){
+                        Swal.fire(
+                            'Perhatikan!',
+                            'Seluruh Kolom Harus diisi!',
+                            'warning'
+                            )
+                    }else if(!($.isNumeric($nilai))){
+                        Swal.fire(
+                            'Perhatikan!',
+                            'Kolom Nilai diisi Dengan Angka!',
+                            'warning'
+                            )
+                        $("#nilai_details_nilai").val("");
+                    }else{
+
+                        $.ajax({
+                            type:'POST',
+                            url:'<?php echo base_url('nilai/insertnilai');?>',
+                            data:{id:$id,jenis:$jenis,nilai:$nilai},
+                            success:function(data){
+                                Swal.fire(
+                                    'Berhasil!',
+                                    'Nilai'+$jenis+' berhasil ditambahkan!',
+                                    'success'
+                                    )
+                                getNilai();
+                                $("#nilai_details_nilai").val("");
+                            }
+                        });
+                    }
+                });
+
+                // get data from nilai details
+                function getNilai(){
+                    const $id = $("#nilai_id").val();
+                    const $NilaiTabel = $("#table-details-nilai");
+                            var $tempNilai;
                     $.ajax({
                         type:'GET',
-                        url:'<?php echo base_url('nilai/getWargaBelajars/');?>'+$idmatpel,
+                        url:'<?php echo base_url('nilai/getnilai/');?>'+$id,
                         dataType:'json',
                         success:function(data){
+                            
                             for(var row=0;row<data.length;row++){
-                                $tempWarga+='<tr><td class="text-center">'+(row+1)+'</td><td>'+data[row].wargabelajar_nama+'</td><td class="text-center"><a href="<?php echo base_url('nilai/matpel/ganjil/');?>'+$idmatpel+'/'+data[row].wargabelajar_id+'" target="_blank"><button type="button" class="btn btn-sm btn-success">Ganjil</button></a><a href="<?php echo base_url('nilai/matpel/genap/');?>'+$idmatpel+'/'+data[row].wargabelajar_id+'" target="_blank"><button type="button" class="btn btn-sm btn-secondary">Genap</button></a></td></tr>';
+                                $tempNilai+='<tr><td class="text-center">'+(row+1)+'</td><td>'+data[row].nilai_details_jenis+'</td><td>'+data[row].nilai_details_nilai+'</td><td class="text-center"><button type="button" class="btn btn-sm btn-secondary" data-id="'+data[row].nilai_details_id+'">Ubah</button><button type="button" class="btn btn-sm btn-light" data-id="'+data[row].nilai_details_id+'">Hapus</button></td></tr>';
                             }
-                            $WargaBelajars.html($tempWarga);
+
+                            $NilaiTabel.html($tempNilai);
                         }
                     });
-                });
+                }
             });
         </script>
     </body>
