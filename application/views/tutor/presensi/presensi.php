@@ -175,7 +175,7 @@
             </nav>
             <!-- END Sidebar -->
 
-            <!-- Header -->
+             <!-- Header -->
             <header id="page-header">
                 <!-- Header Content -->
                 <div class="content-header">
@@ -193,7 +193,6 @@
                         <button type="button" class="btn btn-sm btn-dual mr-2 d-none d-lg-inline-block" data-toggle="layout" data-action="sidebar_mini_toggle">
                             <i class="fa fa-fw fa-ellipsis-v"></i>
                         </button>
-                        <span class="badge badge-pill badge-info"><i class="fa fa-info-circle"></i> Tahun Ajaran <?=$this->session->userdata('tahunajaran_nama');?></span>
                         <!-- END Toggle Mini Sidebar -->
 
                         <!-- END Apps Modal -->
@@ -266,7 +265,7 @@
                                 Silahkan memasukan data presensi pada tanggal <?php echo $tanggal;?>
                             </p>
                             <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _es6/pages/be_tables_datatables.js -->
-                            <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
+                            <table class="table table-bordered table-striped table-vcenter js-dataTable-full table-responsive">
                                 <thead class="text-center">
                                     <tr>
                                         <th width="10%">NO</th>

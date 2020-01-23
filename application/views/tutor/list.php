@@ -27,10 +27,11 @@
     <div class="block">
         <div class="block-header">
             <a href="<?=base_url('tutor/tambah');?>">
-                <button type="button" class="btn btn-success mr-1 mb-3">
+                <button type="button" class="btn btn-success">
                     <i class="fa fa-fw fa-plus mr-1"></i> Tambah Data
                 </button>
             </a>
+            
         </div>
         <div class="block-content block-content-full">
         <?php if ($this->session->flashdata('success')): ?>
@@ -53,7 +54,7 @@
         </div>
         <?php endif;?>
             <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _es6/pages/be_tables_datatables.js -->
-            <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
+            <table class="table table-bordered table-striped table-vcenter js-dataTable-full table-responsive">
                                 <thead>
                                     <tr>
                                         <th>NO</th>

@@ -44,7 +44,7 @@
         </div>
         <?php endif;?>
             <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _es6/pages/be_tables_datatables.js -->
-            <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
+            <table class="table table-bordered table-striped table-vcenter js-dataTable-full table-responsive">
                                 <thead class="text-center">
                                     <tr>
                                         <th style="width: 15%;">No</th>

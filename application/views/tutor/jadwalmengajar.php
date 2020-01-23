@@ -173,7 +173,7 @@
             </nav>
             <!-- END Sidebar -->
 
-            <!-- Header -->
+             <!-- Header -->
             <header id="page-header">
                 <!-- Header Content -->
                 <div class="content-header">
@@ -193,6 +193,7 @@
                         </button>
                         <!-- END Toggle Mini Sidebar -->
 
+                        <!-- END Apps Modal -->
 
                         
                     </div>
@@ -273,7 +274,7 @@
                                 Berikut ini daftar mata pelajaran yang Ibu/Bapak harus ajarkan ke warga belajar.
                             </p>
                             <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _es6/pages/be_tables_datatables.js -->
-                            <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
+                            <table class="table table-bordered table-striped table-vcenter js-dataTable-full table-responsive">
                                 <thead>
                                     <tr>
                                         <th>NO</th>
