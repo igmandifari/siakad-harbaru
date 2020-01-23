@@ -1,4 +1,5 @@
-<h1 align="center">Data Warga Belajar</h1>
+<h1 align="center">PKBM HARAPAN BARU</h1>
+<h2 align="center">Data Tutor</h2>
 <table>
 	<thead>
 		<tr>
@@ -19,7 +20,7 @@
 				<td><?php echo $tutor->tutor_nomor_induk;?></td>
 				<td><?php echo $tutor->tutor_nama;?></td>
 				<td><?php echo $tutor->tutor_jenis_kelamin;?></td>
-				<td><?php echo $tutor->tutor_tempat_lahir.", ".$tutor->tutor_tanggal_lahir;?></td>
+				<td><?php echo $tutor->tutor_tempat_lahir.", ".date("d-F-Y",strtotime($tutor->tutor_tanggal_lahir));?></td>
 				<td><?php echo $tutor->tutor_agama;?></td>
 				<td><?php echo $tutor->tutor_alamat_jalan." ".$tutor->tutor_alamat_rtrw." ".$tutor->tutor_alamat_desa." ".$tutor->tutor_alamat_kecamatan.$tutor->tutor_alamat_kabupaten;?></td>
 				<td><?php echo $tutor->tutor_pendidikan_terakhir;?></td>

@@ -22,7 +22,7 @@
 				<td><?php echo $wargabelajar->wargabelajar_nisn;?></td>
 				<td><?php echo $wargabelajar->wargabelajar_nama;?></td>
 				<td><?php echo $wargabelajar->wargabelajar_jenis_kelamin;?></td>
-				<td><?php echo $wargabelajar->wargabelajar_tempat_lahir.", ".$wargabelajar->wargabelajar_tanggal_lahir;?></td>
+				<td><?php echo $wargabelajar->wargabelajar_tempat_lahir.", ".date("d-F-Y",strtotime($wargabelajar->wargabelajar_tanggal_lahir));?></td>
 				<td><?php echo $wargabelajar->wargabelajar_agama;?></td>
 				<td><?php echo $wargabelajar->wargabelajar_alamat_jalan." ".$wargabelajar->wargabelajar_alamat_rtrw." ".$wargabelajar->wargabelajar_alamat_desa." ".$wargabelajar->wargabelajar_alamat_kecamatan.$wargabelajar->wargabelajar_alamat_kabupaten;?></td>
 				<td><?php echo $wargabelajar->orangtua_ayah_nama;?></td>
