@@ -51,7 +51,6 @@
         
 
         <!-- Page JS Code -->
-        <script src="<?=base_url('assets/js/pages/be_pages_dashboard.min.js')?>"></script>
         <script src="<?=base_url('assets/js/plugins/select2/js/select2.full.min.js');?>"></script>
         <script src="<?=base_url('assets/js/pages/be_tables_datatables.min.js');?>"></script>
 

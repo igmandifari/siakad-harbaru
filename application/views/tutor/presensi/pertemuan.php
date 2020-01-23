@@ -118,6 +118,77 @@
                     </a>
                     <!-- END Logo -->
 
+                    <!-- Options -->
+                    <div>
+                        <!-- Color Variations -->
+                        <div class="dropdown d-inline-block ml-3">
+                            <a class="text-dual font-size-sm" id="sidebar-themes-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">
+                                <i class="si si-drop"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right font-size-sm smini-hide border-0" aria-labelledby="sidebar-themes-dropdown">
+                                <!-- Color Themes -->
+                                <!-- Layout API, functionality initialized in Template._uiHandleTheme() -->
+                                <a class="dropdown-item d-flex align-items-center justify-content-between" data-toggle="theme" data-theme="default" href="#">
+                                    <span>Default</span>
+                                    <i class="fa fa-circle text-default"></i>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center justify-content-between" data-toggle="theme" data-theme="assets/css/themes/amethyst.min.css" href="#">
+                                    <span>Amethyst</span>
+                                    <i class="fa fa-circle text-amethyst"></i>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center justify-content-between" data-toggle="theme" data-theme="assets/css/themes/city.min.css" href="#">
+                                    <span>City</span>
+                                    <i class="fa fa-circle text-city"></i>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center justify-content-between" data-toggle="theme" data-theme="assets/css/themes/flat.min.css" href="#">
+                                    <span>Flat</span>
+                                    <i class="fa fa-circle text-flat"></i>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center justify-content-between" data-toggle="theme" data-theme="assets/css/themes/modern.min.css" href="#">
+                                    <span>Modern</span>
+                                    <i class="fa fa-circle text-modern"></i>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center justify-content-between" data-toggle="theme" data-theme="assets/css/themes/smooth.min.css" href="#">
+                                    <span>Smooth</span>
+                                    <i class="fa fa-circle text-smooth"></i>
+                                </a>
+                                <!-- END Color Themes -->
+
+                                <div class="dropdown-divider"></div>
+
+                                <!-- Sidebar Styles -->
+                                <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
+                                <a class="dropdown-item" data-toggle="layout" data-action="sidebar_style_light" href="#">
+                                    <span>Sidebar Light</span>
+                                </a>
+                                <a class="dropdown-item" data-toggle="layout" data-action="sidebar_style_dark" href="#">
+                                    <span>Sidebar Dark</span>
+                                </a>
+                                <!-- Sidebar Styles -->
+
+                                <div class="dropdown-divider"></div>
+
+                                <!-- Header Styles -->
+                                <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
+                                <a class="dropdown-item" data-toggle="layout" data-action="header_style_light" href="#">
+                                    <span>Header Light</span>
+                                </a>
+                                <a class="dropdown-item" data-toggle="layout" data-action="header_style_dark" href="#">
+                                    <span>Header Dark</span>
+                                </a>
+                                <!-- Header Styles -->
+                            </div>
+                        </div>
+                        <!-- END Themes -->
+
+                        <!-- Close Sidebar, Visible only on mobile screens -->
+                        <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
+                        <a class="d-lg-none text-dual ml-3" data-toggle="layout" data-action="sidebar_close" href="javascript:void(0)">
+                            <i class="fa fa-times"></i>
+                        </a>
+                        <!-- END Close Sidebar -->
+                    </div>
+                    <!-- END Options -->
                 </div>
                 <!-- END Side Header -->
 
@@ -252,8 +323,27 @@
                         }
                         ?>
                     <div class="block">
-                        <div class="block-header">
-                            <h3 class="block-title"><?php echo "Data Pertemuan ".$kelas;?> </h3>
+                        <div class="block-header block-header-default">
+                            <h3 class="block-title">Data Pertemuan <?=$kelas;?></h3>
+                            <div class="block-options">
+                                <a href="<?=base_url('presensi/detail/').$this->uri->segment(3);?>">
+                                    <button type="button" class="btn btn-sm btn-secondary">
+                                        Detail
+                                    </button>
+                                </a>
+
+                                <a href="<?=base_url('jadwalmengajar');?>">
+                                    <button type="button" class="btn btn-sm btn-info">
+                                        Jadwal
+                                    </button>
+                                </a>
+
+                                <a href="<?=base_url('presensi');?>">
+                                    <button type="button" class="btn btn-sm btn-light">
+                                        Kembali
+                                    </button>
+                                </a>
+                            </div>
                         </div>
 
                         <div class="block-content block-content-full">
@@ -261,28 +351,30 @@
                                 Berikut ini data-data presensi Tatap Muka yang Ibu/Bapak pernah lakukan pada mata pelajaran <?php echo $matpel;?>.
                             </p>
                             <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _es6/pages/be_tables_datatables.js -->
-                            <table class="table table-bordered table-striped table-vcenter js-dataTable-full table-responsive">
-                                <thead class="text-center">
-                                    <tr>
-                                        <th width="10%">NO</th>
-                                        <th>Tanggal</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php $no=0;foreach($pertemuans as $pertemuan):$no++?>
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
+                                    <thead class="text-center">
                                         <tr>
-                                            <td class="text-center"><?=$no;?></td>
-                                            <td>
-                                                <a href="<?=base_url('presensi/jadwal/').$this->uri->segment(3).'/'.$pertemuan->presensi_id?>">
-                                                <button type="button" class="btn btn-info js-click-ripple-enabled btn-lg" data-toggle="click-ripple" style="overflow: hidden; position: relative; z-index: 1; width:100%;"><span class="click-ripple animate" style="height: 87.2656px; width: 87.2656px; top: -21.625px; left: 31.375px;"></span><?=$pertemuan->presensi_tanggal?></button></td>
-                                            </a>
+                                            <th width="10%">NO</th>
+                                            <th>Tanggal</th>
                                         </tr>
-                                        
+                                    </thead>
+                                    <tbody>
+                                        <?php $no=0;foreach($pertemuans as $pertemuan):$no++?>
+                                            <tr>
+                                                <td class="text-center"><?=$no;?></td>
+                                                <td>
+                                                    <a href="<?=base_url('presensi/jadwal/').$this->uri->segment(3).'/'.$pertemuan->presensi_id?>">
+                                                    <button type="button" class="btn btn-info js-click-ripple-enabled btn-lg" data-toggle="click-ripple" style="overflow: hidden; position: relative; z-index: 1; width:100%;"><span class="click-ripple animate" style="height: 87.2656px; width: 87.2656px; top: -21.625px; left: 31.375px;"></span><?=$pertemuan->presensi_tanggal?></button></td>
+                                                </a>
+                                            </tr>
                                             
-                                    <?php endforeach;?>
-                                </tbody>
-                                
-                            </table>
+                                                
+                                        <?php endforeach;?>
+                                    </tbody>
+                                    
+                                </table>
+                            </div>
                             <div class="row push">
                                 <div class="col-sm-12 text-center">
                                         <form action="<?=base_url('presensi/presensi_baru')?>" method="post">

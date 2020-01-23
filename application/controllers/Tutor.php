@@ -96,5 +96,15 @@ class Tutor extends CI_Controller
 
         $this->load->view('tutor/tambah',$data);
     }
+    public function cetak()
+    {
+        $tutor = $this->Tutor_model;
+        $data['tutors'] = $tutor->getAll();
+
+        $cetak = $this->load->view('tutor/cetak',$data,TRUE);
+        $mpdf= new \Mpdf\Mpdf();
+        $mpdf->WriteHtml($cetak,\Mpdf\HTMLParserMode::HTML_BODY);
+        $mpdf->Output();
+    }
     
 }

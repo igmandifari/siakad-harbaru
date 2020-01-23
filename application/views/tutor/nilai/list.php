@@ -208,13 +208,13 @@
                             </a>
                         </li>
                         <li class="nav-main-item">
-                            <a class="nav-main-link active" href="<?=base_url('presensi')?>">
+                            <a class="nav-main-link" href="<?=base_url('presensi')?>">
                             <i class="nav-main-link-icon si si-note"></i>
                                 <span class="nav-main-link-name">Presensi</span>
                             </a>
                         </li>
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="<?=base_url('nilai')?>">
+                            <a class="nav-main-link active" href="<?=base_url('nilai')?>">
                             <i class="nav-main-link-icon si si-layers"></i>
                                 <span class="nav-main-link-name">Nilai</span>
                             </a>
@@ -361,7 +361,7 @@
                         </div>
                         <div class="block-content block-content-full">
                             <p>
-                                Berikut ini daftar kelas Ibu/Bapak mengajar dengan tipe pembelajaran Tatap Muka.
+                                Berikut ini daftar kelas Ibu/Bapak mengajar. Baik Tatap Muka, Tutorial dan Mandiri.
                             </p>
                             <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _es6/pages/be_tables_datatables.js -->
                             <div class="table-responsive">
@@ -371,6 +371,7 @@
                                             <th>NO</th>
                                             <th>Mata Pelajaran</th>
                                             <th>Kelas</th>
+                                            <th>Tipe</th>
                                             <th>Hari</th>
                                             <th>Waktu</th>
                                             <th>Aksi</th>
@@ -382,14 +383,15 @@
                                                 <td><?=$no?></td>
                                                 <td><?=$kelas->matpel_nama?></td>
                                                 <td><?=$kelas->kelas_nama?></td>
+                                                <td><?=$kelas->jadwal_tipe_pembelajaran?></td>
                                                 <td><?=$kelas->jadwal_hari?></td>
                                                 <td><?=$kelas->jadwal_waktu?></td>
                                                 <td class="text-center">
-                                                    <a href="<?=base_url('presensi/jadwal/'.$kelas->jadwal_id.'')?>">
-                                                        <button type="button" class="btn btn-secondary btn-sm">Lakukan Presensi!</button>
+                                                    <a href="<?=base_url('nilai/matpel/'.$kelas->jadwal_id.'')?>">
+                                                        <button type="button" class="btn btn-secondary btn-sm">Masukan Nilai</button>
                                                     </a>
-                                                    <a href="<?=base_url('presensi/details/'.$kelas->jadwal_id.'')?>">
-                                                        <button type="button" class="btn btn-secondary btn-sm">Detail</button>
+                                                    <a href="<?=base_url('nilai/rekap/'.$kelas->jadwal_id.'')?>">
+                                                        <button type="button" class="btn btn-secondary btn-sm">Rekap</button>
                                                     </a>
                                                     
                                             </td>
@@ -461,12 +463,6 @@
 
         <!-- Page JS Code -->
         <script src="<?=base_url('assets/js/pages/be_tables_datatables.min.js')?>"></script>
-        <script>
-            $(document).ready(function(){
-                // $("").DataTable( {
-                //     responsive: true
-                //     });
-            });
-        </script>
+      
     </body>
 </html>
