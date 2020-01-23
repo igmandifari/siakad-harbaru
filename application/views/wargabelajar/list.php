@@ -25,16 +25,33 @@
 <div class="content">
     <!-- Dynamic Table Full -->
     <div class="block">
-        <div class="block-header">
-        <div class="block-header">
-            <a href="<?=base_url('wargabelajar/tambah');?>">
-                <button type="button" class="btn btn-success mr-1 mb-3">
-                    <i class="fa fa-fw fa-plus mr-1"></i> Tambah Data
+        
+        <div class="block-header block-header-default">
+            <h3 class="block-title"><?=$title;?></h3>
+            <div class="block-options">
+                <a href="<?=base_url('wargabelajar/tambah');?>">
+                <button type="button" class="btn btn-sm btn-primary">
+                    Tambah
                 </button>
-            </a>
+                </a>
+                <a href="<?=base_url('wargabelajar/cetak');?>">
+                    <button type="button" class="btn btn-sm btn-secondary">
+                        Cetak
+                    </button>
+                </a>
+                <a href="<?=base_url();?>">
+                    <button type="button" class="btn btn-sm btn-light">
+                        Kembali
+                    </button>
+                </a>
+            </div>
         </div>
-        </div>
-        <div class="block-content block-content-full">
+   
+        <div class="block-content">
+            <p class="font-size-sm text-muted">
+                Berikut ini adalah seluruh <?=$title;?>
+            </p>
+
         <?php if ($this->session->flashdata('success')): ?>
         <div class="alert alert-success d-flex align-items-center" role="alert">
             <div class="flex-00-auto">
