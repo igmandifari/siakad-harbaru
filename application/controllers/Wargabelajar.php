@@ -118,5 +118,16 @@ Class Wargabelajar extends CI_Controller
             return true;
         }
     }
+    public function cetak()
+    {
+        $wargabelajar= $this->Wargabelajar_model;
+        $data["wargabelajars"] = $wargabelajar->getAll();
+
+        $cetak = $this->load->view('wargabelajar/cetak',$data,TRUE);
+
+        $mpdf= new \Mpdf\Mpdf();
+        $mpdf->WriteHtml($cetak,\Mpdf\HTMLParserMode::HTML_BODY);
+        $mpdf->Output();
+    }
 
 }
