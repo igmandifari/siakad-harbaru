@@ -44,6 +44,7 @@ class Jadwal extends CI_Controller
         $data["kelass"] = $jadwal->getKelas($tahun);
         $data["matpels"] = $jadwal->getMatpel();
         $data["jadwal"] = $jadwal->getById($id);
+        $data["tahuns"] = $jadwal->getTahunajaran();
 
         if(!$data['jadwal']) redirect('jadwal');
         
@@ -70,6 +71,7 @@ class Jadwal extends CI_Controller
         $data["actor"] = "Jadwal";
         $data["kelas_all"] = $jadwal->getKelas($tahun);
         $data["matpel_all"] = $jadwal->getMatpel();
+        $data["tahuns"] = $jadwal->getTahunajaran();
         
         $this->load->view("jadwal/tambah",$data);
     }
@@ -80,6 +82,7 @@ class Jadwal extends CI_Controller
         $data["jadwals"] =$jadwal->getMatpelTahun($tahun);
         $data["title"] = "Jadwal Mata Pelajaran";
         $data["actor"] = "Jadwal";
+        $data["tahuns"] = $jadwal->getTahunajaran();
 
         if(!$data['jadwals']) redirect('jadwal');
 

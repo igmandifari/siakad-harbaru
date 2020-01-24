@@ -1,5 +1,8 @@
 <?php
 	class Nilai_model extends CI_Model {
+        public function getTahunAjaran(){
+            return $this->db->get('tahunajaran')->result_array();
+        }
 		public function getKelas()
 		{
             $id     = $this->session->userdata('id');
@@ -23,14 +26,21 @@
         public function getNameMatpel($jadwal){
         	return $this->db->query("SELECT matpel.matpel_nama FROM jadwal INNER JOIN matpel ON matpel.matpel_id=jadwal.matpel_id WHERE jadwal.jadwal_id='$jadwal'")->row_array();
         }
-        public function getIDNIilai($jadwal){
-        	return $this->db->query("SELECT nilai.nilai_id FROM nilai WHERE nilai.jadwal_id='$jadwal'")->row_array();
+        public function getIDNIilai($jadwal,$id,$semseter){
+        	return $this->db->query("SELECT nilai.nilai_id FROM nilai WHERE nilai.jadwal_id='$jadwal' AND nilai.wargabelajar_id='$id' AND nilai.nilai_semester='$semseter'")->row_array();
         }
         public function insetToDet($data=array()){
         	return $this->db->insert('nilai_details',$data);
         }
         public function getDataNilai($nilai){
-        	return $this->db->query('SELECT * FROM nilai_details ORDER BY nilai_details_id DESC')->result_array();
+        	return $this->db->query("SELECT * FROM nilai_details INNER JOIN nilai ON nilai.nilai_id=nilai_details.nilai_id WHERE nilai_details.nilai_id='$nilai' ORDER BY nilai_details.nilai_details_id DESC")->result_array();
+        }
+        public function calcNilai($nilai){
+        	return $this->db->query("SELECT sum(nilai_details_nilai)as total, count(nilai_details_id) as banyak, sum(nilai_details_nilai)/count(nilai_details_id) as rata FROM nilai_details WHERE nilai_details.nilai_id='$nilai'")->result_array();
+        }
+        public function hapusNilaiDet($id){
+        	$this->db->where('nilai_details_id',$id);
+        	return $this->db->delete('nilai_details');
         }
 
 

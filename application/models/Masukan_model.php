@@ -21,5 +21,8 @@ class Masukan_model extends CI_Model {
 		$this->db->where('masukan_id',$id);
 		return $this->db->delete('masukan');
 	}
+	public function getTahunAjaran(){
+            return $this->db->get('tahunajaran')->result_array();
+        }
 
 }

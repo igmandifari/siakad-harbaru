@@ -55,7 +55,23 @@
         <script src="<?=base_url('assets/js/pages/be_tables_datatables.min.js');?>"></script>
 
         <!-- Page JS Helpers-->
-       <script>jQuery(function(){ One.helpers(['select2']); });</script>
+       <script>
+            jQuery(function(){
+                $("#tahunajaran").change(function(){
+                    var id=this.value;
+                    $.ajax({
+                        type:'POST',
+                        url:'<?php echo base_url('dasbor/setTahunajaran');?>',
+                        data:{tahunajaran_id:id},
+                        success:function(data){
+                            location.reload();
+                        }
+
+                    });
+                });
+                One.helpers(['select2']); 
+        });
+    </script>
         
     </body>
 </html>

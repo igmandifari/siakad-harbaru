@@ -54,7 +54,7 @@ class Tahunajaran extends CI_Controller
 
         $data["title"] = "Tambah Data";
         $data["actor"] = "Mata Pelajaran";
-
+        $data["tahunajarans"] = $this->Tahunajaran_model->getAll();
         $this->load->view('tahunajaran/tambah',$data);
     }
 
@@ -86,7 +86,8 @@ class Tahunajaran extends CI_Controller
 
         $data["title"] = "Ubah Data";
         $data["actor"] = "Kelas";
-
+        $data["tahunajarans"] = $this->Tahunajaran_model->getAll();
+        
         $this->load->view("tahunajaran/ubah",$data);
     }
 

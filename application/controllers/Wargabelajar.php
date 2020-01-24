@@ -21,6 +21,7 @@ Class Wargabelajar extends CI_Controller
         $data["title"] = "Data Warga Belajar";
    	    $data["actor"] = "Warga Belajar";
         $data["wargabelajars"] = $this->Wargabelajar_model->getAll();
+        $data["tahunajaran_all"] = $this->Wargabelajar_model->getTahunAjaran();
 
         $this->load->view('wargabelajar/list',$data);
     }

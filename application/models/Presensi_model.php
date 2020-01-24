@@ -1,6 +1,9 @@
 <?php
     class Presensi_model extends CI_Model
     {
+        public function getTahunAjaran(){
+            return $this->db->get('tahunajaran')->result_array();
+        }
         public function getKelas()
         {
             $id     = $this->session->userdata('id');

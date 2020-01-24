@@ -17,6 +17,7 @@ class Matpel extends CI_Controller
         $data["matpels"] = $this->Matpel_model->getAll();
         $data["title"] = "Data Mata Pelajaran";
         $data["actor"] = "Mata Pelajaran";
+        $data["tahunajarans"] = $this->Matpel_model->getTahunAjaran();
 
         $this->load->view('matpel/list',$data);
     }
@@ -38,6 +39,7 @@ class Matpel extends CI_Controller
         $data["title"] = "Tambah Data";
         $data["actor"] = "Mata Pelajaran";
         $data["tutors"] = $matpel->getTutor();
+        $data["tahunajarans"] = $this->Matpel_model->getTahunAjaran();
         $this->load->view('matpel/tambah',$data);
     }
 
@@ -70,6 +72,7 @@ class Matpel extends CI_Controller
         $data["title"] = "Ubah Data";
         $data["actor"] = "Kelas";
         $data["tutors"] = $matpel->getTutor();
+        $data["tahunajarans"] = $this->Matpel_model->getTahunAjaran();
 
         $this->load->view("matpel/ubah",$data);
     }

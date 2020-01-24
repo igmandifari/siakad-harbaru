@@ -48,36 +48,38 @@
         </div>
         <?php endif;?>
             <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _es6/pages/be_tables_datatables.js -->
-            <table class="table table-bordered table-striped table-vcenter js-dataTable-full table-responsive">
-                <thead>
-                        <tr class="text-center">
-                        <th>NO</th>
-                        <th>Tahun Ajaran</th>
-                        <th style="width: 15%;">Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php $no=0; foreach($tahuns as $tahun):$no++?>
-                        <tr>
-                            <td><?=$no;?></td>
-                            <td><?=$tahun->tahunajaran_nama?></td>
-                            <td class="text-center">
-                                <div class="btn-group btn-group-sm" role="group" aria-label="Small Outline Primary">
-                                    <a href="<?=base_url('jadwal/matpel_tambah/').$tahun->tahunajaran_id?>">
-                                        <button type="button" class="btn btn-outline-secondary btn-sm">Masukan</button>
-                                    </a>
-                                    <a href="<?=base_url('jadwal/matpel_lihat/').$tahun->tahunajaran_id?>">
-                                        <button type="button" class="btn btn-outline-info btn-sm">Lihat</button>
-                                    </a>
-                                    <a href="<?=base_url('jadwal/delTahun/').$tahun->tahunajaran_id?>">
-                                        <button type="button" class="btn btn-outline-warning btn-sm">Hapus</button>
-                                    </a>
-                                </div>
-                            </td>
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
+                    <thead>
+                            <tr class="text-center">
+                            <th>NO</th>
+                            <th>Tahun Ajaran</th>
+                            <th style="width: 15%;">Aksi</th>
                         </tr>
-                    <?php endforeach;?>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        <?php $no=0; foreach($tahuns as $tahun):$no++?>
+                            <tr>
+                                <td><?=$no;?></td>
+                                <td><?=$tahun->tahunajaran_nama?></td>
+                                <td class="text-center">
+                                    <div class="btn-group btn-group-sm" role="group" aria-label="Small Outline Primary">
+                                        <a href="<?=base_url('jadwal/matpel_tambah/').$tahun->tahunajaran_id?>">
+                                            <button type="button" class="btn btn-outline-secondary btn-sm">Masukan</button>
+                                        </a>
+                                        <a href="<?=base_url('jadwal/matpel_lihat/').$tahun->tahunajaran_id?>">
+                                            <button type="button" class="btn btn-outline-info btn-sm">Lihat</button>
+                                        </a>
+                                        <a href="<?=base_url('jadwal/delTahun/').$tahun->tahunajaran_id?>">
+                                            <button type="button" class="btn btn-outline-warning btn-sm">Hapus</button>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        <?php endforeach;?>
+                    </tbody>
+                </table>
+            </div>
             <div class="row push text-center">
                 <a href="<?=base_url('dasbor').$this->uri->segment(3);?>">
                     <button type="buttn" class="btn btn-light">Kembali Ke Dasbor</button>

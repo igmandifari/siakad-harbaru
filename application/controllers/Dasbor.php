@@ -9,6 +9,7 @@ class Dasbor extends CI_Controller
     public function index(){
         $dasbor = $this->Dasbor_model;
         $data["title"] = "Dasbor";
+        $data["tahunajarans"] = $dasbor->getTahunAjaran();
 
 
         if($this->session->userdata('level') == 0){
@@ -28,5 +29,12 @@ class Dasbor extends CI_Controller
             $this->load->view('dasbor/dasbor_tutor',$data);
         }
 
+    }
+    public function setTahunajaran()
+    {
+        if($this->input->method()=="post"){
+            $thnid = $this->input->post('tahunajaran_id');
+            $this->session->set_userdata('tahunajaran_id',$thnid);
+        }
     }
 }

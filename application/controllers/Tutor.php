@@ -18,7 +18,7 @@ class Tutor extends CI_Controller
         $data["tutors"] = $this->Tutor_model->getAll();
         $data["title"] = "Data Tutor";
         $data["actor"] = "Tutor";
-    
+        $data["tahunajarans"] = $this->Tutor_model->getTahunAjaran();
         $this->load->view('tutor/list',$data);    
     }
 
@@ -74,6 +74,7 @@ class Tutor extends CI_Controller
         }
         $data["title"] = "Ubah Data";
         $data["actor"] = "Tutor";
+        $data["tahunajarans"] = $this->Tutor_model->getTahunAjaran();
         
         $this->load->view('tutor/ubah',$data);
     }
@@ -93,6 +94,7 @@ class Tutor extends CI_Controller
         
         $data["title"] = "Tambah Data";
         $data["actor"] = "Tutor";
+        $data["tahunajarans"] = $this->Tutor_model->getTahunAjaran();
 
         $this->load->view('tutor/tambah',$data);
     }

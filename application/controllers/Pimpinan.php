@@ -18,6 +18,7 @@ class Pimpinan extends CI_Controller
         $data["pimpinans"] = $this->Pimpinan_model->getAll();
         $data["title"] = "Data Pimpinan";
         $data["actor"] = "Pimpinan";
+        $data["tahunajarans"] = $this->Pimpinan_model->getTahunAjaran();
     
         $this->load->view('pimpinan/list',$data);    
     }
@@ -57,6 +58,7 @@ class Pimpinan extends CI_Controller
         }
         $data["title"] = "Ubah Data";
         $data["actor"] = "Pimpinan";
+        $data["tahunajarans"] = $this->Pimpinan_model->getTahunAjaran();
         
         $this->load->view('pimpinan/ubah',$data);
     }
@@ -93,6 +95,7 @@ class Pimpinan extends CI_Controller
         
         $data["title"] = "Tambah Data";
         $data["actor"] = "Pimpinan";
+        $data["tahunajarans"] = $this->Pimpinan_model->getTahunAjaran();
 
         $this->load->view('pimpinan/tambah',$data);
     }

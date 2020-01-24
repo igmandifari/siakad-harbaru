@@ -19,11 +19,13 @@
             $data["title"] = "Daftar Kelas";
             $data["actor"] ="Presensi Kehadiran";
             $data["SemuaKelas"] = $presensi->getKelas();
+            $data["tahunajarans"]= $presensi->getTahunAjaran();
             
             $this->load->view('tutor/presensi/list',$data);
         }
         public function presensi_baru(){
             $presensi=$this->Presensi_model;
+            $data["tahunajarans"]= $presensi->getTahunAjaran();
             if($this->input->method()=="post"){
                 $jadwal_id =$this->input->post('jadwal_id');
                 $presensi_id = $this->input->post('presensi_id');
@@ -49,7 +51,7 @@
             $data["title"] = "Kelas";
             $data["actor"] = "Presensi";
             $data["wargabelajars"] = $presensi->getPresensiDet($pertemuan);
-
+            $data["tahunajarans"]= $presensi->getTahunAjaran();
             
             if(!isset($pertemuan) && isset($id)){
                 $this->load->view('tutor/presensi/pertemuan',$data);

@@ -19,6 +19,7 @@ class Kelas extends CI_Controller
         $data["title"] = "Data Kelas";
         $data["actor"] = "Kelas";
         $data["kelass"] = $this->Kelas_model->getAll();
+        $data["tahunajarans"] = $this->Kelas_model->getTahunAjaran();
     
         $this->load->view('kelas/list',$data);
     }
@@ -38,6 +39,7 @@ class Kelas extends CI_Controller
 
         $data["title"] = "Tambah Data";
         $data["actor"] = "Kelas";
+        $data["tahunajarans"] = $this->Kelas_model->getTahunAjaran();
 
         $this->load->view('kelas/tambah',$data);
     }
@@ -69,6 +71,7 @@ class Kelas extends CI_Controller
         $data["title"] = "Ubah Data";
         $data["actor"] = "Kelas";
         $data['kelas'] = $kelas->getByid($id);
+        $data["tahunajarans"] = $this->Kelas_model->getTahunAjaran();
 
         if(!$data['kelas']) redirect('kelas');
 
@@ -82,6 +85,7 @@ class Kelas extends CI_Controller
         $data["actor"] = "Rombel";
         $data["title"] = "Daftar Rombel";
         $data["SemuaRombel"] = $kelas->getRombel();
+        $data["tahunajarans"] = $this->Kelas_model->getTahunAjaran();
 
         $this->load->view('kelas/rombel_list',$data);
     }
@@ -100,6 +104,7 @@ class Kelas extends CI_Controller
         $data['actor'] = "Rombel";
         $data['getKelas'] = $kelas->getKelas();
         $data['getTahun'] = $kelas->getTahun();
+        $data["tahunajarans"] = $this->Kelas_model->getTahunAjaran();
 
         $this->load->view('kelas/tambah_rombel',$data);
     }
@@ -111,6 +116,7 @@ class Kelas extends CI_Controller
         $data['actor'] = 'Rombel';
         $data['title'] = 'Masukan Ke Rombel';
         if(!$data['kelas']) redirect('kelas/rombel');
+        $data["tahunajarans"] = $this->Kelas_model->getTahunAjaran();
 
         $this->load->view('kelas/rombel_tambah',$data);
         
@@ -123,6 +129,7 @@ class Kelas extends CI_Controller
         $data['actor'] = 'Rombel';
         $data['title'] = 'Lihat Rombel';
         if(!$data['semua_wargabelajar']) redirect('kelas/rombel');
+        $data["tahunajarans"] = $this->Kelas_model->getTahunAjaran();
 
         $this->load->view('kelas/rombel_lihat',$data);
     }

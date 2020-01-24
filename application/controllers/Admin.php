@@ -22,6 +22,7 @@
         $data["title"] = "Data Admin";
         $data["actor"] = "admin";
         $data["admins"] = $this->Admin_model->getAll();
+        $data["tahunajarans"]=$this->Admin_model->getTahunAjaran();
     
         $this->load->view('admin/list',$data);
     }
@@ -41,6 +42,7 @@
 
         $data["title"] = "Tambah Data";
         $data["actor"] = "admin";
+        $data["tahunajarans"]=$this->Admin_model->getTahunAjaran();
         $this->load->view('admin/tambah',$data);
     
     }
@@ -88,6 +90,7 @@
         $data["title"] = "Ubah Data";
         $data["actor"] = "admin";
         $data["admin"] = $admin->getByid($id);
+        $data["tahunajarans"]=$this->Admin_model->getTahunAjaran();
  
         if(!$data['admin']) redirect('admin');
 

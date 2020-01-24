@@ -19,4 +19,7 @@ class Dasbor_model extends CI_Model {
         $query= $this->db->query("SELECT COUNT(admin_id) as jumlah FROM admin");
         return $query->row_array();
     }
+    public function getTahunAjaran(){
+        return $this->db->get('tahunajaran')->result_array();
+    }
 }

@@ -53,39 +53,41 @@
         </div>
         <?php endif;?>
             <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _es6/pages/be_tables_datatables.js -->
-            <table class="table table-bordered table-striped table-vcenter js-dataTable-full table-responsive">
-                                <thead>
-                                    <tr>
-                                        <th>NO</th>
-                                        <th>Nama Lengkap</th>
-                                        <th style="width: 15%;">Aksi</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php $no=0; foreach($pimpinans as $pimpinan):$no++?>
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
+                                    <thead>
                                         <tr>
-                                            <td><?=$no;?></td>
-                                            <td><?=$pimpinan->pimpinan_nama;?>
-                                            <td class="text-center">
-                                                <div class="btn-group">
-                                                    <a href="<?=base_url('pimpinan/ubah/').$pimpinan->pimpinan_id;?>">
-                                                        <button type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Ubah">
-                                                            <i class="fa fa-fw fa-pencil-alt"></i>
-                                                            Ubah
-                                                        </button>
-                                                    </a>
-                                                    <a href="<?=base_url('pimpinan/hapus/').$pimpinan->pimpinan_id;?>">
-                                                        <button type="button" class="btn btn-sm btn-warning js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Hapus">
-                                                            <i class="fa fa-fw fa-times"></i>
-                                                            Hapus
-                                                        </button>
-                                                    </a>
-                                                </div>
-                                            </td>
+                                            <th>NO</th>
+                                            <th>Nama Lengkap</th>
+                                            <th style="width: 15%;">Aksi</th>
                                         </tr>
-                                    <?php endforeach;?>
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody>
+                                        <?php $no=0; foreach($pimpinans as $pimpinan):$no++?>
+                                            <tr>
+                                                <td><?=$no;?></td>
+                                                <td><?=$pimpinan->pimpinan_nama;?>
+                                                <td class="text-center">
+                                                    <div class="btn-group">
+                                                        <a href="<?=base_url('pimpinan/ubah/').$pimpinan->pimpinan_id;?>">
+                                                            <button type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Ubah">
+                                                                <i class="fa fa-fw fa-pencil-alt"></i>
+                                                                Ubah
+                                                            </button>
+                                                        </a>
+                                                        <a href="<?=base_url('pimpinan/hapus/').$pimpinan->pimpinan_id;?>">
+                                                            <button type="button" class="btn btn-sm btn-warning js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Hapus">
+                                                                <i class="fa fa-fw fa-times"></i>
+                                                                Hapus
+                                                            </button>
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach;?>
+                                    </tbody>
+                                </table>
+                            </div>
                             <div class="row push text-center">
                 <a href="<?=base_url('dasbor');?>">
                     <button type="buttn" class="btn btn-light">Kembali Ke Dasbor</button>

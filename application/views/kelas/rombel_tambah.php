@@ -45,35 +45,37 @@
                 <p>Tahun Ajaran : <?=$kelas["tahunajaran_nama"]?></p>
             </div>
           </div>
-          <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
-              <thead class="text-center">
-                <tr>
-                    <th>No</th>
-                    <th>Nama</th>
-                    <th>No Induk</th>
-                    <th>NISN</th>
-                    <th style="width: 15%;">Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php $no=0;foreach($semua_wargabelajar as $wargabelajar):$no++;?>
+          <div class="table-responsive">
+              <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
+                  <thead class="text-center">
                     <tr>
-                        <td class="text-center"><?=$no?></td>
-                        <td><?=$wargabelajar->wargabelajar_nama;?>
-                        <td><?=$wargabelajar->wargabelajar_nomor_induk;?>
-                        <td><?=$wargabelajar->wargabelajar_nisn;?>
-                        <td class="text-center">
-                            <form method="post" action="<?=base_url('kelas/rombel_simpan')?>">
-                                <input type="hidden" name="rombel_id" value="<?=$this->uri->segment('3')?>">
-                                <input type="hidden" name="wargabelajar_id" value="<?=$wargabelajar->wargabelajar_id?>">
-                                <button id="tambah<?=$no?>" type="submit" class="btn btn-outline-secondary btn-sm">Masukan</button>
-                            </a>
-                            </form>    
-                        </td>
+                        <th>No</th>
+                        <th>Nama</th>
+                        <th>No Induk</th>
+                        <th>NISN</th>
+                        <th style="width: 15%;">Aksi</th>
                     </tr>
-                <?php endforeach;?>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    <?php $no=0;foreach($semua_wargabelajar as $wargabelajar):$no++;?>
+                        <tr>
+                            <td class="text-center"><?=$no?></td>
+                            <td><?=$wargabelajar->wargabelajar_nama;?>
+                            <td><?=$wargabelajar->wargabelajar_nomor_induk;?>
+                            <td><?=$wargabelajar->wargabelajar_nisn;?>
+                            <td class="text-center">
+                                <form method="post" action="<?=base_url('kelas/rombel_simpan')?>">
+                                    <input type="hidden" name="rombel_id" value="<?=$this->uri->segment('3')?>">
+                                    <input type="hidden" name="wargabelajar_id" value="<?=$wargabelajar->wargabelajar_id?>">
+                                    <button id="tambah<?=$no?>" type="submit" class="btn btn-outline-secondary btn-sm">Masukan</button>
+                                </a>
+                                </form>    
+                            </td>
+                        </tr>
+                    <?php endforeach;?>
+                </tbody>
+            </table>
+        </div>
         <div class="row push text-center">
                 <a href="<?=base_url('kelas/rombel');?>">
                     <button type="buttn" class="btn btn-light">Kembali</button>

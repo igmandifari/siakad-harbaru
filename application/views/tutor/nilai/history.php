@@ -20,7 +20,6 @@
         <!-- Stylesheets -->
         <!-- Page JS Plugins CSS -->
         <link rel="stylesheet" href="<?=base_url('assets/js/plugins/datatables/dataTables.bootstrap4.css')?>">
-        <link rel="stylesheet" href="<?=base_url('assets/js/plugins/datatables/buttons-bs4/buttons.bootstrap4.min.css')?>">
         <link rel="stylesheet" href="<?=base_url('assets/js/plugins/select2/css/select2.min.css');?>">
         <link rel="stylesheet" href="<?=base_url('assets/js/plugins/sweetalert2/sweetalert2.min.css');?>">
         <!-- Fonts and OneUI framework -->
@@ -266,6 +265,13 @@
                         <button type="button" class="btn btn-sm btn-dual mr-2 d-none d-lg-inline-block" data-toggle="layout" data-action="sidebar_mini_toggle">
                             <i class="fa fa-fw fa-ellipsis-v"></i>
                         </button>
+                        <!-- Tahun Ajaran  -->
+                        <select id="tahunajaran" class="js-select2 form-control form-control-lg form-control-alt" id="tahunajaran_id" name="tahunajaran_id" style="width: 100%;" data-placeholder="Silahkan pilih tahun ajaran" required>
+                            <option value=""></option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
+                            <?php foreach($tahunajarans as $tahunajaran):?>
+                                <option value="<?php echo $tahunajaran["tahunajaran_id"]?>" <?php if($this->session->userdata('tahunajaran_id')==$tahunajaran["tahunajaran_id"]) echo "selected";?>>Tahun Ajaran <?=$tahunajaran["tahunajaran_nama"]?></option>
+                            <?php endforeach;?>
+                        </select>
                         <!-- END Toggle Mini Sidebar -->
 
                         <!-- END Apps Modal -->
@@ -354,7 +360,15 @@
                                 </a>
                             </div>
                         </div>
+
                         <div class="block-content block-content-full">
+                            <?php
+                                if($this->session->flashdata('success')){
+                                    echo $this->session->flashdata('success');
+                                }elseif($this->session->flashdata('gagal')){
+                                    echo $this->session->flashdata('gagal');
+                                }
+                            ?>
                             <p>
                                 Berikut ini daftar nilai dari:
                             </p>
@@ -398,14 +412,16 @@
                                 <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
                                     <thead class="text-center">
                                         <tr>
-                                            <th>NO</th>
-                                            <th>Jenis</th>
-                                            <th>Nilai</th>
-                                            <th>Aksi</th>
+                                            <th width="5%">NO</th>
+                                            <th>Jenis Nilai</th>
+                                            <th width="15%">Nilai</th>
+                                            <th width="15%">Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody id="table-details-nilai">
                                     </tbody>
+                                    <tfoot id="keterangan-nilai">
+                                    </tfoot>
                                 </table>
                             </div>
                             <a href="<?=base_url('dasbor');?>">
@@ -452,6 +468,7 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
                 <!-- END Page Content -->
             </main>
@@ -509,8 +526,7 @@
         <!-- Page JS Plugins -->
         <script src="<?=base_url('assets/js/plugins/es6-promise/es6-promise.auto.min.js');?>"></script>
         <script src="<?=base_url('assets/js/plugins/sweetalert2/sweetalert2.min.js');?>"></script>
-        <script src="<?=base_url('assets/js/plugins/es6-promise/es6-promise.auto.min.js');?>"></script>
-        <script src="<?=base_url('assets/js/plugins/sweetalert2/sweetalert2.min.js');?>"></script>
+
 
         <!-- Page JS Code -->
         <script src="<?=base_url('assets/js/pages/be_comp_dialogs.min.js');?>"></script>
@@ -525,7 +541,6 @@
                 
                 
                 const $tambah = $("#simpan-tambah-nilai");
-                const $ubah = $("#simpan-ubah-nilai");
                 const $id = $("#nilai_id").val();
 
                 $tambah.click(function(){
@@ -556,7 +571,7 @@
                             success:function(data){
                                 Swal.fire(
                                     'Berhasil!',
-                                    'Nilai'+$jenis+' berhasil ditambahkan!',
+                                    'Nilai '+$jenis+' berhasil ditambahkan!',
                                     'success'
                                     )
                                 getNilai();
@@ -578,13 +593,39 @@
                         success:function(data){
                             
                             for(var row=0;row<data.length;row++){
-                                $tempNilai+='<tr><td class="text-center">'+(row+1)+'</td><td>'+data[row].nilai_details_jenis+'</td><td>'+data[row].nilai_details_nilai+'</td><td class="text-center"><button type="button" class="btn btn-sm btn-secondary" data-id="'+data[row].nilai_details_id+'">Ubah</button><button type="button" class="btn btn-sm btn-light" data-id="'+data[row].nilai_details_id+'">Hapus</button></td></tr>';
+                                $tempNilai+='<tr><td class="text-center">'+(row+1)+'</td><td>'+data[row].nilai_details_jenis+'</td><td>'+data[row].nilai_details_nilai+'</td><td class="text-center"><a href="<?php echo base_url('nilai/ubah/').$this->uri->segment(3)."/".$this->uri->segment(4)."/".$this->uri->segment(5)."/"?>'+data[row].nilai_details_id+'"><button type="button" class="ubah btn btn-sm btn-secondary push" data-id="'+data[row].nilai_details_id+'" data-toggle="modal" data-target="#ubah-nilai">Ubah</button></a><a href="<?php echo base_url('nilai/hapus/').$this->uri->segment(3)."/".$this->uri->segment(4)."/".$this->uri->segment(5)."/"?>'+data[row].nilai_details_id+'"><button type="button" class="hapus btn btn-sm btn-light push" data-id="'+data[row].nilai_details_id+'">Hapus</button></a></td></tr>';
                             }
 
                             $NilaiTabel.html($tempNilai);
                         }
                     });
+                    calcNilai();
                 }
+                function calcNilai(){
+                    const $id = $("#nilai_id").val();
+                    const $keterangan = $("#keterangan-nilai");
+                    var $tempKeterangan;
+                    $.ajax({
+                        type:'GET',
+                        url:'<?php echo base_url('nilai/countNilai/');?>'+$id,
+                        dataType:'json',
+                        success:function(data){
+                            $keterangan.html('<tr><th>Total Nilai</th><th class="text-center">'+data[0].total+'</th><th>Rata-Rata</th><th class="text-center">'+data[0].rata+'</th></tr>');
+                        }
+                    });
+                }
+                $("#tahunajaran").change(function(){
+                    var id=this.value;
+                    $.ajax({
+                        type:'POST',
+                        url:'<?php echo base_url('dasbor/setTahunajaran');?>',
+                        data:{tahunajaran_id:id},
+                        success:function(data){
+                            location.reload();
+                        }
+
+                    });
+                });
             });
         </script>
     </body>
