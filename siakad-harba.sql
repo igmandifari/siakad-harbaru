@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 16, 2020 at 07:01 AM
+-- Generation Time: Jan 24, 2020 at 08:38 AM
 -- Server version: 10.0.38-MariaDB-0ubuntu0.16.04.1
 -- PHP Version: 7.3.13-1+ubuntu16.04.1+deb.sury.org+1
 
@@ -123,7 +123,6 @@ CREATE TABLE `masukan` (
 
 INSERT INTO `masukan` (`masukan_id`, `masukan`, `status`, `tahunajaran_id`, `wargabelajar_id`, `created_at`) VALUES
 ('5e1e590242e1c', 'Tolong tambahkan fitur ganti foto profil dong', '0', '5dfc3970e4387', '5df8c2b2d14b8', '2020-01-15 07:12:50'),
-('5e1e6d2736a82', 'aduh', '0', '5dfc3970e4387', '5df8c2b2d14b8', '2020-01-15 08:38:47'),
 ('5e1fa61501b8b', 'Tolong adakan kipas angin...', '0', '5dfc3970e4387', '5df8c9b8e20e9', '2020-01-16 06:53:57');
 
 -- --------------------------------------------------------
@@ -162,13 +161,22 @@ INSERT INTO `matpel` (`matpel_id`, `matpel_nama`, `tutor_id`, `created_at`, `upd
 
 CREATE TABLE `nilai` (
   `nilai_id` varchar(100) NOT NULL,
-  `rombel_id` varchar(100) NOT NULL,
+  `jadwal_id` varchar(100) NOT NULL,
   `wargabelajar_id` varchar(100) NOT NULL,
-  `matpel_id` varchar(100) NOT NULL,
-  `nilai_semester` enum('Ganjil','Genap') NOT NULL,
+  `nilai_semester` enum('ganjil','genap') NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `nilai`
+--
+
+INSERT INTO `nilai` (`nilai_id`, `jadwal_id`, `wargabelajar_id`, `nilai_semester`, `created_at`, `updated_at`) VALUES
+('5e29cff0e4096', '5dfc9e164dcf0', '5df8cc7a68b47', 'ganjil', '2020-01-23 23:55:12', '0000-00-00 00:00:00'),
+('5e29dbf32d70c', '5dfc9da09b91e', '5df8cc7a68b47', 'ganjil', '2020-01-24 00:46:27', '0000-00-00 00:00:00'),
+('5e2a1c8343b8b', '5dfc9da09b91e', '5df8c9b8e20e9', 'ganjil', '2020-01-24 05:21:55', '0000-00-00 00:00:00'),
+('5e2a2428288a2', '5dfc9da09b91e', '5df8cc7a68b47', 'genap', '2020-01-24 05:54:32', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -184,6 +192,14 @@ CREATE TABLE `nilai_details` (
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `nilai_details`
+--
+
+INSERT INTO `nilai_details` (`nilai_details_id`, `nilai_id`, `nilai_details_jenis`, `nilai_details_nilai`, `created_at`, `updated_at`) VALUES
+(6, '5e29dbf32d70c', 'Tugas', 100, '2020-01-24 07:20:37', '0000-00-00 00:00:00'),
+(7, '5e29dbf32d70c', 'Harian', 80, '2020-01-24 07:21:56', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -252,8 +268,8 @@ CREATE TABLE `presensi_details` (
 --
 
 INSERT INTO `presensi_details` (`presensi_det_id`, `presensi_id`, `wargabelajar_id`, `presensi_det_ket`, `updated_at`) VALUES
-(21, '5e044c4414491', '5df8c9b8e20e9', 'H', '0000-00-00 00:00:00'),
-(22, '5e044c4414491', '5df8cbbfd492d', 'A', '0000-00-00 00:00:00'),
+(21, '5e044c4414491', '5df8c9b8e20e9', 'I', '0000-00-00 00:00:00'),
+(22, '5e044c4414491', '5df8cbbfd492d', 'I', '0000-00-00 00:00:00'),
 (23, '5e044c4414491', '5df8cc7a68b47', 'I', '0000-00-00 00:00:00'),
 (24, '5e044c4414491', '5df8ce3c7570f', 'I', '0000-00-00 00:00:00'),
 (25, '5e044c4414491', '5dfc3f1b90991', 'A', '0000-00-00 00:00:00'),
@@ -506,9 +522,8 @@ ALTER TABLE `matpel`
 --
 ALTER TABLE `nilai`
   ADD PRIMARY KEY (`nilai_id`),
-  ADD KEY `rombel_id` (`rombel_id`),
   ADD KEY `wargabelajar_id` (`wargabelajar_id`),
-  ADD KEY `matpel_id` (`matpel_id`);
+  ADD KEY `jadwal_id` (`jadwal_id`);
 
 --
 -- Indexes for table `nilai_details`
@@ -586,7 +601,7 @@ ALTER TABLE `wargabelajar`
 -- AUTO_INCREMENT for table `nilai_details`
 --
 ALTER TABLE `nilai_details`
-  MODIFY `nilai_details_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `nilai_details_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `presensi_details`
 --
@@ -619,9 +634,8 @@ ALTER TABLE `matpel`
 -- Constraints for table `nilai`
 --
 ALTER TABLE `nilai`
-  ADD CONSTRAINT `ke rombel` FOREIGN KEY (`rombel_id`) REFERENCES `rombel` (`rombel_id`) ON UPDATE CASCADE,
   ADD CONSTRAINT `ke wargabelajar` FOREIGN KEY (`wargabelajar_id`) REFERENCES `wargabelajar` (`wargabelajar_id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `matpeell` FOREIGN KEY (`matpel_id`) REFERENCES `matpel` (`matpel_id`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `nilai_ibfk_1` FOREIGN KEY (`jadwal_id`) REFERENCES `jadwal` (`jadwal_id`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `nilai_details`
