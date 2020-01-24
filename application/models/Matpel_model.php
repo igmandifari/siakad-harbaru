@@ -3,7 +3,9 @@
     Class Matpel_model extends CI_Model 
     {
         private $_table = "matpel";
-      
+        public function getTahunAjaran(){
+            return $this->db->get('tahunajaran')->result_array();
+        }
         public function rules()
         {
             return[

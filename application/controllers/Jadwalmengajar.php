@@ -18,6 +18,7 @@ class Jadwalmengajar extends CI_Controller
         $data["all_jadwal_mengajar"] = $jadwalmengajar->getJadwalByIdTutor();
         $data["title"] = "Daftar Jadwal Mengajar";
         $data["actor"] ="Jadwal Mengajar";
+        $data["tahunajarans"] = $jadwalmengajar->getTahunAjaran();
 
         $this->load->view('tutor/jadwalmengajar',$data);
     }

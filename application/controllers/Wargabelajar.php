@@ -21,6 +21,7 @@ Class Wargabelajar extends CI_Controller
         $data["title"] = "Data Warga Belajar";
    	    $data["actor"] = "Warga Belajar";
         $data["wargabelajars"] = $this->Wargabelajar_model->getAll();
+        $data["tahunajaran_all"] = $this->Wargabelajar_model->getTahunAjaran();
 
         $this->load->view('wargabelajar/list',$data);
     }
@@ -117,6 +118,17 @@ Class Wargabelajar extends CI_Controller
         } else{
             return true;
         }
+    }
+    public function cetak()
+    {
+        $wargabelajar= $this->Wargabelajar_model;
+        $data["wargabelajars"] = $wargabelajar->getAll();
+
+        $cetak = $this->load->view('wargabelajar/cetak',$data,TRUE);
+
+        $mpdf= new \Mpdf\Mpdf();
+        $mpdf->WriteHtml($cetak,\Mpdf\HTMLParserMode::HTML_BODY);
+        $mpdf->Output();
     }
 
 }

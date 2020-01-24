@@ -27,6 +27,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 ]
             ];
         }
+        public function getTahunAjaran(){
+            return $this->db->get('tahunajaran')->result_array();
+        }
         public function simpan()
         {
            $this->admin_id = uniqid();

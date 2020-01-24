@@ -15,12 +15,8 @@ class Auth_model extends CI_Model {
                 'field'     => 'login-password',
                 'label'     => 'password',
                 'rules'     => 'required|xss_clean',
-            ],
-            [
-                'field'     => 'tahunajaran_id',
-                'label'     => 'Tahun Ajaran',
-                'rules'     => 'required|xss_clean|callback_select_validate',
             ]
+           
         ];
     }
 
@@ -50,10 +46,7 @@ class Auth_model extends CI_Model {
         return $user;
     }
     public function getTahunAjaran(){
-        return $this->db->get('tahunajaran')->result();
+        return $this->db->query("SELECT * FROM tahunajaran ORDER BY tahunajaran.tahunajaran_nama DESC LIMIT 1")->row_array();
     }
-    public function getAjaranByID($tahunajaran){
-        $this->db->where('tahunajaran_id', $tahunajaran);
-        return $this->db->get('tahunajaran')->row_array();
-    }
+
 } 

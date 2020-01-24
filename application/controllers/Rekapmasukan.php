@@ -13,6 +13,7 @@ class Rekapmasukan extends CI_Controller
     public function index($id=null)
     {
         $masukan = $this->Masukan_model;
+        $data["tahunajarans"]=$masukan->getTahunAjaran();
        
         if(isset($id)){
             $masukan->hapus($id);

@@ -165,18 +165,36 @@
             </nav>
             <!-- END Sidebar -->
 
-            <!-- Header -->
+             <!-- Header -->
             <header id="page-header">
                 <!-- Header Content -->
                 <div class="content-header">
                     <!-- Left Section -->
                     <div class="d-flex align-items-center">
-                         <!-- Toggle Mini Sidebar -->
+                        <!-- Toggle Sidebar -->
+                        <!-- Layout API, functionality initialized in Template._uiApiLayout()-->
+                        <button type="button" class="btn btn-sm btn-dual mr-2 d-lg-none" data-toggle="layout" data-action="sidebar_toggle">
+                            <i class="fa fa-fw fa-bars"></i>
+                        </button>
+                        <!-- END Toggle Sidebar -->
+
+                        <!-- Toggle Mini Sidebar -->
                         <!-- Layout API, functionality initialized in Template._uiApiLayout()-->
                         <button type="button" class="btn btn-sm btn-dual mr-2 d-none d-lg-inline-block" data-toggle="layout" data-action="sidebar_mini_toggle">
                             <i class="fa fa-fw fa-ellipsis-v"></i>
                         </button>
+                        <!-- Tahun Ajaran  -->
+                        <select id="tahunajaran" class="js-select2 form-control form-control-lg form-control-alt" id="tahunajaran_id" name="tahunajaran_id" style="width: 100%;" data-placeholder="Silahkan pilih tahun ajaran" required>
+                            <option value=""></option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
+                            <?php foreach($tahunajarans as $tahunajaran):?>
+                                <option value="<?php echo $tahunajaran["tahunajaran_id"]?>" <?php if($this->session->userdata('tahunajaran_id')==$tahunajaran["tahunajaran_id"]) echo "selected";?>>Tahun Ajaran <?=$tahunajaran["tahunajaran_nama"]?></option>
+                            <?php endforeach;?>
+                        </select>
                         <!-- END Toggle Mini Sidebar -->
+
+                        <!-- END Apps Modal -->
+
+                        
                     </div>
                     <!-- END Left Section -->
 
@@ -186,19 +204,25 @@
                         <div class="dropdown d-inline-block ml-2">
                             <button type="button" class="btn btn-sm btn-dual" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <img class="rounded" src="<?= base_url ('upload/images/'.$this->session->userdata('foto'));?>" alt="Header Avatar" style="width: 18px;">
-                                <span class="d-none d-sm-inline-block ml-1"><?= $this->session->userdata('nama') ?></span>
+                                <span class="d-none d-sm-inline-block ml-1"><?= $this->session->userdata('nama');?></span>
                                 <i class="fa fa-fw fa-angle-down d-none d-sm-inline-block"></i>
                             </button>
                             <div class="dropdown-menu dropdown-menu-right p-0 border-0 font-size-sm" aria-labelledby="page-header-user-dropdown">
                                 <div class="p-3 text-center bg-primary">
-                                    <img class="img-avatar img-avatar48 img-avatar-thumb" src="<?= base_url('upload/images/'.$this->session->userdata('foto'));?>" alt="">
+                                    <img class="img-avatar img-avatar48 img-avatar-thumb" src="<?= base_url ('upload/images/'.$this->session->userdata('foto'));?>" alt="">
                                 </div>
                                 <div class="p-2">
                                     <h5 class="dropdown-header text-uppercase">User Options</h5>
+                                    <a class="dropdown-item d-flex align-items-center justify-content-between" href="<?=base_url('profil')?>">
+                                        <span>Profil</span>
+                                            <i class="si si-user ml-1"></i>
+                                    </a>
                                     <a class="dropdown-item d-flex align-items-center justify-content-between" href="<?=base_url('pengaturan')?>">
                                         <span>Pengaturan</span>
                                         <i class="si si-settings"></i>
                                     </a>
+                                    <div role="separator" class="dropdown-divider"></div>
+                                    <h5 class="dropdown-header text-uppercase">Aksi</h5>
                                     <a class="dropdown-item d-flex align-items-center justify-content-between" href="<?=base_url('auth/logout')?>">
                                         <span>Log Out</span>
                                         <i class="si si-logout ml-1"></i>

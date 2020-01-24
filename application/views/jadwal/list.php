@@ -53,49 +53,51 @@
         </div>
         <?php endif;?>
             <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _es6/pages/be_tables_datatables.js -->
-            <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
-                                <thead>
-                                    <tr>
-                                        <th>NO</th>
-                                        <th>Tipe Pembelajaran</th>
-                                        <th>Hari</th>
-                                        <th>Mata Pelajaran</th>
-                                        <th>Kelas</th>
-                                        <th>Tutor</th>
-                                        <th>Waktu</th>
-                                        <th style="width: 15%;">Aksi</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php $no=0; foreach($jadwals as $jadwal):$no++?>
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped table-vcenter js-dataTable-full table-responsive">
+                                    <thead>
                                         <tr>
-                                            <td><?=$no;?></td>
-                                            <td><?=$jadwal->jadwal_tipe_pembelajaran?></td>
-                                            <td><?=$jadwal->jadwal_hari;?>
-                                            <td><?=$jadwal->matpel_nama;?>
-                                            <td><?=$jadwal->kelas_nama;?>
-                                            <td><?=$jadwal->tutor_nama;?>
-                                            <td><?=$jadwal->jadwal_waktu;?></td>
-                                            <td class="text-center">
-                                                <div class="btn-group">
-                                                    <a href="<?=base_url('jadwal/ubah/').$jadwal->tahunajaran_id.'/'.$jadwal->jadwal_id;?>">
-                                                        <button type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Ubah">
-                                                            <i class="fa fa-fw fa-pencil-alt"></i>
-                                                            Ubah
-                                                        </button>
-                                                    </a>
-                                                    <a href="<?=base_url('jadwal/hapus/').$jadwal->jadwal_id;?>">
-                                                        <button type="button" class="btn btn-sm btn-warning js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Hapus">
-                                                            <i class="fa fa-fw fa-times"></i>
-                                                            Hapus
-                                                        </button>
-                                                    </a>
-                                                </div>
-                                            </td>
+                                            <th>NO</th>
+                                            <th>Tipe Pembelajaran</th>
+                                            <th>Hari</th>
+                                            <th>Mata Pelajaran</th>
+                                            <th>Kelas</th>
+                                            <th>Tutor</th>
+                                            <th>Waktu</th>
+                                            <th style="width: 15%;">Aksi</th>
                                         </tr>
-                                    <?php endforeach;?>
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody>
+                                        <?php $no=0; foreach($jadwals as $jadwal):$no++?>
+                                            <tr>
+                                                <td><?=$no;?></td>
+                                                <td><?=$jadwal->jadwal_tipe_pembelajaran?></td>
+                                                <td><?=$jadwal->jadwal_hari;?>
+                                                <td><?=$jadwal->matpel_nama;?>
+                                                <td><?=$jadwal->kelas_nama;?>
+                                                <td><?=$jadwal->tutor_nama;?>
+                                                <td><?=$jadwal->jadwal_waktu;?></td>
+                                                <td class="text-center">
+                                                    <div class="btn-group">
+                                                        <a href="<?=base_url('jadwal/ubah/').$jadwal->tahunajaran_id.'/'.$jadwal->jadwal_id;?>">
+                                                            <button type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Ubah">
+                                                                <i class="fa fa-fw fa-pencil-alt"></i>
+                                                                Ubah
+                                                            </button>
+                                                        </a>
+                                                        <a href="<?=base_url('jadwal/hapus/').$jadwal->jadwal_id;?>">
+                                                            <button type="button" class="btn btn-sm btn-warning js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Hapus">
+                                                                <i class="fa fa-fw fa-times"></i>
+                                                                Hapus
+                                                            </button>
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach;?>
+                                    </tbody>
+                                </table>
+                            </div>
                             <div class="row push text-center">
                 <a href="<?=base_url('jadwal');?>">
                     <button type="buttn" class="btn btn-light">Kembali</button>

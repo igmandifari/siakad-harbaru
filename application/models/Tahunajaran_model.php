@@ -3,6 +3,10 @@
     Class Tahunajaran_model extends CI_Model 
     {
         private $_table = "tahunajaran";
+        
+        public function getTahunAjaran(){
+            return $this->db->get('tahunajaran')->result_array();
+        }
       
         public function rules()
         {

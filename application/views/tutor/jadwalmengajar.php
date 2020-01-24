@@ -18,10 +18,9 @@
         <!-- END Icons -->
 
         <!-- Stylesheets -->
-        
-        <!-- Page JS Plugins CSS -->
+        <!-- PageJS Plugins CSS -->
+        <link rel="stylesheet" href="<?=base_url('assets/js/plugins/select2/css/select2.min.css')?>">
         <link rel="stylesheet" href="<?=base_url('assets/js/plugins/datatables/dataTables.bootstrap4.css')?>">
-        <link rel="stylesheet" href="<?=base_url('assets/js/plugins/datatables/buttons-bs4/buttons.bootstrap4.min.css')?>">
         <!-- Fonts and OneUI framework -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400italic,600,700%7COpen+Sans:300,400,400italic,600,700">
         <link rel="stylesheet" id="css-main" href="<?=base_url('assets/css/oneui.min.css')?>">
@@ -119,6 +118,77 @@
                     </a>
                     <!-- END Logo -->
 
+                    <!-- Options -->
+                    <div>
+                        <!-- Color Variations -->
+                        <div class="dropdown d-inline-block ml-3">
+                            <a class="text-dual font-size-sm" id="sidebar-themes-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">
+                                <i class="si si-drop"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right font-size-sm smini-hide border-0" aria-labelledby="sidebar-themes-dropdown">
+                                <!-- Color Themes -->
+                                <!-- Layout API, functionality initialized in Template._uiHandleTheme() -->
+                                <a class="dropdown-item d-flex align-items-center justify-content-between" data-toggle="theme" data-theme="default" href="#">
+                                    <span>Default</span>
+                                    <i class="fa fa-circle text-default"></i>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center justify-content-between" data-toggle="theme" data-theme="assets/css/themes/amethyst.min.css" href="#">
+                                    <span>Amethyst</span>
+                                    <i class="fa fa-circle text-amethyst"></i>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center justify-content-between" data-toggle="theme" data-theme="assets/css/themes/city.min.css" href="#">
+                                    <span>City</span>
+                                    <i class="fa fa-circle text-city"></i>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center justify-content-between" data-toggle="theme" data-theme="assets/css/themes/flat.min.css" href="#">
+                                    <span>Flat</span>
+                                    <i class="fa fa-circle text-flat"></i>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center justify-content-between" data-toggle="theme" data-theme="assets/css/themes/modern.min.css" href="#">
+                                    <span>Modern</span>
+                                    <i class="fa fa-circle text-modern"></i>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center justify-content-between" data-toggle="theme" data-theme="assets/css/themes/smooth.min.css" href="#">
+                                    <span>Smooth</span>
+                                    <i class="fa fa-circle text-smooth"></i>
+                                </a>
+                                <!-- END Color Themes -->
+
+                                <div class="dropdown-divider"></div>
+
+                                <!-- Sidebar Styles -->
+                                <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
+                                <a class="dropdown-item" data-toggle="layout" data-action="sidebar_style_light" href="#">
+                                    <span>Sidebar Light</span>
+                                </a>
+                                <a class="dropdown-item" data-toggle="layout" data-action="sidebar_style_dark" href="#">
+                                    <span>Sidebar Dark</span>
+                                </a>
+                                <!-- Sidebar Styles -->
+
+                                <div class="dropdown-divider"></div>
+
+                                <!-- Header Styles -->
+                                <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
+                                <a class="dropdown-item" data-toggle="layout" data-action="header_style_light" href="#">
+                                    <span>Header Light</span>
+                                </a>
+                                <a class="dropdown-item" data-toggle="layout" data-action="header_style_dark" href="#">
+                                    <span>Header Dark</span>
+                                </a>
+                                <!-- Header Styles -->
+                            </div>
+                        </div>
+                        <!-- END Themes -->
+
+                        <!-- Close Sidebar, Visible only on mobile screens -->
+                        <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
+                        <a class="d-lg-none text-dual ml-3" data-toggle="layout" data-action="sidebar_close" href="javascript:void(0)">
+                            <i class="fa fa-times"></i>
+                        </a>
+                        <!-- END Close Sidebar -->
+                    </div>
+                    <!-- END Options -->
                 </div>
                 <!-- END Side Header -->
 
@@ -173,7 +243,7 @@
             </nav>
             <!-- END Sidebar -->
 
-            <!-- Header -->
+             <!-- Header -->
             <header id="page-header">
                 <!-- Header Content -->
                 <div class="content-header">
@@ -191,8 +261,19 @@
                         <button type="button" class="btn btn-sm btn-dual mr-2 d-none d-lg-inline-block" data-toggle="layout" data-action="sidebar_mini_toggle">
                             <i class="fa fa-fw fa-ellipsis-v"></i>
                         </button>
+                        <!-- Tahun Ajaran  -->
+                        <select id="tahunajaran" class="js-select2 form-control form-control-lg form-control-alt" id="tahunajaran_id" name="tahunajaran_id" style="width: 100%;" data-placeholder="Silahkan pilih tahun ajaran" required>
+                            <option value=""></option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
+                            <?php foreach($tahunajarans as $tahunajaran):?>
+                                <option value="<?php echo $tahunajaran["tahunajaran_id"]?>" <?php if($this->session->userdata('tahunajaran_id')==$tahunajaran["tahunajaran_id"]) echo "selected";?>>Tahun Ajaran <?=$tahunajaran["tahunajaran_nama"]?></option>
+                            <?php endforeach;?>
+                        </select>
+                        
+                            
+                        <!-- End Tahun Ajaran -->
                         <!-- END Toggle Mini Sidebar -->
 
+                        <!-- END Apps Modal -->
 
                         
                     </div>
@@ -265,15 +346,35 @@
                 <div class="content">
                     <!-- Jadwal -->
                     <div class="block">
-                        <div class="block-header">
-                            <h3 class="block-title"><?php echo $title;?></h3>
+                        <div class="block-header block-header-default">
+                            <h3 class="block-title"><?=$title;?></h3>
+                            <div class="block-options">
+                                <a href="<?=base_url('jadwalmengajar/cetak');?>">
+                                    <button type="button" class="btn btn-sm btn-secondary">
+                                        Cetak
+                                    </button>
+                                </a>
+
+                                <a href="<?=base_url('presensi');?>">
+                                    <button type="button" class="btn btn-sm btn-info">
+                                        Presensi
+                                    </button>
+                                </a>
+
+                                <a href="<?=base_url();?>">
+                                    <button type="button" class="btn btn-sm btn-light">
+                                        Kembali
+                                    </button>
+                                </a>
+                            </div>
                         </div>
                         <div class="block-content block-content-full">
                             <p>
                                 Berikut ini daftar mata pelajaran yang Ibu/Bapak harus ajarkan ke warga belajar.
                             </p>
                             <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _es6/pages/be_tables_datatables.js -->
-                            <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
+                            <div class="table-responsive">
+                            <table class="table table-bordered table-striped table-vcenter js-dataTable-full ">
                                 <thead>
                                     <tr>
                                         <th>NO</th>
@@ -297,6 +398,7 @@
                                     <?php endforeach;?>
                                 </tbody>
                             </table>
+                        </div>
                             <a href="<?=base_url('dasbor');?>">
                                 <button type="button" class="btn btn-light js-click-ripple-enabled" data-toggle="click-ripple" style="overflow: hidden; position: relative; z-index: 1;"><span class="click-ripple animate" style="height: 87.2656px; width: 87.2656px; top: -21.625px; left: 31.375px;"></span>Kembali Ke Halaman Dasbor</button>
                             </a>
@@ -357,13 +459,26 @@
         <!-- Page JS Plugins -->
         <script src="<?=base_url('assets/js/plugins/datatables/jquery.dataTables.min.js')?>"></script>
         <script src="<?=base_url('assets/js/plugins/datatables/dataTables.bootstrap4.min.js')?>"></script>
-        <script src="<?=base_url('assets/js/plugins/datatables/buttons/dataTables.buttons.min.js')?>"></script>
-        <script src="<?=base_url('assets/js/plugins/datatables/buttons/buttons.print.min.js')?>"></script>
-        <script src="<?=base_url('assets/js/plugins/datatables/buttons/buttons.html5.min.js')?>"></script>
-        <script src="<?=base_url('assets/js/plugins/datatables/buttons/buttons.flash.min.js')?>"></script>
-        <script src="<?=base_url('assets/js/plugins/datatables/buttons/buttons.colVis.min.js')?>"></script>
+        <script src="<?=base_url('assets/js/plugins/select2/js/select2.full.min.js');?>"></script>
 
         <!-- Page JS Code -->
         <script src="<?=base_url('assets/js/pages/be_tables_datatables.min.js')?>"></script>
+        <script>
+            jQuery(function(){
+                $("#tahunajaran").change(function(){
+                var id=this.value;
+                $.ajax({
+                    type:'POST',
+                    url:'<?php echo base_url('dasbor/setTahunajaran');?>',
+                    data:{tahunajaran_id:id},
+                    success:function(data){
+                        location.reload();
+                    }
+
+                });
+            });
+                One.helpers(['select2']);
+        });
+        </script>
     </body>
 </html>

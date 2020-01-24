@@ -79,15 +79,7 @@
                                             <div class="form-group">
                                                 <input type="password" class="form-control form-control-lg form-control-alt" id="login-password" name="login-password" placeholder="Masukan kata sandi" required>
                                             </div>
-                                            <div class="form-group">
-                                                <select class="js-select2 form-control form-control-lg form-control-alt" id="tahunajaran_id" name="tahunajaran_id" style="width: 100%;" data-placeholder="Silahkan pilih tahun ajaran" required>
-                                                    <option value=""></option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
-                                                    <?php foreach($tahunajaranAll as $tahunajaran):?>
-                                                        <option value="<?=$tahunajaran->tahunajaran_id?>"><?=$tahunajaran->tahunajaran_nama?></option>
-                                                    <?php endforeach;?>
-                                                </select>
-                                                <small class="form-text text-danger"><?= form_error('tahunajaran_id'); ?></small>
-                                            </div>
+                                            
                                         </div>
                                         <div class="form-group row justify-content-center mb-0">
                                             <div class="col-md-6 col-xl-5">

@@ -51,32 +51,34 @@
             </div>
           </div>
             <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _es6/pages/be_tables_datatables.js -->
-            <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
-              <thead class="text-center">
-                <tr>
-                    <th>No</th>
-                    <th>Nama</th>
-                    <th>No Induk</th>
-                    <th>NISN</th>
-                    <th style="width: 15%;">Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php $no=0;foreach($semua_wargabelajar as $wargabelajar):$no++;?>
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
+                  <thead class="text-center">
                     <tr>
-                        <td class="text-center"><?=$no?></td>
-                        <td><?=$wargabelajar->wargabelajar_nama;?>
-                        <td><?=$wargabelajar->wargabelajar_nomor_induk;?>
-                        <td><?=$wargabelajar->wargabelajar_nisn;?>
-                        <td class="text-center">
-                            <a href="<?=base_url('kelas/rombel_det_hapus/').$wargabelajar->rombel_details_id.'/'.$wargabelajar->rombel_id?>">
-                                <button id="<?=$no?>" type="submit" class="btn btn-outline-secondary btn-sm">Hapus</button>
-                            </a>  
-                        </td>
+                        <th>No</th>
+                        <th>Nama</th>
+                        <th>No Induk</th>
+                        <th>NISN</th>
+                        <th style="width: 15%;">Aksi</th>
                     </tr>
-                <?php endforeach;?>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    <?php $no=0;foreach($semua_wargabelajar as $wargabelajar):$no++;?>
+                        <tr>
+                            <td class="text-center"><?=$no?></td>
+                            <td><?=$wargabelajar->wargabelajar_nama;?>
+                            <td><?=$wargabelajar->wargabelajar_nomor_induk;?>
+                            <td><?=$wargabelajar->wargabelajar_nisn;?>
+                            <td class="text-center">
+                                <a href="<?=base_url('kelas/rombel_det_hapus/').$wargabelajar->rombel_details_id.'/'.$wargabelajar->rombel_id?>">
+                                    <button id="<?=$no?>" type="submit" class="btn btn-outline-secondary btn-sm">Hapus</button>
+                                </a>  
+                            </td>
+                        </tr>
+                    <?php endforeach;?>
+                </tbody>
+            </table>
+        </div>
         <div class="row push text-center">
                 <a href="<?=base_url('kelas/rombel');?>">
                     <button type="buttn" class="btn btn-light">Kembali</button>
