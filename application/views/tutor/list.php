@@ -89,7 +89,7 @@
                                             <td><?=$tutor->tutor_nomor_induk;?>
                                             <td><?=$tutor->tutor_nama;?>
                                             <td><?=$tutor->tutor_jenis_kelamin;?>
-                                            <td><?=$tutor->tutor_tempat_lahir.", ".date("d-F-Y",strtotime($tutor->tutor_tanggal_lahir));?></td>
+                                            <td><?=$tutor->tutor_tempat_lahir.", ".date("d F Y",strtotime($tutor->tutor_tanggal_lahir));?></td>
                                             <td class="text-center">
                                                 <div class="btn-group">
                                                     <a href="<?=base_url('tutor/ubah/').$tutor->tutor_id;?>">
