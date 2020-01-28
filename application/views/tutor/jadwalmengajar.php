@@ -383,6 +383,7 @@
                                         <th>Kelas</th>
                                         <th>Hari</th>
                                         <th>Waktu</th>
+                                        <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -394,6 +395,11 @@
                                             <td><?=$jadwalmengajar->kelas_nama?></td>
                                             <td><?=$jadwalmengajar->jadwal_hari?></td>
                                             <td><?=$jadwalmengajar->jadwal_waktu?></td>
+                                            <td>
+                                                <a href="<?=base_url('presensi/jadwal/').$jadwalmengajar->jadwal_id;?>">
+                                                    <button type="button" class="btn btn-sm btn-success">Presensi</button>
+                                                </a>
+                                            </td>
                                         </tr>
                                     <?php endforeach;?>
                                 </tbody>
