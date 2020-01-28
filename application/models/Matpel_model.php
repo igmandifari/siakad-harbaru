@@ -12,7 +12,7 @@
                 [
                     'field' => 'matpel_nama',
                     'label' => 'Nama Mata Pelajaran',
-                    'rules' => 'required|trim|xss_clean',
+                    'rules' => 'required|trim|xss_clean|is_unique[matpel.matpel_nama]',
                 ],
                 [
                     'field' => 'tutor_id',

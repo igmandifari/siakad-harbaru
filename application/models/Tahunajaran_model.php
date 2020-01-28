@@ -27,7 +27,8 @@
         public function perbarui()
         {
             $data= array(
-                'tahunajaran_nama'                => $this->input->post("tahunajaran_nama")
+                'tahunajaran_nama'              => $this->input->post("tahunajaran_nama"),
+                'updated_at'                    => date('Y-m-d H:i:s')
             );
             $this->db->where('tahunajaran_id',$this->input->post("tahunajaran_id"));
             return $this->db->update($this->_table, $data);    
