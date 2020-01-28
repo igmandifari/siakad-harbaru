@@ -35,7 +35,8 @@ class Tahunajaran extends CI_Controller
                     
                 $simpan_tahun_ajaran =  $tahunajaran->simpan(array(
                     'tahunajaran_id'                  => $this->tahunajaran_id,
-                    'tahunajaran_nama'                => $this->input->post("tahunajaran_nama")
+                    'tahunajaran_nama'                => $this->input->post("tahunajaran_nama"),
+                    'created_at'        => date('Y-m-d H:i:s')
                 ));
                 foreach($semua_kelas as $kelas){
                     $simpan_rombel = $tahunajaran->simpan_rombel(array(
@@ -46,7 +47,6 @@ class Tahunajaran extends CI_Controller
                     ));
                 }
             
-            // $tahunajaran->simpan();
             $this->session->set_flashdata('success', 'Berhasil');
 
             redirect('tahunajaran');
