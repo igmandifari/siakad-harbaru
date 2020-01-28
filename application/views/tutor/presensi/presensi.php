@@ -327,15 +327,9 @@
             <!-- Page Content -->
                 <div class="content">
                     <!-- Jadwal -->
-                    <?php foreach($pertemuans as $data){
-                            $kelas = $data->kelas_nama;
-                            $matpel = $data->matpel_nama;
-                            $tanggal = $data->presensi_tanggal;
-                        }
-                        ?>
                     <div class="block">
                         <div class="block-header block-header-default">
-                            <h3 class="block-title"><?php echo "Presensi ".$kelas." Mata Pelajaran ".$matpel;?></h3>
+                            <h3 class="block-title"><?php echo "Presensi ".$kelas['kelas_nama']." Mata Pelajaran ".$kelas['matpel_nama'];?></h3>
                             <div class="block-options">
                                 
 
@@ -356,7 +350,7 @@
                         
                         <div class="block-content block-content-full">
                             <p>
-                                Silahkan memasukan data presensi pada tanggal <?php echo $tanggal;?>
+                                Silahkan memasukan data presensi pada tanggal <?php echo date("d-F-Y",strtotime($tanggal['presensi_tanggal']));?>
                             </p>
                             <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _es6/pages/be_tables_datatables.js -->
                             <div class="table-responsive">

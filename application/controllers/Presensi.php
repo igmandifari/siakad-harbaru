@@ -35,7 +35,8 @@
                     $presensi->PresensiDet(array(
                         'presensi_id'       => $presensi_id,
                         'wargabelajar_id'   => $wargabelajar->wargabelajar_id,
-                        'presensi_det_ket'  => 'A'
+                        'presensi_det_ket'  => 'A',
+                        'updated_at'        => date('Y-m-d H:i:s')
                     ));
                 }
                 redirect('presensi/jadwal/'.$jadwal_id.'/'.$presensi_id);
@@ -47,17 +48,19 @@
             if(!isset($id)) redirect('presensi');
 
             $presensi = $this->Presensi_model;
-            $data["pertemuans"] = $presensi->getPertemuan($id);
+            $data["kelas"] = $presensi->getNameKelas($id);
             $data["title"] = "Kelas";
             $data["actor"] = "Presensi";
             $data["wargabelajars"] = $presensi->getPresensiDet($pertemuan);
             $data["tahunajarans"]= $presensi->getTahunAjaran();
+            $data["pertemuans"]=$presensi->getPertemuan($id);
             
             if(!isset($pertemuan) && isset($id)){
                 $this->load->view('tutor/presensi/pertemuan',$data);
             }elseif(!$data["wargabelajars"]){
                 redirect('presensi/jadwal/'.$this->uri->segment(3));
             }elseif(isset($data["wargabelajars"])){
+                $data['tanggal']=$presensi->getTanggal($pertemuan);
                 $this->load->view('tutor/presensi/presensi',$data);
             }               
         }
@@ -66,7 +69,8 @@
             $presensi= $this->Presensi_model;
             if($this->input->method()=="post"){
                 $presensi->updatePresensiDet(array(
-                    'presensi_det_ket'  => $this->input->post('status')
+                    'presensi_det_ket'  => $this->input->post('status'),
+                    'updated_at'        => date('Y-m-d H:i:s')
                 ),$this->input->post('id'));
             }
         }
@@ -74,8 +78,24 @@
         public function details($jadwal=null){
             if(!isset($jadwal)) redirect('presensi');
             $details = $this->Presensi_model;
-            print_r($details->details($jadwal));
-            // $this->load->view('tutor/presensi/rekap');
+            $idpresensi=$details->getIDPresensi($jadwal);
+            $data["wargabelajars"] = $details->getWb($idpresensi["presensi_id"]);
+            $wargabelajars = $data["wargabelajars"];
+
+            $data["details"] = $this->Presensi_model;
+            $data["tahunajarans"]= $details->getTahunAjaran();
+            $this->load->view('tutor/presensi/rekap',$data);
+        }
+        public function hapus($jadwal=null,$id=null){
+            if(!isset($id)) redirect('presensi');
+            $model = $this->Presensi_model;
+
+            $details = $model->hapus_details($id);
+            if($details){
+                $presensi=$model->hapus($id);
+                $this->session->set_flashdata('success',"berhasil");
+                redirect('presensi/jadwal/').$jadwal;
+            }
         }
         
     }

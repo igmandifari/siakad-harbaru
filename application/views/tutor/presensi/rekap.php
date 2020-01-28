@@ -333,34 +333,71 @@
                         </div>
                         
                         <div class="block-content block-content-full">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped table-vcenter">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="2" class="text-center">Rekap Presensi</th>
+                                        </tr>
+                                        <tbody>
+                                            <tr>
+                                                <td>Mata Pelajaran</td>
+                                                <td>: Bahasa Indonesia</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Tipe Pembelajaran</td>
+                                                <td>: Tatap Muka</td>
+                                            </tr>
+                                                <td>Tutor</td>
+                                                <td>: <?=$this->session->userdata('nama');?></td>
+                                            </tr>
+                                        </tbody>
+                                    </thead>
+                                    <!-- <tbody>
+                                    </tbody> -->
+                                </table>
+                            </div>
                             <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _es6/pages/be_tables_datatables.js -->
-                            <table class="table table-bordered table-striped table-vcenter js-dataTable-full table-responsive">
-                                <thead class="text-center">
-                                    <tr>
-                                        <th rowspan="2" style="vertical-align:middle;width:8%;">NO</th>
-                                        <th rowspan="2" style="vertical-align:middle;">Nama</th>
-                                        <th colspan="4" style="vertical-align:middle;">Keterangan</th>
-                                    </tr>
-                                    <tr>
-                                        <th width="5%">H</th>
-                                        <th width="5%">I</th>
-                                        <th width="5%">S</th>
-                                        <th width="5%">A</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
+                                    <thead class="text-center">
+                                        <tr>
+                                            <th rowspan="2" style="vertical-align:middle;width:8%;">NO</th>
+                                            <th rowspan="2" style="vertical-align:middle;">Nama</th>
+                                            <th colspan="5" style="vertical-align:middle;">Keterangan</th>
+                                        </tr>
+                                        <tr>
+                                            <th width="5%">Total</th>
+                                            <th width="5%">H</th>
+                                            <th width="5%">I</th>
+                                            <th width="5%">S</th>
+                                            <th width="5%">A</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php $no=0;foreach ($wargabelajars as $wargabelajar){
+                                            $alpa = $details->getAlpa($this->uri->segment(3),$wargabelajar->id);
+                                            $izin = $details->getizin($this->uri->segment(3),$wargabelajar->id);
+                                            $sakit =$details->getSakit($this->uri->segment(3),$wargabelajar->id);
+                                            $hadir =$details->getHadir($this->uri->segment(3),$wargabelajar->id);
+                                            $total =$details->countTotal($this->uri->segment(3),$wargabelajar->id);
+                                            $no++;
+                                        ?>
+                                        
+                                        <tr>
+                                            <td class="text-center"><?php echo $no;?></td>
+                                            <td><?php echo $wargabelajar->wargabelajar_nama;?></td>
+                                            <td class="text-center"><?php echo $total['total'];?></td>
+                                            <td class="text-center"><?php echo $hadir['hadir'];?></td>
+                                            <td class="text-center"><?php echo $izin['izin'];?></td>
+                                            <td class="text-center"><?php echo $sakit['sakit'];?></td>
+                                            <td class="text-center"><?php echo $alpa['alpa'];?></td>
+                                        </tr>
+                                    <?php }?>
+                                    </tbody>
                                     
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Zam Zam</td>
-                                        <td>1</td>
-                                        <td>2</td>
-                                        <td>3</td>
-                                        <td>4</td>
-                                    </tr>
-                                </tbody>
-                                
-                            </table>
+                                </table>
+                            </div>
                             <div class="col-sm-12 text-center">
                                 <a href="<?=base_url('presensi/jadwal/').$this->uri->segment(3)?>">
                                     <button type="button" class="btn btn-primary js-click-ripple-enabled" data-toggle="click-ripple" style="overflow: hidden; position: relative; z-index: 1;"><span class="click-ripple animate" style="height: 87.2656px; width: 87.2656px; top: -21.625px; left: 31.375px;"></span>Kembali</button>
@@ -429,20 +466,7 @@
         
         <script>
             jQuery(function(){
-                $(".do_presensi").click(function(){
-                    var status = $(this).data("status");
-                    var id = $(this).data("id");
-                    
-                    $("#"+id+"").text("loading....");
-                    $.ajax({
-                        type:"POST",
-                        url:"<?=base_url('presensi/update_presensi_det/')?>",
-                        data:{status:status,id:id},
-                        success: function(data){
-                            $("#"+id+"").text(status);
-                        }
-                    });
-                });
+            
                 $("#tahunajaran").change(function(){
                     var id=this.value;
                     $.ajax({

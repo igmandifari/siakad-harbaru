@@ -324,14 +324,9 @@
             <!-- Page Content -->
                 <div class="content">
                     <!-- Jadwal -->
-                    <?php foreach($pertemuans as $data){
-                            $kelas = $data->kelas_nama;
-                            $matpel = $data->matpel_nama;
-                        }
-                        ?>
                     <div class="block">
                         <div class="block-header block-header-default">
-                            <h3 class="block-title">Data Pertemuan <?=$kelas;?></h3>
+                            <h3 class="block-title">Data Pertemuan <?=$kelas['kelas_nama'];?></h3>
                             <div class="block-options">
                                 <a href="<?=base_url('presensi/detail/').$this->uri->segment(3);?>">
                                     <button type="button" class="btn btn-sm btn-secondary">
@@ -355,7 +350,7 @@
 
                         <div class="block-content block-content-full">
                             <p>
-                                Berikut ini data-data presensi Tatap Muka yang Ibu/Bapak pernah lakukan pada mata pelajaran <?php echo $matpel;?>.
+                                Berikut ini data-data presensi Tatap Muka yang Ibu/Bapak pernah lakukan pada mata pelajaran <?php echo $kelas['matpel_nama'];?>.
                             </p>
                             <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _es6/pages/be_tables_datatables.js -->
                             <div class="table-responsive">
@@ -364,6 +359,7 @@
                                         <tr>
                                             <th width="10%">NO</th>
                                             <th>Tanggal</th>
+                                            <th width="5%">Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -372,8 +368,15 @@
                                                 <td class="text-center"><?=$no;?></td>
                                                 <td>
                                                     <a href="<?=base_url('presensi/jadwal/').$this->uri->segment(3).'/'.$pertemuan->presensi_id?>">
-                                                    <button type="button" class="btn btn-info js-click-ripple-enabled btn-lg" data-toggle="click-ripple" style="overflow: hidden; position: relative; z-index: 1; width:100%;"><span class="click-ripple animate" style="height: 87.2656px; width: 87.2656px; top: -21.625px; left: 31.375px;"></span><?=$pertemuan->presensi_tanggal?></button></td>
+                                                    <button type="button" class="btn btn-info js-click-ripple-enabled btn-lg" data-toggle="click-ripple" style="overflow: hidden; position: relative; z-index: 1; width:100%;"><span class="click-ripple animate" style="height: 87.2656px; width: 87.2656px; top: -21.625px; left: 31.375px;"></span><?=date("d-F-Y",strtotime($pertemuan->presensi_tanggal))?></button></td>
                                                 </a>
+                                                <td class="text-center">
+                                                    <a href="<?=base_url('presensi/hapus/').$this->uri->segment(3).'/'.$pertemuan->presensi_id?>">
+                                                        <button type="button" class="btn btn-sm btn-warning js-click-ripple-enabled">
+                                                            Hapus
+                                                        </button>
+                                                    </a>
+                                                </td>
                                             </tr>
                                             
                                                 
