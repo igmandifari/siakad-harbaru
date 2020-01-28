@@ -347,12 +347,6 @@
                         <div class="block-header block-header-default">
                             <h3 class="block-title"><?=$title;?></h3>
                             <div class="block-options">
-                                <a href="<?=base_url('jadwalmengajar/cetak');?>">
-                                    <button type="button" class="btn btn-sm btn-secondary">
-                                        Cetak
-                                    </button>
-                                </a>
-
                                 <a href="<?=base_url('jadwalmengajar');?>">
                                     <button type="button" class="btn btn-sm btn-info">
                                         Jadwal
@@ -396,7 +390,7 @@
                                                         <button type="button" class="btn btn-secondary btn-sm">Lakukan Presensi!</button>
                                                     </a>
                                                     <a href="<?=base_url('presensi/details/'.$kelas->jadwal_id.'')?>">
-                                                        <button type="button" class="btn btn-secondary btn-sm">Detail</button>
+                                                        <button type="button" class="btn btn-success btn-sm">Detail</button>
                                                     </a>
                                                     
                                             </td>
