@@ -467,6 +467,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             return $this->db->update($this->_table, $data);    
         }
         public function getAll(){
+            $this->db->order_by('wargabelajar_nomor_induk desc');
             return $this->db->get($this->_table)->result();
         }
         public function getById($id)

@@ -33,6 +33,7 @@
             return $this->db->update($this->_table, $data);    
         }
         public function getAll(){
+            $this->db->order_by('tahunajaran_nama desc');
             return $this->db->get($this->_table)->result();
         }
         public function getById($id)

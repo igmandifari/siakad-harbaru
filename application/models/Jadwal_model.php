@@ -123,10 +123,11 @@ class Jadwal_model extends CI_Model{
         return $this->db->get("matpel")->result();
     }
     public function getTahunajaran(){
+        $this->db->order_by('tahunajaran_nama desc');
         return $this->db->get("tahunajaran")->result();
     }
     public function getMatpelTahun($tahun){
-        return $this->db->query("SELECT tahunajaran.tahunajaran_nama,tutor.tutor_nama, tahunajaran.tahunajaran_id, jadwal_id, jadwal_hari, matpel_nama, kelas_nama, jadwal_waktu, jadwal_tipe_pembelajaran FROM jadwal left join tahunajaran on tahunajaran.tahunajaran_id = jadwal.tahunajaran_id RIGHT join rombel on rombel.rombel_id = jadwal.rombel_id inner join kelas on kelas.kelas_id = rombel.kelas_id LEFT join matpel on matpel.matpel_id=jadwal.matpel_id  INNER join tutor on tutor.tutor_id = matpel.tutor_id where jadwal.tahunajaran_id ='$tahun'")->result();
+        return $this->db->query("SELECT tahunajaran.tahunajaran_nama,tutor.tutor_nama, tahunajaran.tahunajaran_id, jadwal_id, jadwal_hari, matpel_nama, kelas_nama, jadwal_waktu, jadwal_tipe_pembelajaran FROM jadwal left join tahunajaran on tahunajaran.tahunajaran_id = jadwal.tahunajaran_id RIGHT join rombel on rombel.rombel_id = jadwal.rombel_id inner join kelas on kelas.kelas_id = rombel.kelas_id LEFT join matpel on matpel.matpel_id=jadwal.matpel_id  INNER join tutor on tutor.tutor_id = matpel.tutor_id where jadwal.tahunajaran_id ='$tahun' ORDER BY jadwal.jadwal_tipe_pembelajaran ASC, jadwal.jadwal_hari ASC")->result();
     }
     public function delTahun($id){
         return $this->db->delete($this->_table,array('tahunajaran_id' => $id));

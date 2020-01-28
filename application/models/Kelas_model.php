@@ -60,6 +60,7 @@
             return $this->db->update($this->_table, $data);    
         }
         public function getAll(){
+            $this->db->order_by('kelas_nama desc');
             return $this->db->get($this->_table)->result();
         }
         public function getById($id)
@@ -87,7 +88,7 @@
 
         public function getRombel()
         {
-            return $this->db->query('SELECT rombel.rombel_id, kelas.kelas_nama, tahunajaran.tahunajaran_nama FROM rombel inner join kelas on kelas.kelas_id = rombel.kelas_id INNER join tahunajaran on tahunajaran.tahunajaran_id = rombel.tahunajaran_id order by tahunajaran.tahunajaran_id desc')->result();
+            return $this->db->query('SELECT rombel.rombel_id, kelas.kelas_nama, tahunajaran.tahunajaran_nama FROM rombel inner join kelas on kelas.kelas_id = rombel.kelas_id INNER join tahunajaran on tahunajaran.tahunajaran_id = rombel.tahunajaran_id order by tahunajaran.tahunajaran_nama DESC, kelas.kelas_nama desc')->result();
         }
         public function getRombelbyId($id){
             return $this->db->query("select kelas.kelas_id,kelas.kelas_nama, tahunajaran.tahunajaran_id, tahunajaran.tahunajaran_nama,rombel_id from rombel inner join kelas on kelas.kelas_id=rombel.kelas_id INNER join tahunajaran on tahunajaran.tahunajaran_id=rombel.tahunajaran_id where rombel_id = '$id' ")->row_array();

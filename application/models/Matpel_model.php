@@ -42,7 +42,7 @@
             return $this->db->update($this->_table, $data);    
         }
         public function getAll(){
-            return $this->db->query("SELECT * FROM matpel INNER JOIN tutor on tutor.tutor_id=matpel.tutor_id")->result();
+            return $this->db->query("SELECT * FROM matpel INNER JOIN tutor on tutor.tutor_id=matpel.tutor_id ORDER BY matpel.matpel_nama ASC")->result();
         }
         public function getById($id)
         {
