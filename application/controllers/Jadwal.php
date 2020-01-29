@@ -38,7 +38,7 @@ class Jadwal extends CI_Controller
             $this->session->set_flashdata('success', 'Berhasil Diubah');
 
         }
-        
+        $data['tahun'] = $jadwal->getTahun($tahun);
         $data["title"] = "Ubah Jadwal Mata Pelajaran";
         $data["actor"] = "Jadwal";
         $data["kelass"] = $jadwal->getKelas($tahun);
@@ -66,7 +66,7 @@ class Jadwal extends CI_Controller
             redirect('jadwal');
 
         }
-        
+        $data['tahun'] = $jadwal->getTahun($tahun);
         $data["title"] = "Tambah Jadwal Mata Pelajaran";
         $data["actor"] = "Jadwal";
         $data["kelas_all"] = $jadwal->getKelas($tahun);

@@ -25,10 +25,20 @@
 <div class="content">
     <!-- Basic -->
     <div class="block">
-        <div class="block-header">
-            <h3 class="block-title">Data Mata Pelajaran</h3>
+        <div class="block-header block-header-default">
+            <h3 class="block-title"><?=$title;?></h3>
+            <div class="block-options">
+                <a href="<?=base_url('matpel');?>">
+                    <button type="button" class="btn btn-sm btn-light">
+                        Kembali
+                    </button>
+                </a>
+            </div>
         </div>
         <div class="block-content block-content-full">
+            <p class="font-size-sm text-muted">
+                Silahkan isi semua kolom untuk menambahkan mata pelajaran
+            </p>
             <form action="<?=base_url('matpel/tambah');?>" method="POST" enctype="multipart/form-data">
                 <div class="row push">
                     <div class="col-lg-12">

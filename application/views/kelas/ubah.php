@@ -25,20 +25,27 @@
 <div class="content">
     <!-- Basic -->
     <div class="block">
-    <?php if ($this->session->flashdata('success')): ?>
-        <div class="alert alert-success d-flex align-items-center" role="alert">
-            <div class="flex-00-auto">
-                <i class="fa fa-fw fa-check"></i>
+        <div class="block-header block-header-default">
+            <h3 class="block-title"><?=$title;?></h3>
+            <div class="block-options">
+                <a href="<?=base_url('/kelas');?>">
+                    <button type="button" class="btn btn-sm btn-light">
+                        Kembali
+                    </button>
+                </a>
             </div>
-            <div class="flex-fill ml-3">
-                <p class="mb-0"><?php echo $this->session->flashdata('success'); ?></p>
-            </div>
-        </div>
-    <?php endif;?>
-        <div class="block-header">
-            <h3 class="block-title">Data Kelas</h3>
         </div>
         <div class="block-content block-content-full">
+            <?php if ($this->session->flashdata('success')): ?>
+                <div class="alert alert-success d-flex align-items-center" role="alert">
+                    <div class="flex-00-auto">
+                        <i class="fa fa-fw fa-check"></i>
+                    </div>
+                    <div class="flex-fill ml-3">
+                        <p class="mb-0"><?php echo $this->session->flashdata('success'); ?></p>
+                    </div>
+                </div>
+            <?php endif;?>
             <form action="<?php base_url("kelas/ubah")?>" method="post" enctype="multipart/form-data">
                 <div class="row push">
                     <div class="col-lg-12">

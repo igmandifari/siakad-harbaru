@@ -27,16 +27,30 @@
 <div class="content">
     <!-- Basic -->
     <div class="block">
-    <?php if ($this->session->flashdata('success')): ?>
-        <div class="alert alert-success d-flex align-items-center" role="alert">
-            <div class="flex-00-auto">
-                <i class="fa fa-fw fa-check"></i>
-            </div>
-            <div class="flex-fill ml-3">
-                <p class="mb-0"><?php echo $this->session->flashdata('success'); ?></p>
+        <div class="block-header block-header-default">
+            <h3 class="block-title"><?=$title;?></h3>
+            <div class="block-options">
+                <a href="<?=base_url('admin');?>">
+                    <button type="button" class="btn btn-sm btn-light">
+                        Kembali
+                    </button>
+                </a>
             </div>
         </div>
-    <?php endif;?>
+        <div class="block-content block-content-full">
+            <p class="font-size-sm text-muted">
+               Silahkan isi semua kolom untuk mengubah data admin.
+            </p>
+            <?php if ($this->session->flashdata('success')): ?>
+                <div class="alert alert-success d-flex align-items-center" role="alert">
+                    <div class="flex-00-auto">
+                        <i class="fa fa-fw fa-check"></i>
+                    </div>
+                    <div class="flex-fill ml-3">
+                        <p class="mb-0"><?php echo $this->session->flashdata('success'); ?></p>
+                    </div>
+                </div>
+            <?php endif;?>
                 <div class="row push">
                     <div class="col-12">
                         <div class="block">

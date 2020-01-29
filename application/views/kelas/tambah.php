@@ -35,8 +35,15 @@
             </div>
         </div>
     <?php endif;?>
-        <div class="block-header">
-            <h3 class="block-title">Data Kelas</h3>
+        <div class="block-header block-header-default">
+            <h3 class="block-title"><?=$title;?></h3>
+            <div class="block-options">
+                <a href="<?=base_url('/kelas');?>">
+                    <button type="button" class="btn btn-sm btn-light">
+                        Kembali
+                    </button>
+                </a>
+            </div>
         </div>
         <div class="block-content block-content-full">
             <form action="<?=base_url('kelas/tambah');?>" method="POST" enctype="multipart/form-data">
