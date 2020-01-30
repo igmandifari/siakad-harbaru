@@ -81,7 +81,9 @@
             $idpresensi=$details->getIDPresensi($jadwal);
             $data["wargabelajars"] = $details->getWb($idpresensi["presensi_id"]);
             $wargabelajars = $data["wargabelajars"];
-
+            $data["title"] = "Rekap Presensi";
+            $data["kelas"] = $details->getNameKelas($jadwal);
+            $data["actor"] = $data["kelas"]["kelas_nama"];
             $data["details"] = $this->Presensi_model;
             $data["tahunajarans"]= $details->getTahunAjaran();
             $this->load->view('tutor/presensi/rekap',$data);

@@ -14,6 +14,7 @@ Class Masukan extends CI_Controller{
     public function index()
     {
         $data['title'] = 'Kirim Masukan';
+        $data['tahunajarans']=$this->Masukan_model->getTahunAjaran();
         $this->load->view('dasbor/wargabelajar/masukan',$data);
     }
     public function kirim_masukan()

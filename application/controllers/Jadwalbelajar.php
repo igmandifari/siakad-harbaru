@@ -16,13 +16,16 @@
         }
         public function index()
         {
-        	$tahun = $this->session->userdata('tahunajaran_id');
-        	$id =  $this->session->userdata('id');
+        	$tahun= $this->session->userdata('tahunajaran_id');
+        	// $data["id"] =  $this->session->userdata('id');
         	$jadwal = $this->Jadwalbelajar_model;
+            $data["tahunajarans"] = $jadwal->getTahunAjaran();
+            $data["haris"]=$jadwal->getHari($tahun);
         	
-        	$data['jadwals'] = $jadwal->getJadwal($id,$tahun);
+        	$data['jadwal'] =  $this->Jadwalbelajar_model;
         	$data['title'] = "Jadwal Pelajaran";
           	$this->load->view('dasbor/wargabelajar/jadwal',$data);
+
         }
 
     }

@@ -5,7 +5,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
-        <title>Presensi <?=$title?></title>
+        <title><?=$title.' '.$actor?></title>
 
         <meta name="robots" content="noindex, nofollow">
 
@@ -328,9 +328,22 @@
                 <div class="content">
                     <!-- Jadwal -->
                     <div class="block">
-                        <div class="block-header">
-                            <!-- <h3 class="block-title">Dynamic Table <small>Full</small></h3> -->
+                        <div class="block-header block-header-default">
+                            <h3 class="block-title"><?php echo "Rekap Presensi ".$kelas['kelas_nama']." Mata Pelajaran ".$kelas['matpel_nama'];?></h3>
+                            <div class="block-options">
+
+                                <button type="button" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#modal-cetak">
+                                    Cetak
+                                </button>
+
+                                <a href="<?=base_url('presensi')?>">
+                                    <button type="button" class="btn btn-sm btn-light">
+                                        Kembali
+                                    </button>
+                                </a>
+                            </div>
                         </div>
+                      
                         
                         <div class="block-content block-content-full">
                             <div class="table-responsive">
@@ -341,8 +354,12 @@
                                         </tr>
                                         <tbody>
                                             <tr>
+                                                <td>Kelas</td>
+                                                <td>: <?=$kelas["kelas_nama"];?></td>
+                                            </tr>
+                                            <tr>
                                                 <td>Mata Pelajaran</td>
-                                                <td>: Bahasa Indonesia</td>
+                                                <td>: <?=$kelas["matpel_nama"];?></td>
                                             </tr>
                                             <tr>
                                                 <td>Tipe Pembelajaran</td>
@@ -364,7 +381,7 @@
                                         <tr>
                                             <th rowspan="2" style="vertical-align:middle;width:8%;">NO</th>
                                             <th rowspan="2" style="vertical-align:middle;">Nama</th>
-                                            <th colspan="5" style="vertical-align:middle;">Keterangan</th>
+                                            <th colspan="4" style="vertical-align:middle;">Keterangan</th>
                                         </tr>
                                         <tr>
                                             <th width="5%">Total</th>
@@ -399,13 +416,45 @@
                                 </table>
                             </div>
                             <div class="col-sm-12 text-center">
-                                <a href="<?=base_url('presensi/jadwal/').$this->uri->segment(3)?>">
+                                <a href="<?=base_url('presensi')?>">
                                     <button type="button" class="btn btn-primary js-click-ripple-enabled" data-toggle="click-ripple" style="overflow: hidden; position: relative; z-index: 1;"><span class="click-ripple animate" style="height: 87.2656px; width: 87.2656px; top: -21.625px; left: 31.375px;"></span>Kembali</button>
                                 </a>
                             </div>
                         </div>
                     </div>
                     <!-- End Jadwal -->
+                    <div class="modal fade" id="modal-cetak" tabindex="-1" role="dialog" aria-labelledby="modal-block-fadein" style="display: none;" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="block block-themed block-transparent mb-0">
+                        <div class="block-header bg-primary-dark">
+                            <h3 class="block-title">Cetak <?=$title;?></h3>
+                            <div class="block-options">
+                                <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
+                                    <i class="fa fa-fw fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="block-content block-content-full font-size-sm">
+                            <p>Silahkan pilih tipe file cetak yang kamu inginkan!</p>
+                            <div class="text-center">
+                            <button type="button" class="btn btn-rounded btn-success">
+                                <i class="far fa-file-excel"></i> Spreadsheet
+                            </button>
+                            <a href="<?=base_url('tahunajaran/cetak');?>" target="_blank">
+                                <button type="button" class="btn btn-rounded btn-danger">
+                                    <i class="far fa-file-pdf"></i> PDF
+                                </button>
+                            </a>
+                            </div>
+                        </div>
+                        <div class="block-content block-content-full text-right border-top">
+                            <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal"><i class="fa fa-check mr-1"></i>Tutup</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
                 </div>
                 <!-- END Page Content -->
 

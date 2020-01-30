@@ -328,7 +328,7 @@
                         <div class="block-header block-header-default">
                             <h3 class="block-title">Data Pertemuan <?=$kelas['kelas_nama'];?></h3>
                             <div class="block-options">
-                                <a href="<?=base_url('presensi/detail/').$this->uri->segment(3);?>">
+                                <a href="<?=base_url('presensi/details/').$this->uri->segment(3);?>">
                                     <button type="button" class="btn btn-sm btn-secondary">
                                         Detail
                                     </button>

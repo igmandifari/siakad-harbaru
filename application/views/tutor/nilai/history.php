@@ -5,7 +5,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
-        <title><?php echo $title." Semester ".$this->uri->segment(3)." ".$wb['wargabelajar_nama'];?></title>
+        <title><?php echo $title." Semester ".ucfirst($this->uri->segment(3))." ".$wb['wargabelajar_nama'];?></title>
 
         <meta name="robots" content="noindex, nofollow">
 
@@ -392,7 +392,7 @@
                                         </tr>
                                         <tr>
                                             <td><strong>Semester</strong></td>
-                                            <td><strong>: <?php echo $this->uri->segment(3);?></strong></td>
+                                            <td><strong>: <?php echo ucfirst($this->uri->segment(3));?></strong></td>
                                         </tr>
                                         <tr>
                                             <td><strong>Guru</strong></td>
@@ -457,7 +457,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="nilai_details_nilai"> Jumlah Nilai(0-100)</label>
-                                            <input type="text" class="form-control" id="nilai_details_nilai" placeholder="Masukan Jumlah Nilai Dari 1-100">
+                                            <input type="number" class="form-control" id="nilai_details_nilai" placeholder="Masukan Jumlah Nilai Dari 1-100">
                                         </div>
                                     </div>
                                     <div class="block-content block-content-full text-right border-top">
