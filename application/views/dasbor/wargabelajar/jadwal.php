@@ -271,53 +271,61 @@
             
                     <!-- data -->
                     <div class="block">
-                        <div class="block-header">
-                            <h3 class="block-title">Daftar <?php echo $title;?>
-                            </h3>
-                        </div>
-                        <div class="block-content block-content-full">
-                            <div class="row push">
-                                <div class="col-lg-12">
-                                    <p class="font-size-sm text-muted">
-                                        Berikut ini jadwal mata pelajaran yang harus kamu ikuti!
-                                    </p>
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered table-striped table-vcenter">
-                                            <thead>
-                                                <tr class="text-center">
-                                                    <th>NO</th>
-                                                    <th>Tipe Pembelajaran</th>
-                                                    <th>Hari</th>
-                                                    <th>Mata Pelajaran</th>
-                                                    <th>Tutor</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <?php $no=0; foreach($jadwals as $jadwal):$no++?>
-                                                    <tr>
-                                                        <td>
-                                                            <?php echo $no;?>
-                                                        </td>
-                                                        <td>
-                                                            <?php echo $jadwal["jadwal_tipe_pembelajaran"];?>
-                                                        </td>
-                                                        <td>
-                                                            <?php echo $jadwal["jadwal_hari"];?>
-                                                        </td>
-                                                        <td><?php echo $jadwal["matpel_nama"];?>
-                                                        </td>
-                                                        <td><?php echo $jadwal["tutor_nama"];?></td>
+                        <div class="block-header block-header-default">
+                            <h3 class="block-title">Daftar <?php echo $title;?></h3>
+                            <div class="block-options">
+                                <button type="button" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#modal-cetak">
+                                    Cetak
+                                </button>
 
-                                                    </tr>
-                                                <?php endforeach;?>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
+                                <a href="<?=base_url('presensi');?>">
+                                    <button type="button" class="btn btn-sm btn-light">
+                                        Kembali
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="block-content block-content-full">
+                            <p>
+                               Berikut ini adalah jadwal mata pelajaran yang harus kamu ikuti!
+                            </p>
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped table-vcenter">
+                                    <thead>
+                                        <tr class="text-center">
+                                            <th>NO</th>
+                                            <th>Tipe Pembelajaran</th>
+                                            <th>Hari</th>
+                                            <th>Mata Pelajaran</th>
+                                            <th>Tutor</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php $no=0; foreach($jadwals as $jadwal):$no++?>
+                                            <tr>
+                                                <td>
+                                                    <?php echo $no;?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $jadwal["jadwal_tipe_pembelajaran"];?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $jadwal["jadwal_hari"];?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $jadwal["matpel_nama"];?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $jadwal["tutor_nama"];?>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach;?>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
-                    <!-- end data -->
                 </div>
                 <!-- END Page Content -->
 
