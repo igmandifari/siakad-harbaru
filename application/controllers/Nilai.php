@@ -122,4 +122,11 @@
             }
         }
 
+        public function rekap($jadwal=null,$semester=null)
+        {
+            if(!isset($jadwal) || !isset($semester)) redirect('nilai');
+
+            echo $jadwal.$semester;
+        }
+
     }
