@@ -396,7 +396,7 @@
                                             <td>
                                                 <a href="<?=base_url('presensi/jadwal/').$jadwalmengajar->jadwal_id;?>">
                                                     <button type="button" class="btn btn-sm btn-success">Presensi</button>
-                                                </a>
+                                                </a>       
                                             </td>
                                         </tr>
                                     <?php endforeach;?>
