@@ -394,10 +394,8 @@
                                                 <td><?=$kelas->jadwal_hari?></td>
                                                 <td><?=$kelas->jadwal_waktu?></td>
                                                 <td class="text-center">
-                                                        <button type="button" class="nilai btn btn-secondary btn-sm" data-toggle="modal" data-target="#modal-block-popout" data-matpel="<?=$kelas->jadwal_id?>">Masukan Nilai</button>
-                                                    <a href="<?=base_url('nilai/rekap/'.$kelas->jadwal_id.'')?>">
-                                                        <button type="button" class="btn btn-secondary btn-sm">Rekap</button>
-                                                    </a>
+                                                        <button type="button" class="nilai btn btn-primary btn-sm" data-toggle="modal" data-target="#modal-block-popout" data-matpel="<?=$kelas->jadwal_id?>">Masukan Nilai</button>     
+                                                        <button type="button" class="rekap btn btn-success btn-sm" data-toggle="modal" data-target="#modal-block-rekap" data-jadwal="<?=$kelas->jadwal_id?>">Rekap</button>
                                                     
                                             </td>
                                             </tr>
@@ -450,6 +448,33 @@
                         </div>
                     </div>
                     <!-- END Pop Out Block Modal -->
+                    <!-- Pop Out Block Rekap -->
+                    <div class="modal fade" id="modal-block-rekap" tabindex="-1" role="dialog" aria-labelledby="modal-block-popout" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-popout" role="document">
+                            <div class="modal-content">
+                                <div class="block block-themed block-transparent mb-0">
+                                    <div class="block-header bg-primary-dark">
+                                        <h3 class="block-title">Daftar Nilai Semster</h3>
+                                        <div class="block-options">
+                                            <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
+                                                <i class="fa fa-fw fa-times"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="block-content">
+                                        <p>Pilih semester untuk melihat detail nilai!</p>
+                                        <div id="pilihan-rekap" class="text-center">
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="block-content block-content-full text-right border-top">
+                                        <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal"><i class="fa fa-check mr-1"></i>Tutup</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END Pop Out Block Rekap -->
                 </div>
                 <!-- END Page Content -->
 
@@ -510,6 +535,13 @@
         <!-- Custom -->
         <script>
             jQuery(function(){
+                const $btnRekap = $(".rekap");
+                $btnRekap.click(function(){
+                    var $jadwal = $(this).data("jadwal");
+                    const $rekap = $("#pilihan-rekap");
+
+                    $rekap.html('<a href="<?php echo base_url('nilai/rekap/');?>'+$jadwal+'/ganjil/" target="_blank"><button type="button" class="btn btn-sm btn-success">Ganjil</button></a>   <a href="<?php echo base_url('nilai/rekap/');?>'+$jadwal+'/genap/" target="_blank"><button type="button" class="btn btn-sm btn-secondary">Genap</button></a>');
+                });
                 const $btnClick = $(".nilai");
 
                 $btnClick.click(function(){
