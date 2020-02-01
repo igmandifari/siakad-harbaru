@@ -562,6 +562,13 @@
                             'warning'
                             )
                         $("#nilai_details_nilai").val("");
+                    }else if($nilai < 0 || $nilai >100){
+                        Swal.fire(
+                            'Perhatikan!',
+                            'Tidak boleh memasukan nilai '+$nilai,
+                            'warning'
+                            )
+                        $("#nilai_details_nilai").val("");
                     }else{
 
                         $.ajax({
