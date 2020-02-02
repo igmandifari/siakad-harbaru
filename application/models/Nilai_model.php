@@ -11,7 +11,7 @@
             return $this->db->query("SELECT jadwal.jadwal_id, jadwal.jadwal_tipe_pembelajaran, jadwal.jadwal_hari,jadwal.jadwal_waktu, matpel.matpel_nama,kelas.kelas_nama from jadwal INNER join matpel on matpel.matpel_id=jadwal.matpel_id INNER JOIN rombel on rombel.rombel_id=jadwal.rombel_id INNER join kelas on kelas.kelas_id = rombel.kelas_id INNER JOIN tutor on tutor.tutor_id = matpel.tutor_id INNER JOIN tahunajaran on tahunajaran.tahunajaran_id = rombel.tahunajaran_id where tutor.tutor_id='$id' AND tahunajaran.tahunajaran_id='$tahun'")->result();
         }
         public function getWargaBelajar($jadwal){
-        	return $this->db->query("SELECT jadwal.jadwal_id, wargabelajar.wargabelajar_id,wargabelajar.wargabelajar_nama FROM wargabelajar INNER JOIN rombel_details ON rombel_details.wargabelajar_id=wargabelajar.wargabelajar_id INNER JOIN rombel ON rombel.rombel_id=rombel_details.rombel_id INNER JOIN jadwal ON jadwal.rombel_id=rombel.rombel_id WHERE jadwal.jadwal_id='5dfc9da09b91e'")->result_array();
+        	return $this->db->query("SELECT jadwal.jadwal_id, wargabelajar.wargabelajar_nomor_induk, wargabelajar.wargabelajar_id,wargabelajar.wargabelajar_nama FROM wargabelajar INNER JOIN rombel_details ON rombel_details.wargabelajar_id=wargabelajar.wargabelajar_id INNER JOIN rombel ON rombel.rombel_id=rombel_details.rombel_id INNER JOIN jadwal ON jadwal.rombel_id=rombel.rombel_id WHERE jadwal.jadwal_id='$jadwal'")->result_array();
         }
         public function checkAvailable($semseter,$jadwal,$id){
         	return $this->db->query("SELECT * FROM nilai WHERE nilai.nilai_semester='$semseter' AND nilai.jadwal_id='$jadwal' AND nilai.wargabelajar_id='$id'")->result_array();
@@ -41,6 +41,42 @@
         public function hapusNilaiDet($id){
         	$this->db->where('nilai_details_id',$id);
         	return $this->db->delete('nilai_details');
+        }
+        public function getKelasAndMatpel($jadwal)
+        {
+            return $this->db->query("SELECT kelas.kelas_nama,matpel.matpel_nama FROM kelas INNER JOIN rombel ON rombel.kelas_id=kelas.kelas_id INNER JOIN jadwal ON jadwal.rombel_id=rombel.rombel_id  INNER JOIN matpel ON matpel.matpel_id=jadwal.matpel_id WHERE jadwal.jadwal_id='$jadwal'")->row_array();
+        }
+        public function countTugas($idnilai)
+        {
+            return $this->db->query("SELECT count(nilai_details_id) as tugas FROM nilai_details WHERE nilai_details.nilai_id='$idnilai' AND nilai_details.nilai_details_jenis='Tugas'")->row_array();
+        }
+        public function countHarian($idnilai)
+        {
+            return $this->db->query("SELECT count(nilai_details_id) as harian FROM nilai_details WHERE nilai_details.nilai_id='$idnilai' AND nilai_details.nilai_details_jenis='Harian'")->row_array();
+        }
+        public function countUts($idnilai)
+        {
+            return $this->db->query("SELECT count(nilai_details_id) as uts FROM nilai_details WHERE nilai_details.nilai_id='$idnilai' AND nilai_details.nilai_details_jenis='UTS'")->row_array();
+        }
+        public function countUas($idnilai)
+        {
+            return $this->db->query("SELECT count(nilai_details_id) as uas FROM nilai_details WHERE nilai_details.nilai_id='$idnilai' AND nilai_details.nilai_details_jenis='UAS'")->row_array();
+        }
+        public function sumTugas($idnilai)
+        {
+            return $this->db->query("SELECT sum(nilai_details.nilai_details_nilai)/count(nilai_details.nilai_details_id) as tugas FROM nilai_details WHERE nilai_details.nilai_id='$idnilai' AND nilai_details.nilai_details_jenis='Tugas'")->row_array();
+        }
+        public function sumHarian($idnilai)
+        {
+            return $this->db->query("SELECT sum(nilai_details.nilai_details_nilai)/count(nilai_details.nilai_details_id) as harian FROM nilai_details WHERE nilai_details.nilai_id='$idnilai' AND nilai_details.nilai_details_jenis='Harian'")->row_array();
+        }
+        public function sumUts($idnilai)
+        {
+            return $this->db->query("SELECT sum(nilai_details.nilai_details_nilai)/count(nilai_details.nilai_details_id) as uts FROM nilai_details WHERE nilai_details.nilai_id='$idnilai' AND nilai_details.nilai_details_jenis='UTS'")->row_array();
+        }
+        public function sumUas($idnilai)
+        {
+            return $this->db->query("SELECT sum(nilai_details.nilai_details_nilai)/count(nilai_details.nilai_details_id) as uas FROM nilai_details WHERE nilai_details.nilai_id='$idnilai' AND nilai_details.nilai_details_jenis='UAS'")->row_array();
         }
 
 
