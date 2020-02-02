@@ -126,7 +126,17 @@
         {
             if(!isset($jadwal) || !isset($semester)) redirect('nilai');
 
-            echo $jadwal.$semester;
+            $nilai = $this->Nilai_model;
+            
+            $data["model"]=$this->Nilai_model;
+            $data["wargabelajars"]= $nilai->getWargaBelajar($jadwal);
+            $data["jadwal"]= $nilai->getKelasAndMatpel($jadwal);
+            $data["title"] = "Rekap Nilai Semester ".ucfirst($semester);
+
+            if(!$data["jadwal"]) redirect('nilai');
+            if($semester != "ganjil" && $semester != "genap" ) redirect('nilai');
+
+            $this->load->view('tutor/nilai/rekap',$data);
         }
 
     }
