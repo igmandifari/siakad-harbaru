@@ -376,19 +376,36 @@
                             </div>
                             <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _es6/pages/be_tables_datatables.js -->
                             <div class="table-responsive">
-                                <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
+                                <table class="table table-bordered table-striped table-vcenter">
                                     <thead class="text-center">
                                         <tr>
                                             <th rowspan="2" style="vertical-align:middle;width:8%;">NO</th>
                                             <th rowspan="2" style="vertical-align:middle;">Nama</th>
-                                            <th colspan="4" style="vertical-align:middle;">Keterangan</th>
+                                            <?php 
+                                                $n = 5;
+                                                $tanggal =$details->getDate($this->uri->segment(3));
+                                                if(!isset($tanggal)){
+                                                    $n=5;
+                                                }
+                                                foreach($tanggal as $date){
+                                                    $n++;
+                                                }
+
+                                            ;?>
+                                            <th colspan="<?php echo $n;?>" style="vertical-align:middle;">Keterangan</th>
                                         </tr>
                                         <tr>
-                                            <th width="5%">Total</th>
-                                            <th width="5%">H</th>
-                                            <th width="5%">I</th>
-                                            <th width="5%">S</th>
-                                            <th width="5%">A</th>
+                                            <th width="5%" style="vertical-align:middle;">Total</th>
+                                            <th width="5%" style="vertical-align:middle;">H</th>
+                                            <th width="5%" style="vertical-align:middle;">I</th>
+                                            <th width="5%" style="vertical-align:middle;">S</th>
+                                            <th width="5%" style="vertical-align:middle;">A</th>
+                                            <?php
+                                                foreach($tanggal as $tgl){
+
+                                            ?>
+                                            <th width="5%" style="vertical-align:middle;"><small><?php echo date("d-m-y",strtotime($tgl->tanggal));?></small></th>
+                                            <?php }?>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -409,12 +426,61 @@
                                             <td class="text-center"><?php echo $izin['izin'];?></td>
                                             <td class="text-center"><?php echo $sakit['sakit'];?></td>
                                             <td class="text-center"><?php echo $alpa['alpa'];?></td>
+                                            <?php
+                                                foreach($tanggal as $dt){
+                                                    $keteranganPresensei = $details->getDetailBanget($dt->id,$wargabelajar->id);
+
+                                                    if($keteranganPresensei['ket']=="A"){
+                                            ?>
+                                                        <td class="bg-danger"></td>
+                                                     <?php } elseif ($keteranganPresensei['ket']=="S"){?>
+                                                        <td class="bg-success"></td>
+                                                    <?php } elseif ($keteranganPresensei['ket']=="I"){?>
+                                                        <td class="bg-warning"></td>
+                                                    <?php } elseif ($keteranganPresensei['ket']=="H"){?>
+                                                        <td class="bg-info"></td>
+                                                    <?php }
+                                                }?>
                                         </tr>
                                     <?php }?>
                                     </tbody>
                                     
                                 </table>
+                                <div class="col-sm-4">
+                                    <table class="table table-bordered table-striped table-vcenter">
+                                        <thead class="text-center">
+                                            <tr>
+                                                <th colspan="2">Keterangan</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td width="60%">Hadir</td>
+                                                <td class="bg-info"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Sakit</td>
+                                               <td class="bg-success"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Izin</td>
+                                                <td class="bg-warning"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Tanpa Keterangan</td>
+                                                <td class="bg-danger"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="col-sm-8">
+                                </div>
                             </div>
+
+                            
+                                   
+
+                           
                             <div class="col-sm-12 text-center">
                                 <a href="<?=base_url('presensi')?>">
                                     <button type="button" class="btn btn-primary js-click-ripple-enabled" data-toggle="click-ripple" style="overflow: hidden; position: relative; z-index: 1;"><span class="click-ripple animate" style="height: 87.2656px; width: 87.2656px; top: -21.625px; left: 31.375px;"></span>Kembali</button>

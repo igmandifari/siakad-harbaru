@@ -82,4 +82,11 @@
             $this->db->where('presensi_id',$id);
             return $this->db->delete("presensi");
         }
+        public function getDate($jadwal){
+            return $this->db->query("SELECT presensi.presensi_tanggal as tanggal,presensi.presensi_id as id FROM presensi WHERE presensi.jadwal_id='$jadwal'")->result();
+        }
+        public function getDetailBanget($id,$wb)
+        {
+            return $this->db->query("SELECT presensi_details.presensi_det_ket as ket FROM presensi_details WHERE presensi_details.presensi_id='$id' AND presensi_details.wargabelajar_id='$wb'")->row_array();
+        }
     }
