@@ -2,13 +2,38 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-    Class Jadwalbelajar_model extends CI_Model 
+    Class Rekappresensi_model extends CI_Model 
     {
-    	public function get($id,$tahun)
-    	{
-    		return $this->db->query("SELECT count(presensi_details.presensi_det_ket='A') as alpa,count(presensi_details.presensi_det_ket='I') as izin,count(presensi_details.presensi_det_ket='H') as hadir,count(presensi_details.presensi_det_ket='S') as sakit FROM presensi INNER JOIN jadwal ON jadwal.jadwal_id=presensi.jadwal_id INNER JOIN presensi_details ON presensi_details.presensi_id=presensi.presensi_id  WHERE jadwal.tahunajaran_id='5dfc3970e4387' and presensi_details.wargabelajar_id='5df8c9b8e20e9'")->row_array();
-    	}
-    	public function getTahunAjaran(){
+        public function getTahunAjaran(){
             return $this->db->get('tahunajaran')->result_array();
+        }
+    	public function getJadwal($id,$tahun)
+        {
+        return $this->db->query("SELECT jadwal.jadwal_id, matpel.matpel_nama FROM jadwal inner join rombel on rombel.rombel_id=jadwal.rombel_id INNER JOIN rombel_details on rombel_details.rombel_id=rombel.rombel_id INNER JOIN matpel on matpel.matpel_id=jadwal.matpel_id inner join tutor on tutor.tutor_id=matpel.tutor_id WHERE jadwal.tahunajaran_id='$tahun' and rombel_details.wargabelajar_id='$id' AND jadwal.jadwal_tipe_pembelajaran='Tatap Muka'")->result_array();
+        }
+        public function getPresensi($jadwal)
+        {
+            $this->db->where('jadwal_id',$jadwal);
+            return $this->db->get('presensi')->result_array();
+        }
+        public function getAlpa($wb,$presensi)
+        {
+            return $this->db->query("SELECT count(presensi_details.presensi_det_ket) as alpa FROM presensi_details WHERE presensi_details.wargabelajar_id='$wb' AND presensi_details.presensi_id='$presensi' AND presensi_details.presensi_det_ket='A'")->row_array();
+        }
+        public function getIzin($wb,$presensi)
+        {
+            return $this->db->query("SELECT count(presensi_details.presensi_det_ket) as izin FROM presensi_details WHERE presensi_details.wargabelajar_id='$wb' AND presensi_details.presensi_id='$presensi' AND presensi_details.presensi_det_ket='I'")->row_array();
+        }
+        public function getHadir($wb,$presensi)
+        {
+            return $this->db->query("SELECT count(presensi_details.presensi_det_ket) as hadir FROM presensi_details WHERE presensi_details.wargabelajar_id='$wb' AND presensi_details.presensi_id='$presensi' AND presensi_details.presensi_det_ket='H'")->row_array();
+        }
+        public function getSakit($wb,$presensi)
+        {
+            return $this->db->query("SELECT count(presensi_details.presensi_det_ket) as sakit FROM presensi_details WHERE presensi_details.wargabelajar_id='$wb' AND presensi_details.presensi_id='$presensi' AND presensi_details.presensi_det_ket='S'")->row_array();
+        }
+        public function getPertemuan($jadwal)
+        {
+            return $this->db->query("SELECT count(presensi.presensi_id) as pertemuan FROM presensi WHERE presensi.jadwal_id='$jadwal'")->row_array();
         }
     }

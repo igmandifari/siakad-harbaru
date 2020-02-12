@@ -136,7 +136,7 @@
                             </a>
                         </li>
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="<?=base_url('presensi')?>">
+                            <a class="nav-main-link" href="<?=base_url('rekappresensi')?>">
                             <i class="nav-main-link-icon si si-note"></i>
                                 <span class="nav-main-link-name">Presensi</span>
                             </a>

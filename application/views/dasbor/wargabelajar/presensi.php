@@ -130,13 +130,13 @@
                             </a>
                         </li>
                         <li class="nav-main-item">
-                            <a class="nav-main-link active" href="<?=base_url('jadwalbelajar')?>">
+                            <a class="nav-main-link" href="<?=base_url('jadwalbelajar')?>">
                             <i class="nav-main-link-icon far fa-calendar-times"></i>
                                 <span class="nav-main-link-name">Jadwal</span>
                             </a>
                         </li>
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="<?=base_url('rekappresensi')?>">
+                            <a class="nav-main-link active" href="<?=base_url('rekappresensi')?>">
                             <i class="nav-main-link-icon si si-note"></i>
                                 <span class="nav-main-link-name">Presensi</span>
                             </a>
@@ -282,9 +282,11 @@
                         <div class="block-header block-header-default">
                             <h3 class="block-title">Daftar <?php echo $title;?></h3>
                             <div class="block-options">
-                                <button type="button" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#modal-cetak">
-                                    Cetak
-                                </button>
+                                <a href="<?=base_url('jadwalbelajar');?>">
+                                    <button type="button" class="btn btn-sm btn-info">
+                                        Jadwal
+                                    </button>
+                                </a>
 
                                 <a href="<?=base_url('presensi');?>">
                                     <button type="button" class="btn btn-sm btn-light">
@@ -296,72 +298,71 @@
 
                         <div class="block-content block-content-full">
                             <p>
-                               Berikut ini adalah jadwal mata pelajaran yang harus kamu ikuti!
+                               Berikut ini adalah <?=$title;?>!
                             </p>
                             <div class="table-responsive">
                                 <table class="table table-bordered table-striped table-vcenter">
-                                    <thead>
-                                        <tr class="text-center">
-                                            <th>Mata Pelajaran</th>
-                                            <th>Tutor</th>
-                                            <th>Waktu</th>
+                                    <thead class="text-center">
+                                        <tr>
+                                            <th style="vertical-align: middle;" rowspan="2">NO</th>
+                                            <th style="vertical-align: middle;" rowspan="2">Mata Pelajaran</th>
+                                            <th colspan="5">Keterangan</th>
+                                        </tr>
+                                        <tr>
+                                            <th>H</th>
+                                            <th>S</th>
+                                            <th>I</th>
+                                            <th>A</th>
+                                            <th>Total</th>
                                         </tr>
                                     </thead>
-                                     
                                     <tbody>
-                                       <?php
-                                            $id = $this->session->userdata('id');
-                                            $tahun = $this->session->userdata('tahunajaran_id');
-                                            
-                                            foreach($haris as $hari){
-                                                $dinten = $hari['hari'];
-                                                $matpels = $jadwal->getJadwal($id,$tahun,addslashes($dinten));
-                                        ?>
-                                            <tr style="background-color: transparent;">
-                                                <th colspan="3">
-                                                    <?php echo $hari['hari'];?>
-                                                </th>
-                                             </tr>
-                                             
-                                      <?php foreach ($matpels as $matpel):?>
+                                        <?php 
+                                            $no=0;
+                                            $alpa=0;
+                                            $hadir=0;
+                                            $izin=0;
+                                            $sakit=0;
+                                            $pertemuan=0;
 
+                                            foreach($jadwals as $jadwal){
+                                            $no++;
+                                           
+                                            $presensi = $model->getPresensi($jadwal['jadwal_id']);
+                                                foreach($presensi as $prs){
+                                                    
+                                                   $Countalpa = $model->getAlpa($wb_id,$prs['presensi_id']);
+                                                   $Counthadir = $model->getHadir($wb_id,$prs['presensi_id']);
+                                                   $Countizin = $model->getIzin($wb_id,$prs['presensi_id']);
+                                                   $Countsakit = $model->getSakit($wb_id,$prs['presensi_id']);
+                                                   $Countpertemuan = $model->getPertemuan($jadwal['jadwal_id']);
+
+
+                                                $alpa+=$Countalpa['alpa'];
+                                                $hadir+=$Counthadir['hadir'];
+                                                $izin+=$Countizin['izin'];
+                                                $sakit+=$Countsakit['sakit'];
+                                                $pertemuan=+$Countpertemuan['pertemuan'];
+                                                
+                                                }
+                                               
+                                               
+                                            ?>
                                             <tr>
-                                                <td>
-                                                    <?php echo $matpel["matpel_nama"];?>
-                                                </td>
-                                                <td>
-                                                    <?php echo $matpel["tutor_nama"];?>
-                                                </td>
-                                                <td>
-                                                    <?php echo $matpel["jadwal_waktu"];?>
-                                                </td>
+                                                <td class="text-center"><?php echo $no;?></td>
+                                                <td><?php echo $jadwal['matpel_nama'];?></td>
+                                                <td class="text-center"><?php echo $hadir;?></td>
+                                                <td class="text-center"><?php echo $sakit;?></td>
+                                                <td class="text-center"><?php echo $izin;?></td>
+                                                <td class="text-center"><?php echo $alpa;?></td>
+                                                <td class="text-center"><?php echo $pertemuan;?></td>
                                             </tr>
-                                        <?php endforeach;?>                                                             
-                                            
-                                    <?php }?>
-                                    <tr style="background-color: transparent;">
-                                        <th colspan="3">Lainnya</th>
-                                    </tr>
-                                    <?php $others = $jadwal->getOther($id,$tahun);
-                                        foreach ($others as $other):?>
-                                                 <tr>
-                                                <td>
-                                                    <?php echo $other["matpel_nama"];?>
-                                                </td>
-                                                <td>
-                                                    <?php echo $other["tutor_nama"];?>
-                                                </td>
-                                                <td>
-                                                    <strong>
-                                                        <?php echo $other["tipe"];?>
-                                                    </strong>
-                                                </td>
-                                            </tr>
-                                            <?php endforeach;?>  
-
-                                    
-                                        
-
+                                        <?php 
+                                            $alpa=0;
+                                            $hadir=0;
+                                            $izin=0;
+                                            $sakit=0;
+                                            $pertemuan=0; };?>
                                     </tbody>
                                 </table>
                             </div>
