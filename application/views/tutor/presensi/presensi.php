@@ -400,8 +400,8 @@
                                                 <td class="text-center">
                                                     
                                                        <button type="button" class="do_presensi btn btn-info js-click-ripple-enabled btn-sm" data-toggle="click-ripple" style="overflow: hidden; position: relative; z-index: 1;" data-status="H" data-id="<?=$wargabelajar->presensi_det_id?>">H</button>
-                                                       <button type="button" class="do_presensi btn btn-warning js-click-ripple-enabled btn-sm" data-toggle="click-ripple" style="overflow: hidden; position: relative; z-index: 1;"data-status="I" data-id="<?=$wargabelajar->presensi_det_id?>">I</button>
                                                        <button type="button" class="do_presensi btn btn-success js-click-ripple-enabled btn-sm" data-toggle="click-ripple" style="overflow: hidden; position: relative; z-index: 1;"data-status="S" data-id="<?=$wargabelajar->presensi_det_id?>">S</button>
+                                                       <button type="button" class="do_presensi btn btn-warning js-click-ripple-enabled btn-sm" data-toggle="click-ripple" style="overflow: hidden; position: relative; z-index: 1;"data-status="I" data-id="<?=$wargabelajar->presensi_det_id?>">I</button>
                                                        <button type="button" class="do_presensi btn btn-danger js-click-ripple-enabled btn-sm" data-toggle="click-ripple" style="overflow: hidden; position: relative; z-index: 1;"data-status="A" data-id="<?=$wargabelajar->presensi_det_id?>">A</button>
                                                     
                                                 </td>
