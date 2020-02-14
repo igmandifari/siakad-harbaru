@@ -142,7 +142,7 @@
                             </a>
                         </li>
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="<?=base_url('nilai')?>">
+                            <a class="nav-main-link" href="<?=base_url('rekapnilai')?>">
                             <i class="nav-main-link-icon si si-layers"></i>
                                 <span class="nav-main-link-name">Nilai</span>
                             </a>
