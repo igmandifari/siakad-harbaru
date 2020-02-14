@@ -505,18 +505,6 @@
                                             <td class="text-center"><?php echo number_format($avgOfavg,2);?></td>
                                             <td class="text-center"></td>
                                         </tr>
-                                        <tr>
-                                            <th colspan="10">Tertinggi</th>
-                                            <td class="text-center">100</td>
-                                            <td class="text-center">100</td>
-                                            <td class="text-center">Zam Zam</td>
-                                        </tr>
-                                        <tr>
-                                            <th colspan="10">Terendah</th>
-                                            <td class="text-center">100</td>
-                                            <td class="text-center">100</td>
-                                            <td class="text-center">Zam Zam</td>
-                                        </tr>
                                         
                                     </tbody>
                                 </table>
