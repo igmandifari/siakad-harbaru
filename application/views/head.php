@@ -29,10 +29,6 @@
         <!-- You can include a specific file from css/themes/ folder to alter the default color theme of the template. eg: -->
         <!-- <link rel="stylesheet" id="css-theme" href="assets/css/themes/amethyst.min.css"> -->
         <!-- END Stylesheets -->
-        <!-- Core -->
-        <script src="<?=base_url('assets/js/oneui.core.min.js');?>"></script>
-        <script src="<?=base_url('assets/js/oneui.app.min.js');?>"></script>
-        <!-- End Core -->
     </head>
     <body>
         <!-- Page Container -->
