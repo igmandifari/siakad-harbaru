@@ -149,43 +149,4 @@
 
 </main>
 <!-- END Main Container -->
-<!-- Page JS Plugins -->
-        <script src="<?=base_url('assets/js/plugins/es6-promise/es6-promise.auto.min.js');?>"></script>
-        <script src="<?=base_url('assets/js/plugins/sweetalert2/sweetalert2.min.js');?>"></script>
-      
-       
-<!-- Confirmation Delete -->
-    <script>
-        jQuery(function(){
-
-            $(".hapus").on("click",function(n){
-                var n = $(this).data("id");
-                Swal.fire({
-                    title:"Peringatan",
-                    text:"Apakah kamu benar ingin menghapus ini?",
-                    type:"warning",
-                    showCancelButton:!0,
-                    customClass:{
-                        confirmButton:"btn btn-danger m-1",
-                        cancelButton:"btn btn-secondary m-1"
-                    },
-                    buttonsStyling:false,
-                    confirmButtonText:"Ya, hapus ini!",
-                    html:!1,
-                    preConfirm:function(Swal){
-                        return new Promise(function(Swal){
-                            setTimeout(function(){
-                                Swal()},
-                                50)}
-                            )}
-                    }).then(function(n){
-                        n.value?document.location.href('google.com'):"cancel"===n.dismiss&&Swal.fire(
-                            "Cancelled","Your imaginary file is safe :)","error"
-                            )
-                        })
-                });
-        
-    });
-    </script>
-<!-- End Confirmation Delete -->
 <?php $this->load->view('foot')?>
