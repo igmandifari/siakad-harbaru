@@ -67,7 +67,7 @@
                     </thead>
                     <tbody>
                         <?php $no=0;foreach($SemuaRombel as $rombel):$no++;?>
-                        <tr>
+                        <tr id="<?=$rombel->rombel_id;?>">
                             <td class="text-center"><?=$no?></td>
                             <td><?=$rombel->tahunajaran_nama;?>
                             <td><?=$rombel->kelas_nama;?>
@@ -79,9 +79,9 @@
                                     <a href="<?=base_url('kelas/rombel_lihat/').$rombel->rombel_id;?>">
                                         <button type="button" class="btn btn-outline-info btn-sm">Lihat</button>
                                     </a>
-                                    <a href="<?=base_url('kelas/rombel_hapus/').$rombel->rombel_id;?>">
-                                        <button type="button" class="btn btn-outline-warning btn-sm">Hapus</button>
-                                    </a>
+                                    
+                                        <button type="button" class="btn btn-outline-warning btn-sm hapus-rombel">Hapus</button>
+                                   
                                 </div>
                             </td>
                         </tr>

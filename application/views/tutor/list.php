@@ -69,7 +69,8 @@
         </div>
         <?php endif;?>
             <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _es6/pages/be_tables_datatables.js -->
-            <table class="table table-bordered table-striped table-vcenter js-dataTable-full table-responsive">
+            <div class="table-responsive">
+            <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
                                 <thead>
                                     <tr>
                                         <th>NO</th>
@@ -82,7 +83,7 @@
                                 </thead>
                                 <tbody>
                                     <?php $no=0;foreach($tutors as $tutor):$no++?>
-                                        <tr>
+                                        <tr id="<?=$tutor->tutor_id;?>">
                                             <td><?=$no;?></td>
                                             <td><?=$tutor->tutor_nomor_induk;?>
                                             <td><?=$tutor->tutor_nama;?>
@@ -96,18 +97,19 @@
                                                             Ubah
                                                         </button>
                                                     </a>
-                                                    <a href="<?=base_url('tutor/hapus/').$tutor->tutor_id;?>">
-                                                        <button type="button" class="btn btn-sm btn-warning js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Hapus">
+                                                    
+                                                        <button type="button" class="hapus btn btn-sm btn-warning js-tooltip-enabled push mb-md-0" data-toggle="tooltip" title="" data-original-title="Hapus" data-id="<?=$tutor->tutor_id;?>">
                                                             <i class="fa fa-fw fa-times"></i>
                                                             Hapus
                                                         </button>
-                                                    </a>
+                                                    
                                                 </div>
                                             </td>
                                         </tr>
                                     <?php endforeach;?>
                                 </tbody>
                             </table>
+                        </div>
                             <div class="row push text-center">
                 <a href="<?=base_url('dasbor');?>">
                     <button type="buttn" class="btn btn-light">Kembali Ke Dasbor</button>

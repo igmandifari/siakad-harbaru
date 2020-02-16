@@ -83,7 +83,7 @@
                                     </thead>
                                     <tbody>
                                         <?php $no=0; foreach($jadwals as $jadwal):$no++?>
-                                            <tr>
+                                            <tr id="<?=$jadwal->jadwal_id;?>">
                                                 <td><?=$no;?></td>
                                                 <td><?=$jadwal->jadwal_tipe_pembelajaran?></td>
                                                 <td><?=$jadwal->jadwal_hari;?>
@@ -99,12 +99,12 @@
                                                                 Ubah
                                                             </button>
                                                         </a>
-                                                        <a href="<?=base_url('jadwal/hapus/').$jadwal->jadwal_id;?>">
-                                                            <button type="button" class="btn btn-sm btn-warning js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Hapus">
+                                                        
+                                                            <button type="button" class="hapus btn btn-sm btn-warning js-tooltip-enabled push mb-md-0" data-id="<?=$jadwal->jadwal_id;?>" data-toggle="tooltip" title="" data-original-title="Hapus">
                                                                 <i class="fa fa-fw fa-times"></i>
                                                                 Hapus
                                                             </button>
-                                                        </a>
+                                                       
                                                     </div>
                                                 </td>
                                             </tr>

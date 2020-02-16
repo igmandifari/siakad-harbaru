@@ -77,15 +77,18 @@
                 </thead>
                 <tbody>
                     <?php $no=0;foreach($semua_wargabelajar as $wargabelajar):$no++;?>
-                        <tr>
+                        <tr id="<?=$wargabelajar->rombel_details_id;?>">
                             <td class="text-center"><?=$no?></td>
                             <td><?=$wargabelajar->wargabelajar_nama;?>
                             <td><?=$wargabelajar->wargabelajar_nomor_induk;?>
                             <td><?=$wargabelajar->wargabelajar_nisn;?>
                             <td class="text-center">
-                                <a href="<?=base_url('kelas/rombel_det_hapus/').$wargabelajar->rombel_details_id.'/'.$wargabelajar->rombel_id?>">
-                                    <button id="<?=$no?>" type="submit" class="btn btn-outline-secondary btn-sm">Hapus</button>
-                                </a>  
+                                
+                                    <button id="<?=$no?>" type="submit" class="btn btn-sm btn-warning js-tooltip-enabled push mb-md-0 hapus-rombel-det" data-id="<?=$wargabelajar->rombel_details_id;?>">
+                                        <i class="fa fa-fw fa-times"></i>
+                                        Hapus
+                                    </button>
+  
                             </td>
                         </tr>
                     <?php endforeach;?>

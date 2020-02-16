@@ -70,7 +70,7 @@
                     </thead>
                     <tbody>
                     <?php $no=0; foreach($matpels as $matpel):$no++?>
-                        <tr>
+                        <tr id="<?=$matpel->matpel_id;?>">
                             <td><?=$no;?></td>
                             <td><?=$matpel->matpel_nama;?>
                             <td><?=$matpel->tutor_nama;?>
@@ -82,12 +82,12 @@
                                             Ubah
                                         </button>
                                     </a>
-                                    <a href="<?=base_url('matpel/hapus/').$matpel->matpel_id;?>">
-                                        <button type="button" class="btn btn-sm btn-warning js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Hapus">
+                              
+                                        <button type="button" class="hapus btn btn-sm btn-warning js-tooltip-enabled push mb-md-0" data-toggle="tooltip" title="" data-original-title="Hapus" data-id="<?=$matpel->matpel_id;?>">
                                             <i class="fa fa-fw fa-times"></i>
                                             Hapus
                                         </button>
-                                    </a>
+                                    
                                 </div>
                             </td>
                         </tr>

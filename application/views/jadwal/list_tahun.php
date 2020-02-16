@@ -59,7 +59,7 @@
                     </thead>
                     <tbody>
                         <?php $no=0; foreach($tahuns as $tahun):$no++?>
-                            <tr>
+                            <tr id="<?=$tahun->tahunajaran_id;?>">
                                 <td><?=$no;?></td>
                                 <td><?=$tahun->tahunajaran_nama?></td>
                                 <td class="text-center">
@@ -70,9 +70,9 @@
                                         <a href="<?=base_url('jadwal/matpel_lihat/').$tahun->tahunajaran_id?>">
                                             <button type="button" class="btn btn-outline-info btn-sm">Lihat</button>
                                         </a>
-                                        <a href="<?=base_url('jadwal/delTahun/').$tahun->tahunajaran_id?>">
-                                            <button type="button" class="btn btn-outline-warning btn-sm">Hapus</button>
-                                        </a>
+                                        
+                                            <button type="button" class="btn btn-outline-warning btn-sm hapus-jadwal">Hapus</button>
+                                        
                                     </div>
                                 </td>
                             </tr>

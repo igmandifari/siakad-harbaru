@@ -10,20 +10,23 @@ class Rekapmasukan extends CI_Controller
         if($this->session->userdata('level') != 0) redirect("dasbor");
         $this->load->model('Masukan_model');
     }
-    public function index($id=null)
+    public function index()
     {
         $masukan = $this->Masukan_model;
         $data["tahunajarans"]=$masukan->getTahunAjaran();
-       
-        if(isset($id)){
-            $masukan->hapus($id);
-            redirect('rekapmasukan');
-        }
         $data['masukans'] = $masukan->getAll();
         $data['title'] = "Data Masukan";
         $this->load->view('masukan/content',$data);
 
 
+    }
+    public function hapus($id=null)
+    {
+        $masukan = $this->Masukan_model;
+        if(isset($id)){
+            $masukan->hapus($id);
+            redirect('rekapmasukan');
+        }
     }
 
 }

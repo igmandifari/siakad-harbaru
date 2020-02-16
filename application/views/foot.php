@@ -75,7 +75,7 @@
 
                  // Dialog confirmation delete start
                     $(".hapus").on("click",function(){
-                        var n = $(this).data("id");
+                       
                         var id = $(this).parents("tr").attr("id");
                         Swal.fire({
                             title:"Peringatan",
@@ -115,6 +115,135 @@
                 })
     
                  // End Dialog confirmation 
+
+                 // Dialog confirmation delete rombel 
+                    $(".hapus-rombel").on("click",function(){
+                       
+                        var id = $(this).parents("tr").attr("id");
+                        Swal.fire({
+                            title:"Peringatan",
+                            text:"Apakah kamu benar ingin menghapus ini?",
+                            type:"warning",
+                            showCancelButton:!0,
+                            customClass:{
+                                confirmButton:"btn btn-danger m-1",
+                                cancelButton:"btn btn-secondary m-1"
+                            },
+                            buttonsStyling:false,
+                            confirmButtonText:"Ya, hapus ini!",
+                            html:!1,
+                            preConfirm:function(Swal){
+                                return new Promise(function(Swal){
+                                    setTimeout(function(){
+                                        Swal()},
+                                        50)}
+                                    )}
+                            }).then(function(n){
+                                n.value?$.ajax({
+                                        url: '<?php echo base_url('kelas/rombel_hapus/');?>'+id,
+                                        type: 'DELETE',
+                                        error: function() {
+                                            Swal.fire("Oops...", "Terjadi kesalahan", "error");
+                                        },success: function(data) {
+                                            $("#"+id).remove();
+                                            Swal.fire(
+                                                "Berhasil",
+                                                "Data berhasil dihapus.",
+                                                "success");
+                                        }}):"cancel"===n.dismiss&&Swal.fire(
+                                        "Dibatalkan",
+                                        "Tenang, data masih ada :)",
+                                        "error")
+                            })
+                })
+    
+                 // End Dialog confirmation rombel 
+
+                 // Dialog confirmation delete rombel det
+                    $(".hapus-rombel-det").on("click",function(){
+                       
+                        var id = $(this).parents("tr").attr("id");
+                        Swal.fire({
+                            title:"Peringatan",
+                            text:"Apakah kamu benar ingin menghapus ini?",
+                            type:"warning",
+                            showCancelButton:!0,
+                            customClass:{
+                                confirmButton:"btn btn-danger m-1",
+                                cancelButton:"btn btn-secondary m-1"
+                            },
+                            buttonsStyling:false,
+                            confirmButtonText:"Ya, hapus ini!",
+                            html:!1,
+                            preConfirm:function(Swal){
+                                return new Promise(function(Swal){
+                                    setTimeout(function(){
+                                        Swal()},
+                                        50)}
+                                    )}
+                            }).then(function(n){
+                                n.value?$.ajax({
+                                        url: '<?php echo base_url('kelas/rombel_det_hapus/');?>'+id+'/<?php echo $this->uri->segment(3);?>',
+                                        type: 'DELETE',
+                                        error: function() {
+                                            Swal.fire("Oops...", "Terjadi kesalahan", "error");
+                                        },success: function(data) {
+                                            $("#"+id).remove();
+                                            Swal.fire(
+                                                "Berhasil",
+                                                "Data berhasil dihapus.",
+                                                "success");
+                                        }}):"cancel"===n.dismiss&&Swal.fire(
+                                        "Dibatalkan",
+                                        "Tenang, data masih ada :)",
+                                        "error")
+                            })
+                })
+    
+                 // End Dialog confirmation rombel det
+
+                 // Dialog confirmation jadwal tahun
+                    $(".hapus-jadwal").on("click",function(){
+                       
+                        var id = $(this).parents("tr").attr("id");
+                        Swal.fire({
+                            title:"Peringatan",
+                            text:"Apakah kamu benar ingin menghapus ini?",
+                            type:"warning",
+                            showCancelButton:!0,
+                            customClass:{
+                                confirmButton:"btn btn-danger m-1",
+                                cancelButton:"btn btn-secondary m-1"
+                            },
+                            buttonsStyling:false,
+                            confirmButtonText:"Ya, hapus ini!",
+                            html:!1,
+                            preConfirm:function(Swal){
+                                return new Promise(function(Swal){
+                                    setTimeout(function(){
+                                        Swal()},
+                                        50)}
+                                    )}
+                            }).then(function(n){
+                                n.value?$.ajax({
+                                        url: '<?php echo base_url('jadwal/delTahun/');?>'+id,
+                                        type: 'DELETE',
+                                        error: function() {
+                                            Swal.fire("Oops...", "Terjadi kesalahan", "error");
+                                        },success: function(data) {
+                                            $("#"+id).remove();
+                                            Swal.fire(
+                                                "Berhasil",
+                                                "Data berhasil dihapus.",
+                                                "success");
+                                        }}):"cancel"===n.dismiss&&Swal.fire(
+                                        "Dibatalkan",
+                                        "Tenang, data masih ada :)",
+                                        "error")
+                            })
+                })
+    
+                 // End Dialog confirmation jadwal tahun
         });
     </script>
         

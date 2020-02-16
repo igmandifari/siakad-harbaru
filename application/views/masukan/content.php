@@ -271,7 +271,7 @@
         </div>
         <div class="block-content block-content-full">
             <div class="table-responsive">
-                <table class="table table-bordered table-striped table-vcenter">
+                <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
                     <thead>
                         <tr class="text-center">
                             <th>NO</th>
@@ -283,16 +283,17 @@
                     </thead>
                     <tbody id="riwayat-masukan">
                         <?php $no=0;foreach($masukans as $masukan):$no++?>
-                            <tr>
-                                <td><?=$no;?></td>
+                            <tr id="<?=$masukan["masukan_id"];?>">
+                                <td class="text-center"><?=$no;?></td>
                                 <td><?=$masukan["created_at"];?></td>
                                 <td><?=$masukan["wargabelajar_nama"];?></td>
                                 <td><?=$masukan["masukan"];?></td>
-                                <td>
-                                    <a href="<?=base_url('rekapmasukan/index/').$masukan['masukan_id'];?>">
-                                        <button type="button" class="btn btn-warning">Hapus
+                                <td class="text-center">
+                                    
+                                        <button type="button" class="btn btn-warning hapus">
+                                            <i class="fa fa-fw fa-times"></i> Hapus
                                         </button>
-                                    </a>
+                                   
                                 </td>
                             </tr>
                         <?php endforeach;?>

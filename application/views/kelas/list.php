@@ -73,7 +73,7 @@
                                             $no++;
                                         ?>
                                         
-                                            <tr>
+                                            <tr id="<?=$kelas->kelas_id;?>">
                                                 <td class="text-center"><?=$no?></td>
                                                 <td><?=$kelas->kelas_nama;?>
                                                 <td class="text-center">
@@ -84,12 +84,12 @@
                                                                 Ubah
                                                             </button>
                                                         </a>
-                                                        <a href="<?=base_url('kelas/hapus/').$kelas->kelas_id;?>">
-                                                            <button type="button" class="btn btn-sm btn-warning js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Hapus">
+                                                        
+                                                            <button type="button" class="hapus btn btn-sm btn-warning js-tooltip-enabled push mb-md-0" data-toggle="tooltip" title="" data-id="<?=$kelas->kelas_id;?>" data-original-title="Hapus">
                                                                 <i class="fa fa-fw fa-times"></i>
                                                                 Hapus
                                                             </button>
-                                                        </a>
+                                                      
                                                     </div>
                                                 </td>
                                             </tr>
