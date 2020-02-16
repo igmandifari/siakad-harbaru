@@ -21,6 +21,7 @@
         <!-- Page JS Plugins CSS -->
         <link rel="stylesheet" href="<?=base_url('assets/js/plugins/datatables/dataTables.bootstrap4.css');?>">
         <link rel="stylesheet" href="<?=base_url('assets/js/plugins/select2/css/select2.min.css')?>">
+        <link rel="stylesheet" href="<?=base_url('assets/js/plugins/sweetalert2/sweetalert2.min.css');?>">
         <!-- Fonts and OneUI framework -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400italic,600,700%7COpen+Sans:300,400,400italic,600,700">
         <link rel="stylesheet" id="css-main" href="<?=base_url('assets/css/oneui.min.css')?>">
@@ -28,6 +29,10 @@
         <!-- You can include a specific file from css/themes/ folder to alter the default color theme of the template. eg: -->
         <!-- <link rel="stylesheet" id="css-theme" href="assets/css/themes/amethyst.min.css"> -->
         <!-- END Stylesheets -->
+        <!-- Core -->
+        <script src="<?=base_url('assets/js/oneui.core.min.js');?>"></script>
+        <script src="<?=base_url('assets/js/oneui.app.min.js');?>"></script>
+        <!-- End Core -->
     </head>
     <body>
         <!-- Page Container -->

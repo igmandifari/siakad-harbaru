@@ -32,7 +32,7 @@
             assets/js/core/jquery.appear.min.js
             assets/js/core/js.cookie.min.js
         -->
-        <script src="<?=base_url('assets/js/oneui.core.min.js');?>"></script>
+        
 
         <!--
             OneUI JS
@@ -40,12 +40,8 @@
             Custom functionality including Blocks/Layout API as well as other vital and optional helpers
             webpack is putting everything together at assets/_es6/main/app.js
         -->
-        <script src="<?=base_url('assets/js/oneui.app.min.js');?>"></script>
-
+       
         <!-- Page JS Plugins -->
-        <?php
-        
-        ?>
         <script src="<?=base_url('assets/js/plugins/datatables/jquery.dataTables.min.js');?>"></script>
         <script src="<?=base_url('assets/js/plugins/datatables/dataTables.bootstrap4.min.js');?>"></script>
         

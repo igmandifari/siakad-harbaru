@@ -79,9 +79,9 @@
                                     </thead>
                                     <tbody>
                                         <?php $no=0; foreach($admins as $admin):$no++?>
-                                            <tr>
+                                            <tr id="<?=$admin->admin_id;?>">
                                                 <td><?=$no;?></td>
-                                                <td><?=$admin->admin_nama;?>
+                                                <td><?=$admin->admin_nama;?></td>
                                                 <td><?=$admin->admin_username;?>
                                                 <td class="text-center">
                                                     <div class="btn-group">
@@ -91,12 +91,12 @@
                                                                 Ubah
                                                             </button>
                                                         </a>
-                                                        <a href="<?=base_url('admin/hapus/').$admin->admin_id;?>">
-                                                            <button type="button" class="btn btn-sm btn-warning js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Hapus">
+                                                       
+                                                            <button type="button" class="hapus btn btn-sm btn-warning js-tooltip-enabled push mb-md-0" data-toggle="tooltip" title="" data-original-title="Hapus" data-id="<?php echo $admin->admin_id;?>">
                                                                 <i class="fa fa-fw fa-times"></i>
                                                                 Hapus
                                                             </button>
-                                                        </a>
+                                                       
                                                     </div>
                                                 </td>
                                             </tr>
@@ -149,4 +149,43 @@
 
 </main>
 <!-- END Main Container -->
+<!-- Page JS Plugins -->
+        <script src="<?=base_url('assets/js/plugins/es6-promise/es6-promise.auto.min.js');?>"></script>
+        <script src="<?=base_url('assets/js/plugins/sweetalert2/sweetalert2.min.js');?>"></script>
+      
+       
+<!-- Confirmation Delete -->
+    <script>
+        jQuery(function(){
+
+            $(".hapus").on("click",function(n){
+                var n = $(this).data("id");
+                Swal.fire({
+                    title:"Peringatan",
+                    text:"Apakah kamu benar ingin menghapus ini?",
+                    type:"warning",
+                    showCancelButton:!0,
+                    customClass:{
+                        confirmButton:"btn btn-danger m-1",
+                        cancelButton:"btn btn-secondary m-1"
+                    },
+                    buttonsStyling:false,
+                    confirmButtonText:"Ya, hapus ini!",
+                    html:!1,
+                    preConfirm:function(Swal){
+                        return new Promise(function(Swal){
+                            setTimeout(function(){
+                                Swal()},
+                                50)}
+                            )}
+                    }).then(function(n){
+                        n.value?document.location.href('google.com'):"cancel"===n.dismiss&&Swal.fire(
+                            "Cancelled","Your imaginary file is safe :)","error"
+                            )
+                        })
+                });
+        
+    });
+    </script>
+<!-- End Confirmation Delete -->
 <?php $this->load->view('foot')?>
