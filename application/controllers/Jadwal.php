@@ -156,4 +156,28 @@ class Jadwal extends CI_Controller
             return true;
         }
     }
+    public function cetak($tahun=null,$type=null)
+        {
+            $model = $this->Jadwal_model;
+
+            if(!isset($type) || !isset($tahun)){
+                redirect('jadwal');
+            }elseif ($type != "xlsx" && $type !="pdf") {
+                redirect('jadwal');
+            }elseif($type=="pdf"){
+                
+                $data['jadwals'] = $model->getJadwals($tahun);
+                // $this->load->view('jadwal/cetak',$data);
+                $style = file_get_contents(base_url('assets/css/report.css'));
+                $cetak = $this->load->view('jadwal/cetak',$data,TRUE);
+                $jadwal= new \Mpdf\Mpdf();
+                $jadwal->WriteHTML($style,\Mpdf\HTMLParserMode::HEADER_CSS);
+                $jadwal->WriteHtml($cetak,\Mpdf\HTMLParserMode::HTML_BODY);
+                $jadwal->Output('Jadwal Pelajaran Tahun Ajaran '.$this->session->userdata('tahunajaran_nama').'.pdf', 'D');
+                
+            }elseif($type=="xlsx"){
+                $data['jadwals'] = $model->getJadwals($tahun);
+                var_dump($data['jadwals']);
+            }
+        }
 }

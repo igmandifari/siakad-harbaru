@@ -32,36 +32,6 @@
 
         <!-- You can include a specific file from css/themes/ folder to alter the default color theme of the template. eg: -->
         <!-- <link rel="stylesheet" id="css-theme" href="assets/css/themes/amethyst.min.css"> -->
-        <style>
-            table {
-                font-family: sans-serif;
-                border: 7mm solid aqua;
-                border-collapse: collapse;
-            }
-            table.table2 {
-                border: 2mm solid aqua;
-                border-collapse: collapse;
-            }
-            table.layout {
-                border: 0mm solid black;
-                border-collapse: collapse;
-            }
-            td.layout {
-                text-align: center;
-                border: 0mm solid black;
-            }
-            td {
-                padding: 3mm;
-                border: 2mm solid blue;
-                vertical-align: middle;
-            }
-            td.redcell {
-                border: 3mm solid red;
-            }
-            td.redcell2 {
-                border: 2mm solid red;
-            }
-            </style>
         <!-- END Stylesheets -->
 
     </head>
@@ -82,7 +52,7 @@
                                     <table class="table table-bordered">
                                         <thead class="text-center">
                                             <tr>
-                                                <th class="text-center" style="width: 60px;"></th>
+                                                <th class="text-center" style="width: 60px;">No</th>
                                                 <th style="vertical-align: middle;">Kelas</th>
                                                 <th style="vertical-align: middle;">Tipe Pembelajaran</th>
                                                 <th style="vertical-align: middle;">Hari</th>

@@ -34,13 +34,13 @@ class Jadwalmengajar extends CI_Controller
         }elseif($type=="pdf"){
             
             $data['jadwals'] = $model->getJadwal($tahun);
-            $this->load->view('jadwal/cetak',$data);
-            // $style = file_get_contents(base_url('assets/css/oneui.min.css'));
-            // $cetak = $this->load->view('jadwal/cetak',$data,TRUE);
-            // $jadwal= new \Mpdf\Mpdf();
-            // $jadwal->WriteHTML($style,\Mpdf\HTMLParserMode::HEADER_CSS);
-            // $jadwal->WriteHtml($cetak,\Mpdf\HTMLParserMode::HTML_BODY);
-            // $jadwal->Output();
+            // $this->load->view('jadwal/cetak',$data);
+            $style = file_get_contents(base_url('assets/css/report.css'));
+            $cetak = $this->load->view('jadwal/cetak',$data,TRUE);
+            $jadwal= new \Mpdf\Mpdf();
+            $jadwal->WriteHTML($style,\Mpdf\HTMLParserMode::HEADER_CSS);
+            $jadwal->WriteHtml($cetak,\Mpdf\HTMLParserMode::HTML_BODY);
+            $jadwal->Output('Jadwal Pelajaran Tahun Ajaran '.$this->session->userdata('tahunajaran_nama').'.pdf', 'D');
             
         }elseif($type=="xlsx"){
             $data['jadwals'] = $model->getJadwal($tahun);
