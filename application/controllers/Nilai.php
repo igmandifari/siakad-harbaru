@@ -87,8 +87,17 @@
             if(!isset($id)) redirect('nilai');
 
             $nilai = $this->Nilai_model;
-            $data = $nilai->calcNilai($id);
+            
+            $harian = $nilai->calcHarian($id);
+            $tugas = $nilai->calcTugas($id);
+            $uts = $nilai->calcUts($id);
+            $uas = $nilai->calcUas($id);
 
+            $total = $harian['rata']+$tugas['rata']+$uts['rata']+$uas['rata'];
+            $rata = $total/4;
+
+            $data[0]['total']=$total;
+            $data[0]['rata']=$rata;
             echo json_encode($data);
         }
         public function hapus($semester=null,$jadwal=null,$id=null,$nilai=null){

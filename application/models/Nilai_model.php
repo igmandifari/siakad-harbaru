@@ -35,8 +35,17 @@
         public function getDataNilai($nilai){
         	return $this->db->query("SELECT * FROM nilai_details INNER JOIN nilai ON nilai.nilai_id=nilai_details.nilai_id WHERE nilai_details.nilai_id='$nilai' ORDER BY nilai_details.nilai_details_id DESC")->result_array();
         }
-        public function calcNilai($nilai){
-        	return $this->db->query("SELECT sum(nilai_details_nilai)as total, count(nilai_details_id) as banyak, sum(nilai_details_nilai)/count(nilai_details_id) as rata FROM nilai_details WHERE nilai_details.nilai_id='$nilai'")->result_array();
+        public function calcHarian($nilai){
+        	return $this->db->query("SELECT sum(nilai_details_nilai)as total, count(nilai_details_id) as banyak, sum(nilai_details_nilai)/count(nilai_details_id) as rata FROM nilai_details WHERE nilai_details.nilai_id='$nilai' AND nilai_details.nilai_details_jenis='Harian'")->row_array();
+        }
+        public function calcTugas($nilai){
+            return $this->db->query("SELECT sum(nilai_details_nilai)as total, count(nilai_details_id) as banyak, sum(nilai_details_nilai)/count(nilai_details_id) as rata FROM nilai_details WHERE nilai_details.nilai_id='$nilai' AND nilai_details.nilai_details_jenis='Tugas'")->row_array();
+        }
+        public function calcUts($nilai){
+            return $this->db->query("SELECT sum(nilai_details_nilai)as total, count(nilai_details_id) as banyak, sum(nilai_details_nilai)/count(nilai_details_id) as rata FROM nilai_details WHERE nilai_details.nilai_id='$nilai' AND nilai_details.nilai_details_jenis='UTS'")->row_array();
+        }
+        public function calcUas($nilai){
+            return $this->db->query("SELECT sum(nilai_details_nilai)as total, count(nilai_details_id) as banyak, sum(nilai_details_nilai)/count(nilai_details_id) as rata FROM nilai_details WHERE nilai_details.nilai_id='$nilai' AND nilai_details.nilai_details_jenis='UAS'")->row_array();
         }
         public function hapusNilaiDet($id){
         	$this->db->where('nilai_details_id',$id);
