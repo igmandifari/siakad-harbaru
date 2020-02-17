@@ -22,4 +22,14 @@ class Jadwalmengajar extends CI_Controller
 
         $this->load->view('tutor/jadwalmengajar',$data);
     }
+    public function cetak($type=null)
+    {
+        if(!isset($type)){
+            redirect('jadwalmengajar');
+        }elseif ($type != "xlsx" && $type !="pdf") {
+            redirect('jadwalmengajar');
+        }else{
+            echo $type;
+        }
+    }
 }
