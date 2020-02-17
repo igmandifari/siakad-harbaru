@@ -24,12 +24,27 @@ class Jadwalmengajar extends CI_Controller
     }
     public function cetak($type=null)
     {
+        $model = $this->Jadwalmengajar_model;
+        $tahun = $this->session->userdata('tahunajaran_id');
+
         if(!isset($type)){
             redirect('jadwalmengajar');
         }elseif ($type != "xlsx" && $type !="pdf") {
             redirect('jadwalmengajar');
-        }else{
-            echo $type;
+        }elseif($type=="pdf"){
+            
+            $data['jadwals'] = $model->getJadwal($tahun);
+            $this->load->view('jadwal/cetak',$data);
+            // $style = file_get_contents(base_url('assets/css/oneui.min.css'));
+            // $cetak = $this->load->view('jadwal/cetak',$data,TRUE);
+            // $jadwal= new \Mpdf\Mpdf();
+            // $jadwal->WriteHTML($style,\Mpdf\HTMLParserMode::HEADER_CSS);
+            // $jadwal->WriteHtml($cetak,\Mpdf\HTMLParserMode::HTML_BODY);
+            // $jadwal->Output();
+            
+        }elseif($type=="xlsx"){
+            $data['jadwals'] = $model->getJadwal($tahun);
+            var_dump($data['jadwals']);
         }
     }
 }
