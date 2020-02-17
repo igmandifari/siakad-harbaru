@@ -17,8 +17,8 @@
         }
         public function getPertemuan($jadwal)
         {
-            $this->db->where('jadwal_id',$jadwal);
-            return $this->db->get('presensi')->result();
+            
+            return $this->db->query("SELECT * FROM presensi WHERE presensi.jadwal_id='$jadwal' ORDER BY presensi.created_at DESC")->result();
         }
         public function getTanggal($id)
         {
