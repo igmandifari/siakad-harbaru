@@ -68,28 +68,28 @@
         <?php endif;?>
             <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _es6/pages/be_tables_datatables.js -->
             <div class="table-responsive">
-                <table class="table table-bordered table-striped table-vcenter js-dataTable-full table-responsive">
-                                    <thead>
+                <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
+                                    <thead class="text-center">
                                         <tr>
-                                            <th>NO</th>
-                                            <th>Tipe Pembelajaran</th>
-                                            <th>Hari</th>
-                                            <th>Mata Pelajaran</th>
-                                            <th>Kelas</th>
-                                            <th>Tutor</th>
-                                            <th>Waktu</th>
-                                            <th style="width: 15%;">Aksi</th>
+                                            <th style="vertical-align: middle;">NO</th>
+                                            <th style="vertical-align: middle;">Kelas</th>
+                                            <th style="vertical-align: middle;">Tipe Pembelajaran</th>
+                                            <th style="vertical-align: middle;">Hari</th>
+                                            <th style="vertical-align: middle;">Mata Pelajaran</th>
+                                            <th style="vertical-align: middle;">Tutor</th>
+                                            <th style="vertical-align: middle;">Waktu</th>
+                                            <th style="width: 15%;vertical-align: middle;">Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php $no=0; foreach($jadwals as $jadwal):$no++?>
                                             <tr id="<?=$jadwal->jadwal_id;?>">
-                                                <td><?=$no;?></td>
+                                                <td class="text-center"><?=$no;?></td>
+                                                <td><?=$jadwal->kelas_nama;?></td>
                                                 <td><?=$jadwal->jadwal_tipe_pembelajaran?></td>
-                                                <td><?=$jadwal->jadwal_hari;?>
-                                                <td><?=$jadwal->matpel_nama;?>
-                                                <td><?=$jadwal->kelas_nama;?>
-                                                <td><?=$jadwal->tutor_nama;?>
+                                                <td><?=$jadwal->jadwal_hari;?></td>
+                                                <td><?=$jadwal->matpel_nama;?></td>
+                                                <td><?=$jadwal->tutor_nama;?></td>
                                                 <td><?=$jadwal->jadwal_waktu;?></td>
                                                 <td class="text-center">
                                                     <div class="btn-group">
