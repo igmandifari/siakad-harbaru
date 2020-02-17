@@ -44,7 +44,7 @@
                 redirect('presensi');
             }
         }
-        public function jadwal($id=null,$pertemuan=null){
+        public function jadwal($id=null,$pertemuan=null,$type=null){
             if(!isset($id)) redirect('presensi');
 
             $presensi = $this->Presensi_model;
@@ -62,6 +62,18 @@
             }elseif(isset($data["wargabelajars"])){
                 $data['tanggal']=$presensi->getTanggal($pertemuan);
                 $this->load->view('tutor/presensi/presensi',$data);
+                if($type=="pdf"){
+                    $style = file_get_contents(base_url('assets/css/presensi.css'));
+                    $cetak = $this->load->view('tutor/presensi/cetak_pertemuan',$data,TRUE);
+                    $jadwal= new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'Legal-L']);;
+                    $jadwal->WriteHTML($style,\Mpdf\HTMLParserMode::HEADER_CSS);
+                    $jadwal->WriteHtml($cetak,\Mpdf\HTMLParserMode::HTML_BODY);
+                    $jadwal->Output('Rekap Presensi '.$data['kelas']['matpel_nama'].' '.date("d,F Y",strtotime($data['tanggal']['presensi_tanggal'])).'.pdf', 'D');
+                    
+                }elseif($type=="xlsx"){
+                    $data['jadwals'] = $model->getJadwals($jadwal);
+                    var_dump($data['jadwals']);
+                }
             }               
         }
         
@@ -97,6 +109,40 @@
                 $presensi=$model->hapus($id);
                 $this->session->set_flashdata('success',"berhasil");
                 redirect('presensi/jadwal/').$jadwal;
+            }
+        }
+        public function cetak($jadwal=null,$type=null)
+        {
+            $model = $this->Presensi_model;
+
+            $idpresensi=$model->getIDPresensi($jadwal);
+            $data["wargabelajars"] = $model->getWb($idpresensi["presensi_id"]);
+            $wargabelajars = $data["wargabelajars"];
+            $data["title"] = "Rekap Presensi";
+            $data["kelas"] = $model->getNameKelas($jadwal);
+            $data["actor"] = $data["kelas"]["kelas_nama"];
+            $data["details"] = $this->Presensi_model;
+            $data["tahunajarans"]= $model->getTahunAjaran();
+          
+
+            if(!isset($type) || !isset($jadwal)){
+                redirect('presensi');
+            }elseif ($type != "xlsx" && $type !="pdf") {
+                redirect('presensi');
+            }elseif($type=="pdf"){
+                
+                
+                // $this->load->view('tutor/presensi/cetak',$data);
+                $style = file_get_contents(base_url('assets/css/presensi.css'));
+                $cetak = $this->load->view('tutor/presensi/cetak',$data,TRUE);
+                $jadwal= new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'Legal-L']);;
+                $jadwal->WriteHTML($style,\Mpdf\HTMLParserMode::HEADER_CSS);
+                $jadwal->WriteHtml($cetak,\Mpdf\HTMLParserMode::HTML_BODY);
+                $jadwal->Output('Rekap Presensi '.$data['kelas']['kelas_nama'].' Tahun Ajaran '.$this->session->userdata('tahunajaran_nama').'.pdf', 'D');
+                
+            }elseif($type=="xlsx"){
+                $data['jadwals'] = $model->getJadwals($jadwal);
+                var_dump($data['jadwals']);
             }
         }
         
