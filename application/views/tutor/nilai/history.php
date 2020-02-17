@@ -600,7 +600,7 @@
                         success:function(data){
                             
                             for(var row=0;row<data.length;row++){
-                                $tempNilai+='<tr><td class="text-center">'+(row+1)+'</td><td>'+data[row].nilai_details_jenis+'</td><td>'+data[row].nilai_details_nilai+'</td><td class="text-center"><a href="<?php echo base_url('nilai/ubah/').$this->uri->segment(3)."/".$this->uri->segment(4)."/".$this->uri->segment(5)."/"?>'+data[row].nilai_details_id+'"><button type="button" class="ubah btn btn-sm btn-secondary push" data-id="'+data[row].nilai_details_id+'" data-toggle="modal" data-target="#ubah-nilai">Ubah</button></a>        <a href="<?php echo base_url('nilai/hapus/').$this->uri->segment(3)."/".$this->uri->segment(4)."/".$this->uri->segment(5)."/"?>'+data[row].nilai_details_id+'"><button type="button" class="hapus btn btn-sm btn-warning push" data-id="'+data[row].nilai_details_id+'">Hapus</button></a></td></tr>';
+                                $tempNilai+='<tr id="'+data[row].nilai_details_id+'"><td class="text-center">'+(row+1)+'</td><td>'+data[row].nilai_details_jenis+'</td><td>'+data[row].nilai_details_nilai+'</td><td class="text-center"><a href="<?php echo base_url('nilai/ubah/').$this->uri->segment(3)."/".$this->uri->segment(4)."/".$this->uri->segment(5)."/"?>'+data[row].nilai_details_id+'"><button type="button" class="ubah btn btn-sm btn-secondary push" data-id="'+data[row].nilai_details_id+'" data-toggle="modal" data-target="#ubah-nilai">Ubah</button></a><button type="button" class="hapus btn btn-sm btn-warning push">Hapus</button></td></tr>';
                             }
 
                             $NilaiTabel.html($tempNilai);
@@ -617,6 +617,10 @@
                         url:'<?php echo base_url('nilai/countNilai/');?>'+$id,
                         dataType:'json',
                         success:function(data){
+                            if(data[0].total==null){
+                                data[0].total="";
+                                data[0].rata="";
+                            }
                             $keterangan.html('<tr><th>Total Nilai</th><th class="text-center">'+data[0].total+'</th><th>Rata-Rata</th><th class="text-center">'+data[0].rata+'</th></tr>');
                         }
                     });
@@ -633,6 +637,48 @@
 
                     });
                 });
+                // Dialog confirmation delete start
+                    $("#table-details-nilai").on("click",".hapus",function(){
+                        var id = $(this).parents("tr").attr("id");
+                        Swal.fire({
+                            title:"Peringatan",
+                            text:"Apakah kamu benar ingin menghapus ini?",
+                            type:"warning",
+                            showCancelButton:!0,
+                            customClass:{
+                                confirmButton:"btn btn-danger m-1",
+                                cancelButton:"btn btn-secondary m-1"
+                            },
+                            buttonsStyling:false,
+                            confirmButtonText:"Ya, hapus ini!",
+                            html:!1,
+                            preConfirm:function(Swal){
+                                return new Promise(function(Swal){
+                                    setTimeout(function(){
+                                        Swal()},
+                                        50)}
+                                    )}
+                            }).then(function(n){
+                                n.value?$.ajax({
+                                        url: '<?php echo base_url('nilai/hapus/').$this->uri->segment(3).'/'.$this->uri->segment(4).'/'.$this->uri->segment(5).'/';?>'+id,
+                                        type: 'DELETE',
+                                        error: function() {
+                                            Swal.fire("Oops...", "Terjadi kesalahan", "error");
+                                        },success: function(data) {
+                                            $("#"+id).remove();
+                                            Swal.fire(
+                                                "Berhasil",
+                                                "Data berhasil dihapus.",
+                                                "success");
+                                            getNilai();
+                                        }}):"cancel"===n.dismiss&&Swal.fire(
+                                        "Dibatalkan",
+                                        "Tenang, data masih ada :)",
+                                        "error")
+                            })
+                })
+    
+                 // End Dialog confirmation 
             });
         </script>
     </body>
