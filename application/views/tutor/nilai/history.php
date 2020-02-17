@@ -602,8 +602,10 @@
                             for(var row=0;row<data.length;row++){
                                 $tempNilai+='<tr id="'+data[row].nilai_details_id+'"><td class="text-center">'+(row+1)+'</td><td>'+data[row].nilai_details_jenis+'</td><td>'+data[row].nilai_details_nilai+'</td><td class="text-center"><a href="<?php echo base_url('nilai/ubah/').$this->uri->segment(3)."/".$this->uri->segment(4)."/".$this->uri->segment(5)."/"?>'+data[row].nilai_details_id+'"><button type="button" class="ubah btn btn-sm btn-secondary push" data-id="'+data[row].nilai_details_id+'" data-toggle="modal" data-target="#ubah-nilai">Ubah</button></a><button type="button" class="hapus btn btn-sm btn-warning push">Hapus</button></td></tr>';
                             }
-
+                            $(".js-dataTable-full").dataTable().fnClearTable();
+                            $(".js-dataTable-full").dataTable().fnDestroy();
                             $NilaiTabel.html($tempNilai);
+                            $(".js-dataTable-full").dataTable({pageLength:10,lengthMenu:[[5,10,15,20],[5,10,15,20]],autoWidth:!1});
                         }
                     });
                     calcNilai();

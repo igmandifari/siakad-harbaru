@@ -426,7 +426,7 @@
                                     <div class="block-content">
                                         <p>Pilih warga belajar untuk memasukan nilai!</p>
                                         <div class="table-responsive">
-                                            <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
+                                            <table class="table table-bordered table-striped table-vcenter js-dataTable-fulll">
                                                 <thead class="text-center">
                                                     <tr>
                                                         <th>NO</th>
@@ -557,7 +557,11 @@
                             for(var row=0;row<data.length;row++){
                                 $tempWarga+='<tr><td class="text-center">'+(row+1)+'</td><td>'+data[row].wargabelajar_nama+'</td><td class="text-center"><a href="<?php echo base_url('nilai/matpel/ganjil/');?>'+$idmatpel+'/'+data[row].wargabelajar_id+'" target="_blank"><button type="button" class="btn btn-sm btn-success">Ganjil</button></a><a href="<?php echo base_url('nilai/matpel/genap/');?>'+$idmatpel+'/'+data[row].wargabelajar_id+'" target="_blank"><button type="button" class="btn btn-sm btn-secondary">Genap</button></a></td></tr>';
                             }
+                            $(".js-dataTable-fulll").dataTable().fnClearTable();
+                            $(".js-dataTable-fulll").dataTable().fnDestroy();
                             $WargaBelajars.html($tempWarga);
+                            $(".js-dataTable-fulll").dataTable({pageLength:10,lengthMenu:[[5,10,15,20],[5,10,15,20]],autoWidth:!1});
+                            
                         }
                     });
                 });
