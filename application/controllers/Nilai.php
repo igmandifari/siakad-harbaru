@@ -29,12 +29,12 @@
             echo json_encode($data);
 
         }
-        public function matpel($semester=null,$jadwal=null,$id=null)
+        public function matpel($semester=null,$jadwal=null,$id=null,$type=null)
         {
             if(!isset($id) || (!isset($jadwal))|| (!isset($semester)))redirect('nilai');
             $nilai = $this->Nilai_model;
-            $data = $nilai->checkAvailable($semester,$jadwal,$id);
-            if(!$data){
+            $there = $nilai->checkAvailable($semester,$jadwal,$id);
+            if(!$there){
                 $insert = $nilai->insertNilai(array(
                     'nilai_id'          => uniqid(),
                     'nilai_semester'    => $this->uri->segment(3),
@@ -57,6 +57,33 @@
 
 
                 $this->load->view('tutor/nilai/history',$data,FALSE);
+
+                if($type=="pdf"){
+                    $harian = $nilai->calcHarian($data['idnilai']['nilai_id']);
+                    $tugas = $nilai->calcTugas($data['idnilai']['nilai_id']);
+                    $uts = $nilai->calcUts($data['idnilai']['nilai_id']);
+                    $uas = $nilai->calcUas($data['idnilai']['nilai_id']);
+
+                    $total = $harian['rata']+$tugas['rata']+$uts['rata']+$uas['rata'];
+                    $rata = $total/4;
+                    $data['harian'] = $harian['rata'];
+                    $data['tugas'] = $tugas['rata'];
+                    $data['uts'] = $uts['rata'];
+                    $data['uas'] = $uas['rata'];
+                    $data['total'] = $total;
+                    $data['rata'] =$rata;
+
+                    $style = file_get_contents(base_url('assets/css/presensi.css'));
+                    $cetak = $this->load->view('tutor/nilai/cetak',$data,TRUE);
+                    $jadwal= new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'Legal-L']);;
+                    $jadwal->WriteHTML($style,\Mpdf\HTMLParserMode::HEADER_CSS);
+                    $jadwal->WriteHtml($cetak,\Mpdf\HTMLParserMode::HTML_BODY);
+                    $jadwal->Output('Rekap Nilai '.$data['matpel']["matpel_nama"].' '.$data['wb']["wargabelajar_nomor_induk"].' Tahun Ajaran '.$this->session->userdata('tahunajaran_nama').' Semester '.ucfirst($this->uri->segment(3)).'.pdf', 'D');
+                    
+                }elseif($type=="xlsx"){
+                    $data['jadwals'] = $model->getJadwals($jadwal);
+                    var_dump($data['jadwals']);
+                }
             }
             
             
@@ -131,21 +158,36 @@
             }
         }
 
-        public function rekap($jadwal=null,$semester=null)
+        public function rekap($jadwal=null,$semester=null,$type=null)
         {
             if(!isset($jadwal) || !isset($semester)) redirect('nilai');
+            if($semester != "ganjil" && $semester != "genap" ) redirect('nilai');
 
             $nilai = $this->Nilai_model;
             
             $data["model"]=$this->Nilai_model;
             $data["wargabelajars"]= $nilai->getWargaBelajar($jadwal);
             $data["jadwal"]= $nilai->getKelasAndMatpel($jadwal);
-            $data["title"] = "Rekap Nilai Semester ".ucfirst($semester);
-
             if(!$data["jadwal"]) redirect('nilai');
-            if($semester != "ganjil" && $semester != "genap" ) redirect('nilai');
+
+            $data["title"] = "Rekap Nilai Semester ".ucfirst($semester);
+            $data["tahunajarans"]=$this->Nilai_model->getTahunAjaran();
 
             $this->load->view('tutor/nilai/rekap',$data);
+
+            if($type=="pdf"){
+
+                $style = file_get_contents(base_url('assets/css/presensi.css'));
+                $cetak = $this->load->view('tutor/nilai/cetak_rekap',$data,TRUE);
+                $jadwal= new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'Legal-L']);;
+                $jadwal->WriteHTML($style,\Mpdf\HTMLParserMode::HEADER_CSS);
+                $jadwal->WriteHtml($cetak,\Mpdf\HTMLParserMode::HTML_BODY);
+                $jadwal->Output('Rekap Nilai '.$data['jadwal']["matpel_nama"].' '.$data['jadwal']["kelas_nama"].' Tahun Ajaran '.$this->session->userdata('tahunajaran_nama').' Semester '.ucfirst($this->uri->segment(4)).'.pdf', 'D');
+                
+            }elseif($type=="xlsx"){
+                $data['jadwals'] = $model->getJadwals($jadwal);
+                var_dump($data['jadwals']);
+            }
         }
 
     }

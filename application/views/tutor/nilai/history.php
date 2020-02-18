@@ -347,11 +347,9 @@
                         <div class="block-header block-header-default">
                             <h3 class="block-title"><?=$title;?></h3>
                             <div class="block-options">
-                                <a href="<?=base_url('jadwalmengajar/cetak');?>">
-                                    <button type="button" class="btn btn-sm btn-secondary">
-                                        Cetak
-                                    </button>
-                                </a>
+                                <button type="button" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#modal-cetak">
+                                    Cetak
+                                </button>
 
                                 <a href="<?=base_url('dashboard');?>">
                                     <button type="button" class="btn btn-sm btn-light">
@@ -404,7 +402,7 @@
                                             </td>
                                         </tr>
                                     </table>
-                                </strong>
+                                
 
                             
                             <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _es6/pages/be_tables_datatables.js -->
@@ -489,6 +487,42 @@
             </footer>
             <!-- END Footer -->
 
+            <!-- Dialog print -->
+            <div class="modal fade" id="modal-cetak" tabindex="-1" role="dialog" aria-labelledby="modal-block-fadein" style="display: none;" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="block block-themed block-transparent mb-0">
+                                    <div class="block-header bg-primary-dark">
+                                        <h3 class="block-title">Cetak <?=$title;?></h3>
+                                        <div class="block-options">
+                                            <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
+                                                <i class="fa fa-fw fa-times"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="block-content block-content-full font-size-sm">
+                                        <p>Silahkan pilih tipe file cetak yang kamu inginkan!</p>
+                                        <div class="text-center">
+                                            <a href="<?=base_url('nilai/matpel/').$this->uri->segment(3).'/'.$this->uri->segment(4).'/'.$this->uri->segment(5).'/xlsx';?>" title="Klik Berikut Untuk Download tipe .xlsx">
+                                                <button type="button" class="btn btn-rounded btn-success">
+                                                    <i class="far fa-file-excel"></i> Spreadsheet
+                                                </button>
+                                            </a>
+                                            <a href="<?=base_url('nilai/matpel/').$this->uri->segment(3).'/'.$this->uri->segment(4).'/'.$this->uri->segment(5).'/pdf';?>" title="Klik Berikut Untuk Download tipe .PDF">
+                                                <button type="button" class="btn btn-rounded btn-danger">
+                                                    <i class="far fa-file-pdf"></i> PDF
+                                                </button>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="block-content block-content-full text-right border-top">
+                                        <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal"><i class="fa fa-check mr-1"></i>Tutup</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            <!-- End print dialog -->
         </div>
         <!-- END Page Container -->
 
