@@ -121,7 +121,7 @@ class Kelas extends CI_Controller
         $this->load->view('kelas/rombel_tambah',$data);
         
     }
-    public function rombel_lihat($id){
+    public function rombel_lihat($id=null,$type=null){
         if (!isset($id)) redirect('kelas/rombel');
         $kelas = $this->Kelas_model;
         $data['kelas'] = $kelas->getRombelbyId($id);
@@ -132,6 +132,19 @@ class Kelas extends CI_Controller
         $data["tahunajarans"] = $this->Kelas_model->getTahunAjaran();
 
         $this->load->view('kelas/rombel_lihat',$data);
+        if($type=="pdf"){
+
+                    $style = file_get_contents(base_url('assets/css/presensi.css'));
+                    $cetak = $this->load->view('kelas/cetak_rombel',$data,TRUE);
+                    $pdf= new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'Legal-L']);
+                    $pdf->WriteHTML($style,\Mpdf\HTMLParserMode::HEADER_CSS);
+                    $pdf->WriteHtml($cetak,\Mpdf\HTMLParserMode::HTML_BODY);
+                    $pdf->Output('Data Rombel '.$data['kelas']["kelas_nama"].' Tahun Ajaran '.$data['kelas']["tahunajaran_nama"].'.pdf', 'D');
+                    
+                }elseif($type=="xlsx"){
+                    $data['jadwals'] = $model->getJadwals($jadwal);
+                    var_dump($data['jadwals']);
+                }
     }
     public function rombel_simpan(){
         $validasi = $this->form_validation;
@@ -175,5 +188,23 @@ class Kelas extends CI_Controller
         } else{
             return true;
         }
+    }
+    public function cetak($type=null)
+    {
+        $kelas = $this->Kelas_model;
+        $data['kelass'] = $kelas->getAll();
+        if ($type != "xlsx" && $type !="pdf") {
+                redirect('kelas');
+            }elseif($type=="pdf"){
+                $style = file_get_contents(base_url('assets/css/presensi.css'));
+                $cetak = $this->load->view('kelas/cetak',$data,TRUE);
+                $pdf= new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'Legal-L']);
+                $pdf->WriteHTML($style,\Mpdf\HTMLParserMode::HEADER_CSS);
+                $pdf->WriteHtml($cetak,\Mpdf\HTMLParserMode::HTML_BODY);
+                $pdf->Output('Data Kelas.pdf', 'D');
+            }elseif($type=="xlsx"){
+                $data['jadwals'] = $model->getJadwals($tahun);
+                var_dump($data['jadwals']);
+            }
     }
 }

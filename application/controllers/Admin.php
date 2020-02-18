@@ -114,4 +114,29 @@
     }
     }
 
+    public function cetak($type=null)
+    {
+            $model = $this->Admin_model;
+
+            if(!isset($type)){
+                redirect('admin');
+            }elseif ($type != "xlsx" && $type !="pdf") {
+                redirect('admin');
+            }elseif($type=="pdf"){
+                
+                $data['admins'] = $model->getAll();
+                // $this->load->view('jadwal/cetak',$data);
+                $style = file_get_contents(base_url('assets/css/presensi.css'));
+                $cetak = $this->load->view('admin/cetak',$data,TRUE);
+                $jadwal= new \Mpdf\Mpdf();
+                $jadwal->WriteHTML($style,\Mpdf\HTMLParserMode::HEADER_CSS);
+                $jadwal->WriteHtml($cetak,\Mpdf\HTMLParserMode::HTML_BODY);
+                $jadwal->Output('Daftar Admin.pdf ', 'D');
+                
+            }elseif($type=="xlsx"){
+                $data['jadwals'] = $model->getJadwals($tahun);
+                var_dump($data['jadwals']);
+            }
+        }
+
 }

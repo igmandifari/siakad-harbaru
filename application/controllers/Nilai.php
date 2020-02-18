@@ -75,7 +75,7 @@
 
                     $style = file_get_contents(base_url('assets/css/presensi.css'));
                     $cetak = $this->load->view('tutor/nilai/cetak',$data,TRUE);
-                    $jadwal= new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'Legal-L']);;
+                    $jadwal= new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'Legal-L']);
                     $jadwal->WriteHTML($style,\Mpdf\HTMLParserMode::HEADER_CSS);
                     $jadwal->WriteHtml($cetak,\Mpdf\HTMLParserMode::HTML_BODY);
                     $jadwal->Output('Rekap Nilai '.$data['matpel']["matpel_nama"].' '.$data['wb']["wargabelajar_nomor_induk"].' Tahun Ajaran '.$this->session->userdata('tahunajaran_nama').' Semester '.ucfirst($this->uri->segment(3)).'.pdf', 'D');
@@ -179,7 +179,7 @@
 
                 $style = file_get_contents(base_url('assets/css/presensi.css'));
                 $cetak = $this->load->view('tutor/nilai/cetak_rekap',$data,TRUE);
-                $jadwal= new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'Legal-L']);;
+                $jadwal= new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'Legal-L']);
                 $jadwal->WriteHTML($style,\Mpdf\HTMLParserMode::HEADER_CSS);
                 $jadwal->WriteHtml($cetak,\Mpdf\HTMLParserMode::HTML_BODY);
                 $jadwal->Output('Rekap Nilai '.$data['jadwal']["matpel_nama"].' '.$data['jadwal']["kelas_nama"].' Tahun Ajaran '.$this->session->userdata('tahunajaran_nama').' Semester '.ucfirst($this->uri->segment(4)).'.pdf', 'D');

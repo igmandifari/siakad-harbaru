@@ -46,37 +46,20 @@
                                 <!-- Table -->
                                 <div class="table-responsive push">
                                 	<p class="h3 text-center">PKBM Harapan Baru</p>
-                                	<p class="h4 text-center">Data Wargabelajar</p>
+                                	<p class="h4 text-center">Data Pimpinan</p>
                                     <table class="table table-bordered table-striped table-vcenter">
                                     	<thead>
 											<tr class="text-center">
-												<th style="vertical-align: middle;">NO</th>
-												<th style="vertical-align: middle;">Nomor Induk</th>
-												<th style="vertical-align: middle;">NISN</th>
-												<th style="vertical-align: middle;">Nama</th>
-												<th style="vertical-align: middle;">Jenis Kelamin</th>
-												<th style="vertical-align: middle;">Tempat, Tanggal Lahir</th>
-												<th style="vertical-align: middle;">Agama</th>
-												<th style="vertical-align: middle;">Alamat</th>
-												<th style="vertical-align: middle;">Ayah</th>
-												<th style="vertical-align: middle;">Ibu</th>
+												<th>NO</th>
+                                                <th>Nama</th>
 											</tr>
 										</thead>
 										<tbody>
-											<?php $no=0; foreach ($wargabelajars as $wargabelajar):$no++?>
-												<tr>
-													<td class="text-center"><?php echo $no;?></td>
-													<td><?php echo $wargabelajar->wargabelajar_nomor_induk;?></td>
-													<td><?php echo $wargabelajar->wargabelajar_nisn;?></td>
-													<td><?php echo $wargabelajar->wargabelajar_nama;?></td>
-													<td><?php echo $wargabelajar->wargabelajar_jenis_kelamin;?></td>
-													<td><?php echo $wargabelajar->wargabelajar_tempat_lahir.", ".date("d F Y",strtotime($wargabelajar->wargabelajar_tanggal_lahir));?></td>
-													<td><?php echo $wargabelajar->wargabelajar_agama;?></td>
-													<td><?php echo $wargabelajar->wargabelajar_alamat_jalan." ".$wargabelajar->wargabelajar_alamat_rtrw." ".$wargabelajar->wargabelajar_alamat_desa." ".$wargabelajar->wargabelajar_alamat_kecamatan.$wargabelajar->wargabelajar_alamat_kabupaten;?></td>
-													<td><?php echo $wargabelajar->orangtua_ayah_nama;?></td>
-													<td><?php echo $wargabelajar->orangtua_ibu_nama;?></td>
-												</tr>
-											<?php endforeach;?>
+                                            <?php $no=0; foreach($pimpinans as $pimpinan):$no++?>
+                                            <tr id="$pimpinan->pimpinan_id;?>">
+                                                <td class="text-center"><?=$no;?></td>
+                                                <td><?=$pimpinan->pimpinan_nama;?></td>
+                                            <?php endforeach;?>
 										</tbody>
 									</table>
 								</div>

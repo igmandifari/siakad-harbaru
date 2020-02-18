@@ -85,5 +85,29 @@ class Matpel extends CI_Controller
             return true;
         }
     }
+    public function cetak($type=null)
+    {
+            $model = $this->Matpel_model;
+
+            if(!isset($type)){
+                redirect('matpel');
+            }elseif ($type != "xlsx" && $type !="pdf") {
+                redirect('matpel');
+            }elseif($type=="pdf"){
+                
+                $data['matpels'] = $model->getAll();
+                // $this->load->view('jadwal/cetak',$data);
+                $style = file_get_contents(base_url('assets/css/presensi.css'));
+                $cetak = $this->load->view('matpel/cetak',$data,TRUE);
+                $jadwal= new \Mpdf\Mpdf();
+                $jadwal->WriteHTML($style,\Mpdf\HTMLParserMode::HEADER_CSS);
+                $jadwal->WriteHtml($cetak,\Mpdf\HTMLParserMode::HTML_BODY);
+                $jadwal->Output('Daftar Mata Pelajaran.pdf ', 'D');
+                
+            }elseif($type=="xlsx"){
+                $data['jadwals'] = $model->getJadwals($tahun);
+                var_dump($data['jadwals']);
+            }
+        }
 
 }

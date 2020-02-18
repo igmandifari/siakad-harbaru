@@ -134,14 +134,16 @@
                         <div class="block-content block-content-full font-size-sm">
                             <p>Silahkan pilih tipe file cetak yang kamu inginkan!</p>
                             <div class="text-center">
-                            <button type="button" class="btn btn-rounded btn-success">
-                                <i class="far fa-file-excel"></i> Spreadsheet
-                            </button>
-                            <a href="<?=base_url('tutor/cetak');?>" target="_blank">
-                                <button type="button" class="btn btn-rounded btn-danger">
-                                    <i class="far fa-file-pdf"></i> PDF
-                                </button>
-                            </a>
+                                <a href="<?=base_url('tutor/cetak/xlsx');?>"  title="Klik Berikut Untuk Download tipe .xlsx">
+                                    <button type="button" class="btn btn-rounded btn-success">
+                                        <i class="far fa-file-excel"></i> Spreadsheet
+                                    </button>
+                                </a>
+                                <a href="<?=base_url('tutor/cetak/pdf');?>"  title="Klik Berikut Untuk Download tipe .pdf">
+                                    <button type="button" class="btn btn-rounded btn-danger">
+                                        <i class="far fa-file-pdf"></i> PDF
+                                    </button>
+                                </a>
                             </div>
                         </div>
                         <div class="block-content block-content-full text-right border-top">

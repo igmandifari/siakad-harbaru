@@ -115,4 +115,22 @@ class Pimpinan extends CI_Controller
         return TRUE;
     }
     }
+    public function cetak($type=null)
+    {
+        $model = $this->Pimpinan_model;
+        $data['pimpinans'] = $model->getAll();
+        if ($type != "xlsx" && $type !="pdf") {
+                redirect('pimpinan');
+            }elseif($type=="pdf"){
+                $style = file_get_contents(base_url('assets/css/presensi.css'));
+                $cetak = $this->load->view('pimpinan/cetak',$data,TRUE);
+                $pdf= new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'Legal-L']);
+                $pdf->WriteHTML($style,\Mpdf\HTMLParserMode::HEADER_CSS);
+                $pdf->WriteHtml($cetak,\Mpdf\HTMLParserMode::HTML_BODY);
+                $pdf->Output('Data Pimpinan.pdf', 'D');
+            }elseif($type=="xlsx"){
+                $data['jadwals'] = $model->getJadwals($tahun);
+                var_dump($data['jadwals']);
+            }
+    }
 }

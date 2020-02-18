@@ -44,42 +44,45 @@
                         <div class="block-content">
 
                                 <!-- Table -->
-                                <div class="table-responsive push">
-                                	<p class="h3 text-center">PKBM Harapan Baru</p>
-                                	<p class="h4 text-center">Data Wargabelajar</p>
-                                    <table class="table table-bordered table-striped table-vcenter">
-                                    	<thead>
-											<tr class="text-center">
-												<th style="vertical-align: middle;">NO</th>
-												<th style="vertical-align: middle;">Nomor Induk</th>
-												<th style="vertical-align: middle;">NISN</th>
-												<th style="vertical-align: middle;">Nama</th>
-												<th style="vertical-align: middle;">Jenis Kelamin</th>
-												<th style="vertical-align: middle;">Tempat, Tanggal Lahir</th>
-												<th style="vertical-align: middle;">Agama</th>
-												<th style="vertical-align: middle;">Alamat</th>
-												<th style="vertical-align: middle;">Ayah</th>
-												<th style="vertical-align: middle;">Ibu</th>
-											</tr>
-										</thead>
-										<tbody>
-											<?php $no=0; foreach ($wargabelajars as $wargabelajar):$no++?>
-												<tr>
-													<td class="text-center"><?php echo $no;?></td>
-													<td><?php echo $wargabelajar->wargabelajar_nomor_induk;?></td>
-													<td><?php echo $wargabelajar->wargabelajar_nisn;?></td>
-													<td><?php echo $wargabelajar->wargabelajar_nama;?></td>
-													<td><?php echo $wargabelajar->wargabelajar_jenis_kelamin;?></td>
-													<td><?php echo $wargabelajar->wargabelajar_tempat_lahir.", ".date("d F Y",strtotime($wargabelajar->wargabelajar_tanggal_lahir));?></td>
-													<td><?php echo $wargabelajar->wargabelajar_agama;?></td>
-													<td><?php echo $wargabelajar->wargabelajar_alamat_jalan." ".$wargabelajar->wargabelajar_alamat_rtrw." ".$wargabelajar->wargabelajar_alamat_desa." ".$wargabelajar->wargabelajar_alamat_kecamatan.$wargabelajar->wargabelajar_alamat_kabupaten;?></td>
-													<td><?php echo $wargabelajar->orangtua_ayah_nama;?></td>
-													<td><?php echo $wargabelajar->orangtua_ibu_nama;?></td>
-												</tr>
-											<?php endforeach;?>
-										</tbody>
-									</table>
-								</div>
+                                <div class='table-responsive'>
+                                    <p class="h3 text-center">Data Rombel</p>
+                                    <table>
+                                        <tbody>
+                                            <tr>
+                                                <td><strong>Kelas</strong></td>
+                                                <td><strong>: <?=$kelas["kelas_nama"]?></strong></td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Tahun Ajaran</strong></td>
+                                                <td><strong>: <?=$kelas["tahunajaran_nama"]?></strong></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                    <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _es6/pages/be_tables_datatables.js -->
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
+                                          <thead class="text-center">
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Nama</th>
+                                                <th>No Induk</th>
+                                                <th>NISN</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php $no=0;foreach($semua_wargabelajar as $wargabelajar):$no++;?>
+                                                <tr id="<?=$wargabelajar->rombel_details_id;?>">
+                                                    <td class="text-center"><?=$no?></td>
+                                                    <td><?=$wargabelajar->wargabelajar_nama;?>
+                                                    <td><?=$wargabelajar->wargabelajar_nomor_induk;?>
+                                                    <td><?=$wargabelajar->wargabelajar_nisn;?>
+                                                    
+                                                </tr>
+                                            <?php endforeach;?>
+                                        </tbody>
+                                    </table>
+                                </div>
                                 <!-- END Table -->
 
                         </div>

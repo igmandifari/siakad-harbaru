@@ -57,6 +57,7 @@ class Auth extends CI_Controller
                 $this->session->set_userdata('MASUK',TRUE);
                 $session = array(
                     'nama'                  => $WargaBelajar['wargabelajar_nama'],
+                    'induk'                  => $WargaBelajar['wargabelajar_nomor_induk'],
                     'id'                    => $WargaBelajar['wargabelajar_id'],
                     'foto'                  => $WargaBelajar['wargabelajar_foto'],
                     'level'                 => 1,

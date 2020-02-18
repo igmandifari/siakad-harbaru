@@ -98,15 +98,23 @@ class Tutor extends CI_Controller
 
         $this->load->view('tutor/tambah',$data);
     }
-    public function cetak()
+    public function cetak($type=null)
     {
         $tutor = $this->Tutor_model;
         $data['tutors'] = $tutor->getAll();
-
-        $cetak = $this->load->view('tutor/cetak',$data,TRUE);
-        $mpdf= new \Mpdf\Mpdf();
-        $mpdf->WriteHtml($cetak,\Mpdf\HTMLParserMode::HTML_BODY);
-        $mpdf->Output();
+        if ($type != "xlsx" && $type !="pdf") {
+                redirect('tutor');
+            }elseif($type=="pdf"){
+                $style = file_get_contents(base_url('assets/css/presensi.css'));
+                $cetak = $this->load->view('tutor/cetak',$data,TRUE);
+                $pdf= new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'Legal-L']);
+                $pdf->WriteHTML($style,\Mpdf\HTMLParserMode::HEADER_CSS);
+                $pdf->WriteHtml($cetak,\Mpdf\HTMLParserMode::HTML_BODY);
+                $pdf->Output('Data Tutor.pdf', 'D');
+            }elseif($type=="xlsx"){
+                $data['jadwals'] = $model->getJadwals($tahun);
+                var_dump($data['jadwals']);
+            }
     }
     
 }

@@ -90,5 +90,23 @@ class Tahunajaran extends CI_Controller
         
         $this->load->view("tahunajaran/ubah",$data);
     }
+    public function cetak($type=null)
+    {
+        $model = $this->Tahunajaran_model;
+        $data['tahunajarans'] = $model->getAll();
+        if ($type != "xlsx" && $type !="pdf") {
+                redirect('tahunajaran');
+            }elseif($type=="pdf"){
+                $style = file_get_contents(base_url('assets/css/presensi.css'));
+                $cetak = $this->load->view('tahunajaran/cetak',$data,TRUE);
+                $pdf= new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'Legal-L']);
+                $pdf->WriteHTML($style,\Mpdf\HTMLParserMode::HEADER_CSS);
+                $pdf->WriteHtml($cetak,\Mpdf\HTMLParserMode::HTML_BODY);
+                $pdf->Output('Data Tahunajaran.pdf', 'D');
+            }elseif($type=="xlsx"){
+                $data['jadwals'] = $model->getJadwals($tahun);
+                var_dump($data['jadwals']);
+            }
+    }
 
 }

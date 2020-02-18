@@ -28,5 +28,23 @@ class Rekapmasukan extends CI_Controller
             redirect('rekapmasukan');
         }
     }
+    public function cetak($type=null)
+    {
+        $model = $this->Masukan_model;
+        $data['masukans'] = $model->getAll();
+        if ($type != "xlsx" && $type !="pdf") {
+                redirect('rekapmasukan');
+            }elseif($type=="pdf"){
+                $style = file_get_contents(base_url('assets/css/presensi.css'));
+                $cetak = $this->load->view('masukan/cetak_rekap',$data,TRUE);
+                $pdf= new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'Legal-L']);
+                $pdf->WriteHTML($style,\Mpdf\HTMLParserMode::HEADER_CSS);
+                $pdf->WriteHtml($cetak,\Mpdf\HTMLParserMode::HTML_BODY);
+                $pdf->Output('Data Masukan.pdf', 'D');
+            }elseif($type=="xlsx"){
+                $data['jadwals'] = $model->getJadwals($tahun);
+                var_dump($data['jadwals']);
+            }
+    }
 
 }

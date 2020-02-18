@@ -57,12 +57,23 @@
             </div>
         </div>
         <?php endif;?>
-        <div class='text-center'>
-            <div class="block-content">
-                <p>Kelas        : <?=$kelas["kelas_nama"]?></p>
-                <p>Tahun Ajaran : <?=$kelas["tahunajaran_nama"]?></p>
-            </div>
-          </div>
+        <div class='table-responsive'>
+            <table class="table table-bordered table-striped table-vcenter">
+                <thead>
+                    <tr>
+                        <th colspan="2" class="text-center">Data Rombel</th>
+                    </tr>
+                    <tr>
+                        <th>Kelas</th>
+                        <th>: <?=$kelas["kelas_nama"]?></th>
+                    </tr>
+                    <tr>
+                        <th>Tahun Ajaran</th>
+                        <th>: <?=$kelas["tahunajaran_nama"]?></th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
             <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _es6/pages/be_tables_datatables.js -->
             <div class="table-responsive">
                 <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
@@ -118,10 +129,12 @@
                         <div class="block-content block-content-full font-size-sm">
                             <p>Silahkan pilih tipe file cetak yang kamu inginkan!</p>
                             <div class="text-center">
-                            <button type="button" class="btn btn-rounded btn-success">
-                                <i class="far fa-file-excel"></i> Spreadsheet
-                            </button>
-                            <a href="<?=base_url('kelas/rombel_cetak/').$this->uri->segment(3);?>" target="_blank">
+                                <a href="<?=base_url('kelas/rombel_lihat/').$this->uri->segment(3).'/xlsx';?>" title="Klik Berikut Untuk Download tipe .xlsx">
+                                    <button type="button" class="btn btn-rounded btn-success">
+                                        <i class="far fa-file-excel"></i> Spreadsheet
+                                    </button>
+                                </a>
+                            <a href="<?=base_url('kelas/rombel_lihat/').$this->uri->segment(3).'/pdf';?>" title="Klik Berikut Untuk Download tipe .pdf">
                                 <button type="button" class="btn btn-rounded btn-danger">
                                     <i class="far fa-file-pdf"></i> PDF
                                 </button>

@@ -119,16 +119,23 @@ Class Wargabelajar extends CI_Controller
             return true;
         }
     }
-    public function cetak()
+    public function cetak($type=null)
     {
         $wargabelajar= $this->Wargabelajar_model;
         $data["wargabelajars"] = $wargabelajar->getAll();
-
-        $cetak = $this->load->view('wargabelajar/cetak',$data,TRUE);
-
-        $mpdf= new \Mpdf\Mpdf();
-        $mpdf->WriteHtml($cetak,\Mpdf\HTMLParserMode::HTML_BODY);
-        $mpdf->Output();
+        if ($type != "xlsx" && $type !="pdf") {
+                redirect('wargabelajar');
+            }elseif($type=="pdf"){
+                $style = file_get_contents(base_url('assets/css/presensi.css'));
+                $cetak = $this->load->view('wargabelajar/cetak',$data,TRUE);
+                $pdf= new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'Legal-L']);
+                $pdf->WriteHTML($style,\Mpdf\HTMLParserMode::HEADER_CSS);
+                $pdf->WriteHtml($cetak,\Mpdf\HTMLParserMode::HTML_BODY);
+                $pdf->Output('Data Wargabelajar.pdf', 'D');
+            }elseif($type=="xlsx"){
+                $data['jadwals'] = $model->getJadwals($tahun);
+                var_dump($data['jadwals']);
+            }
     }
 
 }

@@ -14,7 +14,7 @@ class Masukan_model extends CI_Model {
 	public function getAll()
 	{
 		
-		return $this->db->query("SELECT masukan.masukan_id,masukan.masukan,masukan.created_at,masukan.wargabelajar_id,wargabelajar.wargabelajar_nama FROM masukan INNER JOIN wargabelajar ON wargabelajar.wargabelajar_id=masukan.wargabelajar_id")->result_array();
+		return $this->db->query("SELECT masukan.masukan_id,masukan.masukan,masukan.created_at,masukan.wargabelajar_id,wargabelajar.wargabelajar_nama,wargabelajar.wargabelajar_nomor_induk FROM masukan INNER JOIN wargabelajar ON wargabelajar.wargabelajar_id=masukan.wargabelajar_id")->result_array();
 	}
 	public function hapus($id)
 	{

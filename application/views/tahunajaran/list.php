@@ -80,7 +80,7 @@
                                         <?php $no=0; foreach($tahunajarans as $tahunajaran):$no++?>
                                             <tr id="$tahunajaran->tahunajaran_id;?>">
                                                 <td class="text-center"><?=$no?></td>
-                                                <td><?=$tahunajaran->tahunajaran_nama;?>
+                                                <td><?=$tahunajaran->tahunajaran_nama;?></td>
                                                 <td class="text-center">
                                                     <div class="btn-group">
                                                         <a href="<?=base_url('tahunajaran/ubah/').$tahunajaran->tahunajaran_id;?>">
@@ -125,14 +125,16 @@
                         <div class="block-content block-content-full font-size-sm">
                             <p>Silahkan pilih tipe file cetak yang kamu inginkan!</p>
                             <div class="text-center">
-                            <button type="button" class="btn btn-rounded btn-success">
-                                <i class="far fa-file-excel"></i> Spreadsheet
-                            </button>
-                            <a href="<?=base_url('tahunajaran/cetak');?>" target="_blank">
-                                <button type="button" class="btn btn-rounded btn-danger">
-                                    <i class="far fa-file-pdf"></i> PDF
-                                </button>
-                            </a>
+                                <a href="<?=base_url('tahunajaran/cetak/xlsx');?>"  title="Klik Berikut Untuk Download tipe .xlsx">
+                                    <button type="button" class="btn btn-rounded btn-success">
+                                        <i class="far fa-file-excel"></i> Spreadsheet
+                                    </button>
+                                </a>
+                                <a href="<?=base_url('tahunajaran/cetak/pdf');?>"  title="Klik Berikut Untuk Download tipe .PDF">
+                                    <button type="button" class="btn btn-rounded btn-danger">
+                                        <i class="far fa-file-pdf"></i> PDF
+                                    </button>
+                                </a>
                             </div>
                         </div>
                         <div class="block-content block-content-full text-right border-top">
