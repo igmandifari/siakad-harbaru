@@ -20,54 +20,14 @@
         <!-- Stylesheets -->
         <!-- PageJS Plugins CSS -->
         <link rel="stylesheet" href="<?=base_url('assets/js/plugins/select2/css/select2.min.css')?>">
+        <link rel="stylesheet" href="<?=base_url('assets/js/plugins/sweetalert2/sweetalert2.min.css');?>">
         <!-- Fonts and OneUI framework -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400italic,600,700%7COpen+Sans:300,400,400italic,600,700">
         <link rel="stylesheet" id="css-main" href="<?=base_url('assets/css/oneui.min.css')?>">
 
-        <!-- You can include a specific file from css/themes/ folder to alter the default color theme of the template. eg: -->
-        <!-- <link rel="stylesheet" id="css-theme" href="assets/css/themes/amethyst.min.css"> -->
-        <!-- END Stylesheets -->
     </head>
     <body>
-        <!-- Page Container -->
-        <!--
-            Available classes for #page-container:
-
-        GENERIC
-
-            'enable-cookies'                            Remembers active color theme between pages (when set through color theme helper Template._uiHandleTheme())
-
-        SIDEBAR & SIDE OVERLAY
-
-            'sidebar-r'                                 Right Sidebar and left Side Overlay (default is left Sidebar and right Side Overlay)
-            'sidebar-mini'                              Mini hoverable Sidebar (screen width > 991px)
-            'sidebar-o'                                 Visible Sidebar by default (screen width > 991px)
-            'sidebar-o-xs'                              Visible Sidebar by default (screen width < 992px)
-            'sidebar-dark'                              Dark themed sidebar
-
-            'side-overlay-hover'                        Hoverable Side Overlay (screen width > 991px)
-            'side-overlay-o'                            Visible Side Overlay by default
-
-            'enable-page-overlay'                       Enables a visible clickable Page Overlay (closes Side Overlay on click) when Side Overlay opens
-
-            'side-scroll'                               Enables custom scrolling on Sidebar and Side Overlay instead of native scrolling (screen width > 991px)
-
-        HEADER
-
-            ''                                          Static Header if no class is added
-            'page-header-fixed'                         Fixed Header
-
-        HEADER STYLE
-
-            ''                                          Light themed Header
-            'page-header-dark'                          Dark themed Header
-
-        MAIN CONTENT LAYOUT
-
-            ''                                          Full width Main Content if no class is added
-            'main-content-boxed'                        Full width Main Content with a specific maximum width (screen width > 1200px)
-            'main-content-narrow'                       Full width Main Content with a percentage width (screen width > 1200px)
-        -->
+     
         <div id="page-container" class="sidebar-o sidebar-dark enable-page-overlay side-scroll page-header-fixed">
             <!-- Side Overlay-->
             <aside id="side-overlay" class="font-size-sm">
@@ -75,13 +35,13 @@
                 <div class="content-header border-bottom">
                     <!-- User Avatar -->
                     <a class="img-link mr-1" href="javascript:void(0)">
-                        <img class="img-avatar img-avatar32" src="<?= base_url ('upload/images/'.$this->session->userdata('foto'));?>" alt="">
+                        <img class="img-avatar img-avatar32" src="<?= base_url('upload/images/').$this->photo;?>" alt="">
                     </a>
                     <!-- END User Avatar -->
 
                     <!-- User Info -->
                     <div class="ml-2">
-                        <a class="link-fx text-dark font-w600" href="javascript:void(0)"><?= $this->session->userdata('nama');?></a>
+                        <a class="link-fx text-dark font-w600" href="javascript:void(0)"><?= $this->name;?></a>
                     </div>
                     <!-- END User Info -->
 
@@ -199,7 +159,7 @@
                 <div class="content-side content-side-full">
                     <ul class="nav-main">
                         <li class="nav-main-item">
-                            <a class="nav-main-link active" href="<?=base_url('dasbor')?>">
+                            <a class="nav-main-link" href="<?=base_url('dasbor')?>">
                                 <i class="nav-main-link-icon si si-speedometer"></i>
                                 <span class="nav-main-link-name">Dasbor</span>
                             </a>
@@ -348,7 +308,7 @@
                             </a>
                         </li>
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="<?=base_url('pengaturan')?>">
+                            <a class="nav-main-link active" href="<?=base_url('pengaturan')?>">
                             <i class="nav-main-link-icon si si-settings"></i>
                                 <span class="nav-main-link-name">Pengaturan</span>
                             </a>
@@ -409,13 +369,13 @@
                         <!-- User Dropdown -->
                         <div class="dropdown d-inline-block ml-2">
                             <button type="button" class="btn btn-sm btn-dual" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img class="rounded" src="<?= base_url ('upload/images/'.$this->session->userdata('foto'));?>" alt="Header Avatar" style="width: 18px;">
-                                <span class="d-none d-sm-inline-block ml-1"><?= $this->session->userdata('nama');?></span>
+                                <img class="rounded" src="<?= base_url('upload/images/').$this->photo;?>" alt="Header Avatar" style="width: 18px;">
+                                <span class="d-none d-sm-inline-block ml-1"><?= $this->name;?></span>
                                 <i class="fa fa-fw fa-angle-down d-none d-sm-inline-block"></i>
                             </button>
                             <div class="dropdown-menu dropdown-menu-right p-0 border-0 font-size-sm" aria-labelledby="page-header-user-dropdown">
                                 <div class="p-3 text-center bg-primary">
-                                    <img class="img-avatar img-avatar48 img-avatar-thumb" src="<?= base_url ('upload/images/'.$this->session->userdata('foto'));?>" alt="">
+                                    <img class="img-avatar img-avatar48 img-avatar-thumb" src="<?=base_url('upload/images/').$this->photo;?>" alt="">
                                 </div>
                                 <div class="p-2">
                                     <h5 class="dropdown-header text-uppercase">User Options</h5>
@@ -451,60 +411,161 @@
             <main id="main-container">
 
                 <!-- Hero -->
-                <div class="bg-image overflow-hidden" style="background-image: url('assets/media/photos/photo3@2x.jpg');">
-                    <div class="bg-primary-dark-op">
-                        <div class="content content-narrow content-full">
-                            <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center mt-5 mb-2 text-center text-sm-left">
-                                <div class="flex-sm-fill">
-                                    <h1 class="font-w600 text-white mb-0 invisible" data-toggle="appear"><?=$title?></h1>
-                                    <h2 class="h4 font-w400 text-white-75 mb-0 invisible" data-toggle="appear" data-timeout="250">Selamat Datang <?= $this->session->userdata('nama');?></h2>
-                                </div>
-                            </div>
+                <div class="bg-body-light">
+                    <div class="content content-full">
+                        <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
+                            <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
+                                <ol class="breadcrumb breadcrumb-alt">
+                                    <li class="breadcrumb-item">Home</li>
+                                    <li class="breadcrumb-item" aria-current="page">
+                                        <a class="link-fx" href=""><?=$title;?></a>
+                                    </li>
+                                </ol>
+                            </nav>
                         </div>
                     </div>
                 </div>
                 <!-- END Hero -->
 
+
                 <!-- Page Content -->
                 <div class="content content-narrow">
-                    <!-- Stats -->
-                    <div class="row">
-                        <div class="col-6 col-md-3 col-lg-6 col-xl-3">
-                            <a class="block block-rounded block-link-pop border-left border-primary border-4x" href="<?=base_url('wargabelajar');?>">
-                                <div class="block-content block-content-full">
-                                    <div class="font-size-sm font-w600 text-uppercase text-muted">Warga Belajar</div>
-                                    <div class="font-size-h2 font-w400 text-dark"><?=$countWargaBelajar["jumlah"]?> Orang</div>
-                                </div>
-                            </a>
+                    <!-- Simple Wizards -->
+                    <div class="block">
+                        <div class="block-header block-header-default">
+                            <h3 class="block-title"><?=$title;?></h3>
+                            <div class="block-options">
+                                <a href="#">
+                                    <button type="button" class="btn btn-sm btn-light">
+                                        Kembali
+                                    </button>
+                                </a>
+                            </div>
                         </div>
-                        <div class="col-6 col-md-3 col-lg-6 col-xl-3">
-                            <a class="block block-rounded block-link-pop border-left border-primary border-4x" href="<?=base_url('tutor');?>">
-                                <div class="block-content block-content-full">
-                                    <div class="font-size-sm font-w600 text-uppercase text-muted">Tutor</div>
-                                    <div class="font-size-h2 font-w400 text-dark"><?=$countTutor["jumlah"]?> Orang</div>
+                        <div class="row">
+                           
+                            <div class="col-sm-12">
+                                <!-- Simple Wizard 2 -->
+                                <div class="js-wizard-simple block block">
+                                    <!-- Step Tabs -->
+                                    <ul class="nav nav-tabs nav-tabs-alt nav-justified" role="tablist">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" href="#wizard-system" data-toggle="tab"><i class="fa fa-archive"></i> Sistem</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#wizard-profile" data-toggle="tab"><i class="fa fa-user-edit"></i> Profil</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#wizard-password" data-toggle="tab"><i class="fa fa-user-cog"></i> Kata Sandi</a>
+                                        </li>
+                                    </ul>
+                                    <!-- END Step Tabs -->
+
+                                    <!-- Form -->
+                                   
+                                        <!-- Steps Content -->
+                                        <div class="block-content block-content-full tab-content px-md-5" style="min-height: 303px;">
+                                            <!-- Step 1 -->
+                                            <div class="tab-pane active" id="wizard-system" role="tabpanel">
+                                                <div class="form-group">
+                                                    <label for="wizard-simple2-firstname">First Name</label>
+                                                    <input class="form-control form-control-alt" type="text" id="wizard-simple2-firstname" name="wizard-simple2-firstname">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="wizard-simple2-lastname">Last Name</label>
+                                                    <input class="form-control form-control-alt" type="text" id="wizard-simple2-lastname" name="wizard-simple2-lastname">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="wizard-simple2-email">Email</label>
+                                                    <input class="form-control form-control-alt" type="email" id="wizard-simple2-email" name="wizard-simple2-email">
+                                                </div>
+                                            </div>
+                                            <!-- END Step 1 -->
+
+                                            <!-- Step 2 -->
+                                            <div class="tab-pane" id="wizard-profile" role="tabpanel">
+                                                <form method="post" enctype="multipart/form-data">
+                                                    <div class="form-group">
+                                                        <label for="admin_nama">Nama Admin</label>
+                                                        <input type="text" class="form-control form-control-alt" id="admin_nama" name="admin_nama" value="<?=$admin["admin_nama"];?>">
+                                                        <small class="form-text text-danger"><?= form_error('admin_nama'); ?></small>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="username">Username</label>
+                                                        <input type="text" class="form-control form-control-alt" id="admin_username" name="admin_username" value="<?=$admin["admin_username"];?>">
+                                                        <small class="form-text text-danger"><?= form_error('admin_username'); ?></small>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Foto</label>
+                                                        <div class="custom-file">
+                                                            <input type="file" class="custom-file-input js-custom-file-input-enabled form-control form-control-alt" data-toggle="custom-file-input" id="admin_foto" name="admin_foto">
+                                                            <label class="custom-file-label" for="admin_foto">Pilih foto:</label>
+                                                            <input type="hidden" id="old_image" name="old_image" value="<?php echo $admin["admin_foto"] ?>" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group text-center">
+                                                        <button type="submit" class="btn btn-primary submit-profile">
+                                                            <i class="fa fa-check mr-1"></i> Perbarui
+                                                        </button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <!-- END Step 2 -->
+
+                                            <!-- Step 3 -->
+                                            <div class="tab-pane" id="wizard-password" role="tabpanel">
+                                                <div class="form-group">
+                                                    <label for="wizard-simple2-location">Location</label>
+                                                    <input class="form-control form-control-alt" type="text" id="wizard-simple2-location" name="wizard-simple2-location">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="wizard-simple2-skills">Skills</label>
+                                                    <select class="form-control form-control-alt" id="wizard-simple2-skills" name="wizard-simple2-skills">
+                                                        <option value="">Please select your best skill</option>
+                                                        <option value="1">Photoshop</option>
+                                                        <option value="2">HTML</option>
+                                                        <option value="3">CSS</option>
+                                                        <option value="4">JavaScript</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="custom-control custom-checkbox custom-control-primary">
+                                                        <input type="checkbox" class="custom-control-input" id="wizard-simple2-terms" name="wizard-simple2-terms">
+                                                        <label class="custom-control-label" for="wizard-simple2-terms">Agree with the terms</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- END Step 3 -->
+                                        </div>
+                                        <!-- END Steps Content -->
+
+                                        <!-- Steps Navigation -->
+                                        <div class="block-content block-content-sm block-content-full bg-body-light rounded-bottom">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <button type="button" class="btn btn-secondary" data-wizard="prev">
+                                                        <i class="fa fa-angle-left mr-1"></i> Previous
+                                                    </button>
+                                                </div>
+                                                <div class="col-6 text-right">
+                                                    <button type="button" class="btn btn-secondary" data-wizard="next">
+                                                        Next <i class="fa fa-angle-right ml-1"></i>
+                                                    </button>
+                                                    <button type="submit" class="sumit btn btn-primary d-none" data-wizard="finish">
+                                                        <i class="fa fa-check mr-1"></i> Submit
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- END Steps Navigation -->
+                                    
+                                    <!-- END Form -->
                                 </div>
-                            </a>
-                        </div>
-                        <div class="col-6 col-md-3 col-lg-6 col-xl-3">
-                            <a class="block block-rounded block-link-pop border-left border-primary border-4x" href="<?=base_url('pimpinan');?>">
-                                <div class="block-content block-content-full">
-                                    <div class="font-size-sm font-w600 text-uppercase text-muted">Pimpinan</div>
-                                    <div class="font-size-h2 font-w400 text-dark"><?=$countPimpinan["jumlah"]?> Orang</div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-6 col-md-3 col-lg-6 col-xl-3">
-                            <a class="block block-rounded block-link-pop border-left border-primary border-4x" href="<?=base_url('admin');?>">
-                                <div class="block-content block-content-full">
-                                    <div class="font-size-sm font-w600 text-uppercase text-muted">Admin</div>
-                                    <div class="font-size-h2 font-w400 text-dark"><?=$countAdmin["jumlah"]?> Orang</div>
-                                </div>
-                            </a>
+                                <!-- END Simple Wizard 2 -->
+                            </div>
                         </div>
                     </div>
-                    <!-- END Stats -->
-
-                   
+                    <!-- END Simple Wizards -->                   
                 </div>
                 <!-- END Page Content -->
 
@@ -556,13 +617,15 @@
         <script src="<?=base_url('assets/js/oneui.app.min.js')?>"></script>
 
         <!-- PageJS Plugins -->
-         <script src="<?=base_url('assets/js/plugins/select2/js/select2.full.min.js');?>"></script>
-
-        <!-- Page JS Code -->
-        <script src="<?=base_url('assets/js/pages/be_pages_dashboard.min.js')?>"></script>
+        <script src="<?=base_url('assets/js/plugins/jquery-bootstrap-wizard/bs4/jquery.bootstrap.wizard.min.js');?>"></script>
+        <script src="<?=base_url('assets/js/plugins/select2/js/select2.full.min.js');?>"></script>
+        <script src="<?=base_url('assets/js/plugins/jquery-validation/jquery.validate.min.js');?>"></script>
+         <script src="<?=base_url('assets/js/plugins/es6-promise/es6-promise.auto.min.js');?>"></script>
+        <script src="<?=base_url('assets/js/plugins/sweetalert2/sweetalert2.min.js');?>"></script>
+         <!-- Page JS Code -->
+        <script src="<?=base_url('assets/js/pages/be_forms_wizard.min.js');?>"></script>
         <script>
-        jQuery(function(){
-            $("#tahunajaran").change(function(){
+        jQuery("#tahunajaran").change(function(){
                 var id=this.value;
                 $.ajax({
                     type:'POST',
@@ -574,8 +637,63 @@
 
                 });
             });
-            One.helpers(['select2']); 
-    });
+        jQuery(function(){
+            One.helpers(['select2'])
+        });
+
+        jQuery(".sumit").click(function(){
+                alert('hello');
+        });
+
+        // Dialog confirmation 
+        jQuery(".submit-profile").on("click",function(){
+            var nama = jQuery("#admin_nama").val();
+            var username = jQuery("#admin_username").val();
+            var foto;
+            if(jQuery("#admin_foto")[0].files.length != 0){
+                foto = jQuery("#admin_foto")[0].files[0].name;
+            }else{
+                foto = 0;
+            }
+            var old_image= jQuery("#old_image").val();
+
+            Swal.fire({
+                title:"Peringatan",
+                text:"Apakah kamu yakin mau mengubah ini?",
+                type:"warning",
+                showCancelButton:!0,
+                customClass:{
+                    confirmButton:"btn btn-danger m-1",
+                    cancelButton:"btn btn-secondary m-1"
+                },
+                buttonsStyling:false,
+                confirmButtonText:"Ya, ubah ini!",
+                html:!1,
+                preConfirm:function(Swal){
+                    return new Promise(function(Swal){
+                        setTimeout(function(){
+                            Swal()},
+                            50)}
+                        )}
+                }).then(function(n){
+                    n.value?$.ajax({
+                        url: '<?php echo base_url('pengaturan/update');?>',
+                        type: 'POST',
+                        data:new FormData(this),
+                     processData:false,
+                     contentType:false,
+                     cache:false,
+                     async:false,
+                        error: function() {
+                            Swal.fire("Oops...", "Terjadi kesalahan", "error");
+                        },success: function(data) {
+                            Swal.fire(
+                                "Berhasil",
+                                "Data berhasil diubah.",
+                                "success");
+                        }}):"cancel"===n.dismiss
+                })
+            })
 </script>
     </body>
 </html>
