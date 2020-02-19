@@ -50,7 +50,9 @@ Class Pengaturan extends CI_Controller
         if($validation->run()){
         	$model->updateAdmin($this->id);
         	$this->session->set_flashdata('success', 'Berhasil mengubah data');
+        	redirect('pengaturan');
         }else{
+        	$this->session->set_flashdata('failed', 'Gagal');
         	redirect('pengaturan');
         }
     }

@@ -21,7 +21,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         }
         public function updateAdmin($id)
         {
-            if ($this->input->post("admin_foto")==0) {
+            if (!empty($_FILES["admin_foto"]["name"])) {
                 $foto = $this->_uploadImage();
             } else {
                 $foto = $this->input->post("old_image");

@@ -450,13 +450,13 @@
                                     <!-- Step Tabs -->
                                     <ul class="nav nav-tabs nav-tabs-alt nav-justified" role="tablist">
                                         <li class="nav-item">
-                                            <a class="nav-link active" href="#wizard-system" data-toggle="tab"><i class="fa fa-archive"></i> Sistem</a>
-                                        </li>
-                                        <li class="nav-item">
                                             <a class="nav-link" href="#wizard-profile" data-toggle="tab"><i class="fa fa-user-edit"></i> Profil</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="#wizard-password" data-toggle="tab"><i class="fa fa-user-cog"></i> Kata Sandi</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link active" href="#wizard-system" data-toggle="tab"><i class="fa fa-archive"></i> Sistem</a>
                                         </li>
                                     </ul>
                                     <!-- END Step Tabs -->
@@ -466,41 +466,24 @@
                                         <!-- Steps Content -->
                                         <div class="block-content block-content-full tab-content px-md-5" style="min-height: 303px;">
                                             <!-- Step 1 -->
-                                            <div class="tab-pane active" id="wizard-system" role="tabpanel">
-                                                <div class="form-group">
-                                                    <label for="wizard-simple2-firstname">First Name</label>
-                                                    <input class="form-control form-control-alt" type="text" id="wizard-simple2-firstname" name="wizard-simple2-firstname">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="wizard-simple2-lastname">Last Name</label>
-                                                    <input class="form-control form-control-alt" type="text" id="wizard-simple2-lastname" name="wizard-simple2-lastname">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="wizard-simple2-email">Email</label>
-                                                    <input class="form-control form-control-alt" type="email" id="wizard-simple2-email" name="wizard-simple2-email">
-                                                </div>
-                                            </div>
-                                            <!-- END Step 1 -->
-
-                                            <!-- Step 2 -->
-                                            <div class="tab-pane" id="wizard-profile" role="tabpanel">
-                                                <form method="post" enctype="multipart/form-data">
+                                            <div class="tab-pane active" id="wizard-profile" role="tabpanel">
+                                                <form action="<?=base_url('pengaturan/update');?>" method="post" enctype="multipart/form-data">
                                                     <div class="form-group">
-                                                        <label for="admin_nama">Nama Admin</label>
-                                                        <input type="text" class="form-control form-control-alt" id="admin_nama" name="admin_nama" value="<?=$admin["admin_nama"];?>">
+                                                        <label for="admin_nama">Nama</label>
+                                                        <input type="text" class="form-control" id="admin_nama" name="admin_nama" value="<?=$admin["admin_nama"];?>">
                                                         <small class="form-text text-danger"><?= form_error('admin_nama'); ?></small>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="username">Username</label>
-                                                        <input type="text" class="form-control form-control-alt" id="admin_username" name="admin_username" value="<?=$admin["admin_username"];?>">
+                                                        <input type="text" class="form-control" id="admin_username" name="admin_username" value="<?=$admin["admin_username"];?>">
                                                         <small class="form-text text-danger"><?= form_error('admin_username'); ?></small>
                                                     </div>
                                                     <div class="form-group">
                                                         <label>Foto</label>
                                                         <div class="custom-file">
-                                                            <input type="file" class="custom-file-input js-custom-file-input-enabled form-control form-control-alt" data-toggle="custom-file-input" id="admin_foto" name="admin_foto">
+                                                            <input type="file" class="custom-file-input js-custom-file-input-enabled" data-toggle="custom-file-input" id="admin_foto" name="admin_foto">
                                                             <label class="custom-file-label" for="admin_foto">Pilih foto:</label>
-                                                            <input type="hidden" id="old_image" name="old_image" value="<?php echo $admin["admin_foto"] ?>" />
+                                                            <input type="hidden" name="old_image" value="<?php echo $admin["admin_foto"] ?>" />
                                                         </div>
                                                     </div>
                                                     <div class="form-group text-center">
@@ -510,9 +493,10 @@
                                                     </div>
                                                 </form>
                                             </div>
-                                            <!-- END Step 2 -->
+                                            
+                                            <!-- END Step 1 -->
 
-                                            <!-- Step 3 -->
+                                            <!-- Step 2 -->
                                             <div class="tab-pane" id="wizard-password" role="tabpanel">
                                                 <div class="form-group">
                                                     <label for="wizard-simple2-location">Location</label>
@@ -533,6 +517,24 @@
                                                         <input type="checkbox" class="custom-control-input" id="wizard-simple2-terms" name="wizard-simple2-terms">
                                                         <label class="custom-control-label" for="wizard-simple2-terms">Agree with the terms</label>
                                                     </div>
+                                                </div>
+                                            </div>
+                                            <!-- END Step 2 -->
+
+                                            <!-- Step 3 -->
+                                            
+                                            <div class="tab-pane" id="wizard-system" role="tabpanel">
+                                                <div class="form-group">
+                                                    <label for="wizard-simple2-firstname">First Name</label>
+                                                    <input class="form-control form-control-alt" type="text" id="wizard-simple2-firstname" name="wizard-simple2-firstname">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="wizard-simple2-lastname">Last Name</label>
+                                                    <input class="form-control form-control-alt" type="text" id="wizard-simple2-lastname" name="wizard-simple2-lastname">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="wizard-simple2-email">Email</label>
+                                                    <input class="form-control form-control-alt" type="email" id="wizard-simple2-email" name="wizard-simple2-email">
                                                 </div>
                                             </div>
                                             <!-- END Step 3 -->
@@ -641,59 +643,7 @@
             One.helpers(['select2'])
         });
 
-        jQuery(".sumit").click(function(){
-                alert('hello');
-        });
-
-        // Dialog confirmation 
-        jQuery(".submit-profile").on("click",function(){
-            var nama = jQuery("#admin_nama").val();
-            var username = jQuery("#admin_username").val();
-            var foto;
-            if(jQuery("#admin_foto")[0].files.length != 0){
-                foto = jQuery("#admin_foto")[0].files[0].name;
-            }else{
-                foto = 0;
-            }
-            var old_image= jQuery("#old_image").val();
-
-            Swal.fire({
-                title:"Peringatan",
-                text:"Apakah kamu yakin mau mengubah ini?",
-                type:"warning",
-                showCancelButton:!0,
-                customClass:{
-                    confirmButton:"btn btn-danger m-1",
-                    cancelButton:"btn btn-secondary m-1"
-                },
-                buttonsStyling:false,
-                confirmButtonText:"Ya, ubah ini!",
-                html:!1,
-                preConfirm:function(Swal){
-                    return new Promise(function(Swal){
-                        setTimeout(function(){
-                            Swal()},
-                            50)}
-                        )}
-                }).then(function(n){
-                    n.value?$.ajax({
-                        url: '<?php echo base_url('pengaturan/update');?>',
-                        type: 'POST',
-                        data:new FormData(this),
-                     processData:false,
-                     contentType:false,
-                     cache:false,
-                     async:false,
-                        error: function() {
-                            Swal.fire("Oops...", "Terjadi kesalahan", "error");
-                        },success: function(data) {
-                            Swal.fire(
-                                "Berhasil",
-                                "Data berhasil diubah.",
-                                "success");
-                        }}):"cancel"===n.dismiss
-                })
-            })
+      
 </script>
     </body>
 </html>
