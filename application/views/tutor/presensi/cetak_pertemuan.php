@@ -48,7 +48,7 @@
                                     <table class="table table-bordered table-striped table-vcenter">
                                         <thead>
                                             <tr>
-                                                <th colspan="2" class="text-center">Data Presensi Tanggal <?php echo date("d,F Y",strtotime($tanggal['presensi_tanggal']));?></th>
+                                                <th colspan="2" class="text-center">Data Presensi Tanggal <?php echo date("d F Y",strtotime($tanggal['presensi_tanggal']));?></th>
                                             </tr>
                                             <tbody>
                                                 <tr>
@@ -72,6 +72,7 @@
                                     <thead class="text-center">
                                         <tr>
                                             <th width="10%">NO</th>
+                                            <th width="15%">Nomor Induk</th>
                                             <th>Nama</th>
                                             <th width="10%">Keterangan</th>
                                         </tr>
@@ -80,6 +81,7 @@
                                         <?php $no=0;foreach($wargabelajars as $wargabelajar):$no++?>
                                             <tr>
                                                 <td class="text-center"><?=$no?></td>
+                                                <td><?=$wargabelajar->wargabelajar_nomor_induk?></td>
                                                 <td><?=$wargabelajar->wargabelajar_nama?></td>
                                                 <td class="text-center">
                                                     <span id="<?=$wargabelajar->presensi_det_id?>"><?=$wargabelajar->presensi_det_ket?></span>

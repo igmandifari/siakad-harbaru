@@ -19,7 +19,6 @@
 
         <!-- Stylesheets -->
         <!-- PageJS Plugins CSS -->
-        <link rel="stylesheet" href="<?=base_url('assets/js/plugins/select2/css/select2.min.css')?>">
         <link rel="stylesheet" href="<?=base_url('assets/js/plugins/sweetalert2/sweetalert2.min.css');?>">
         <!-- Fonts and OneUI framework -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400italic,600,700%7COpen+Sans:300,400,400italic,600,700">
@@ -307,16 +306,11 @@
                                 <span class="nav-main-link-name">Data Masukan</span>
                             </a>
                         </li>
+                        <li class="nav-main-heading">Options</li>
                         <li class="nav-main-item">
                             <a class="nav-main-link active" href="<?=base_url('pengaturan')?>">
                             <i class="nav-main-link-icon si si-settings"></i>
                                 <span class="nav-main-link-name">Pengaturan</span>
-                            </a>
-                        </li>
-                        <li class="nav-main-item">
-                            <a class="nav-main-link" href="<?=base_url('profil')?>">
-                            <i class="nav-main-link-icon si si-user ml-1"></i>
-                                <span class="nav-main-link-name">Profil</span>
                             </a>
                         </li>
                         <li class="nav-main-item">
@@ -349,13 +343,6 @@
                         <button type="button" class="btn btn-sm btn-dual mr-2 d-none d-lg-inline-block" data-toggle="layout" data-action="sidebar_mini_toggle">
                             <i class="fa fa-fw fa-ellipsis-v"></i>
                         </button>
-                        <!-- Tahun Ajaran  -->
-                        <select id="tahunajaran" class="js-select2 form-control form-control-lg form-control-alt" id="tahunajaran_id" name="tahunajaran_id" style="width: 100%;" data-placeholder="Silahkan pilih tahun ajaran" required>
-                            <option value=""></option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
-                            <?php foreach($tahunajarans as $tahunajaran):?>
-                                <option value="<?php echo $tahunajaran["tahunajaran_id"]?>" <?php if($this->session->userdata('tahunajaran_id')==$tahunajaran["tahunajaran_id"]) echo "selected";?>>Tahun Ajaran <?=$tahunajaran["tahunajaran_nama"]?></option>
-                            <?php endforeach;?>
-                        </select>
                         <!-- END Toggle Mini Sidebar -->
 
                         <!-- END Apps Modal -->
@@ -378,17 +365,11 @@
                                     <img class="img-avatar img-avatar48 img-avatar-thumb" src="<?=base_url('upload/images/').$this->photo;?>" alt="">
                                 </div>
                                 <div class="p-2">
-                                    <h5 class="dropdown-header text-uppercase">User Options</h5>
-                                    <a class="dropdown-item d-flex align-items-center justify-content-between" href="<?=base_url('profil')?>">
-                                        <span>Profil</span>
-                                            <i class="si si-user ml-1"></i>
-                                    </a>
+                                    <h5 class="dropdown-header text-uppercase">Options</h5>
                                     <a class="dropdown-item d-flex align-items-center justify-content-between" href="<?=base_url('pengaturan')?>">
                                         <span>Pengaturan</span>
                                         <i class="si si-settings"></i>
                                     </a>
-                                    <div role="separator" class="dropdown-divider"></div>
-                                    <h5 class="dropdown-header text-uppercase">Aksi</h5>
                                     <a class="dropdown-item d-flex align-items-center justify-content-between" href="<?=base_url('auth/logout')?>">
                                         <span>Log Out</span>
                                         <i class="si si-logout ml-1"></i>
@@ -409,25 +390,6 @@
 
             <!-- Main Container -->
             <main id="main-container">
-
-                <!-- Hero -->
-                <div class="bg-body-light">
-                    <div class="content content-full">
-                        <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
-                            <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
-                                <ol class="breadcrumb breadcrumb-alt">
-                                    <li class="breadcrumb-item">Home</li>
-                                    <li class="breadcrumb-item" aria-current="page">
-                                        <a class="link-fx" href=""><?=$title;?></a>
-                                    </li>
-                                </ol>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-                <!-- END Hero -->
-
-
                 <!-- Page Content -->
                 <div class="content content-narrow">
                     <!-- Simple Wizards -->
@@ -467,6 +429,20 @@
                                         <div class="block-content block-content-full tab-content px-md-5" style="min-height: 303px;">
                                             <!-- Step 1 -->
                                             <div class="tab-pane active" id="wizard-profile" role="tabpanel">
+                                                <p class="font-size-md text-muted">
+                                                    Pada bagian ini, kamu dapat mengubah profil kamu, silahkan ubah dibagian yang kamu mau.
+                                                </p>
+                                                <?php if ($this->session->flashdata('success')){ ?>
+                                                    <div class="alert alert-success d-flex align-items-center" role="alert">
+                                                        <div class="flex-00-auto">
+                                                            <i class="fa fa-fw fa-check"></i>
+                                                        </div>
+                                                        <div class="flex-fill ml-3">
+                                                            <p class="mb-0"><?php echo $this->session->flashdata('success'); ?></p>
+                                                        </div>
+                                                    </div>
+
+                                                <?php header("Refresh: 3; url=auth/logout");}?>
                                                 <form action="<?=base_url('pengaturan/update');?>" method="post" enctype="multipart/form-data">
                                                     <div class="form-group">
                                                         <label for="admin_nama">Nama</label>
@@ -498,43 +474,58 @@
 
                                             <!-- Step 2 -->
                                             <div class="tab-pane" id="wizard-password" role="tabpanel">
-                                                <div class="form-group">
-                                                    <label for="wizard-simple2-location">Location</label>
-                                                    <input class="form-control form-control-alt" type="text" id="wizard-simple2-location" name="wizard-simple2-location">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="wizard-simple2-skills">Skills</label>
-                                                    <select class="form-control form-control-alt" id="wizard-simple2-skills" name="wizard-simple2-skills">
-                                                        <option value="">Please select your best skill</option>
-                                                        <option value="1">Photoshop</option>
-                                                        <option value="2">HTML</option>
-                                                        <option value="3">CSS</option>
-                                                        <option value="4">JavaScript</option>
-                                                    </select>
-                                                </div>
-                                                <div class="form-group">
-                                                    <div class="custom-control custom-checkbox custom-control-primary">
-                                                        <input type="checkbox" class="custom-control-input" id="wizard-simple2-terms" name="wizard-simple2-terms">
-                                                        <label class="custom-control-label" for="wizard-simple2-terms">Agree with the terms</label>
+                                                <p class="font-size-md text-muted">
+                                                    Kamu dapat mengubah password atau kata sandi ketika kamu masuk ke halaman ini.
+                                                </p>
+                                                <form action="<?php echo base_url("admin/ubah_password/pengaturan") ?>" method="post" enctype="multipart/form-data">
+                                                    <div class="form-group">
+                                                        <label for="password">Password Baru</label>
+                                                        <input type="password" class="form-control form-control-alt" id="admin_password" name="admin_password" placeholder="Masukan Password Baru">
+                                                        <small class="form-text text-danger"><?= form_error('admin_password'); ?></small>
                                                     </div>
-                                                </div>
+                                                    <div class="form-group text-center">
+                                                        <button type="submit" name="submit" class="btn btn-primary">Simpan</button>
+                                                    </div>
+                                                </form>
                                             </div>
                                             <!-- END Step 2 -->
 
                                             <!-- Step 3 -->
                                             
                                             <div class="tab-pane" id="wizard-system" role="tabpanel">
+                                                <p class="font-size-md text-muted">
+                                                    Kamu dapat mengatur seperti membuka akses dapat melihat nilai oleh warga belajar, membackup data sistem ini dan mengimport data ke sistem ini.
+                                                </p>
                                                 <div class="form-group">
                                                     <label for="wizard-simple2-firstname">First Name</label>
                                                     <input class="form-control form-control-alt" type="text" id="wizard-simple2-firstname" name="wizard-simple2-firstname">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="wizard-simple2-lastname">Last Name</label>
-                                                    <input class="form-control form-control-alt" type="text" id="wizard-simple2-lastname" name="wizard-simple2-lastname">
+                                                    <label for="btn-data-backup">Backup Data</label>
+                                                    <p class="font-size-sm text-muted">Data yang disimpan berupa file .sql. Jangan diberikan kepada orang yang tidak berhak!.</p>
+                                                    <a href="<?=base_url('pengaturan/backup');?>">
+                                                        <button type="button" id="btn-data-backup" class="btn btn-info mr-1 mb-3">
+                                                            <i class="fa fa-fw fa-download mr-1"></i> Backup
+                                                        </button>
+                                                    </a>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="wizard-simple2-email">Email</label>
-                                                    <input class="form-control form-control-alt" type="email" id="wizard-simple2-email" name="wizard-simple2-email">
+                                                    <label for="data-import">Import/Restore Data</label>
+                                                    <p class="font-size-sm text-muted">Hanya dapat menerima file berekstensi .sql, selain itu belum bisa.</p>
+                                                    <?php echo form_open_multipart(base_url('pengaturan/import'));?>
+                                                    <div class="form-group col-sm-6">
+                                                        <div class="custom-file">
+                                                            <!-- Populating custom file input label with the selected filename (data-toggle="custom-file-input" is initialized in Helpers.coreBootstrapCustomFileInput()) -->
+                                                            <input type="file" class="custom-file-input js-custom-file-input-enabled" data-toggle="custom-file-input" id="data-import" name="data-import">
+                                                            <label class="custom-file-label" for="data-import">Silahkan pilih data yang diimport</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <button type="submit" class="btn btn-primary mr-1 mb-3">
+                                                        <i class="fa fa-fw fa-upload mr-1"></i> Import
+                                                    </button>
+                                                    </div>
+                                                    <?php echo form_close();?>
                                                 </div>
                                             </div>
                                             <!-- END Step 3 -->
@@ -546,15 +537,12 @@
                                             <div class="row">
                                                 <div class="col-6">
                                                     <button type="button" class="btn btn-secondary" data-wizard="prev">
-                                                        <i class="fa fa-angle-left mr-1"></i> Previous
+                                                        <i class="fa fa-angle-left mr-1"></i> Sebelumnya
                                                     </button>
                                                 </div>
                                                 <div class="col-6 text-right">
                                                     <button type="button" class="btn btn-secondary" data-wizard="next">
-                                                        Next <i class="fa fa-angle-right ml-1"></i>
-                                                    </button>
-                                                    <button type="submit" class="sumit btn btn-primary d-none" data-wizard="finish">
-                                                        <i class="fa fa-check mr-1"></i> Submit
+                                                        Selanjutnya <i class="fa fa-angle-right ml-1"></i>
                                                     </button>
                                                 </div>
                                             </div>
@@ -620,30 +608,11 @@
 
         <!-- PageJS Plugins -->
         <script src="<?=base_url('assets/js/plugins/jquery-bootstrap-wizard/bs4/jquery.bootstrap.wizard.min.js');?>"></script>
-        <script src="<?=base_url('assets/js/plugins/select2/js/select2.full.min.js');?>"></script>
         <script src="<?=base_url('assets/js/plugins/jquery-validation/jquery.validate.min.js');?>"></script>
          <script src="<?=base_url('assets/js/plugins/es6-promise/es6-promise.auto.min.js');?>"></script>
         <script src="<?=base_url('assets/js/plugins/sweetalert2/sweetalert2.min.js');?>"></script>
+        <script src="<?=base_url('assets/js/plugins/bootstrap-notify/bootstrap-notify.min.js');?>"></script>
          <!-- Page JS Code -->
         <script src="<?=base_url('assets/js/pages/be_forms_wizard.min.js');?>"></script>
-        <script>
-        jQuery("#tahunajaran").change(function(){
-                var id=this.value;
-                $.ajax({
-                    type:'POST',
-                    url:'<?php echo base_url('dasbor/setTahunajaran');?>',
-                    data:{tahunajaran_id:id},
-                    success:function(data){
-                        location.reload();
-                    }
-
-                });
-            });
-        jQuery(function(){
-            One.helpers(['select2'])
-        });
-
-      
-</script>
     </body>
 </html>

@@ -18,12 +18,9 @@
         <!-- END Icons -->
 
         <!-- Stylesheets -->
-        <!-- PageJS CSS Plugins -->
-        <link rel="stylesheet" href="<?=base_url('assets/js/plugins/select2/css/select2.min.css')?>">
         <!-- Fonts and OneUI framework -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400italic,600,700%7COpen+Sans:300,400,400italic,600,700">
         <link rel="stylesheet" id="css-main" href="<?=base_url('assets/css/oneui.min.css')?>">
-
 
         <!-- You can include a specific file from css/themes/ folder to alter the default color theme of the template. eg: -->
         <!-- <link rel="stylesheet" id="css-theme" href="assets/css/themes/amethyst.min.css"> -->
@@ -125,7 +122,7 @@
                 <div class="content-side content-side-full">
                     <ul class="nav-main">
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="<?=base_url('dasbor')?>">
+                            <a class="nav-main-link active" href="<?=base_url('dasbor')?>">
                                 <i class="nav-main-link-icon si si-speedometer"></i>
                                 <span class="nav-main-link-name">Dasbor</span>
                             </a>
@@ -155,7 +152,7 @@
                             </a>
                         </li>
                         <li class="nav-main-item">
-                            <a class="nav-main-link active" href="<?=base_url('masukan')?>">
+                            <a class="nav-main-link" href="<?=base_url('masukan')?>">
                             <i class="nav-main-link-icon fab fa-rocketchat ml-1"></i>
                                 <span class="nav-main-link-name">Kirim Masukan</span>
                             </a>
@@ -193,13 +190,6 @@
                         <button type="button" class="btn btn-sm btn-dual mr-2 d-none d-lg-inline-block" data-toggle="layout" data-action="sidebar_mini_toggle">
                             <i class="fa fa-fw fa-ellipsis-v"></i>
                         </button>
-                        <!-- Tahun Ajaran  -->
-                        <select id="tahunajaran" class="js-select2 form-control form-control-lg form-control-alt" id="tahunajaran_id" name="tahunajaran_id" style="width: 100%;" data-placeholder="Silahkan pilih tahun ajaran" required>
-                            <option value=""></option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
-                            <?php foreach($tahunajarans as $tahunajaran):?>
-                                <option value="<?php echo $tahunajaran["tahunajaran_id"]?>" <?php if($this->session->userdata('tahunajaran_id')==$tahunajaran["tahunajaran_id"]) echo "selected";?>>Tahun Ajaran <?=$tahunajaran["tahunajaran_nama"]?></option>
-                            <?php endforeach;?>
-                        </select>
                         <!-- END Toggle Mini Sidebar -->
 
                         <!-- END Apps Modal -->
@@ -264,64 +254,7 @@
                 <!-- END Hero -->
 
                 <!-- Page Content -->
-                <div class="content">
-                    <!-- form -->
-                    <div class="block">
-                        <div class="block-header">
-                            <h3 class="block-title"><?php echo $title;?></h3>
-                        </div>
-                        <div class="block-content block-content-full">
-                                <div class="row push">
-                                    <div class="col-lg-4">
-                                        <p class="font-size-sm text-muted">
-                                            Kamu mempunyai masukan atau kritik? yuk tulis di bawah ini!
-                                        </p>
-                                    </div>
-                                    <div class="col-lg-8 col-xl-5 js-validation-masukan">
-                                        <div class="form-group">
-                                            <label for="masukan">Kirim Masukan</label>
-                                            <textarea class="form-control" id="masukan" name="masukan" rows="4" placeholder="Kirim masukanmu supaya pkbm menjadi lebih baik lagi.."></textarea>
-                                        </div>
-                                        <div class="form-group text-center">
-                                            <button id="reset" type="reset" class="btn btn-rounded btn-light">Reset</button>
-                                            <button id="submit" type="button" class="btn btn-rounded btn-info" data-toggle="layout" data-action="header_loader_on">Kirim Sekarang</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            
-                        </div>
-                    </div>
-                    <!-- END form -->
-                    <!-- data -->
-                    <div class="block">
-                        <div class="block-header">
-                            <h3 class="block-title">Riwayat <?php echo $title;?></h3>
-                        </div>
-                        <div class="block-content block-content-full">
-                            <div class="row push">
-                                <div class="col-lg-12">
-                                    <p class="font-size-sm text-muted">
-                                        Berikut ini riwayat masukan yang pernah kamu kirimkan!
-                                    </p>
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered table-striped table-vcenter">
-                                            <thead>
-                                                <tr class="text-center">
-                                                    <th>NO</th>
-                                                    <th>Tanggal</th>
-                                                    <th>Masukan</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody id="riwayat-masukan">
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end data -->
-                </div>
+              
                 <!-- END Page Content -->
 
             </main>
@@ -370,67 +303,5 @@
             webpack is putting everything together at assets/_es6/main/app.js
         -->
         <script src="<?=base_url('assets/js/oneui.app.min.js')?>"></script>
-
-        <!-- Page JS Plugins -->
-        <script src="<?=base_url('assets/js/plugins/bootstrap-notify/bootstrap-notify.min.js')?>"></script>
-        <script src="<?=base_url('assets/js/plugins/select2/js/select2.full.min.js');?>"></script>
-
-    
-        <script type="text/javascript">
-             jQuery(function(){
-                $("#tahunajaran").change(function(){
-                    var id=this.value;
-                    $.ajax({
-                        type:'POST',
-                        url:'<?php echo base_url('dasbor/setTahunajaran');?>',
-                        data:{tahunajaran_id:id},
-                        success:function(data){
-                            location.reload();
-                        }
-
-                    });
-                });
-                One.helpers(['select2']); 
-
-                getRiwayat();
-
-                $("#submit").click(function(){
-                    One.layout('header_loader_on');
-                    var masukan = $("#masukan").val();
-                    if(masukan ===""){
-                        One.helpers('notify', {type: 'warning', icon: 'fa fa-exclamation mr-1', message: 'Silahkan formulir masukan diisi terlebih dahulu'});
-                    }else{
-                        $.ajax({
-                            type:"POST",
-                            url:"<?php echo base_url('masukan/kirim_masukan');?>",
-                            data:{masukan:masukan},
-                            success:function(data){
-                                One.helpers('notify', {type: 'success', icon: 'fa fa-check mr-1', message: 'Masukan berhasil dikirim!'});
-                                $("#masukan").val("");
-                                getRiwayat();
-
-                            }
-
-                        });
-                    }
-                });
-
-                function getRiwayat(){
-                    var table="";
-                    $.ajax({
-                        type:"GET",
-                        url:"<?php echo base_url('masukan/history_masukan');?>",
-                        dataType:"json",
-                        success:function(data){
-                            for(var i=0;i<data.length;i++){
-                                table+='<tr><td class="text-center">'+(i+1)+'</td><td class="text-center">'+data[i].created_at+'</td><td><em>'+data[i].masukan+'</em></td></tr>';
-                            }
-                            $("#riwayat-masukan").html(table);
-                        }
-
-                    });
-                }
-            });
-        </script>
     </body>
 </html>

@@ -4,22 +4,6 @@
 <!-- Main Container -->
 <main id="main-container">
 
-<!-- Hero -->
-<div class="bg-body-light">
-    <div class="content content-full">
-        <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
-            <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
-                <ol class="breadcrumb breadcrumb-alt">
-                    <li class="breadcrumb-item"><?=$actor;?></li>
-                    <li class="breadcrumb-item" aria-current="page">
-                        <a class="link-fx" href=""><?=$title;?></a>
-                    </li>
-                </ol>
-            </nav>
-        </div>
-    </div>
-</div>
-<!-- END Hero -->
 
 <!-- Page Content -->
 <div class="content">
@@ -33,6 +17,9 @@
                     Tambah
                 </button>
                 </a>
+                <button type="button" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#modal-cetak">
+                    Cetak
+                </button>
                 <a href="<?=base_url();?>">
                     <button type="button" class="btn btn-sm btn-light">
                         Kembali
@@ -97,7 +84,40 @@
         </div>
     </div>
     <!-- END Dynamic Table Full -->
-
+<div class="modal fade" id="modal-cetak" tabindex="-1" role="dialog" aria-labelledby="modal-block-fadein" style="display: none;" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="block block-themed block-transparent mb-0">
+                        <div class="block-header bg-primary-dark">
+                            <h3 class="block-title">Cetak <?=$title;?></h3>
+                            <div class="block-options">
+                                <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
+                                    <i class="fa fa-fw fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="block-content block-content-full font-size-sm">
+                            <p>Silahkan pilih tipe file cetak yang kamu inginkan!</p>
+                            <div class="text-center">
+                                <a href="<?=base_url('kelas/rombel/xlsx');?>" title="Klik Berikut Untuk Download tipe .xlsx">
+                                    <button type="button" class="btn btn-rounded btn-success">
+                                        <i class="far fa-file-excel"></i> Spreadsheet
+                                    </button>
+                                </a>
+                            <a href="<?=base_url('kelas/rombel/pdf');?>" title="Klik Berikut Untuk Download tipe .pdf">
+                                <button type="button" class="btn btn-rounded btn-danger">
+                                    <i class="far fa-file-pdf"></i> PDF
+                                </button>
+                            </a>
+                            </div>
+                        </div>
+                        <div class="block-content block-content-full text-right border-top">
+                            <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal"><i class="fa fa-check mr-1"></i>Tutup</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 </div>
 <!-- END Page Content -->
 

@@ -7,17 +7,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		public function getTahunAjaran(){
             return $this->db->get('tahunajaran')->result_array();
         }
-        public function getAdmin($id){
+        public function get_admin($id){
         	$this->db->where('admin_id',$id);
         	return $this->db->get('admin')->row_array();
-        }
-        public function getTutor($id){
-        	$this->db->where('tutor_id',$id);
-        	return $this->db->get('tutor')->row_array();
-        }
-        public function getWargabelajar($id){
-        	$this->db->where('wargabelajar_id',$id);
-        	return $this->db->get('wargabelajar')->row_array();
         }
         public function updateAdmin($id)
         {
@@ -51,5 +43,46 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             }
             return "default.jpg";
 
+        }
+        public function get_tutor($id)
+        {
+            $this->db->where('tutor_id',$id);
+            return $this->db->get('tutor')->row_array();
+        }
+        public function get_pass_tutor($id)
+        {
+            return $this->db->query("SELECT tutor.tutor_password as password FROM tutor WHERE tutor.tutor_id='$id'")->row_array();
+        }
+        public function update_pass_tutor($id,$data=array())
+        {
+            $this->db->where('tutor_id',$id);
+            return $this->db->update('tutor',$data);
+        }
+        public function get_wb($id)
+        {
+            return $this->db->query('SELECT * FROM wargabelajar RIGHT JOIN tahunajaran ON tahunajaran.tahunajaran_id=wargabelajar.tahunajaran_id')->row_array();
+        }
+        public function get_pass_wb($id)
+        {
+            return $this->db->query("SELECT wargabelajar.wargabelajar_password as password FROM wargabelajar WHERE wargabelajar.wargabelajar_id='$id'")->row_array();
+        }
+        public function update_pass_wb($id,$data=array())
+        {
+            $this->db->where('wargabelajar_id',$id);
+            return $this->db->update('wargabelajar',$data);
+        }
+        public function get_pimpinan($id)
+        {
+            $this->db->where('pimpinan_id',$id);
+            return $this->db->get('pimpinan')->row_array();
+        }
+        public function get_pass_pimpinan($id)
+        {
+            return $this->db->query("SELECT pimpinan.pimpinan_password as password FROM pimpinan WHERE pimpinan.pimpinan_id='$id'")->row_array();
+        }
+        public function update_pass_pimpinan($id,$data=array())
+        {
+            $this->db->where('pimpinan_id',$id);
+            return $this->db->update('pimpinan',$data);
         }
 	}

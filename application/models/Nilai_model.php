@@ -32,6 +32,14 @@
         public function insetToDet($data=array()){
         	return $this->db->insert('nilai_details',$data);
         }
+        public function getnilai($id){
+            $this->db->where('nilai_details_id',$id);
+            return $this->db->get('nilai_details')->row_array();
+        }
+        public function updatenilai($id,$data=array()){
+            $this->db->where('nilai_details_id',$id);
+            return $this->db->update('nilai_details',$data);
+        }
         public function getDataNilai($nilai){
         	return $this->db->query("SELECT * FROM nilai_details INNER JOIN nilai ON nilai.nilai_id=nilai_details.nilai_id WHERE nilai_details.nilai_id='$nilai' ORDER BY nilai_details.nilai_details_id DESC")->result_array();
         }

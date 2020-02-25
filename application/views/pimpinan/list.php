@@ -4,23 +4,6 @@
 <!-- Main Container -->
 <main id="main-container">
 
-<!-- Hero -->
-<div class="bg-body-light">
-    <div class="content content-full">
-        <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
-            <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
-                <ol class="breadcrumb breadcrumb-alt">
-                    <li class="breadcrumb-item"><?=$actor;?></li>
-                    <li class="breadcrumb-item" aria-current="page">
-                        <a class="link-fx" href=""><?=$title;?></a>
-                    </li>
-                </ol>
-            </nav>
-        </div>
-    </div>
-</div>
-<!-- END Hero -->
-
 <!-- Page Content -->
 <div class="content">
     <!-- Dynamic Table Full -->
@@ -73,6 +56,7 @@
                                         <tr>
                                             <th>NO</th>
                                             <th>Nama Lengkap</th>
+                                            <th>Username</th>
                                             <th style="width: 15%;">Aksi</th>
                                         </tr>
                                     </thead>
@@ -80,7 +64,8 @@
                                         <?php $no=0; foreach($pimpinans as $pimpinan):$no++?>
                                             <tr id="$pimpinan->pimpinan_id;?>">
                                                 <td><?=$no;?></td>
-                                                <td><?=$pimpinan->pimpinan_nama;?>
+                                                <td><?=$pimpinan->pimpinan_nama;?></td>
+                                                <td><?=$pimpinan->pimpinan_username;?></td>
                                                 <td class="text-center">
                                                     <div class="btn-group">
                                                         <a href="<?=base_url('pimpinan/ubah/').$pimpinan->pimpinan_id;?>">

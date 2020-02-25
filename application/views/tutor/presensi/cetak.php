@@ -76,6 +76,7 @@
                                         <thead class="text-center">
                                             <tr>
                                                 <th rowspan="2" style="vertical-align:middle;width:8%;">NO</th>
+                                                <th rowspan="2" style="vertical-align:middle;" width="10%">Nomor Induk</th>
                                                 <th rowspan="2" style="vertical-align:middle;">Nama</th>
                                                 <?php 
                                                     $n = 5;
@@ -116,6 +117,7 @@
                                             
                                             <tr>
                                                 <td class="text-center"><?php echo $no;?></td>
+                                                <td><?php echo $wargabelajar->wargabelajar_nomor_induk;?></td>
                                                 <td><?php echo $wargabelajar->wargabelajar_nama;?></td>
                                                 <td class="text-center"><?php echo $total['total'];?></td>
                                                 <td class="text-center"><?php echo $hadir['hadir'];?></td>

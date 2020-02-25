@@ -135,12 +135,12 @@
                         <div class="block-content block-content-full font-size-sm">
                             <p>Silahkan pilih tipe file cetak yang kamu inginkan!</p>
                             <div class="text-center">
-                                <a href="<?=base_url('jadwal/cetak/').$this->uri->segment(3).'/xlsx';?>" title="Klik Berikut Untuk Download tipe .xlsx">
+                                <a href="<?=base_url('jadwal/matpel_lihat/').$this->uri->segment(3).'/xlsx';?>" title="Klik Berikut Untuk Download tipe .xlsx">
                                     <button type="button" class="btn btn-rounded btn-success">
                                         <i class="far fa-file-excel"></i> Spreadsheet
                                     </button>
                                 </a>
-                            <a href="<?=base_url('jadwal/cetak/').$this->uri->segment(3).'/pdf';?>" title="Klik Berikut Untuk Download tipe .PDF">
+                            <a href="<?=base_url('jadwal/matpel_lihat/').$this->uri->segment(3).'/pdf';?>" title="Klik Berikut Untuk Download tipe .PDF">
                                 <button type="button" class="btn btn-rounded btn-danger">
                                     <i class="far fa-file-pdf"></i> PDF
                                 </button>

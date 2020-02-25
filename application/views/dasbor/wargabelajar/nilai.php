@@ -154,12 +154,6 @@
                             </a>
                         </li>
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="<?=base_url('profil')?>">
-                            <i class="nav-main-link-icon si si-user ml-1"></i>
-                                <span class="nav-main-link-name">Profil</span>
-                            </a>
-                        </li>
-                        <li class="nav-main-item">
                             <a class="nav-main-link" href="<?=base_url('masukan')?>">
                             <i class="nav-main-link-icon fab fa-rocketchat ml-1"></i>
                                 <span class="nav-main-link-name">Kirim Masukan</span>
@@ -227,17 +221,11 @@
                                     <img class="img-avatar img-avatar48 img-avatar-thumb" src="<?= base_url ('upload/images/'.$this->session->userdata('foto'));?>" alt="">
                                 </div>
                                 <div class="p-2">
-                                    <h5 class="dropdown-header text-uppercase">User Options</h5>
-                                    <a class="dropdown-item d-flex align-items-center justify-content-between" href="<?=base_url('profil')?>">
-                                        <span>Profil</span>
-                                            <i class="si si-user ml-1"></i>
-                                    </a>
+                                    <h5 class="dropdown-header text-uppercase">Pilihan</h5>
                                     <a class="dropdown-item d-flex align-items-center justify-content-between" href="<?=base_url('pengaturan')?>">
                                         <span>Pengaturan</span>
                                         <i class="si si-settings"></i>
                                     </a>
-                                    <div role="separator" class="dropdown-divider"></div>
-                                    <h5 class="dropdown-header text-uppercase">Aksi</h5>
                                     <a class="dropdown-item d-flex align-items-center justify-content-between" href="<?=base_url('auth/logout')?>">
                                         <span>Log Out</span>
                                         <i class="si si-logout ml-1"></i>

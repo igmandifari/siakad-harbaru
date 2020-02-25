@@ -4,22 +4,6 @@
 <!-- Main Container -->
 <main id="main-container">
 
-<!-- Hero -->
-<div class="bg-body-light">
-    <div class="content content-full">
-        <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
-            <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
-                <ol class="breadcrumb breadcrumb-alt">
-                    <li class="breadcrumb-item"><?=$actor;?></li>
-                    <li class="breadcrumb-item" aria-current="page">
-                        <a class="link-fx" href=""><?=$title;?></a>
-                    </li>
-                </ol>
-            </nav>
-        </div>
-    </div>
-</div>
-<!-- END Hero -->
 
 <!-- Page Content -->
 <div class="content">
@@ -84,8 +68,8 @@
                         </div>
                         <div class="form-group">
                             <label for="tutor_agama">Agama</label>
-                            <select class="custom-select" id="tutor_agama" name="tutor_agama">
-                                <option value="0">Silahkan Pilih</option>
+                            <select class="js-select2 form-control form-control-lg form-control-alt" id="tutor_agama" name="tutor_agama" data-placeholder="Silahkan Pilih Agama">
+                                <option></option>
                                 <option value="Islam">Islam</option>
                                 <option value="Kristen Protestan">Kristen Protestan</option>
                                 <option value="Kristen Katolik">Kristen Katolik</option>
@@ -107,8 +91,8 @@
                         </div>
                         <div class="form-group">
                             <label for="tutor_pendidikan_terakhir">Pendidikan Terakhir</label>
-                            <select class="custom-select" id="tutor_pendidikan_terakhir" name="tutor_pendidikan_terakhir">
-                                <option value="0">Silahkan Pilih</option>
+                            <select class="js-select2 form-control form-control-lg form-control-alt" id="tutor_pendidikan_terakhir" name="tutor_pendidikan_terakhir" data-placeholder="Silahkan Pilih Pendidikan Terakhir">
+                                <option></option>
                                 <option value="SLTA Sederajat">SLTA Sederajat</option>
                                 <option value="D3">D3</option>
                                 <option value="D4">D4</option>

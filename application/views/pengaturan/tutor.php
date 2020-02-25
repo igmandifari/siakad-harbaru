@@ -5,7 +5,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
-        <title>Presensi <?=$title?></title>
+        <title><?=$title?></title>
 
         <meta name="robots" content="noindex, nofollow">
 
@@ -18,57 +18,16 @@
         <!-- END Icons -->
 
         <!-- Stylesheets -->
-        <!-- Page JS Plugins CSS -->
-        <link rel="stylesheet" href="<?=base_url('assets/js/plugins/datatables/dataTables.bootstrap4.css')?>">
+        <!-- PageJS Plugins CSS -->
         <link rel="stylesheet" href="<?=base_url('assets/js/plugins/select2/css/select2.min.css')?>">
+        <link rel="stylesheet" href="<?=base_url('assets/js/plugins/sweetalert2/sweetalert2.min.css');?>">
         <!-- Fonts and OneUI framework -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400italic,600,700%7COpen+Sans:300,400,400italic,600,700">
         <link rel="stylesheet" id="css-main" href="<?=base_url('assets/css/oneui.min.css')?>">
 
-        <!-- You can include a specific file from css/themes/ folder to alter the default color theme of the template. eg: -->
-        <!-- <link rel="stylesheet" id="css-theme" href="<?=base_url('assets/css/themes/amethyst.min.css')?>"> -->
-        <!-- END Stylesheets -->
     </head>
     <body>
-        <!-- Page Container -->
-        <!--
-            Available classes for #page-container:
-
-        GENERIC
-
-            'enable-cookies'                            Remembers active color theme between pages (when set through color theme helper Template._uiHandleTheme())
-
-        SIDEBAR & SIDE OVERLAY
-
-            'sidebar-r'                                 Right Sidebar and left Side Overlay (default is left Sidebar and right Side Overlay)
-            'sidebar-mini'                              Mini hoverable Sidebar (screen width > 991px)
-            'sidebar-o'                                 Visible Sidebar by default (screen width > 991px)
-            'sidebar-o-xs'                              Visible Sidebar by default (screen width < 992px)
-            'sidebar-dark'                              Dark themed sidebar
-
-            'side-overlay-hover'                        Hoverable Side Overlay (screen width > 991px)
-            'side-overlay-o'                            Visible Side Overlay by default
-
-            'enable-page-overlay'                       Enables a visible clickable Page Overlay (closes Side Overlay on click) when Side Overlay opens
-
-            'side-scroll'                               Enables custom scrolling on Sidebar and Side Overlay instead of native scrolling (screen width > 991px)
-
-        HEADER
-
-            ''                                          Static Header if no class is added
-            'page-header-fixed'                         Fixed Header
-
-        HEADER STYLE
-
-            ''                                          Light themed Header
-            'page-header-dark'                          Dark themed Header
-
-        MAIN CONTENT LAYOUT
-
-            ''                                          Full width Main Content if no class is added
-            'main-content-boxed'                        Full width Main Content with a specific maximum width (screen width > 1200px)
-            'main-content-narrow'                       Full width Main Content with a percentage width (screen width > 1200px)
-        -->
+     
         <div id="page-container" class="sidebar-o sidebar-dark enable-page-overlay side-scroll page-header-fixed">
             <!-- Side Overlay-->
             <aside id="side-overlay" class="font-size-sm">
@@ -76,21 +35,25 @@
                 <div class="content-header border-bottom">
                     <!-- User Avatar -->
                     <a class="img-link mr-1" href="javascript:void(0)">
-                        <img class="img-avatar img-avatar32" src="<?= base_url ('upload/images/'.$this->session->userdata('foto'));?>" alt="">
+                        <img class="img-avatar img-avatar32" src="<?= base_url('upload/images/').$this->photo;?>" alt="">
                     </a>
                     <!-- END User Avatar -->
 
                     <!-- User Info -->
                     <div class="ml-2">
-                        <a class="link-fx text-dark font-w600" href="javascript:void(0)"><?= $this->session->userdata('nama');?></a>
+                        <a class="link-fx text-dark font-w600" href="javascript:void(0)"><?= $this->name;?></a>
                     </div>
                     <!-- END User Info -->
 
-                  
+                    <!-- Close Side Overlay -->
+                    <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
+                    <a class="ml-auto btn btn-sm btn-dual" href="javascript:void(0)" data-toggle="layout" data-action="side_overlay_close">
+                        <i class="fa fa-fw fa-times text-danger"></i>
+                    </a>
+                    <!-- END Close Side Overlay -->
                 </div>
                 <!-- END Side Header -->
 
-                
             </aside>
             <!-- END Side Overlay -->
 
@@ -208,7 +171,7 @@
                             </a>
                         </li>
                         <li class="nav-main-item">
-                            <a class="nav-main-link active" href="<?=base_url('presensi')?>">
+                            <a class="nav-main-link" href="<?=base_url('presensi')?>">
                             <i class="nav-main-link-icon si si-note"></i>
                                 <span class="nav-main-link-name">Presensi</span>
                             </a>
@@ -220,7 +183,7 @@
                             </a>
                         </li>
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="<?=base_url('pengaturan')?>">
+                            <a class="nav-main-link active" href="<?=base_url('pengaturan')?>">
                             <i class="nav-main-link-icon si si-settings"></i>
                                 <span class="nav-main-link-name">Pengaturan</span>
                             </a>
@@ -231,9 +194,6 @@
                                 <span class="nav-main-link-name">Keluar</span>
                             </a>
                         </li>
-                        
-                   
-                       
                     </ul>
                 </div>
                 <!-- END Side Navigation -->
@@ -312,136 +272,173 @@
 
             <!-- Main Container -->
             <main id="main-container">
-            <!-- Page Content -->
-                <div class="content">
-                    <!-- Jadwal -->
+
+                <!-- Hero -->
+                <div class="bg-body-light">
+                    <div class="content content-full">
+                        <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
+                            <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
+                                <ol class="breadcrumb breadcrumb-alt">
+                                    <li class="breadcrumb-item">Home</li>
+                                    <li class="breadcrumb-item" aria-current="page">
+                                        <a class="link-fx" href=""><?=$title;?></a>
+                                    </li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                <!-- END Hero -->
+
+
+                <!-- Page Content -->
+                <div class="content content-narrow">
+                    <!-- Simple Wizards -->
                     <div class="block">
                         <div class="block-header block-header-default">
-                            <h3 class="block-title"><?php echo "Presensi ".$kelas['kelas_nama']." Mata Pelajaran ".$kelas['matpel_nama'];?></h3>
+                            <h3 class="block-title"><?=$title;?></h3>
                             <div class="block-options">
-                                
-
-                                <a href="<?=base_url('jadwalmengajar');?>">
-                                    <button type="button" class="btn btn-sm btn-info">
-                                        Jadwal
-                                    </button>
-                                </a>
-
-                                <button type="button" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#modal-cetak">
-                                    Cetak
-                                </button>
-
-                                <a href="<?=base_url('presensi/jadwal/').$this->uri->segment(3);?>">
+                                <a href="#">
                                     <button type="button" class="btn btn-sm btn-light">
                                         Kembali
                                     </button>
                                 </a>
                             </div>
                         </div>
-                      
-                        
-                        <div class="block-content block-content-full">
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-striped table-vcenter">
-                                    <thead>
-                                        <tr>
-                                            <th colspan="2" class="text-center"><?php echo date("d-F-Y",strtotime($tanggal['presensi_tanggal']));?></th>
-                                        </tr>
-                                        <tbody>
-                                            <tr>
-                                                <td>Mata Pelajaran</td>
-                                                <td>: <?=$kelas['matpel_nama'];?></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Tipe Pembelajaran</td>
-                                                <td>: Tatap Muka</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Tutor</td>
-                                                <td>: <?=$this->session->userdata('nama');?></td>
-                                            </tr>
-                                        </tbody>
-                                    </thead>
-                                    <!-- <tbody>
-                                    </tbody> -->
-                                </table>
-                            </div>
-                            <p>
-                                Silahkan memasukan data presensi pada tanggal <?php echo date("d F Y",strtotime($tanggal['presensi_tanggal']));?>
-                            </p>
-                            <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _es6/pages/be_tables_datatables.js -->
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
-                                    <thead class="text-center">
-                                        <tr>
-                                            <th width="10%">NO</th>
-                                            <th>Nama</th>
-                                            <th width="10%">Status</th>
-                                            <th width="15%">Keterangan</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php $no=0;foreach($wargabelajars as $wargabelajar):$no++?>
-                                            <tr>
-                                                <td class="text-center"><?=$no?></td>
-                                                <td><?=$wargabelajar->wargabelajar_nama.'<br>'.$wargabelajar->wargabelajar_nomor_induk?></td>
-                                                <td class="text-center"><span id="<?=$wargabelajar->presensi_det_id?>"><?=$wargabelajar->presensi_det_ket?></span></td>
-                                                <td class="text-center">
-                                                    
-                                                       <button type="button" class="do_presensi btn btn-info js-click-ripple-enabled btn-sm" data-toggle="click-ripple" style="overflow: hidden; position: relative; z-index: 1;" data-status="H" data-id="<?=$wargabelajar->presensi_det_id?>">H</button>
-                                                       <button type="button" class="do_presensi btn btn-success js-click-ripple-enabled btn-sm" data-toggle="click-ripple" style="overflow: hidden; position: relative; z-index: 1;"data-status="S" data-id="<?=$wargabelajar->presensi_det_id?>">S</button>
-                                                       <button type="button" class="do_presensi btn btn-warning js-click-ripple-enabled btn-sm" data-toggle="click-ripple" style="overflow: hidden; position: relative; z-index: 1;"data-status="I" data-id="<?=$wargabelajar->presensi_det_id?>">I</button>
-                                                       <button type="button" class="do_presensi btn btn-danger js-click-ripple-enabled btn-sm" data-toggle="click-ripple" style="overflow: hidden; position: relative; z-index: 1;"data-status="A" data-id="<?=$wargabelajar->presensi_det_id?>">A</button>
-                                                    
-                                                </td>
-                                            </tr>
-                                        <?php endforeach;?>
-                                    </tbody>
+                        <div class="row">
+                           
+                            <div class="col-sm-12">
+                                <!-- Simple Wizard 2 -->
+                                <div class="js-wizard-simple block block">
+                                    <!-- Step Tabs -->
+                                    <ul class="nav nav-tabs nav-tabs-alt nav-justified" role="tablist">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#wizard-profile" data-toggle="tab"><i class="fa fa-user"></i> Profil</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#wizard-password" data-toggle="tab"><i class="fa fa-user-cog"></i> Ubah Kata Sandi</a>
+                                        </li>
+                                    </ul>
+                                    <!-- END Step Tabs -->
+
+                                    <!-- Form -->
+                                   
+                                        <!-- Steps Content -->
+                                        <div class="block-content block-content-full tab-content px-md-5" style="min-height: 303px;">
+                                            <!-- Step 1 -->
+                                            <div class="tab-pane active" id="wizard-profile" role="tabpanel">
+                                                <p class="font-size-md text-muted">
+                                                    Halo <?php echo $this->name;?>! Kamu bisa lihat data-data kamu dibawah ini! Apabila tidak sesuai atau ada perubahan silahkan hubungi pihak operator ya!
+                                                </p>
+                                                <div class="form-group">
+                                                    <label for="tutor_nomor_induk">Nomor Induk</label>
+                                                    <input type="text" id="tutor_nomor_induk" name="tutor_nomor_induk" class="form-control form-control-alt" value="<?php echo $tutor['tutor_nomor_induk'] ;?>" disabled>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="tutor_nama">Nama Lengkap</label>
+                                                    <input type="text" id="tutor_nama" name="tutor_nama" class="form-control form-control-alt" value="<?php echo $tutor['tutor_nama'] ;?>" disabled>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="">Jenis Kelamin</label>
+                                                    <input type="text" id="tutor_jenis_kelamin" name="tutor_jenis_kelamin" class="form-control form-control-alt" value="<?php echo $tutor['tutor_jenis_kelamin'] ;?>" disabled>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="tutor_ttl">Tempat, Tanggal Lahir</label>
+                                                    <input type="text" id="tutor_ttl" name="tutor_ttl" class="form-control form-control-alt" value="<?php echo $tutor['tutor_tempat_lahir'].', '.date("d F Y",strtotime($tutor['tutor_tanggal_lahir'])) ;?>" disabled>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="tutor_agama">Agama</label>
+                                                    <input type="text" id="tutor_agama" name="tutor_agama" class="form-control form-control-alt" value="<?php echo $tutor['tutor_agama'] ;?>" disabled>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="tutor_kewarganegaraan">Kewarganegaraan</label>
+                                                    <input type="text" id="tutor_kewarganegaraan" name="tutor_kewarganegaraan" class="form-control form-control-alt" value="<?php echo $tutor['tutor_kewarganegaraan'] ;?>" disabled>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="tutor_pendidikan_terakhir">Pendidikan Terakhir</label>
+                                                    <input type="text" id="tutor_pendidikan_terakhir" name="tutor_pendidikan_terakhir" class="form-control form-control-alt" value="<?php echo $tutor['tutor_pendidikan_terakhir'] ;?>" disabled>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="tutor_alamat">Alamat</label>
+                                                    <input type="text" id="tutor_alamat" name="tutor_alamat" class="form-control form-control-alt" value="<?php echo $tutor['tutor_alamat_jalan'].' '.$tutor['tutor_alamat_rtrw'] ;?>" disabled>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="tutor_alamat_desa">Kelurahan/Desa</label>
+                                                    <input type="text" id="tutor_alamat_desa" name="tutor_alamat_desa" class="form-control form-control-alt" value="<?php echo $tutor['tutor_alamat_desa'] ;?>" disabled>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="tutor_alamat_kecamatan">Kecamatan</label>
+                                                    <input type="text" id="tutor_alamat_kecamatan" name="tutor_alamat_kecamatan" class="form-control form-control-alt" value="<?php echo $tutor['tutor_alamat_kecamatan'] ;?>" disabled>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="tutor_alamat_kabupaten">Kota/Kabupaten</label>
+                                                    <input type="text" id="tutor_alamat_kabupaten" name="tutor_alamat_kabupaten" class="form-control form-control-alt" value="<?php echo $tutor['tutor_alamat_kabupaten'] ;?>" disabled>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="tutor_alamat_provinsi">Provinsi</label>
+                                                    <input type="text" id="tutor_alamat_provinsi" name="tutor_alamat_provinsi" class="form-control form-control-alt" value="<?php echo $tutor['tutor_alamat_provinsi'] ;?>" disabled>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="tutor_alamat_kodepos">Kode POS</label>
+                                                    <input type="text" id="tutor_alamat_kodepos" name="tutor_alamat_kodepos" class="form-control form-control-alt" value="<?php echo $tutor['tutor_alamat_kodepos'] ;?>" disabled>
+                                                </div>
+                                                
+                                            </div>
+                                            
+                                            <!-- END Step 1 -->
+
+                                            <!-- Step 2 -->
+                                            <div class="tab-pane" id="wizard-password" role="tabpanel">
+                                                <p class="font-size-md text-muted">
+                                                    Halo <?php echo $this->name;?>! Kamu bisa mengubah kata sandi atau password yang digunakan saat autentikasi!.
+                                                </p>
+                                                
+                                                    <div class="form-group">
+                                                        <label for="old-password">Password Lama</label>
+                                                        <input type="password" class="form-control form-control-alt" id="old-password" name="old-password" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="new-password">Password Baru</label>
+                                                        <input type="password" class="form-control form-control-alt" id="new-password" name="new-password" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="confirm-password">Konfirmasi Password Baru</label>
+                                                        <input type="password" class="form-control form-control-alt" id="confirm-password" name="confirm-password" required>
+                                                    </div>
+                                                    <div class="form-group text-center">
+                                                        <button type="submit" name="submit" class="btn btn-primary" id="btn-change-password">Ya, ubah password!</button>
+                                                    </div>
+                                                
+                                            </div>
+                                            <!-- END Step 2 -->
+
+                                        </div>
+                                        <!-- END Steps Content -->
+
+                                        <!-- Steps Navigation -->
+                                        <div class="block-content block-content-sm block-content-full bg-body-light rounded-bottom">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <button type="button" class="btn btn-secondary" data-wizard="prev">
+                                                        <i class="fa fa-angle-left mr-1"></i> Sebelumnya
+                                                    </button>
+                                                </div>
+                                                <div class="col-6 text-right">
+                                                    <button type="button" class="btn btn-secondary" data-wizard="next">
+                                                        Selanjutnya <i class="fa fa-angle-right ml-1"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- END Steps Navigation -->
                                     
-                                </table>
-                            </div>
-                            <div class="col-sm-12 text-center">
-                                <a href="<?=base_url('presensi/jadwal/').$this->uri->segment(3)?>">
-                                    <button type="button" class="btn btn-primary js-click-ripple-enabled" data-toggle="click-ripple" style="overflow: hidden; position: relative; z-index: 1;"><span class="click-ripple animate" style="height: 87.2656px; width: 87.2656px; top: -21.625px; left: 31.375px;"></span>Kembali</button>
-                                </a>
+                                    <!-- END Form -->
+                                </div>
+                                <!-- END Simple Wizard 2 -->
                             </div>
                         </div>
                     </div>
-                    <!-- End Jadwal -->
-                     <div class="modal fade" id="modal-cetak" tabindex="-1" role="dialog" aria-labelledby="modal-block-fadein" style="display: none;" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="block block-themed block-transparent mb-0">
-                        <div class="block-header bg-primary-dark">
-                            <h3 class="block-title">Cetak <?=$title;?></h3>
-                            <div class="block-options">
-                                <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
-                                    <i class="fa fa-fw fa-times"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="block-content block-content-full font-size-sm">
-                            <p>Silahkan pilih tipe file cetak yang kamu inginkan!</p>
-                            <div class="text-center">
-                                <a href="<?=base_url('presensi/jadwal/').$this->uri->segment(3).'/'.$this->uri->segment(4).'/xlsx';?>" title="Klik Berikut Untuk Download tipe .xlsx">
-                                    <button type="button" class="btn btn-rounded btn-success">
-                                        <i class="far fa-file-excel"></i> Spreadsheet
-                                    </button>
-                                </a>
-                            <a href="<?=base_url('presensi/jadwal/').$this->uri->segment(3).'/'.$this->uri->segment(4).'/pdf';?>" title="Klik Berikut Untuk Download tipe .PDF">
-                                <button type="button" class="btn btn-rounded btn-danger">
-                                    <i class="far fa-file-pdf"></i> PDF
-                                </button>
-                            </a>
-                            </div>
-                        </div>
-                        <div class="block-content block-content-full text-right border-top">
-                            <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal"><i class="fa fa-check mr-1"></i>Tutup</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+                    <!-- END Simple Wizards -->                   
                 </div>
                 <!-- END Page Content -->
 
@@ -492,45 +489,78 @@
         -->
         <script src="<?=base_url('assets/js/oneui.app.min.js')?>"></script>
 
-        <!-- Page JS Plugins -->
-        <script src="<?=base_url('assets/js/plugins/datatables/jquery.dataTables.min.js')?>"></script>
-        <script src="<?=base_url('assets/js/plugins/datatables/dataTables.bootstrap4.min.js')?>"></script>
+        <!-- PageJS Plugins -->
+        <script src="<?=base_url('assets/js/plugins/jquery-bootstrap-wizard/bs4/jquery.bootstrap.wizard.min.js');?>"></script>
         <script src="<?=base_url('assets/js/plugins/select2/js/select2.full.min.js');?>"></script>
-
-        <!-- Page JS Code -->
-        <script src="<?=base_url('assets/js/pages/be_tables_datatables.min.js')?>"></script>
-        
+        <script src="<?=base_url('assets/js/plugins/jquery-validation/jquery.validate.min.js');?>"></script>
+         <script src="<?=base_url('assets/js/plugins/es6-promise/es6-promise.auto.min.js');?>"></script>
+        <script src="<?=base_url('assets/js/plugins/sweetalert2/sweetalert2.min.js');?>"></script>
+        <script src="<?=base_url('assets/js/plugins/bootstrap-notify/bootstrap-notify.min.js');?>"></script>
+         <!-- Page JS Code -->
+        <script src="<?=base_url('assets/js/pages/be_forms_wizard.min.js');?>"></script>
         <script>
-            jQuery(function(){
-                $(".do_presensi").click(function(){
-                    var status = $(this).data("status");
-                    var id = $(this).data("id");
-                    
-                    $("#"+id+"").text("loading....");
-                    $.ajax({
-                        type:"POST",
-                        url:"<?=base_url('presensi/update_presensi_det/')?>",
-                        data:{status:status,id:id},
-                        success: function(data){
-                            $("#"+id+"").text(status);
-                        }
-                    });
-                });
-                $("#tahunajaran").change(function(){
-                    var id=this.value;
-                    $.ajax({
-                        type:'POST',
-                        url:'<?php echo base_url('dasbor/setTahunajaran');?>',
-                        data:{tahunajaran_id:id},
-                        success:function(data){
-                            location.reload();
-                        }
 
-                    });
+
+        jQuery("#tahunajaran").change(function(){
+                var id=this.value;
+                $.ajax({
+                    type:'POST',
+                    url:'<?php echo base_url('dasbor/setTahunajaran');?>',
+                    data:{tahunajaran_id:id},
+                    success:function(data){
+                        location.reload();
+                    }
+
                 });
-                One.helpers(['select2']);              
             });
-        </script>
+        jQuery(function(){
 
+            jQuery("#btn-change-password").on('click',function(){
+                var old_password = jQuery("#old-password").val();
+                var new_password = jQuery("#new-password").val();
+                var confirm_password = jQuery("#confirm-password").val();
+                $.ajax({
+                    url:'<?php echo base_url('pengaturan/update_password');?>',
+                    type:'post',
+                    data:{old_password:old_password,new_password:new_password,confirm_password:confirm_password},
+                    success:function(data){
+                        status();
+                    },error:function(data){
+                        One.helpers('notify', {align: 'center', type: 'danger', icon: 'fa fa-times mr-1', message: 'Ooops terjadi kesalahan....Yuk, coba lagi!'});
+                    }
+                });
+            });
+            One.helpers(['select2']);
+
+            function status(){
+                $.ajax({
+                    url:'<?php echo base_url('pengaturan/status');?>',
+                    type:'get',
+                    dataType:'json',
+                    success:function(data){
+                        if(data.status==="wrong"){
+                            One.helpers('notify', {align: 'center', type: 'warning', icon: 'fa fa-exclamation mr-1', message: 'Password lamanya salah! :('});
+                        }else if(data.status==="minus"){
+                            One.helpers('notify', {align: 'center', type: 'warning', icon: 'fa fa-exclamation mr-1', message: 'Yaa maap passwordnya tidak boleh kurang dari 7 karakter :('});
+                        }else if(data.status==="ignore"){
+                            One.helpers('notify', {align: 'center', type: 'warning', icon: 'fa fa-exclamation mr-1', message: 'Password yang kamu inginkan tidak sesuai! :('});
+                        }else if(data.status==="error"){
+                            One.helpers('notify', {align: 'center', type: 'danger', icon: 'fa fa-times mr-1', message: 'Ooops terjadi kesalahan....Yuk, coba lagi!'});
+                        }else if(data.status==="success"){
+                            One.helpers('notify', {align: 'center', type: 'success', icon: 'fa fa-check mr-1', message: 'Ya, mengubah password berhasil! :)'});
+                            window.location.replace("<?php echo base_url('auth/logout');?>");
+                        }
+                    },error:function(data){
+                        console.log('tidak bisa mengambil status');
+                    }
+                });
+             }
+        });
+
+        
+
+        
+      
+</script>
     </body>
 </html>

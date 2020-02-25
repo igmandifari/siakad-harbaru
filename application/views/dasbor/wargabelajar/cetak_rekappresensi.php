@@ -74,7 +74,7 @@
                                                 <th>S</th>
                                                 <th>I</th>
                                                 <th>A</th>
-                                                <th>Total</th>
+                                                <th>Pertemuan</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -85,6 +85,12 @@
                                                 $izin=0;
                                                 $sakit=0;
                                                 $pertemuan=0;
+
+                                                $sumalpa=0;
+                                                $sumhadir=0;
+                                                $sumizin=0;
+                                                $sumsakit=0;
+                                                $sumpertemuan=0;
 
                                                 foreach($jadwals as $jadwal){
                                                 $no++;
@@ -106,7 +112,11 @@
                                                     $pertemuan=+$Countpertemuan['pertemuan'];
                                                     
                                                     }
-                                                   
+                                                   $sumalpa+=$alpa;
+                                                   $sumhadir+=$hadir;
+                                                   $sumizin+=$izin;
+                                                   $sumsakit+=$sakit;
+                                                   $sumpertemuan+=$pertemuan;
                                                    
                                                 ?>
                                                 <tr>
@@ -125,6 +135,16 @@
                                                 $sakit=0;
                                                 $pertemuan=0; };?>
                                         </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th colspan="2" class="text-center">Total</th>
+                                                <th class="text-center"><?=$sumhadir;?></th>
+                                                <th class="text-center"><?=$sumsakit;?></th>
+                                                <th class="text-center"><?=$sumizin;?></th>
+                                                <th class="text-center"><?=$sumalpa;?></th>
+                                                <th class="text-center"><?=$sumpertemuan;?></th>
+                                            </tr>
+                                        </tfoot>
 									</table>
 								</div>
                                 <!-- END Table -->

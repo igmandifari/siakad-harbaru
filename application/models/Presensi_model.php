@@ -42,7 +42,7 @@
             return $this->db->insert('presensi_details',$data);
         }
         public function getPresensiDet($pertemuan){
-            return $this->db->query("SELECT wargabelajar.wargabelajar_id, wargabelajar.wargabelajar_nama, presensi_details.presensi_id, presensi_details.presensi_det_id,presensi_details.presensi_det_ket from presensi_details INNER JOIN wargabelajar on wargabelajar.wargabelajar_id=presensi_details.wargabelajar_id INNER JOIN presensi ON presensi.presensi_id = presensi_details.presensi_id WHERE presensi_details.presensi_id='$pertemuan'")->result();
+            return $this->db->query("SELECT wargabelajar.wargabelajar_id, wargabelajar.wargabelajar_nama, wargabelajar.wargabelajar_nomor_induk, presensi_details.presensi_id, presensi_details.presensi_det_id,presensi_details.presensi_det_ket from presensi_details INNER JOIN wargabelajar on wargabelajar.wargabelajar_id=presensi_details.wargabelajar_id INNER JOIN presensi ON presensi.presensi_id = presensi_details.presensi_id WHERE presensi_details.presensi_id='$pertemuan'")->result();
 
         }
         public function updatePresensiDet($data=array(),$presensi_det_id){
@@ -56,7 +56,7 @@
             return $this->db->query("SELECT presensi.presensi_id FROM presensi WHERE presensi.jadwal_id='$jadwal' LIMIT 1")->row_array();
         }
         public function getWb($idpresensi){
-            return $this->db->query("SELECT presensi_details.wargabelajar_id as id, wargabelajar.wargabelajar_nama FROM presensi_details RIGHT JOIN wargabelajar ON wargabelajar.wargabelajar_id=presensi_details.wargabelajar_id WHERE presensi_details.presensi_id='$idpresensi'")->result();
+            return $this->db->query("SELECT presensi_details.wargabelajar_id as id, wargabelajar.wargabelajar_nama, wargabelajar.wargabelajar_nomor_induk FROM presensi_details RIGHT JOIN wargabelajar ON wargabelajar.wargabelajar_id=presensi_details.wargabelajar_id WHERE presensi_details.presensi_id='$idpresensi'")->result();
 
         }
         public function getAlpa($jadwal,$id){

@@ -154,12 +154,6 @@
                             </a>
                         </li>
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="<?=base_url('profil')?>">
-                            <i class="nav-main-link-icon si si-user ml-1"></i>
-                                <span class="nav-main-link-name">Profil</span>
-                            </a>
-                        </li>
-                        <li class="nav-main-item">
                             <a class="nav-main-link" href="<?=base_url('masukan')?>">
                             <i class="nav-main-link-icon fab fa-rocketchat ml-1"></i>
                                 <span class="nav-main-link-name">Kirim Masukan</span>
@@ -227,17 +221,11 @@
                                     <img class="img-avatar img-avatar48 img-avatar-thumb" src="<?= base_url ('upload/images/'.$this->session->userdata('foto'));?>" alt="">
                                 </div>
                                 <div class="p-2">
-                                    <h5 class="dropdown-header text-uppercase">User Options</h5>
-                                    <a class="dropdown-item d-flex align-items-center justify-content-between" href="<?=base_url('profil')?>">
-                                        <span>Profil</span>
-                                            <i class="si si-user ml-1"></i>
-                                    </a>
+                                    <h5 class="dropdown-header text-uppercase">Pilihan</h5>
                                     <a class="dropdown-item d-flex align-items-center justify-content-between" href="<?=base_url('pengaturan')?>">
                                         <span>Pengaturan</span>
                                         <i class="si si-settings"></i>
                                     </a>
-                                    <div role="separator" class="dropdown-divider"></div>
-                                    <h5 class="dropdown-header text-uppercase">Aksi</h5>
                                     <a class="dropdown-item d-flex align-items-center justify-content-between" href="<?=base_url('auth/logout')?>">
                                         <span>Log Out</span>
                                         <i class="si si-logout ml-1"></i>
@@ -317,7 +305,7 @@
                                             <th>S</th>
                                             <th>I</th>
                                             <th>A</th>
-                                            <th>Total</th>
+                                            <th>Pertemuan</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -328,6 +316,14 @@
                                             $izin=0;
                                             $sakit=0;
                                             $pertemuan=0;
+
+                                            $sumalpa=0;
+                                            $sumhadir=0;
+                                            $sumizin=0;
+                                            $sumsakit=0;
+                                            $sumpertemuan=0;
+
+
 
                                             foreach($jadwals as $jadwal){
                                             $no++;
@@ -349,8 +345,11 @@
                                                 $pertemuan=+$Countpertemuan['pertemuan'];
                                                 
                                                 }
-                                               
-                                               
+                                               $sumalpa+=$alpa;
+                                               $sumhadir+=$hadir;
+                                               $sumizin+=$izin;
+                                               $sumsakit+=$sakit;
+                                               $sumpertemuan+=$pertemuan;
                                             ?>
                                             <tr>
                                                 <td class="text-center"><?php echo $no;?></td>
@@ -368,6 +367,16 @@
                                             $sakit=0;
                                             $pertemuan=0; };?>
                                     </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th colspan="2" class="text-center">Total</th>
+                                            <th class="text-center"><?=$sumhadir;?></th>
+                                            <th class="text-center"><?=$sumsakit;?></th>
+                                            <th class="text-center"><?=$sumizin;?></th>
+                                            <th class="text-center"><?=$sumalpa;?></th>
+                                            <th class="text-center"><?=$sumpertemuan;?></th>
+                                        </tr>
+                                    </tfoot>
                                 </table>
                             </div>
                         </div>

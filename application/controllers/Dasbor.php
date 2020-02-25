@@ -4,6 +4,8 @@ class Dasbor extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        $url=base_url();
+        if($this->session->userdata('MASUK') != TRUE)redirect($url);
         $this->load->model('Dasbor_model');   
     }
     public function index(){
@@ -23,7 +25,7 @@ class Dasbor extends CI_Controller
             $this->load->view('dasbor/wargabelajar/dasbor_wargabelajar',$data);
         }else if($this->session->userdata('level') == 2)
         {
-            $this->load->view('dasbor/dasbor_pimpinan',$data);
+            $this->load->view('dasbor/pimpinan/dasbor',$data);
         }else if($this->session->userdata('level') == 3)
         {
             $this->load->view('dasbor/dasbor_tutor',$data);

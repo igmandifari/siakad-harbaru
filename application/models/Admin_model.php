@@ -69,12 +69,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             }
         }
         
-        public function perbarui_password()
+        public function perbarui_password($id=null)
         {
-            $this->admin_id = $this->input->post("admin_id");
+            if($id ==null){
+                $id = $this->input->post("admin_id");
+            }
             $password = MD5(SHA1($this->input->post("admin_password")));
         
-            return $this->db->query("UPDATE admin SET admin_password='$password' WHERE admin_id='$this->admin_id'");
+            return $this->db->query("UPDATE admin SET admin_password='$password' WHERE admin_id='$id'");
         }
 
         public function perbarui()

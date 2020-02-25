@@ -32,12 +32,12 @@ class Jadwal_model extends CI_Model{
     public function rules_tutorial_mandiri(){
         return[
             [
-                'field' => 'rombel_id',
+                'field' => 'rombel_id_other',
                 'label' => 'Kelas',
                 'rules'    => 'required|trim|xss_clean|callback_select_validate',
             ],
             [
-                'field' => 'matpel_id',
+                'field' => 'matpel_id_other',
                 'label' => 'Mata Pelajaran',
                 'rules'    => 'required|trim|xss_clean|callback_select_validate',
             ],
@@ -84,8 +84,8 @@ class Jadwal_model extends CI_Model{
             'jadwal_id'                 => uniqid(),
             'jadwal_tipe_pembelajaran'  => $this->input->post("jadwal_tipe_pembelajaran"),
             'tahunajaran_id'            => $this->input->post("tahunajaran_id"),
-            'matpel_id'                 => $this->input->post("matpel_id"),
-            'rombel_id'                  => $this->input->post("rombel_id"),
+            'matpel_id'                 => $this->input->post("matpel_id_other"),
+            'rombel_id'                  => $this->input->post("rombel_id_other"),
             'created_at'                => date('Y-m-d H:i:s')
 
         );
@@ -94,8 +94,8 @@ class Jadwal_model extends CI_Model{
     public function update_tutorial_mandiri()
     {
         $data = array(
-            'matpel_id'                     => $this->input->post("matpel_id"),
-            'rombel_id'                     => $this->input->post("rombel_id"),
+            'matpel_id'                     => $this->input->post("matpel_id_other"),
+            'rombel_id'                     => $this->input->post("rombel_id_other"),
             'jadwal_tipe_pembelajaran'      => $this->input->post("jadwal_tipe_pembelajaran"),
             'updated_at'                    => date('Y-m-d H:i:s')
 
@@ -135,6 +135,10 @@ class Jadwal_model extends CI_Model{
     }
     public function delTahun($id){
         return $this->db->delete($this->_table,array('tahunajaran_id' => $id));
+    }
+    public function nameoftahunajaran($tahun){
+        $this->db->where('tahunajaran_id',$tahun);
+        return $this->db->get('tahunajaran')->row_array();
     }
     public function getJadwals($tahun)
         {

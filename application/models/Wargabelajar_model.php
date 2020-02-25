@@ -481,6 +481,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         public function getTahunAjaran(){
             return $this->db->get('tahunajaran')->result();
         }
+        public function getAlls()
+        {
+            return $this->db->query("SELECT * FROM wargabelajar INNER JOIN tahunajaran ON tahunajaran.tahunajaran_id=wargabelajar.tahunajaran_id")->result();
+        }
         
         
     }

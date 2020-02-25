@@ -44,7 +44,7 @@
                         <div class="block-content">
                             <div class="text-center">
                                         <p class="h3">Jadwal Pelajaran PKBM Harapan Baru</p>
-                                        <p class="h4">Tahun Ajaran <?php echo $this->session->userdata('tahunajaran_nama');?></p>
+                                        <p class="h4">Tahun Ajaran <?php echo $tahun['tahunajaran_nama']);?></p>
                                 </div>
 
                                 <!-- Table -->

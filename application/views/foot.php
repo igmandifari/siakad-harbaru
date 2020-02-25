@@ -49,11 +49,14 @@
         <script src="<?=base_url('assets/js/plugins/datatables/dataTables.bootstrap4.min.js');?>"></script>
         <script src="<?=base_url('assets/js/plugins/es6-promise/es6-promise.auto.min.js');?>"></script>
         <script src="<?=base_url('assets/js/plugins/sweetalert2/sweetalert2.min.js');?>"></script>
+        <script src="<?=base_url('assets/js/plugins/jquery-bootstrap-wizard/bs4/jquery.bootstrap.wizard.min.js');?>"></script>
+        <script src="<?=base_url('assets/js/plugins/jquery-validation/jquery.validate.min.js');?>"></script>
 
 
         <!-- Page JS Code -->
         <script src="<?=base_url('assets/js/plugins/select2/js/select2.full.min.js');?>"></script>
         <script src="<?=base_url('assets/js/pages/be_tables_datatables.min.js');?>"></script>
+         <script src="<?=base_url('assets/js/pages/be_forms_wizard.min.js');?>"></script>
 
         <!-- Page JS Helpers-->
        <script>

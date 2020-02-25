@@ -4,23 +4,6 @@
 <!-- Main Container -->
 <main id="main-container">
 
-<!-- Hero -->
-<div class="bg-body-light">
-    <div class="content content-full">
-        <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
-            <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
-                <ol class="breadcrumb breadcrumb-alt">
-                    <li class="breadcrumb-item"><?=$actor;?></li>
-                    <li class="breadcrumb-item" aria-current="page">
-                        <a class="link-fx" href=""><?=$title;?></a>
-                    </li>
-                </ol>
-            </nav>
-        </div>
-    </div>
-</div>
-<!-- END Hero -->
-
 <!-- Page Content -->
 <div class="content">
     <!-- Basic -->
@@ -49,8 +32,8 @@
                         </div>  
                         <div class="form-group">
                             <label for="tutor_id">Nama Tutor</label>
-                            <select class="custom-select" id="tutor_id" name="tutor_id">
-                                        <option value="0">Silahkan Pilih Tutor</option>
+                            <select class="js-select2 form-control form-control-lg form-control-alt" id="tutor_id" name="tutor_id" data-placeholder="Silahkan Pilih Tutor">
+                                <option></option>
                                         <?php foreach($tutors as $tutor) :?>
                                             <option value="<?=$tutor->tutor_id?>"><?=$tutor->tutor_nama?></option>
                                         <?php endforeach;?>
