@@ -5,7 +5,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
-        <title><?php echo $title." Semester ".ucfirst($this->uri->segment(3))." ".$wb['wargabelajar_nama'];?></title>
+        <title><?php echo $title." ".$wb['wargabelajar_nama'];?></title>
 
         <meta name="robots" content="noindex, nofollow">
 
@@ -339,7 +339,13 @@
                                     Cetak
                                 </button>
 
-                                <a href="<?=base_url('dashboard');?>">
+                                <a href="<?=base_url('nilai/rekap/').$this->uri->segment(3);?>">
+                                    <button type="button" class="btn btn-sm btn-info">
+                                        Rekap
+                                    </button>
+                                </a>
+
+                                <a href="<?=base_url('nilai');?>">
                                     <button type="button" class="btn btn-sm btn-light">
                                         Kembali
                                     </button>
@@ -377,8 +383,8 @@
                                             <td><strong>: <?php echo $matpel["matpel_nama"];?></strong></td>
                                         </tr>
                                         <tr>
-                                            <td><strong>Semester</strong></td>
-                                            <td><strong>: <?php echo ucfirst($this->uri->segment(3));?></strong></td>
+                                            <td><strong>Tahun Ajaran</strong></td>
+                                            <td><strong>: <?php echo $this->session->userdata('tahunajaran_nama')?></strong></td>
                                         </tr>
                                         <tr>
                                             <td><strong>Guru</strong></td>
@@ -434,12 +440,13 @@
                                         <p>Silahkan masukan nilai pada kolom dibawah ini</p>
                                         <div class="form-group">
                                             <label for="nilai_details_jenis">Jenis</label>
-                                            <select class="js-select2 form-control" id="nilai_details_jenis" style="width: 100%;" data-placeholder="Silahkan Pilih.." required>
-                                                <option></option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
+                                            <select class="js-select2 form-control" id="nilai_details_jenis" style="width: 100%;" id="select-tambah-nilai" data-placeholder="Silahkan Pilih.." required>
+                                                <option></option>
                                                 <option value="Tugas">Tugas</option>
                                                 <option value="Harian">Harian</option>
-                                                <option value="UTS">UTS</option>
-                                                <option value="UAS">UAS</option>
+                                                <option value="PTS">PTS</option>
+                                                <option value="PAS">PAS</option>
+                                                <option value="PAT">PAT</option>
                                             </select>
                                         </div>
                                         <div class="form-group">
@@ -530,12 +537,7 @@
                                     <div class="block-content block-content-full font-size-sm">
                                         <p>Silahkan pilih tipe file cetak yang kamu inginkan!</p>
                                         <div class="text-center">
-                                            <a href="<?=base_url('nilai/matpel/').$this->uri->segment(3).'/'.$this->uri->segment(4).'/'.$this->uri->segment(5).'/xlsx';?>" title="Klik Berikut Untuk Download tipe .xlsx">
-                                                <button type="button" class="btn btn-rounded btn-success">
-                                                    <i class="far fa-file-excel"></i> Spreadsheet
-                                                </button>
-                                            </a>
-                                            <a href="<?=base_url('nilai/matpel/').$this->uri->segment(3).'/'.$this->uri->segment(4).'/'.$this->uri->segment(5).'/pdf';?>" title="Klik Berikut Untuk Download tipe .PDF">
+                                            <a href="<?=base_url('nilai/matpel/').$this->uri->segment(3).'/'.$this->uri->segment(4).'/pdf';?>" title="Klik Berikut Untuk Download tipe .PDF">
                                                 <button type="button" class="btn btn-rounded btn-danger">
                                                     <i class="far fa-file-pdf"></i> PDF
                                                 </button>
@@ -723,7 +725,7 @@
                                     )}
                             }).then(function(n){
                                 n.value?$.ajax({
-                                        url: '<?php echo base_url('nilai/hapus/').$this->uri->segment(3).'/'.$this->uri->segment(4).'/'.$this->uri->segment(5).'/';?>'+id,
+                                        url: '<?php echo base_url('nilai/hapus/').$this->uri->segment(3).'/'.$this->uri->segment(4).'/';?>'+id,
                                         type: 'DELETE',
                                         error: function() {
                                             Swal.fire("Oops...", "Terjadi kesalahan", "error");
@@ -787,6 +789,7 @@
                                     'Nilai berhasil diubah!',
                                     'success'
                                     )
+                                jQuery("#ubah-nilai").modal('hide');
                                 getNilai();
                                 jQuery("#nilai_details_nilai").val("");
                                 jQuery("#nilai_details_nilai_ubah").val("");
@@ -813,18 +816,21 @@
                         var jenis = data.nilai_details_jenis;
 
                         jQuery("#nilai_details_nilai_ubah").val(nilai);
-                            var jenistugas = '<option></option><option value="Tugas" selected>Tugas</option><option value="Harian">Harian</option><option value="UTS">UTS</option><option value="UAS">UAS</option>';
-                            var jenisharian = '<option></option><option value="Tugas">Tugas</option><option value="Harian" selected>Harian</option><option value="UTS">UTS</option><option value="UAS">UAS</option>';
-                            var jenisuts = '<option></option><option value="Tugas">Tugas</option><option value="Harian">Harian</option><option value="UTS" selected>UTS</option><option value="UAS">UAS</option>';
-                            var jenisuas = '<option></option><option value="Tugas">Tugas</option><option value="Harian">Harian</option><option value="UTS">UTS</option><option value="UAS" selected>UAS</option>';
+                            var jenistugas = '<option></option><option value="Tugas" selected>Tugas</option><option value="Harian">Harian</option><option value="PTS">PTS</option><option value="PAS">PAS</option><option value="PAT">PAT</option>';
+                            var jenisharian = '<option></option><option value="Tugas">Tugas</option><option value="Harian" selected>Harian</option><option value="PTS">PTS</option><option value="PAS">PAS</option><option value="PAT">PAT</option>';
+                            var jenispts = '<option></option><option value="Tugas">Tugas</option><option value="Harian">Harian</option><option value="PTS" selected>PTS</option><option value="PAS">PAS</option><option value="PAT">PAT</option>';
+                            var jenispas = '<option></option><option value="Tugas">Tugas</option><option value="Harian">Harian</option><option value="PTS">PTS</option><option value="PAS" selected>PAS</option><option value="PAT">PAT</option>';
+                            var jenispat = '<option></option><option value="Tugas">Tugas</option><option value="Harian">Harian</option><option value="PTS">PTS</option><option value="PAS">PAS</option><option value="PAT" selected>PAT</option>';
                             if(jenis=="Tugas"){
                                 jQuery("#nilai_details_jenis_ubah").html(jenistugas);
                             }else if(jenis=="Harian"){
                                 jQuery("#nilai_details_jenis_ubah").html(jenisharian);
-                            }else if(jenis=="UTS"){
-                                jQuery("#nilai_details_jenis_ubah").html(jenisuts);
-                            }else if(jenis=="UAS"){
-                                jQuery("#nilai_details_jenis_ubah").html(jenisuas);
+                            }else if(jenis=="PTS"){
+                                jQuery("#nilai_details_jenis_ubah").html(jenispts);
+                            }else if(jenis=="PAS"){
+                                jQuery("#nilai_details_jenis_ubah").html(jenispas);
+                            }else if(jenis=="PAT"){
+                                jQuery("#nilai_details_jenis_ubah").html(jenispat);
                             }
                         jQuery("#ubah-nilai").modal('show');
                     },error:function(data){

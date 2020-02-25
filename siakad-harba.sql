@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 15, 2020 at 05:56 AM
+-- Generation Time: Feb 25, 2020 at 05:58 PM
 -- Server version: 10.0.38-MariaDB-0ubuntu0.16.04.1
--- PHP Version: 7.3.14-6+ubuntu16.04.1+deb.sury.org+1
+-- PHP Version: 7.3.15-3+ubuntu16.04.1+deb.sury.org+1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -41,7 +41,7 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`admin_id`, `admin_nama`, `admin_username`, `admin_password`, `admin_foto`, `created_at`, `updated_at`) VALUES
-('5de15e4e0de9d', 'Zam Zam Saeful Bahtiar', 'bekerz18', 'a31c86d61e1c1773167ca7b5bf023f98', '5de15e4e0de9d.jpeg', NULL, NULL),
+('5de15e4e0de9d', 'Zam Zam Saeful Bahtiar', 'bekerz18', 'a31c86d61e1c1773167ca7b5bf023f98', '5de15e4e0de9d.jpg', NULL, NULL),
 ('5de15e8a9ead8', 'Igman Difari', 'igman', 'b714337aa8007c433329ef43c7b8252c', '5de15e8a9ead8.jpg', NULL, NULL);
 
 -- --------------------------------------------------------
@@ -75,7 +75,9 @@ INSERT INTO `jadwal` (`jadwal_id`, `jadwal_tipe_pembelajaran`, `jadwal_hari`, `t
 ('5dfc9dd11bb3f', 'Mandiri', NULL, '5dfc3970e4387', '5dfc9c2a3f68d', '5dfc397184367', NULL, '2019-12-20 17:09:21', '0000-00-00 00:00:00'),
 ('5dfc9ded08c0c', 'Tutorial', NULL, '5dfc3970e4387', '5df84eb0476f9', '5dfc397184367', NULL, '2019-12-20 17:09:49', '0000-00-00 00:00:00'),
 ('5dfc9e164dcf0', 'Tatap Muka', 'Minggu', '5dfc3970e4387', '5dfc9b8d1a405', '5dfc397184367', '14:00-15:00', '2019-12-20 17:10:30', '0000-00-00 00:00:00'),
-('5e09494499b1d', 'Tatap Muka', 'Sabtu', '5dfc3970e4387', '5dfc9b3db0980', '5dfc397155e30', '14:00-15:00', '2019-12-30 07:48:04', '0000-00-00 00:00:00');
+('5e09494499b1d', 'Tatap Muka', 'Sabtu', '5dfc3970e4387', '5dfc9b3db0980', '5dfc397155e30', '14:00-15:00', '2019-12-30 07:48:04', '0000-00-00 00:00:00'),
+('5e54f255d6a03', 'Tutorial', NULL, '5dfc3970e4387', '5dfc9b6d70641', '5dfc397184367', NULL, '2020-02-25 17:09:25', '0000-00-00 00:00:00'),
+('5e54f5c72eb82', 'Mandiri', NULL, '5dfc3970e4387', '5df84e99f335f', '5dfc397184367', NULL, '2020-02-25 17:24:07', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -95,12 +97,12 @@ CREATE TABLE `kelas` (
 --
 
 INSERT INTO `kelas` (`kelas_id`, `kelas_nama`, `created_at`, `updated_at`) VALUES
-('5df888a6aba4d', 'Kelas VII', '2019-12-17 14:49:58', NULL),
-('5df888aea0fba', 'Kelas VIII', '2019-12-17 14:50:06', NULL),
 ('5df888b63addd', 'Kelas IX', '2019-12-17 14:50:14', NULL),
-('5df888bcc9c18', 'Kelas X', '2019-12-17 14:50:20', NULL),
 ('5df888c17d8f0', 'Kelas XI', '2019-12-17 14:50:25', NULL),
-('5df888c9667b5', 'Kelas XII', '2019-12-17 14:50:33', NULL);
+('5e4b45170cbf0', 'Kelas X', '2020-02-18 08:59:51', NULL),
+('5e4b452603afd', 'Kelas XII', '2020-02-18 09:00:06', NULL),
+('5e4b453121502', 'Kelas VII', '2020-02-18 09:00:17', NULL),
+('5e4b45398dee1', 'Kelas VIII', '2020-02-18 09:00:25', NULL);
 
 -- --------------------------------------------------------
 
@@ -122,9 +124,8 @@ CREATE TABLE `masukan` (
 --
 
 INSERT INTO `masukan` (`masukan_id`, `masukan`, `status`, `tahunajaran_id`, `wargabelajar_id`, `created_at`) VALUES
-('5e1e590242e1c', 'Tolong tambahkan fitur ganti foto profil dong', '0', '5dfc3970e4387', '5df8c2b2d14b8', '2020-01-15 07:12:50'),
-('5e1fa61501b8b', 'Tolong adakan kipas angin...', '0', '5dfc3970e4387', '5df8c9b8e20e9', '2020-01-16 06:53:57'),
-('5e30f9c2c2a8b', 'Mohon adakan kipas angin karena gerah...', '0', '5dfc3970e4387', '5dfc3f1b90991', '2020-01-29 10:19:30');
+('5e4b9e8883056', 'Mantab', '0', '5dfc3970e4387', '5dfc3f1b90991', '2020-02-18 15:21:28'),
+('5e513c9d635bc', 'tambah', '0', '5dfc3970e4387', '5dfc3f1b90991', '2020-02-22 21:37:17');
 
 -- --------------------------------------------------------
 
@@ -164,7 +165,6 @@ CREATE TABLE `nilai` (
   `nilai_id` varchar(100) NOT NULL,
   `jadwal_id` varchar(100) NOT NULL,
   `wargabelajar_id` varchar(100) NOT NULL,
-  `nilai_semester` enum('ganjil','genap') NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -173,14 +173,15 @@ CREATE TABLE `nilai` (
 -- Dumping data for table `nilai`
 --
 
-INSERT INTO `nilai` (`nilai_id`, `jadwal_id`, `wargabelajar_id`, `nilai_semester`, `created_at`, `updated_at`) VALUES
-('5e29cff0e4096', '5dfc9e164dcf0', '5df8cc7a68b47', 'ganjil', '2020-01-23 23:55:12', '0000-00-00 00:00:00'),
-('5e29dbf32d70c', '5dfc9da09b91e', '5df8cc7a68b47', 'ganjil', '2020-01-24 00:46:27', '0000-00-00 00:00:00'),
-('5e2a1c8343b8b', '5dfc9da09b91e', '5df8c9b8e20e9', 'ganjil', '2020-01-24 05:21:55', '0000-00-00 00:00:00'),
-('5e2a2428288a2', '5dfc9da09b91e', '5df8cc7a68b47', 'genap', '2020-01-24 05:54:32', '0000-00-00 00:00:00'),
-('5e355a36107e3', '5dfc9da09b91e', '5df8ce3c7570f', 'ganjil', '2020-02-01 18:00:06', '0000-00-00 00:00:00'),
-('5e43af91e612c', '5dfc9da09b91e', '5df8c9b8e20e9', 'genap', '2020-02-12 14:56:01', '0000-00-00 00:00:00'),
-('5e43afa2cc669', '5dfc9da09b91e', '5df8ce3c7570f', 'genap', '2020-02-12 14:56:18', '0000-00-00 00:00:00');
+INSERT INTO `nilai` (`nilai_id`, `jadwal_id`, `wargabelajar_id`, `created_at`, `updated_at`) VALUES
+('5e29cff0e4096', '5dfc9e164dcf0', '5df8cc7a68b47', '2020-01-23 23:55:12', '0000-00-00 00:00:00'),
+('5e29dbf32d70c', '5dfc9da09b91e', '5df8cc7a68b47', '2020-01-24 00:46:27', '0000-00-00 00:00:00'),
+('5e2a1c8343b8b', '5dfc9da09b91e', '5df8c9b8e20e9', '2020-01-24 05:21:55', '0000-00-00 00:00:00'),
+('5e2a2428288a2', '5dfc9da09b91e', '5df8cc7a68b47', '2020-01-24 05:54:32', '0000-00-00 00:00:00'),
+('5e355a36107e3', '5dfc9da09b91e', '5df8ce3c7570f', '2020-02-01 18:00:06', '0000-00-00 00:00:00'),
+('5e43af91e612c', '5dfc9da09b91e', '5df8c9b8e20e9', '2020-02-12 14:56:01', '0000-00-00 00:00:00'),
+('5e43afa2cc669', '5dfc9da09b91e', '5df8ce3c7570f', '2020-02-12 14:56:18', '0000-00-00 00:00:00'),
+('5e54f1860cb0f', '5dfc9e164dcf0', '5df8c9b8e20e9', '2020-02-25 17:05:58', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -191,7 +192,7 @@ INSERT INTO `nilai` (`nilai_id`, `jadwal_id`, `wargabelajar_id`, `nilai_semester
 CREATE TABLE `nilai_details` (
   `nilai_details_id` int(11) NOT NULL,
   `nilai_id` varchar(100) NOT NULL,
-  `nilai_details_jenis` enum('Tugas','Harian','UTS','UAS') NOT NULL,
+  `nilai_details_jenis` enum('Tugas','Harian','PTS','PAS','PAT') NOT NULL,
   `nilai_details_nilai` int(10) NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL
@@ -202,14 +203,16 @@ CREATE TABLE `nilai_details` (
 --
 
 INSERT INTO `nilai_details` (`nilai_details_id`, `nilai_id`, `nilai_details_jenis`, `nilai_details_nilai`, `created_at`, `updated_at`) VALUES
-(8, '5e2a1c8343b8b', 'Tugas', 100, '2020-02-02 06:47:26', '0000-00-00 00:00:00'),
 (12, '5e29dbf32d70c', 'Tugas', 100, '2020-02-02 10:50:54', '0000-00-00 00:00:00'),
-(13, '5e29dbf32d70c', 'Harian', 100, '2020-02-02 10:51:00', '0000-00-00 00:00:00'),
-(14, '5e29dbf32d70c', 'UTS', 100, '2020-02-02 10:51:08', '0000-00-00 00:00:00'),
-(15, '5e29dbf32d70c', 'UAS', 100, '2020-02-02 10:51:13', '0000-00-00 00:00:00'),
-(16, '5e2a1c8343b8b', 'UAS', 100, '2020-02-14 17:24:32', '0000-00-00 00:00:00'),
-(17, '5e2a1c8343b8b', 'UTS', 50, '2020-02-14 17:26:39', '0000-00-00 00:00:00'),
-(18, '5e43af91e612c', 'Tugas', 100, '2020-02-15 05:52:18', '0000-00-00 00:00:00');
+(27, '5e29dbf32d70c', 'Harian', 100, '2020-02-17 11:02:26', '0000-00-00 00:00:00'),
+(33, '5e2a1c8343b8b', 'Tugas', 100, '2020-02-25 10:27:57', '0000-00-00 00:00:00'),
+(34, '5e2a1c8343b8b', 'Harian', 100, '2020-02-25 10:28:03', '0000-00-00 00:00:00'),
+(35, '5e2a1c8343b8b', 'PTS', 100, '2020-02-25 10:28:08', '0000-00-00 00:00:00'),
+(36, '5e2a1c8343b8b', 'PAS', 100, '2020-02-25 10:28:30', '0000-00-00 00:00:00'),
+(37, '5e2a1c8343b8b', 'PAT', 100, '2020-02-25 10:28:40', '0000-00-00 00:00:00'),
+(38, '5e2a1c8343b8b', 'PTS', 100, '2020-02-25 10:34:35', '0000-00-00 00:00:00'),
+(39, '5e2a1c8343b8b', 'Tugas', 100, '2020-02-25 10:36:12', '0000-00-00 00:00:00'),
+(40, '5e2a1c8343b8b', 'Harian', 2, '2020-02-25 10:36:58', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -232,7 +235,7 @@ CREATE TABLE `pimpinan` (
 --
 
 INSERT INTO `pimpinan` (`pimpinan_id`, `pimpinan_username`, `pimpinan_nama`, `pimpinan_foto`, `pimpinan_password`, `created_at`, `updated_at`) VALUES
-('5ded07350f828', 'iyep', 'Iyep Saepumilah SH.I, M.Ag', '5ded07350f828.jpg', 'd93a5def7511da3d0f2d171d9c344e91', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+('5ded07350f828', 'iyep', 'Iyep Saepumilah SH.I, M.Pd.I', '5ded07350f828.jpg', '3bdf4234006fa37fab9cbe0134d9429b', '0000-00-00 00:00:00', '2020-02-22 20:41:19');
 
 -- --------------------------------------------------------
 
@@ -259,7 +262,8 @@ INSERT INTO `presensi` (`presensi_id`, `jadwal_id`, `presensi_tanggal`, `created
 ('5e42317f07c45', '5dfc9da09b91e', '2020-02-11', '2020-02-11 11:45:53', '0000-00-00 00:00:00'),
 ('5e43936cb8a48', '5dfc9da09b91e', '2020-02-12', '2020-02-12 12:55:58', '0000-00-00 00:00:00'),
 ('5e43994e2182d', '5dfc9c4b29ca8', '2020-02-12', '2020-02-12 13:21:03', '0000-00-00 00:00:00'),
-('5e43a00761aad', '5dfc9d1b7968b', '2020-02-12', '2020-02-12 13:49:45', '0000-00-00 00:00:00');
+('5e43a00761aad', '5dfc9d1b7968b', '2020-02-12', '2020-02-12 13:49:45', '0000-00-00 00:00:00'),
+('5e513bb5a5186', '5dfc9da09b91e', '2020-02-22', '2020-02-22 21:33:30', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -314,7 +318,12 @@ INSERT INTO `presensi_details` (`presensi_det_id`, `presensi_id`, `wargabelajar_
 (72, '5e43a00761aad', '5df8cbbfd492d', 'A', '2020-02-12 13:49:45'),
 (73, '5e43a00761aad', '5df8cc7a68b47', 'A', '2020-02-12 13:49:45'),
 (74, '5e43a00761aad', '5df8ce3c7570f', 'A', '2020-02-12 13:49:45'),
-(75, '5e43a00761aad', '5dfc3f1b90991', 'A', '2020-02-12 13:49:45');
+(75, '5e43a00761aad', '5dfc3f1b90991', 'A', '2020-02-12 13:49:45'),
+(76, '5e513bb5a5186', '5df8c9b8e20e9', 'H', '2020-02-25 17:28:54'),
+(77, '5e513bb5a5186', '5df8cbbfd492d', 'S', '2020-02-22 21:33:34'),
+(78, '5e513bb5a5186', '5df8cc7a68b47', 'A', '2020-02-22 21:33:30'),
+(79, '5e513bb5a5186', '5df8ce3c7570f', 'A', '2020-02-22 21:33:30'),
+(80, '5e513bb5a5186', '5dfc3f1b90991', 'A', '2020-02-22 21:33:30');
 
 -- --------------------------------------------------------
 
@@ -483,11 +492,11 @@ CREATE TABLE `wargabelajar` (
 
 INSERT INTO `wargabelajar` (`wargabelajar_id`, `wargabelajar_nomor_induk`, `wargabelajar_nisn`, `wargabelajar_nama`, `wargabelajar_jenis_kelamin`, `wargabelajar_tempat_lahir`, `wargabelajar_tanggal_lahir`, `wargabelajar_agama`, `wargabelajar_kewarganegaraan`, `wargabelajar_alamat_jalan`, `wargabelajar_alamat_rtrw`, `wargabelajar_alamat_desa`, `wargabelajar_alamat_kecamatan`, `wargabelajar_alamat_kabupaten`, `wargabelajar_alamat_provinsi`, `wargabelajar_alamat_kodepos`, `wargabelajar_kejar`, `wargabelajar_kejar_alamat`, `wargabelajar_sttb`, `wargabelajar_masuk`, `tahunajaran_id`, `wargabelajar_status`, `wargabelajar_foto`, `wargabelajar_password`, `orangtua_ayah_nama`, `orangtua_ayah_pekerjaan`, `orangtua_ayah_alamat_jalan`, `orangtua_ayah_alamat_rtrw`, `orangtua_ayah_alamat_desa`, `orangtua_ayah_alamat_kecamatan`, `orangtua_ayah_alamat_kabupaten`, `orangtua_ayah_alamat_provinsi`, `orangtua_ayah_alamat_kodepos`, `orangtua_ibu_nama`, `orangtua_wali_nama`, `orangtua_wali_pekerjaan`, `orangtua_wali_alamat_jalan`, `orangtua_wali_alamat_rtrw`, `orangtua_wali_alamat_desa`, `orangtua_wali_alamat_kecamatan`, `orangtua_wali_alamat_kabupaten`, `orangtua_wali_alamat_provinsi`, `orangtua_wali_alamat_kodepos`) VALUES
 ('5df8c2b2d14b8', '171807010', '9999744534', 'Ikhwan Sopyan', 'Pria', 'Kota Tasikmalaya', '1999-02-08', 'Islam', 'WNI', 'Sukagenah', '003/004', 'Sambongjaya', 'Mangkubumi', 'Kota Tasikmalaya', 'Jawa Barat', '46182', 'SDN Sambong Permai', 'Sambong Permai', 'DN-02 Dd 0447031', '2017-07-18', '5dfc3966f0b29', 'Aktif', 'default.jpg', '00e51f91c99fb69891a4614539199541', 'Yayan Sopyan', 'Wiraswasta', 'Sukagenah', '003/004', 'Sambongjaya', 'Mangkubumi', 'Kota Tasikmalaya', 'Jawa Barat', '46182', 'Ika Sumartika', '', '', '', '', '', '', '', '', ''),
-('5df8c9b8e20e9', '171807011', '0001162375', 'Maulana Sabirin', 'Pria', 'Tasikmalaya', '2000-01-25', 'Islam', NULL, 'Citamiang', '004/008', 'Tanjung', 'Kawalu', 'Kota Tasikmalaya', 'Jawa Barat', '46182', 'SDN Tanjung I', '', 'DN-02 Dd 0743335', '2017-07-18', '5dfc3966f0b29', 'Aktif', 'default.jpg', '4338659c44507ea7b7301a80c43d0a0f', 'E. Sutisna', 'Buruh', 'Citamiang', '004/008', 'Tanjung', 'Kawalu', 'Kota Tasikmalaya', 'Jawa Barat', '46182', 'Empay', '', '', '', '', '', '', '', '', ''),
+('5df8c9b8e20e9', '171807011', '0001162375', 'Maulana Sabirin', 'Pria', 'Tasikmalaya', '2000-01-25', 'Islam', 'WNI', 'Citamiang', '004/008', 'Tanjung', 'Kawalu', 'Kota Tasikmalaya', 'Jawa Barat', '46182', 'SDN Tanjung I', '', 'DN-02 Dd 0743335', '2017-07-18', '5dfc3966f0b29', 'Aktif', 'default.jpg', '4338659c44507ea7b7301a80c43d0a0f', 'E. Sutisna', 'Buruh', 'Citamiang', '004/008', 'Tanjung', 'Kawalu', 'Kota Tasikmalaya', 'Jawa Barat', '46182', 'Empay', '', '', '', '', '', '', '', '', ''),
 ('5df8cbbfd492d', '171807012', '0028750718', 'Muhammad Ramadhani', 'Pria', 'Ciamis', '2002-11-18', 'Islam', NULL, 'Ciherang', '021/008', 'Sukasenang', 'Sindangkasih', 'Kabupaten Ciamis', 'Jawa Barat', '', 'SDN 2 Sukasenang', '', 'DN-02 Dd 0393525', '2017-07-18', '5dfc3966f0b29', 'Aktif', 'default.jpg', '45ede21366872bb60b670250d89d4201', 'Sopyan Saori', 'Buruh', 'Ciherang', '021/008', 'Sukasenang', 'Sindangkasih', 'Kabupaten Ciamis', 'Jawa Barat', '', 'Nunung Nurjanah', '', '', '', '', '', '', '', '', ''),
 ('5df8cc7a68b47', '171807013', '9957772263', 'Nanang Nurdiana', 'Pria', 'Tasikmalaya', '1995-10-17', 'Islam', NULL, 'Gargadung', '003/004', 'Cigantang', 'Mangkubumi', 'Kota Tasikmalaya', 'Jawa Barat', '46181', 'SDN Cigantang II', '', 'DN-02Dd 0652357', '2017-07-18', '5dfc3966f0b29', 'Aktif', 'default.jpg', '0f3b918d7abe4e7c8edcb4507560f1d3', 'Juju', 'Buruh', 'Gargadung', '003/004', 'Cigantang', 'Mangkubumi', 'Kota Tasikmalaya', 'Jawa Barat', '46181', 'Maesaroh', '', '', '', '', '', '', '', '', ''),
 ('5df8ce3c7570f', '171807014', '9809430487', 'Nia Kurniawati', 'Wanita', 'Tasikmalaya', '1980-07-06', 'Islam', NULL, 'Gargadung', '001/004', 'Cigantang', 'Mangkubumi', 'Kota Tasikmalaya', 'Jawa Barat', '46181', 'SDN Sambongpari', '', '02 0A oa 0684123', '2017-07-18', '5dfc3966f0b29', 'Aktif', 'default.jpg', '44337d85ba7d91db906c26c47ab99ed6', 'Ano Karno', 'Buruh', 'Gargadung', '001/004', 'Cigantang', 'Mangkubumi', 'Kota Tasikmalaya', 'Jawa Barat', '46181', 'Maryati', '', '', '', '', '', '', '', '', ''),
-('5dfc3f1b90991', '171807015', '9980731840', 'Amat Rustendi', 'Pria', 'Tasikmalaya', '2018-07-16', 'Islam', '', '', '', '', '', '', '', '', 'SMPN 20 Tasikmalaya', '', 'DN-02 DI 0117579/14 Juni 2014', '2017-07-18', '5dfc3966f0b29', 'Aktif', 'default.jpg', '065f88a9a7f82a0baec5a6e337ed5a8a', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
+('5dfc3f1b90991', '171807015', '9980731840', 'Amat Rustendi', 'Pria', 'Tasikmalaya', '2018-07-16', 'Islam', '', '', '', '', '', '', '', '', 'SMPN 20 Tasikmalaya', '', 'DN-02 DI 0117579/14 Juni 2014', '2017-07-18', '5dfc3966f0b29', 'Aktif', 'default.jpg', '065f88a9a7f82a0baec5a6e337ed5a8a', 'Amatan', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
 
 --
 -- Indexes for dumped tables
@@ -614,12 +623,12 @@ ALTER TABLE `wargabelajar`
 -- AUTO_INCREMENT for table `nilai_details`
 --
 ALTER TABLE `nilai_details`
-  MODIFY `nilai_details_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `nilai_details_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 --
 -- AUTO_INCREMENT for table `presensi_details`
 --
 ALTER TABLE `presensi_details`
-  MODIFY `presensi_det_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
+  MODIFY `presensi_det_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
 --
 -- AUTO_INCREMENT for table `rombel_details`
 --

@@ -61,7 +61,7 @@
 
                                 <div class="block-content tab-content overflow-hidden">
                                     <div class="tab-pane fade fade-left show active" id="tatap-muka" role="tabpanel">
-                                        <form action="<?php echo base_url('jadwal/matpel_tambah')?>" method="post">
+                                        <form action="<?php echo base_url('jadwal/matpel_tambah/').$this->uri->segment(3);?>" method="post">
                                             <div class="form-group">
                                                 <label for="jadwal_hari">Hari</label>
                                                 <select class="js-select2 form-control form-control-lg form-control-alt" id="jadwal_hari" name="jadwal_hari" data-placeholder="Silahkan Pilih Hari">
@@ -93,7 +93,7 @@
                                                 <small class="form-text text-danger"><?= form_error('matpel_id'); ?></small>
                                             </div> 
                                             <div class="form-group">
-                                                <label for="kelas_id">Kelas</label>
+                                                <label for="rombel_id">Kelas</label>
                                                 <select class="js-select2 form-control form-control-lg form-control-alt" id="rombel_id" name="rombel_id" data-placeholder="Silahkan Pilih Kelas">
                                                     <option></option>
                                                     <?php foreach($kelas_all as $kelas ):?>
@@ -115,7 +115,7 @@
                                     </div>
 
                                     <div class="tab-pane fade fade-right show" id="tutorial-mandiri" role="tabpanel">
-                                        <form action="<?php echo base_url('jadwal/tambah_tutorial_mandiri')?>" method="post">
+                                        <form action="<?php echo base_url('jadwal/tambah_tutorial_mandiri/'.$this->uri->segment(3))?>" method="post">
                                         <input type="hidden" name="tahunajaran_id" value="<?=$this->uri->segment('3')?>">
                                             <div class="form-group">
                                                 <label for="jadwal_tipe_pembelajaran">Tipe Pembelajaran</label>

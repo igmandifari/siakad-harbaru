@@ -324,11 +324,76 @@
                         </div>
                     </div>
                 </div>
+
                 <!-- END Hero -->
 
                 <!-- Page Content -->
-              
+                <div class="content">
+                    <!-- Jadwal  -->
+                    <div class="row row-deck">
+                        <div class="col-lg-12">
+                            <div class="block block-mode-loading-oneui">
+                                <div class="block-header border-bottom">
+                                    <h3 class="block-title">Jadwal Kamu!</h3>
+                                    <div class="block-options">
+                                        <button type="button" class="btn-block-option" data-toggle="block-option" data-action="state_toggle" data-action-mode="demo">
+                                            <i class="si si-refresh"></i>
+                                        </button>
+                                        <a href="<?=base_url('pengaturan');?>">
+                                            <button type="button" class="btn-block-option">
+                                                <i class="si si-settings"></i>
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="block-content block-content-full">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered table-striped table-vcenter">
+                                            <thead>
+                                                <tr class="text-center">
+                                                    <th>
+                                                       NO
+                                                    </th>
+                                                    <th>Tipe Pembelajaran</th>
+                                                    <th>Mata Pelajaran</th>
+                                                    <th>Kelas</th>
+                                                    <th>Hari</th>
+                                                    <th>Waktu</th>
+                                                    <th>Aksi</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php $no=0; foreach($all_jadwal_mengajar as $jadwalmengajar):$no++?>
+                                                    <tr>
+                                                        <td><?=$no?></td>
+                                                        <td><?=$jadwalmengajar->jadwal_tipe_pembelajaran?></td>
+                                                        <td><?=$jadwalmengajar->matpel_nama?></td>
+                                                        <td><?=$jadwalmengajar->kelas_nama?></td>
+                                                        <td><?=$jadwalmengajar->jadwal_hari?></td>
+                                                        <td><?=$jadwalmengajar->jadwal_waktu?></td>
+                                                        <td class="text-center">
+                                                            <?php if($jadwalmengajar->jadwal_tipe_pembelajaran == "Tatap Muka"){?>
+                                                                <a href="<?=base_url('presensi/jadwal/').$jadwalmengajar->jadwal_id;?>">
+                                                                    <button type="button" class="btn btn-primary btn-sm">Presensi</button>
+                                                                </a>
+                                                            <?php } ?>
+                                                            <a href="<?=base_url('nilai/rekap/').$jadwalmengajar->jadwal_id;?>">
+                                                                <button type="button" class="btn btn-success btn-sm">Nilai</button>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                <?php endforeach;?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END Jadwal -->
+                </div>
                 <!-- END Page Content -->
+
 
             </main>
             <!-- END Main Container -->

@@ -206,8 +206,8 @@ class Jadwal extends CI_Controller
             $tahun = $this->uri->segment('3');
             $jadwal->save_tutorial_mandiri();
             $this->session->set_flashdata('success', 'Berhasil Ditambahkan');
-            
-            redirect('jadwal/matpel_lihat/').$this->input->post('tahunajaran_id');
+
+            redirect('jadwal');
         }else{
             redirect('jadwal/matpel_tambah#tutorial-mandiri');
             $this->session->set_flashdata('failed', 'Gagal');

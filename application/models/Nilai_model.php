@@ -13,8 +13,8 @@
         public function getWargaBelajar($jadwal){
         	return $this->db->query("SELECT jadwal.jadwal_id, wargabelajar.wargabelajar_nomor_induk, wargabelajar.wargabelajar_id,wargabelajar.wargabelajar_nama FROM wargabelajar INNER JOIN rombel_details ON rombel_details.wargabelajar_id=wargabelajar.wargabelajar_id INNER JOIN rombel ON rombel.rombel_id=rombel_details.rombel_id INNER JOIN jadwal ON jadwal.rombel_id=rombel.rombel_id WHERE jadwal.jadwal_id='$jadwal'")->result_array();
         }
-        public function checkAvailable($semseter,$jadwal,$id){
-        	return $this->db->query("SELECT * FROM nilai WHERE nilai.nilai_semester='$semseter' AND nilai.jadwal_id='$jadwal' AND nilai.wargabelajar_id='$id'")->result_array();
+        public function checkAvailable($jadwal,$id){
+        	return $this->db->query("SELECT * FROM nilai WHERE nilai.jadwal_id='$jadwal' AND nilai.wargabelajar_id='$id'")->result_array();
         }
         public function insertNilai($data=array()){
         	return $this->db->insert('nilai',$data);
@@ -26,8 +26,8 @@
         public function getNameMatpel($jadwal){
         	return $this->db->query("SELECT matpel.matpel_nama FROM jadwal INNER JOIN matpel ON matpel.matpel_id=jadwal.matpel_id WHERE jadwal.jadwal_id='$jadwal'")->row_array();
         }
-        public function getIDNIilai($jadwal,$id,$semseter){
-        	return $this->db->query("SELECT nilai.nilai_id FROM nilai WHERE nilai.jadwal_id='$jadwal' AND nilai.wargabelajar_id='$id' AND nilai.nilai_semester='$semseter'")->row_array();
+        public function getIDNIilai($jadwal,$id){
+        	return $this->db->query("SELECT nilai.nilai_id FROM nilai WHERE nilai.jadwal_id='$jadwal' AND nilai.wargabelajar_id='$id'")->row_array();
         }
         public function insetToDet($data=array()){
         	return $this->db->insert('nilai_details',$data);
@@ -49,11 +49,14 @@
         public function calcTugas($nilai){
             return $this->db->query("SELECT sum(nilai_details_nilai)as total, count(nilai_details_id) as banyak, sum(nilai_details_nilai)/count(nilai_details_id) as rata FROM nilai_details WHERE nilai_details.nilai_id='$nilai' AND nilai_details.nilai_details_jenis='Tugas'")->row_array();
         }
-        public function calcUts($nilai){
-            return $this->db->query("SELECT sum(nilai_details_nilai)as total, count(nilai_details_id) as banyak, sum(nilai_details_nilai)/count(nilai_details_id) as rata FROM nilai_details WHERE nilai_details.nilai_id='$nilai' AND nilai_details.nilai_details_jenis='UTS'")->row_array();
+        public function calcPTS($nilai){
+            return $this->db->query("SELECT sum(nilai_details_nilai)as total, count(nilai_details_id) as banyak, sum(nilai_details_nilai)/count(nilai_details_id) as rata FROM nilai_details WHERE nilai_details.nilai_id='$nilai' AND nilai_details.nilai_details_jenis='PTS'")->row_array();
         }
-        public function calcUas($nilai){
-            return $this->db->query("SELECT sum(nilai_details_nilai)as total, count(nilai_details_id) as banyak, sum(nilai_details_nilai)/count(nilai_details_id) as rata FROM nilai_details WHERE nilai_details.nilai_id='$nilai' AND nilai_details.nilai_details_jenis='UAS'")->row_array();
+        public function calcPAS($nilai){
+            return $this->db->query("SELECT sum(nilai_details_nilai)as total, count(nilai_details_id) as banyak, sum(nilai_details_nilai)/count(nilai_details_id) as rata FROM nilai_details WHERE nilai_details.nilai_id='$nilai' AND nilai_details.nilai_details_jenis='PAS'")->row_array();
+        }
+        public function calcPAT($nilai){
+            return $this->db->query("SELECT sum(nilai_details_nilai)as total, count(nilai_details_id) as banyak, sum(nilai_details_nilai)/count(nilai_details_id) as rata FROM nilai_details WHERE nilai_details.nilai_id='$nilai' AND nilai_details.nilai_details_jenis='PAT'")->row_array();
         }
         public function hapusNilaiDet($id){
         	$this->db->where('nilai_details_id',$id);
@@ -71,13 +74,17 @@
         {
             return $this->db->query("SELECT count(nilai_details_id) as harian FROM nilai_details WHERE nilai_details.nilai_id='$idnilai' AND nilai_details.nilai_details_jenis='Harian'")->row_array();
         }
-        public function countUts($idnilai)
+        public function countPTS($idnilai)
         {
-            return $this->db->query("SELECT count(nilai_details_id) as uts FROM nilai_details WHERE nilai_details.nilai_id='$idnilai' AND nilai_details.nilai_details_jenis='UTS'")->row_array();
+            return $this->db->query("SELECT count(nilai_details_id) as pts FROM nilai_details WHERE nilai_details.nilai_id='$idnilai' AND nilai_details.nilai_details_jenis='PTS'")->row_array();
         }
-        public function countUas($idnilai)
+        public function countPAS($idnilai)
         {
-            return $this->db->query("SELECT count(nilai_details_id) as uas FROM nilai_details WHERE nilai_details.nilai_id='$idnilai' AND nilai_details.nilai_details_jenis='UAS'")->row_array();
+            return $this->db->query("SELECT count(nilai_details_id) as pas FROM nilai_details WHERE nilai_details.nilai_id='$idnilai' AND nilai_details.nilai_details_jenis='PAS'")->row_array();
+        }
+        public function countPAT($idnilai)
+        {
+            return $this->db->query("SELECT count(nilai_details_id) as pat FROM nilai_details WHERE nilai_details.nilai_id='$idnilai' AND nilai_details.nilai_details_jenis='PAT'")->row_array();
         }
         public function sumTugas($idnilai)
         {
@@ -87,13 +94,17 @@
         {
             return $this->db->query("SELECT sum(nilai_details.nilai_details_nilai)/count(nilai_details.nilai_details_id) as harian FROM nilai_details WHERE nilai_details.nilai_id='$idnilai' AND nilai_details.nilai_details_jenis='Harian'")->row_array();
         }
-        public function sumUts($idnilai)
+        public function sumPTS($idnilai)
         {
-            return $this->db->query("SELECT sum(nilai_details.nilai_details_nilai)/count(nilai_details.nilai_details_id) as uts FROM nilai_details WHERE nilai_details.nilai_id='$idnilai' AND nilai_details.nilai_details_jenis='UTS'")->row_array();
+            return $this->db->query("SELECT sum(nilai_details.nilai_details_nilai)/count(nilai_details.nilai_details_id) as pts FROM nilai_details WHERE nilai_details.nilai_id='$idnilai' AND nilai_details.nilai_details_jenis='PTS'")->row_array();
         }
-        public function sumUas($idnilai)
+        public function sumPAS($idnilai)
         {
-            return $this->db->query("SELECT sum(nilai_details.nilai_details_nilai)/count(nilai_details.nilai_details_id) as uas FROM nilai_details WHERE nilai_details.nilai_id='$idnilai' AND nilai_details.nilai_details_jenis='UAS'")->row_array();
+            return $this->db->query("SELECT sum(nilai_details.nilai_details_nilai)/count(nilai_details.nilai_details_id) as pas FROM nilai_details WHERE nilai_details.nilai_id='$idnilai' AND nilai_details.nilai_details_jenis='PAS'")->row_array();
+        }
+        public function sumPAT($idnilai)
+        {
+            return $this->db->query("SELECT sum(nilai_details.nilai_details_nilai)/count(nilai_details.nilai_details_id) as pat FROM nilai_details WHERE nilai_details.nilai_id='$idnilai' AND nilai_details.nilai_details_jenis='PAT'")->row_array();
         }
 
 

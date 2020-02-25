@@ -341,9 +341,9 @@
                                     </button>
                                 </a>
 
-                                <button type="button" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#modal-cetak">
+                                <!-- <button type="button" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#modal-cetak">
                                     Cetak
-                                </button>
+                                </button> -->
 
                                 <a href="<?=base_url();?>">
                                     <button type="button" class="btn btn-sm btn-light">

@@ -28,6 +28,7 @@ class Dasbor extends CI_Controller
             $this->load->view('dasbor/pimpinan/dasbor',$data);
         }else if($this->session->userdata('level') == 3)
         {
+            $data["all_jadwal_mengajar"] = $dasbor->getJadwalByIdTutor();
             $this->load->view('dasbor/dasbor_tutor',$data);
         }
 

@@ -423,11 +423,7 @@
                         <div class="block-content block-content-full font-size-sm">
                             <p>Silahkan pilih tipe file cetak yang kamu inginkan!</p>
                             <div class="text-center">
-                                <a href="<?=base_url('presensi/jadwal/').$this->uri->segment(3).'/'.$this->uri->segment(4).'/xlsx';?>" title="Klik Berikut Untuk Download tipe .xlsx">
-                                    <button type="button" class="btn btn-rounded btn-success">
-                                        <i class="far fa-file-excel"></i> Spreadsheet
-                                    </button>
-                                </a>
+                                
                             <a href="<?=base_url('presensi/jadwal/').$this->uri->segment(3).'/'.$this->uri->segment(4).'/pdf';?>" title="Klik Berikut Untuk Download tipe .PDF">
                                 <button type="button" class="btn btn-rounded btn-danger">
                                     <i class="far fa-file-pdf"></i> PDF

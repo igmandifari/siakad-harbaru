@@ -36,25 +36,24 @@
             echo json_encode($data);
 
         }
-        public function matpel($semester=null,$jadwal=null,$id=null,$type=null)
+        public function matpel($jadwal=null,$id=null,$type=null)
         {
-            if(!isset($id) || (!isset($jadwal))|| (!isset($semester)))redirect('nilai');
+            if(!isset($id) || (!isset($jadwal)))redirect('nilai');
             $nilai = $this->Nilai_model;
-            $there = $nilai->checkAvailable($semester,$jadwal,$id);
+            $there = $nilai->checkAvailable($jadwal,$id);
             if(!$there){
                 $insert = $nilai->insertNilai(array(
                     'nilai_id'          => uniqid(),
-                    'nilai_semester'    => $this->uri->segment(3),
-                    'jadwal_id'         => $this->uri->segment(4),
-                    'wargabelajar_id'   => $this->uri->segment(5),
+                    'jadwal_id'         => $this->uri->segment(3),
+                    'wargabelajar_id'   => $this->uri->segment(4),
                     'created_at'        => date('Y-m-d H:i:s')
                     )
                 );
                 if($insert){
-                    redirect('nilai/matpel/'.$semester.'/'.$jadwal.'/'.$id);
+                    redirect('nilai/matpel/'.$jadwal.'/'.$id);
                 }
             }else{
-                $data['idnilai'] = $nilai->getIDNIilai($jadwal,$id,$semester);
+                $data['idnilai'] = $nilai->getIDNIilai($jadwal,$id);
                 // warga belajar as WB
                 $data['wb'] =  $nilai->getDataWargaBelajar($id);
                 // nama mata pelajaran as matpel
@@ -68,15 +67,17 @@
                 if($type=="pdf"){
                     $harian = $nilai->calcHarian($data['idnilai']['nilai_id']);
                     $tugas = $nilai->calcTugas($data['idnilai']['nilai_id']);
-                    $uts = $nilai->calcUts($data['idnilai']['nilai_id']);
-                    $uas = $nilai->calcUas($data['idnilai']['nilai_id']);
+                    $pts = $nilai->calcPTS($data['idnilai']['nilai_id']);
+                    $pas = $nilai->calcPAS($data['idnilai']['nilai_id']);
+                    $pat = $nilai->calcPAT($data['idnilai']['nilai_id']);
 
-                    $total = $harian['rata']+$tugas['rata']+$uts['rata']+$uas['rata'];
-                    $rata = $total/4;
+                    $total = $harian['rata']+$tugas['rata']+$pts['rata']+$pas['rata']+$pat['rata'];
+                    $rata = $total/5;
                     $data['harian'] = $harian['rata'];
                     $data['tugas'] = $tugas['rata'];
-                    $data['uts'] = $uts['rata'];
-                    $data['uas'] = $uas['rata'];
+                    $data['pts'] = $pts['rata'];
+                    $data['pas'] = $pas['rata'];
+                    $data['pat'] = $pat['rata'];
                     $data['total'] = $total;
                     $data['rata'] =$rata;
 
@@ -85,7 +86,7 @@
                     $jadwal= new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'Legal-L']);
                     $jadwal->WriteHTML($style,\Mpdf\HTMLParserMode::HEADER_CSS);
                     $jadwal->WriteHtml($cetak,\Mpdf\HTMLParserMode::HTML_BODY);
-                    $jadwal->Output('Rekap Nilai '.$data['matpel']["matpel_nama"].' '.$data['wb']["wargabelajar_nomor_induk"].' Tahun Ajaran '.$this->session->userdata('tahunajaran_nama').' Semester '.ucfirst($this->uri->segment(3)).'.pdf', 'D');
+                    $jadwal->Output('Rekap Nilai '.$data['matpel']["matpel_nama"].' '.$data['wb']["wargabelajar_nomor_induk"].' Tahun Ajaran '.$this->session->userdata('tahunajaran_nama').'.pdf', 'D');
                     
                 }elseif($type=="xlsx"){
                     $data['jadwals'] = $model->getJadwals($jadwal);
@@ -145,18 +146,19 @@
             
             $harian = $nilai->calcHarian($id);
             $tugas = $nilai->calcTugas($id);
-            $uts = $nilai->calcUts($id);
-            $uas = $nilai->calcUas($id);
+            $pts = $nilai->calcPTS($id);
+            $pas = $nilai->calcPAS($id);
+            $pat = $nilai->calcPAT($id);
 
-            $total = $harian['rata']+$tugas['rata']+$uts['rata']+$uas['rata'];
-            $rata = $total/4;
+            $total = $harian['rata']+$tugas['rata']+$pts['rata']+$pas['rata']+$pat['rata'];
+            $rata = $total/5;
 
             $data[0]['total']=$total;
             $data[0]['rata']=$rata;
             echo json_encode($data);
         }
-        public function hapus($semester=null,$jadwal=null,$id=null,$nilai=null){
-            if(!isset($id) || (!isset($jadwal))|| (!isset($semester))|| (!isset($nilai))){
+        public function hapus($jadwal=null,$id=null,$nilai=null){
+            if(!isset($id) || (!isset($jadwal))|| (!isset($nilai))){
                 redirect('nilai');
             }else{
 
@@ -170,27 +172,11 @@
                 redirect('nilai/matpel/'.$semester.'/'.$jadwal.'/'.$id);
             }
         }
-        public function ubah($semester=null,$jadwal=null,$id=null,$nilai=null){
-            if(!isset($id) || (!isset($jadwal))|| (!isset($semester))|| (!isset($nilai))){
-                redirect('nilai');
-            }else{
 
-                $ubah = $this->Nilai_model->hapusNilaiDet($nilai);
-                if($hapus){
-                    $this->session->set_flashdata('success','<div class="alert alert-success d-flex align-items-center" role="alert"><div class="flex-00-auto"><i class="fa fa-fw fa-check"></i></div><div class="flex-fill ml-3"><p class="mb-0">Berhasil menghapus nilai!</p></div></div>');
-                }else{
-                    $this->session->set_flashdata('failed','<div class="alert alert-danger d-flex align-items-center justify-content-between" role="alert"><div class="flex-00-auto"><i class="fa fa-fw fa-times-circle"></i></div><div class="flex-fill ml-3"><p class="mb-0">Gagal menghapus nilai!</p></div></div>');
-                }
-
-                redirect('nilai/matpel/'.$semester.'/'.$jadwal.'/'.$id);
-            }
-        }
-
-        public function rekap($jadwal=null,$semester=null,$type=null)
+        public function rekap($jadwal=null,$type=null)
         {
-            if(!isset($jadwal) || !isset($semester)) redirect('nilai');
-            if($semester != "ganjil" && $semester != "genap" ) redirect('nilai');
-
+            if(!isset($jadwal))redirect('nilai');
+           
             $nilai = $this->Nilai_model;
             
             $data["model"]=$this->Nilai_model;
@@ -198,7 +184,7 @@
             $data["jadwal"]= $nilai->getKelasAndMatpel($jadwal);
             if(!$data["jadwal"]) redirect('nilai');
 
-            $data["title"] = "Rekap Nilai Semester ".ucfirst($semester);
+            $data["title"] = 'Rekap Nilai '.$data['jadwal']["matpel_nama"].' '.$data['jadwal']["kelas_nama"].' Tahun Ajaran '.$this->session->userdata('tahunajaran_nama');
             $data["tahunajarans"]=$this->Nilai_model->getTahunAjaran();
 
             $this->load->view('tutor/nilai/rekap',$data);
@@ -210,16 +196,16 @@
                 $jadwal= new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'Legal-L']);
                 $jadwal->WriteHTML($style,\Mpdf\HTMLParserMode::HEADER_CSS);
                 $jadwal->WriteHtml($cetak,\Mpdf\HTMLParserMode::HTML_BODY);
-                $jadwal->Output('Rekap Nilai '.$data['jadwal']["matpel_nama"].' '.$data['jadwal']["kelas_nama"].' Tahun Ajaran '.$this->session->userdata('tahunajaran_nama').' Semester '.ucfirst($this->uri->segment(4)).'.pdf', 'D');
+                $jadwal->Output('Rekap Nilai '.$data['jadwal']["matpel_nama"].' '.$data['jadwal']["kelas_nama"].' Tahun Ajaran '.$this->session->userdata('tahunajaran_nama').'.pdf', 'D');
                 
             }elseif($type=="xlsx"){
                 $spreadsheet = new Spreadsheet();
                 $spreadsheet->getActiveSheet();
                 $spreadsheet->setActiveSheetIndex(0)
                     ->setCellValue('A1', 'PKBM Harapan Baru')
-                    ->mergeCells('A1:N1')
-                    ->setCellValue('A2', 'Data Nilai '.$data["jadwal"]["matpel_nama"].' '.$data["jadwal"]["kelas_nama"].' '.$this->session->userdata('tahunajaran_nama').' '.ucfirst($semester))
-                    ->mergeCells('A2:N2')
+                    ->mergeCells('A1:P1')
+                    ->setCellValue('A2', 'Rekap Nilai '.$data['jadwal']["matpel_nama"].' '.$data['jadwal']["kelas_nama"].' Tahun Ajaran '.$this->session->userdata('tahunajaran_nama'))
+                    ->mergeCells('A2:P2')
                     ->setCellValue('A5','NO')
                     ->mergeCells('A5:A6')
                     ->setCellValue('B5','Nomor Induk')
@@ -227,23 +213,25 @@
                     ->setCellValue('C5','Nama')
                     ->mergeCells('C5:C6')
                     ->setCellValue('D5','Total')
-                    ->mergeCells('D5:G5')
+                    ->mergeCells('D5:H5')
                     ->setCellValue('D6','Harian')
                     ->setCellValue('E6','Tugas')
-                    ->setCellValue('F6','UTS')
-                    ->setCellValue('G6','UAS')
-                    ->setCellValue('H5','Nilai')
-                    ->mergeCells('H5:K5')
-                    ->setCellValue('H6','Harian')
-                    ->setCellValue('I6','Tugas')
-                    ->setCellValue('J6','UTS')
-                    ->setCellValue('K6','UAS')
-                    ->setCellValue('L5','Total')
-                    ->mergeCells('L5:L6')
-                    ->setCellValue('M5','Rata-rata')
-                    ->mergeCells('M5:M6')
-                    ->setCellValue('N5','Keterangan')
-                    ->mergeCells('N5:N6');
+                    ->setCellValue('F6','PTS')
+                    ->setCellValue('G6','PAS')
+                    ->setCellValue('H6','PAT')
+                    ->setCellValue('I5','Nilai')
+                    ->mergeCells('I5:M5')
+                    ->setCellValue('I6','Harian')
+                    ->setCellValue('J6','Tugas')
+                    ->setCellValue('K6','PTS')
+                    ->setCellValue('L6','PAS')
+                    ->setCellValue('M6','PAT')
+                    ->setCellValue('N5','Total')
+                    ->mergeCells('N5:N6')
+                    ->setCellValue('O5','Rata-rata')
+                    ->mergeCells('O5:O6')
+                    ->setCellValue('P5','Keterangan')
+                    ->mergeCells('P5:P6');
 
                 // Set Width
                 $spreadsheet->getActiveSheet()->getColumnDimension('A')->setAutoSize(true);
@@ -260,6 +248,7 @@
                 $spreadsheet->getActiveSheet()->getColumnDimension('L')->setAutoSize(true);
                 $spreadsheet->getActiveSheet()->getColumnDimension('M')->setAutoSize(true);
                 $spreadsheet->getActiveSheet()->getColumnDimension('N')->setAutoSize(true);
+                $spreadsheet->getActiveSheet()->getColumnDimension('O')->setAutoSize(true);
                 
 
                 // Parsing data from database
@@ -267,21 +256,23 @@
                 $n = 1;
                 foreach ($data["wargabelajars"] as $wargabelajar) {
                     $id = $wargabelajar["wargabelajar_id"];
-                    $getnilaiID = $nilai->getIDNIilai($jadwal,$id,$semester);
+                    $getnilaiID = $nilai->getIDNIilai($jadwal,$id);
                     $idnilai = $getnilaiID["nilai_id"];
 
-                    $CountUTS = $nilai->countUts($idnilai);
-                    $CountUAS = $nilai->countUas($idnilai);
+                    $CountPAT = $nilai->countPAT($idnilai);
+                    $CountPTS = $nilai->countPTS($idnilai);
+                    $CountPAS = $nilai->countPAS($idnilai);
                     $CountTugas = $nilai->countTugas($idnilai);
                     $CountHarian = $nilai->countHarian($idnilai);
 
-                    $sumUTS = $nilai->sumUts($idnilai);
-                    $sumUAS = $nilai->sumUas($idnilai);
+                    $sumPTS = $nilai->sumPTS($idnilai);
+                    $sumPAS = $nilai->sumPAS($idnilai);
+                    $sumPAT = $nilai->sumPAT($idnilai);
                     $sumTugas = $nilai->sumTugas($idnilai);
                     $sumHarian = $nilai->sumHarian($idnilai);
 
-                    $total = $sumUTS['uts']+$sumUAS['uas']+$sumTugas['tugas']+$sumHarian['harian'];
-                    $average = ($total / 4);
+                    $total = $sumPTS['pts']+$sumPAS['pas']+$sumTugas['tugas']+$sumHarian['harian'] + $sumPAT['pat'];
+                    $average = ($total / 5);
                     
                     if($average>=90 && $average<=100){
                         $status ="A";
@@ -301,15 +292,17 @@
                         ->setCellValue('C'.$row,$wargabelajar["wargabelajar_nama"])
                         ->setCellValue('D'.$row,$CountHarian['harian'])
                         ->setCellValue('E'.$row,$CountTugas['tugas'])
-                        ->setCellValue('F'.$row,$CountUTS['uts'])
-                        ->setCellValue('G'.$row,$CountUAS['uas'])
-                        ->setCellValue('H'.$row,$sumHarian['harian'])
-                        ->setCellValue('I'.$row,$sumTugas['tugas'])
-                        ->setCellValue('J'.$row,$sumUTS['uts'])
-                        ->setCellValue('K'.$row,$sumUAS['uas'])
-                        ->setCellValue('L'.$row,$total)
-                        ->setCellValue('M'.$row,$average)
-                        ->setCellValue('N'.$row,$status);
+                        ->setCellValue('F'.$row,$CountPTS['pts'])
+                        ->setCellValue('G'.$row,$CountPAS['pas'])
+                        ->setCellValue('H'.$row,$CountPAT['pat'])
+                        ->setCellValue('I'.$row,$sumHarian['harian'])
+                        ->setCellValue('J'.$row,$sumTugas['tugas'])
+                        ->setCellValue('K'.$row,$sumPTS['pts'])
+                        ->setCellValue('L'.$row,$sumPAS['pas'])
+                        ->setCellValue('M'.$row,$sumPAT['pat'])
+                        ->setCellValue('N'.$row,$total)
+                        ->setCellValue('O'.$row,$average)
+                        ->setCellValue('P'.$row,$status);
                     $row++;
                     $n++;
                 }
@@ -327,7 +320,9 @@
                         ->setCellValue('J'.$row,'=sum(J7:J'.$ndata.')')
                         ->setCellValue('K'.$row,'=sum(K7:K'.$ndata.')')
                         ->setCellValue('L'.$row,'=sum(L7:L'.$ndata.')')
-                        ->setCellValue('M'.$row,'=sum(M7:M'.$ndata.')');
+                        ->setCellValue('M'.$row,'=sum(M7:M'.$ndata.')')
+                        ->setCellValue('N'.$row,'=sum(N7:N'.$ndata.')')
+                        ->setCellValue('O'.$row,'=sum(O7:O'.$ndata.')');
                         $row+=1;
                 $spreadsheet->setActiveSheetIndex(0)
                         ->setCellValue('A'.$row,"Rata-rata")
@@ -341,7 +336,9 @@
                         ->setCellValue('J'.$row,'=average(J7:J'.$ndata.')')
                         ->setCellValue('K'.$row,'=average(K7:K'.$ndata.')')
                         ->setCellValue('L'.$row,'=average(L7:L'.$ndata.')')
-                        ->setCellValue('M'.$row,'=average(M7:M'.$ndata.')');
+                        ->setCellValue('M'.$row,'=average(M7:M'.$ndata.')')
+                        ->setCellValue('N'.$row,'=average(N7:N'.$ndata.')')
+                        ->setCellValue('O'.$row,'=average(O7:O'.$ndata.')');
                         $row+=1;
                 $spreadsheet->setActiveSheetIndex(0)
                         ->setCellValue('A'.$row,"Banyak Data")
@@ -355,7 +352,9 @@
                         ->setCellValue('J'.$row,'=count(J7:J'.$ndata.')')
                         ->setCellValue('K'.$row,'=count(K7:K'.$ndata.')')
                         ->setCellValue('L'.$row,'=count(L7:L'.$ndata.')')
-                        ->setCellValue('M'.$row,'=count(M7:M'.$ndata.')');
+                        ->setCellValue('M'.$row,'=count(M7:M'.$ndata.')')
+                        ->setCellValue('N'.$row,'=count(N7:N'.$ndata.')')
+                        ->setCellValue('O'.$row,'=count(O7:O'.$ndata.')');
                         $row+=1;
                 $spreadsheet->setActiveSheetIndex(0)
                         ->setCellValue('A'.$row,"Tertinggi")
@@ -369,7 +368,9 @@
                         ->setCellValue('J'.$row,'=max(J7:J'.$ndata.')')
                         ->setCellValue('K'.$row,'=max(K7:K'.$ndata.')')
                         ->setCellValue('L'.$row,'=max(L7:L'.$ndata.')')
-                        ->setCellValue('M'.$row,'=max(M7:M'.$ndata.')');
+                        ->setCellValue('M'.$row,'=max(M7:M'.$ndata.')')
+                        ->setCellValue('N'.$row,'=max(N7:N'.$ndata.')')
+                        ->setCellValue('O'.$row,'=max(O7:O'.$ndata.')');
                         $row+=1;
                 $spreadsheet->setActiveSheetIndex(0)
                         ->setCellValue('A'.$row,"Terendah")
@@ -383,7 +384,9 @@
                         ->setCellValue('J'.$row,'=min(J7:J'.$ndata.')')
                         ->setCellValue('K'.$row,'=min(K7:K'.$ndata.')')
                         ->setCellValue('L'.$row,'=min(L7:L'.$ndata.')')
-                        ->setCellValue('M'.$row,'=min(M7:M'.$ndata.')');
+                        ->setCellValue('M'.$row,'=min(M7:M'.$ndata.')')
+                        ->setCellValue('N'.$row,'=min(N7:N'.$ndata.')')
+                        ->setCellValue('O'.$row,'=min(O7:O'.$ndata.')');
                         $row+=1;
                 // Rename worksheet
                 $spreadsheet->getActiveSheet()->setTitle('Rekap Niliai'.date('d-m-Y H'));
@@ -399,7 +402,7 @@
 
                 // Redirect output to a client’s web browser (Xlsx)
                 header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-                header('Content-Disposition: attachment;filename="Data Nilai '.$data["jadwal"]["matpel_nama"].' '.$data["jadwal"]["kelas_nama"].' '.$this->session->userdata('tahunajaran_nama').' '.ucfirst($semester).'.xlsx"');
+                header('Content-Disposition: attachment;filename="Rekap Nilai '.$data['jadwal']["matpel_nama"].' '.$data['jadwal']["kelas_nama"].' Tahun Ajaran '.$this->session->userdata('tahunajaran_nama').'.xlsx"');
                 header('Cache-Control: max-age=0');
                 // If you're serving to IE 9, then the following may be needed
                 header('Cache-Control: max-age=1');

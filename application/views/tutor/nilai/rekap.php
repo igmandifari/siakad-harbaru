@@ -344,7 +344,7 @@
                                     </button>
                                 </a>
 
-                                <a href="<?=base_url();?>">
+                                <a href="<?=base_url('nilai');?>">
                                     <button type="button" class="btn btn-sm btn-light">
                                         Kembali
                                     </button>
@@ -368,10 +368,6 @@
                                                 <td>: <?=$jadwal["matpel_nama"];?></td>
                                             </tr>
                                             <tr>
-                                                <td>Semester</td>
-                                                <td>: <?=ucfirst($this->uri->segment(4))?></td>
-                                            </tr>
-                                            <tr>
                                                 <td>Tutor</td>
                                                 <td>: <?=$this->session->userdata('nama');?></td>
                                             </tr>
@@ -386,23 +382,25 @@
                                   <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
                                     <thead class="text-center">
                                         <tr>
-                                            <th rowspan="2" style="vertical-align:middle;">NO</th>
-                                            <th rowspan="2" style="vertical-align:middle;">Nama</th>
-                                            <th colspan="4">Total</th>
-                                            <th colspan="4">Nilai</th>
-                                            <th rowspan="2" style="vertical-align:middle;">Total</th>
-                                            <th rowspan="2" style="vertical-align:middle;">Rata-Rata</th>
-                                            <th rowspan="2" style="vertical-align:middle;">Keterangan</th>
+                                            <th rowspan="2" style="vertical-align:middle;"><strong>NO</strong></th>
+                                            <th rowspan="2" style="vertical-align:middle;"><strong>NAMA</strong></th>
+                                            <th colspan="5"><strong>TOTAL</strong></th>
+                                            <th colspan="5"><strong>NILAI</strong></th>
+                                            <th rowspan="2" style="vertical-align:middle;"><strong>Total</strong></th>
+                                            <th rowspan="2" style="vertical-align:middle;"><strong>Rata-Rata</strong></th>
+                                            <th rowspan="2" style="vertical-align:middle;"><strong>Keterangan</strong></th>
                                         </tr>
                                         <tr>
-                                            <th width="5%">Harian</th>
-                                            <th width="5%">Tugas</th>
-                                            <th width="5%">UTS</th>
-                                            <th width="5%">UAS</th>
-                                            <th width="5%">Harian</th>
-                                            <th width="5%">Tugas</th>
-                                            <th width="5%">UTS</th>
-                                            <th width="5%">UAS</th>
+                                            <th width="5%"><strong>Harian</strong></th>
+                                            <th width="5%"><strong>Tugas</strong></th>
+                                            <th width="5%"><strong>PTS</strong></th>
+                                            <th width="5%"><strong>PAS</strong></th>
+                                            <th width="5%"><strong>PAT</strong></th>
+                                            <th width="5%"><strong>Harian</strong></th>
+                                            <th width="5%"><strong>Tugas</strong></th>
+                                            <th width="5%"><strong>PTS</strong></th>
+                                            <th width="5%"><strong>PAS</strong></th>
+                                            <th width="5%"><strong>PAT</strong></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -426,18 +424,20 @@
 
                                                 $nilai = $idnilai["nilai_id"];
 
-                                                $CountUTS = $model->countUts($nilai);
-                                                $CountUAS = $model->countUas($nilai);
+                                                $CountPAT = $model->countPAT($nilai);
+                                                $CountPAS = $model->countPAS($nilai);
+                                                $CountPTS = $model->countPTS($nilai);
                                                 $CountTugas = $model->countTugas($nilai);
                                                 $CountHarian = $model->countHarian($nilai);
 
-                                                $sumUTS = $model->sumUts($nilai);
-                                                $sumUAS = $model->sumUas($nilai);
+                                                $sumPAT = $model->sumPAT($nilai);
+                                                $sumPAS = $model->sumPAS($nilai);
+                                                $sumPTS = $model->sumPTS($nilai);
                                                 $sumTugas = $model->sumTugas($nilai);
                                                 $sumHarian = $model->sumHarian($nilai);
 
-                                                $total = $sumUTS['uts']+$sumUAS['uas']+$sumTugas['tugas']+$sumHarian['harian'];
-                                                $average = ($total / 4);
+                                                $total = $sumPAT['pat']+$sumPTS['pts']+$sumPAS['pas']+$sumTugas['tugas']+$sumHarian['harian'];
+                                                $average = ($total / 5);
                                                 $status;
 
                                                 if($average>=90 && $average<=100){
@@ -462,18 +462,20 @@
                                             <tr>
                                                 <td class="text-center"><?php echo $no;?></td>
                                                 <td>
-                                                    <a href="<?php echo base_url('nilai/matpel/').$this->uri->segment(4).'/'.$this->uri->segment(3).'/'.$wargabelajar["wargabelajar_id"];?>" target="_blank" title="Masukan Nilai">
+                                                    <a href="<?php echo base_url('nilai/matpel/').$this->uri->segment(3).'/'.$wargabelajar["wargabelajar_id"];?>" target="_blank" title="Masukan Nilai">
                                                         <?php echo $wargabelajar["wargabelajar_nama"]."<br>".$wargabelajar["wargabelajar_nomor_induk"];?>
                                                     </a>
                                                 </td>
                                                 <td class="text-center" style="vertical-align:middle;"><?php echo $CountHarian['harian'];?></td>
                                                 <td class="text-center" style="vertical-align:middle;"><?php echo $CountTugas['tugas'];?></td>
-                                                <td class="text-center" style="vertical-align:middle;"><?php echo $CountUTS['uts'];?></td>
-                                                <td class="text-center" style="vertical-align:middle;"><?php echo $CountUAS['uas'];?></td>
+                                                <td class="text-center" style="vertical-align:middle;"><?php echo $CountPTS['pts'];?></td>
+                                                <td class="text-center" style="vertical-align:middle;"><?php echo $CountPAS['pas'];?></td>
+                                                <td class="text-center" style="vertical-align:middle;"><?php echo $CountPAT['pat'];?></td>
                                                 <td class="text-center" style="vertical-align:middle;"><?php echo number_format($sumHarian['harian'],2);?></td>
                                                 <td class="text-center" style="vertical-align:middle;"><?php echo number_format($sumTugas['tugas'],2);?></td>
-                                                <td class="text-center" style="vertical-align:middle;"><?php echo number_format($sumUTS['uts'],2);?></td>
-                                                <td class="text-center" style="vertical-align:middle;"><?php echo number_format($sumUAS['uas'],2);?></td>
+                                                <td class="text-center" style="vertical-align:middle;"><?php echo number_format($sumPTS['pts'],2);?></td>
+                                                <td class="text-center" style="vertical-align:middle;"><?php echo number_format($sumPAS['pas'],2);?></td>
+                                                <td class="text-center" style="vertical-align:middle;"><?php echo number_format($sumPAT['pat'],2);?></td>
                                                 <td class="text-center" style="vertical-align:middle;"><?php echo number_format($total,2);?></td>
                                                 <td class="text-center" style="vertical-align:middle;"><?php echo number_format($average,2);?></td>
                                                 <td class="text-center" style="vertical-align:middle;"><?php echo $status;?></td>
@@ -483,13 +485,13 @@
                                             $avgOfavg=$sumAverage/$no;
                                         ?>
                                         <tr>
-                                            <th colspan="10">Total</th>
+                                            <th colspan="12">Total</th>
                                             <td class="text-center"><?php echo number_format($sumTotal,2);?></td>
                                             <td class="text-center"><?php echo number_format($sumAverage,2);?></td>
                                             <td class="text-center"></td>
                                         </tr>
                                         <tr>
-                                            <th colspan="10">Rata-Rata</th>
+                                            <th colspan="12">Rata-Rata</th>
                                             <td class="text-center"><?php echo number_format($avgOfTotal,2);?></td>
                                             <td class="text-center"><?php echo number_format($avgOfavg,2);?></td>
                                             <td class="text-center"></td>
@@ -542,12 +544,12 @@
                                     <div class="block-content block-content-full font-size-sm">
                                         <p>Silahkan pilih tipe file cetak yang kamu inginkan!</p>
                                         <div class="text-center">
-                                            <a href="<?=base_url('nilai/rekap/').$this->uri->segment(3).'/'.$this->uri->segment(4).'/xlsx';?>" title="Klik Berikut Untuk Download tipe .xlsx">
+                                            <a href="<?=base_url('nilai/rekap/').$this->uri->segment(3).'/xlsx';?>" title="Klik Berikut Untuk Download tipe .xlsx">
                                                 <button type="button" class="btn btn-rounded btn-success">
                                                     <i class="far fa-file-excel"></i> Spreadsheet
                                                 </button>
                                             </a>
-                                            <a href="<?=base_url('nilai/rekap/').$this->uri->segment(3).'/'.$this->uri->segment(4).'/pdf';?>" title="Klik Berikut Untuk Download tipe .PDF">
+                                            <a href="<?=base_url('nilai/rekap/').$this->uri->segment(3).'/pdf';?>" title="Klik Berikut Untuk Download tipe .PDF">
                                                 <button type="button" class="btn btn-rounded btn-danger">
                                                     <i class="far fa-file-pdf"></i> PDF
                                                 </button>

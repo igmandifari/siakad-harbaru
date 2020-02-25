@@ -335,11 +335,9 @@
                         <div class="block-header block-header-default">
                             <h3 class="block-title"><?=$title;?></h3>
                             <div class="block-options">
-                                <a href="<?=base_url('jadwalmengajar/cetak');?>">
-                                    <button type="button" class="btn btn-sm btn-secondary">
-                                        Cetak
-                                    </button>
-                                </a>
+                                <!-- <button type="button" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#modal-cetak">
+                                    Cetak
+                                </button> -->
 
                                 <a href="<?=base_url('jadwalmengajar');?>">
                                     <button type="button" class="btn btn-sm btn-info">
@@ -382,8 +380,10 @@
                                                 <td><?=$kelas->jadwal_hari?></td>
                                                 <td><?=$kelas->jadwal_waktu?></td>
                                                 <td class="text-center">
-                                                        <button type="button" class="nilai btn btn-primary btn-sm" data-toggle="modal" data-target="#modal-block-popout" data-matpel="<?=$kelas->jadwal_id?>">Masukan Nilai</button>     
-                                                        <button type="button" class="rekap btn btn-success btn-sm" data-toggle="modal" data-target="#modal-block-rekap" data-jadwal="<?=$kelas->jadwal_id?>">Rekap</button>
+                                                        <button type="button" class="nilai btn btn-primary btn-sm" data-toggle="modal" data-target="#modal-block-popout" data-matpel="<?=$kelas->jadwal_id?>">Masukan Nilai</button>
+                                                        <a href="<?=base_url('nilai/rekap/').$kelas->jadwal_id;?>">     
+                                                        <button type="button" class="btn btn-success btn-sm">Rekap</button>
+                                                    </a>
                                                     
                                             </td>
                                             </tr>
@@ -523,13 +523,6 @@
         <!-- Custom -->
         <script>
             jQuery(function(){
-                const $btnRekap = $(".rekap");
-                $btnRekap.click(function(){
-                    var $jadwal = $(this).data("jadwal");
-                    const $rekap = $("#pilihan-rekap");
-
-                    $rekap.html('<a href="<?php echo base_url('nilai/rekap/');?>'+$jadwal+'/ganjil/" target="_blank"><button type="button" class="btn btn-sm btn-success">Ganjil</button></a>   <a href="<?php echo base_url('nilai/rekap/');?>'+$jadwal+'/genap/" target="_blank"><button type="button" class="btn btn-sm btn-secondary">Genap</button></a>');
-                });
                 const $btnClick = $(".nilai");
 
                 $btnClick.click(function(){
@@ -543,7 +536,7 @@
                         dataType:'json',
                         success:function(data){
                             for(var row=0;row<data.length;row++){
-                                $tempWarga+='<tr><td class="text-center">'+(row+1)+'</td><td>'+data[row].wargabelajar_nama+'</td><td class="text-center"><a href="<?php echo base_url('nilai/matpel/ganjil/');?>'+$idmatpel+'/'+data[row].wargabelajar_id+'" target="_blank"><button type="button" class="btn btn-sm btn-success">Ganjil</button></a><a href="<?php echo base_url('nilai/matpel/genap/');?>'+$idmatpel+'/'+data[row].wargabelajar_id+'" target="_blank"><button type="button" class="btn btn-sm btn-secondary">Genap</button></a></td></tr>';
+                                $tempWarga+='<tr><td class="text-center">'+(row+1)+'</td><td>'+data[row].wargabelajar_nama+'</td><td class="text-center"><a href="<?php echo base_url('nilai/matpel/');?>'+$idmatpel+'/'+data[row].wargabelajar_id+'" target="_blank"><button type="button" class="btn btn-sm btn-success">Pilih</button></a></td></tr>';
                             }
                             $(".js-dataTable-fulll").dataTable().fnClearTable();
                             $(".js-dataTable-fulll").dataTable().fnDestroy();

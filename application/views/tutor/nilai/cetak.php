@@ -65,8 +65,8 @@
                                             <td><strong>: <?php echo $matpel["matpel_nama"];?></strong></td>
                                         </tr>
                                         <tr>
-                                            <td><strong>Semester</strong></td>
-                                            <td><strong>: <?php echo ucfirst($this->uri->segment(3));?></strong></td>
+                                            <td><strong>Tahun Ajaran</strong></td>
+                                            <td><strong>: <?php echo $this->session->userdata('tahunajaran_nama')?></strong></td>
                                         </tr>
                                         <tr>
                                             <td><strong>Guru</strong></td>
@@ -95,13 +95,18 @@
                                             </tr>
                                             <tr>
                                                 <td class="text-center">3</td>
-                                                <td>UTS</td>
-                                                <td class="text-center"><?=round($uts,2);?></td>
+                                                <td>PTS</td>
+                                                <td class="text-center"><?=round($pts,2);?></td>
                                             </tr>
                                             <tr>
                                                 <td class="text-center">4</td>
-                                                <td>UAS</td>
-                                                <td class="text-center"><?=round($uas,2);?></td>
+                                                <td>PAS</td>
+                                                <td class="text-center"><?=round($pas,2);?></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center">4</td>
+                                                <td>PAT</td>
+                                                <td class="text-center"><?=round($pat,2);?></td>
                                             </tr>
                                         </tbody>
                                         <tfoot>
