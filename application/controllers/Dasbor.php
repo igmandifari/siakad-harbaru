@@ -22,6 +22,9 @@ class Dasbor extends CI_Controller
             $this->load->view('dasbor/dasbor_admin',$data);
         }
         else if($this->session->userdata('level') == 1){
+            $tahun= $this->session->userdata('tahunajaran_id');
+            $data["haris"]=$dasbor->getHari($tahun);
+            $data['dasbor'] =  $this->Dasbor_model;
             $this->load->view('dasbor/wargabelajar/dasbor_wargabelajar',$data);
         }else if($this->session->userdata('level') == 2)
         {

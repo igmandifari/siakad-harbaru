@@ -292,6 +292,7 @@
                                     <tr class="text-center">
                                         <th style="vertical-align: middle;"><strong>NO</strong></th>
                                         <th style="vertical-align: middle;"><strong>Mata Pelajaran</strong></th>
+                                        <th style="vertical-align: middle;"><strong>Tipe</strong></th>
                                         <th style="vertical-align: middle;"><strong>Nilai</strong></th>
                                         <th style="vertical-align: middle;"><strong>Keterangan</strong></th>
                                     </tr>
@@ -329,9 +330,7 @@
                                 		<tr>
                                 			<td class="text-center"><?php echo $no;?></td>
                                 			<td><?php echo $jadwal['matpel'];?></td>
-                                	
-                                				
-                                			
+                                            <td><?php echo $jadwal['jadwal_tipe_pembelajaran'];?></td>
                                 			<td class="text-center"><?php echo $rata;?></td>
                                 			<td class="text-center"><?php echo $status;?></td>
                                 		</tr>
@@ -356,10 +355,12 @@
                         <div class="block-content block-content-full font-size-sm">
                             <p>Silahkan pilih tipe file cetak yang kamu inginkan!</p>
                             <div class="text-center">
-                            <button type="button" class="btn btn-rounded btn-success">
-                                <i class="far fa-file-excel"></i> Spreadsheet
-                            </button>
-                            <a href="<?=base_url('tutor/cetak');?>" target="_blank">
+                            <a href="<?=base_url('rekapnilai/cetak/xlsx');?>"  title="Klik Berikut Untuk Download tipe .PDF">
+                                    <button type="button" class="btn btn-rounded btn-success">
+                                        <i class="far fa-file-excel"></i> Spreadsheet
+                                    </button>
+                                </a>
+                            <a href="<?=base_url('rekapnilai/cetak/pdf');?>"  title="Klik Berikut Untuk Download tipe .PDF">
                                 <button type="button" class="btn btn-rounded btn-danger">
                                     <i class="far fa-file-pdf"></i> PDF
                                 </button>

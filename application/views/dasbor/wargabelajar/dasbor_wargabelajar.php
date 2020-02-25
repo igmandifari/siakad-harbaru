@@ -261,9 +261,178 @@
                     </div>
                 </div>
                 <!-- END Hero -->
-
                 <!-- Page Content -->
-              
+                <div class="content">
+                    <h2 class="content-heading">Shortcut</h2>
+                    <div class="row">
+                        <div class="col-md-6 col-xl-3">
+                            <!-- Success Color -->
+                            <a href="<?=base_url('rekapnilai');?>">
+                                <div class="block">
+                                    <div class="block-content block-content-full ribbon ribbon-bookmark ribbon-success">
+                                        <div class="ribbon-box">
+                                            Nilai
+                                        </div>
+                                        <div class="text-center py-4">
+                                            <p>
+                                                <i class="fa fa-3x si si-layers text-gray"></i>
+                                            </p>
+                                            <h4 class="mb-0">Selengkapnya</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            <!-- END Success Color -->
+                        </div>
+                        <div class="col-md-6 col-xl-3">
+                            <!-- Info Color -->
+                            <a href="<?=base_url('rekappresensi');?>">
+                                <div class="block">
+                                    <div class="block-content block-content-full ribbon ribbon-bookmark ribbon-info">
+                                        <div class="ribbon-box">
+                                            Presensi
+                                        </div>
+                                        <div class="text-center py-4">
+                                            <p>
+                                                <i class="fa fa-3x si si-note text-gray"></i>
+                                            </p>
+                                            <h4 class="mb-0">Selengkapnya</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            <!-- END Info Color -->
+                        </div>
+                        <div class="col-md-6 col-xl-3">
+                            <!-- Warning Color -->
+                            <a href="<?=base_url('masukan');?>">
+                                <div class="block">
+                                    <div class="block-content block-content-full ribbon ribbon-bookmark ribbon-warning">
+                                        <div class="ribbon-box">
+                                            Kirim Masukan
+                                        </div>
+                                        <div class="text-center py-4">
+                                            <p>
+                                                <i class="fa fa-3x fab fa-rocketchat ml-1 text-gray"></i>
+                                            </p>
+                                            <h4 class="mb-0">Selengkapnya</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            <!-- END Warning Color -->
+                        </div>
+                        <div class="col-md-6 col-xl-3">
+                            <!-- Danger Color -->
+                            <a href="<?=base_url('pengaturan');?>">
+                                <div class="block">
+                                    <div class="block-content block-content-full ribbon ribbon-bookmark ribbon-danger">
+                                        <div class="ribbon-box">
+                                            Pengaturan
+                                        </div>
+                                        <div class="text-center py-4">
+                                            <p>
+                                                <i class="fa fa-3x si si-settings text-gray"></i>
+                                            </p>
+                                            <h4 class="mb-0">Selengkapnya</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            <!-- END Danger Color -->
+                        </div>
+                    </div>
+                    <!-- Jadwal  -->
+                    <div class="row row-deck">
+                        <div class="col-lg-12">
+                            <div class="block block-mode-loading-oneui">
+                                <div class="block-header border-bottom">
+                                    <h3 class="block-title">Jadwal Kamu!</h3>
+                                    <div class="block-options">
+                                        <button type="button" class="btn-block-option" data-toggle="block-option" data-action="state_toggle" data-action-mode="demo">
+                                            <i class="si si-refresh"></i>
+                                        </button>
+                                        <a href="<?=base_url('pengaturan');?>">
+                                            <button type="button" class="btn-block-option">
+                                                <i class="si si-settings"></i>
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="block-content block-content-full">
+                                    <div class="table-responsive">
+                                <table class="table table-bordered table-striped table-vcenter">
+                                    <thead>
+                                        <tr class="text-center">
+                                            <th>Mata Pelajaran</th>
+                                            <th>Tutor</th>
+                                            <th>Waktu</th>
+                                        </tr>
+                                    </thead>
+                                     
+                                    <tbody>
+                                       <?php
+                                            $id = $this->session->userdata('id');
+                                            $tahun = $this->session->userdata('tahunajaran_id');
+                                            
+                                            foreach($haris as $hari){
+                                                $dinten = $hari['hari'];
+                                                $matpels = $dasbor->getJadwal($id,$tahun,addslashes($dinten));
+                                        ?>
+                                            <tr style="background-color: transparent;">
+                                                <th colspan="3">
+                                                    <?php echo $hari['hari'];?>
+                                                </th>
+                                             </tr>
+                                             
+                                      <?php foreach ($matpels as $matpel):?>
+
+                                            <tr>
+                                                <td>
+                                                    <?php echo $matpel["matpel_nama"];?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $matpel["tutor_nama"];?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $matpel["jadwal_waktu"];?>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach;?>                                                             
+                                            
+                                    <?php }?>
+                                    <tr style="background-color: transparent;">
+                                        <th colspan="3">Lainnya</th>
+                                    </tr>
+                                    <?php $others = $dasbor->getOther($id,$tahun);
+                                        foreach ($others as $other):?>
+                                                 <tr>
+                                                <td>
+                                                    <?php echo $other["matpel_nama"];?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $other["tutor_nama"];?>
+                                                </td>
+                                                <td>
+                                                    <strong>
+                                                        <?php echo $other["tipe"];?>
+                                                    </strong>
+                                                </td>
+                                            </tr>
+                                            <?php endforeach;?>  
+
+                                    
+                                        
+
+                                    </tbody>
+                                </table>
+                            </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END Jadwal -->
+                </div>
                 <!-- END Page Content -->
 
             </main>
