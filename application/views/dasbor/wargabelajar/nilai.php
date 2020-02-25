@@ -290,42 +290,41 @@
                             <table class="table table-bordered table-striped table-vcenter">
                                 <thead>
                                     <tr class="text-center">
-                                        <th rowspan="2" style="vertical-align: middle;">NO</th>
-                                        <th rowspan="2" style="vertical-align: middle;">Mata Pelajaran</th>
-                                        <th colspan="2">Nilai</th>
-                                    </tr>
-                                    <tr class="text-center">
-                                    	<th>Ganjil</th>
-                                    	<th>Genap</th>
+                                        <th style="vertical-align: middle;"><strong>NO</strong></th>
+                                        <th style="vertical-align: middle;"><strong>Mata Pelajaran</strong></th>
+                                        <th style="vertical-align: middle;"><strong>Nilai</strong></th>
+                                        <th style="vertical-align: middle;"><strong>Keterangan</strong></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 	<?php $no=0;foreach($jadwals as $jadwal):$no++;
-                                		$ganjil = $model->getIdNilai($jadwal['idjadwal'],$this->wb_id,'ganjil');
-                                		$genap = $model->getIdNilai($jadwal['idjadwal'],$this->wb_id,'genap');
+                                		$idnilai = $model->getIdNilai($jadwal['idjadwal'],$this->wb_id);
 
-                                		$nilai_ganjil = 0;
-                                		$nilai_genap = 0;
+                                		$nilai = 0;
+                                        $status="";
                                 		
-                                		// Menghitung nilai di semester ganjil
-	                                		$sumUTS_ganjil = $model->sumUts($ganjil['idnilai']);
-	                                        $sumUAS_ganjil = $model->sumUas($ganjil['idnilai']);
-	                                        $sumTugas_ganjil = $model->sumTugas($ganjil['idnilai']);
-	                                        $sumHarian_ganjil = $model->sumHarian($ganjil['idnilai']);
+                                		// Menghitung nilai
+                                            $sumPAT = $model->sumPAT($idnilai['idnilai']);
+	                                		$sumPTS = $model->sumPTS($idnilai['idnilai']);
+	                                        $sumPAS = $model->sumPAS($idnilai['idnilai']);
+	                                        $sumTugas = $model->sumTugas($idnilai['idnilai']);
+	                                        $sumHarian = $model->sumHarian($idnilai['idnilai']);
 	                                		
-	                                		$sum_ganjil = $sumHarian_ganjil['rata']+$sumTugas_ganjil['rata']+$sumUTS_ganjil['rata']+$sumUAS_ganjil['rata'];
+	                                		$sum_nilai = $sumHarian['rata']+$sumTugas['rata']+$sumPTS['rata']+$sumPAS['rata']+$sumPAT['rata'];
 
-	                                		$nilai_ganjil = $sum_ganjil/4;
-
-                                		// Menghitung nilai di semester genap
-	                                		$sumUTS_genap = $model->sumUts($genap['idnilai']);
-	                                        $sumUAS_genap = $model->sumUas($genap['idnilai']);
-	                                        $sumTugas_genap = $model->sumTugas($genap['idnilai']);
-	                                        $sumHarian_genap = $model->sumHarian($genap['idnilai']);
-	                                		
-	                                		$sum_genap = $sumHarian_genap['rata']+$sumTugas_genap['rata']+$sumUTS_genap['rata']+$sumUAS_genap['rata'];
-
-	                                		$nilai_genap = $sum_genap/4;
+	                                		$rata = $sum_nilai/5;
+                                            if($rata>=90 && $rata<=100){
+                                                    $status ="A";
+                                                }elseif($rata>=80 && $rata<90){
+                                                    $status = "B";
+                                                }elseif($rata>=70 && $rata<80){
+                                                    $status = "C";
+                                                }elseif($rata>=60 && $rata<70){
+                                                    $status = "D";
+                                                }else{
+                                                    $status = "E";
+                                                }
+                                		
                                 	?>
                                 		<tr>
                                 			<td class="text-center"><?php echo $no;?></td>
@@ -333,8 +332,8 @@
                                 	
                                 				
                                 			
-                                			<td class="text-center"><?php echo $nilai_ganjil;?></td>
-                                			<td class="text-center"><?php echo $nilai_genap;?></td>
+                                			<td class="text-center"><?php echo $rata;?></td>
+                                			<td class="text-center"><?php echo $status;?></td>
                                 		</tr>
                                 	<?php endforeach;?>
                                 </tbody>

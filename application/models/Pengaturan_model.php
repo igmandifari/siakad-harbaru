@@ -60,7 +60,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         }
         public function get_wb($id)
         {
-            return $this->db->query('SELECT * FROM wargabelajar RIGHT JOIN tahunajaran ON tahunajaran.tahunajaran_id=wargabelajar.tahunajaran_id')->row_array();
+            return $this->db->query("SELECT * FROM wargabelajar RIGHT JOIN tahunajaran ON tahunajaran.tahunajaran_id=wargabelajar.tahunajaran_id WHERE wargabelajar.wargabelajar_id='$id'")->row_array();
         }
         public function get_pass_wb($id)
         {
