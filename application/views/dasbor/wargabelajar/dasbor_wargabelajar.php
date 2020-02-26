@@ -117,6 +117,77 @@
                     </a>
                     <!-- END Logo -->
 
+                    <!-- Options -->
+                    <div>
+                        <!-- Color Variations -->
+                        <div class="dropdown d-inline-block ml-3">
+                            <a class="text-dual font-size-sm" id="sidebar-themes-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">
+                                <i class="si si-drop"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right font-size-sm smini-hide border-0" aria-labelledby="sidebar-themes-dropdown">
+                                <!-- Color Themes -->
+                                <!-- Layout API, functionality initialized in Template._uiHandleTheme() -->
+                                <a class="dropdown-item d-flex align-items-center justify-content-between" data-toggle="theme" data-theme="default" href="#">
+                                    <span>Default</span>
+                                    <i class="fa fa-circle text-default"></i>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center justify-content-between" data-toggle="theme" data-theme="assets/css/themes/amethyst.min.css" href="#">
+                                    <span>Amethyst</span>
+                                    <i class="fa fa-circle text-amethyst"></i>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center justify-content-between" data-toggle="theme" data-theme="assets/css/themes/city.min.css" href="#">
+                                    <span>City</span>
+                                    <i class="fa fa-circle text-city"></i>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center justify-content-between" data-toggle="theme" data-theme="assets/css/themes/flat.min.css" href="#">
+                                    <span>Flat</span>
+                                    <i class="fa fa-circle text-flat"></i>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center justify-content-between" data-toggle="theme" data-theme="assets/css/themes/modern.min.css" href="#">
+                                    <span>Modern</span>
+                                    <i class="fa fa-circle text-modern"></i>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center justify-content-between" data-toggle="theme" data-theme="assets/css/themes/smooth.min.css" href="#">
+                                    <span>Smooth</span>
+                                    <i class="fa fa-circle text-smooth"></i>
+                                </a>
+                                <!-- END Color Themes -->
+
+                                <div class="dropdown-divider"></div>
+
+                                <!-- Sidebar Styles -->
+                                <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
+                                <a class="dropdown-item" data-toggle="layout" data-action="sidebar_style_light" href="#">
+                                    <span>Sidebar Light</span>
+                                </a>
+                                <a class="dropdown-item" data-toggle="layout" data-action="sidebar_style_dark" href="#">
+                                    <span>Sidebar Dark</span>
+                                </a>
+                                <!-- Sidebar Styles -->
+
+                                <div class="dropdown-divider"></div>
+
+                                <!-- Header Styles -->
+                                <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
+                                <a class="dropdown-item" data-toggle="layout" data-action="header_style_light" href="#">
+                                    <span>Header Light</span>
+                                </a>
+                                <a class="dropdown-item" data-toggle="layout" data-action="header_style_dark" href="#">
+                                    <span>Header Dark</span>
+                                </a>
+                                <!-- Header Styles -->
+                            </div>
+                        </div>
+                        <!-- END Themes -->
+
+                        <!-- Close Sidebar, Visible only on mobile screens -->
+                        <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
+                        <a class="d-lg-none text-dual ml-3" data-toggle="layout" data-action="sidebar_close" href="javascript:void(0)">
+                            <i class="fa fa-times"></i>
+                        </a>
+                        <!-- END Close Sidebar -->
+                    </div>
+                    <!-- END Options -->
                 </div>
                 <!-- END Side Header -->
 
@@ -151,6 +222,12 @@
                             <a class="nav-main-link" href="<?=base_url('pengaturan')?>">
                             <i class="nav-main-link-icon si si-settings"></i>
                                 <span class="nav-main-link-name">Pengaturan</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="<?=base_url('panduan')?>">
+                            <i class="nav-main-link-icon fab fa-rocketchat ml-1"></i>
+                                <span class="nav-main-link-name">Panduan</span>
                             </a>
                         </li>
                         <li class="nav-main-item">
@@ -255,7 +332,13 @@
                                 <div class="flex-sm-fill">
                                     <h1 class="font-w600 text-white mb-0 invisible" data-toggle="appear"><?=$title?></h1>
                                     <h2 class="h4 font-w400 text-white-75 mb-0 invisible" data-toggle="appear" data-timeout="250">Selamat Datang <?= $this->session->userdata('nama');?></h2>
+                                    <div class="text-sm-right">
+                                        <a href="<?=base_url('panduan');?>">
+                                            <button type="button" class="btn btn-light invisible" data-toggle="appear" data-timeout="250">Bingung? Yuk Baca Panduan</button>
+                                        </a>
+                                    </div>
                                 </div>
+                          
                             </div>
                         </div>
                     </div>

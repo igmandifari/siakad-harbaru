@@ -218,6 +218,12 @@
                             </a>
                         </li>
                         <li class="nav-main-item">
+                            <a class="nav-main-link" href="<?=base_url('panduan')?>">
+                            <i class="nav-main-link-icon fab fa-rocketchat ml-1"></i>
+                                <span class="nav-main-link-name">Panduan</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
                             <a class="nav-main-link" href="<?=base_url('pengaturan')?>">
                             <i class="nav-main-link-icon si si-settings"></i>
                                 <span class="nav-main-link-name">Pengaturan</span>
@@ -319,6 +325,11 @@
                                 <div class="flex-sm-fill">
                                     <h1 class="font-w600 text-white mb-0 invisible" data-toggle="appear"><?=$title?></h1>
                                     <h2 class="h4 font-w400 text-white-75 mb-0 invisible" data-toggle="appear" data-timeout="250">Selamat Datang <?= $this->session->userdata('nama');?></h2>
+                                    <div class="text-sm-right">
+                                        <a href="<?=base_url('panduan');?>">
+                                            <button type="button" class="btn btn-light invisible" data-toggle="appear" data-timeout="250">Bingung? Yuk Baca Panduan</button>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
