@@ -502,9 +502,33 @@
                                                 <p class="font-size-md text-muted">
                                                     Kamu dapat mengatur seperti membuka akses dapat melihat nilai oleh warga belajar, membackup data sistem ini dan mengimport data ke sistem ini.
                                                 </p>
-                                                <div class="form-group">
-                                                    <label for="wizard-simple2-firstname">First Name</label>
-                                                    <input class="form-control form-control-alt" type="text" id="wizard-simple2-firstname" name="wizard-simple2-firstname">
+                                                <div class="table-responsive">
+                                                    <label for="pengaturan-nilai">Tampilkan Nilai</label>
+                                                    <table id="pengaturan-nilai" class="table table-bordered table-striped table-vcenter">
+                                                        <thead>
+                                                            <tr class="text-center">
+                                                                <th class="text-center" style="width: 100px;">
+                                                                    NO
+                                                                </th>
+                                                                <th>Tahun Ajaran</th>
+                                                                <th style="width: 30%;">Aksi</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <?php $no=0;foreach($tahunajarans as $tahunajaran):$no++?>
+                                                                <tr>
+                                                                    <td class="text-center"><?php echo $no;?></td>
+                                                                    <td><?php echo $tahunajaran["tahunajaran_nama"];?></td>
+                                                                    <td class="text-center">
+                                                                        <div class="custom-control custom-switch mb-1">
+                                                                            <input type="checkbox" class="custom-control-input" id="switch-<?php echo $no;?>" name="switch-<?php echo $no;?>" >
+                                                                            <label class="custom-control-label" for="switch-<?php echo $no;?>">Buka</label>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                            <?php endforeach;?>
+                                                        </tbody>
+                                                    </table>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="btn-data-backup">Backup Data</label>
@@ -620,5 +644,14 @@
         <script src="<?=base_url('assets/js/plugins/bootstrap-notify/bootstrap-notify.min.js');?>"></script>
          <!-- Page JS Code -->
         <script src="<?=base_url('assets/js/pages/be_forms_wizard.min.js');?>"></script>
+        <script type="text/javascript">
+            jQuery('#switch-1').click(function(){
+                if($(this).prop("checked") == true){
+                    alert("Checkbox is checked.");
+                }else if($(this).prop("checked") == false){
+                    alert("Checkbox is unchecked.");
+                }
+            })
+        </script>
     </body>
 </html>

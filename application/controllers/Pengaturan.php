@@ -30,6 +30,7 @@ Class Pengaturan extends CI_Controller
     	$data['tahunajarans'] = $model->getTahunAjaran();
         if($this->level==0){
         	$data['admin'] = $model->get_admin($this->id);
+            $data['tahunajarans'] = $model->getTahunAjaran();
         	$this->load->view("pengaturan/admin",$data);
         }elseif($this->level==1){
             $data['wargabelajar'] = $model->get_wb($this->id);
