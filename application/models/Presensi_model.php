@@ -89,4 +89,9 @@
         {
             return $this->db->query("SELECT presensi_details.presensi_det_ket as ket FROM presensi_details WHERE presensi_details.presensi_id='$id' AND presensi_details.wargabelajar_id='$wb'")->row_array();
         }
+        public function isTatapMuka($jadwal)
+        {
+            $this->db->where('jadwal_id',$jadwal);
+            return $this->db->get('jadwal')->row_array();
+        }
     }

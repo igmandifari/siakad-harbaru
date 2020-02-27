@@ -61,8 +61,11 @@
             $data["wargabelajars"] = $presensi->getPresensiDet($pertemuan);
             $data["tahunajarans"]= $presensi->getTahunAjaran();
             $data["pertemuans"]=$presensi->getPertemuan($id);
-            
+            //check if is tatap muka
+            // tatap muka as tm
+            $validastm = $presensi->isTatapMuka($id);
             if(!isset($pertemuan) && isset($id)){
+                if($validastm['jadwal_tipe_pembelajaran'] != "Tatap Muka") redirect('presensi');
                 $this->load->view('tutor/presensi/pertemuan',$data);
             }elseif(!$data["wargabelajars"]){
                 redirect('presensi/jadwal/'.$this->uri->segment(3));
