@@ -281,4 +281,54 @@ Class Pengaturan extends CI_Controller
         return TRUE;
     }
     }
+    public function set_permission()
+    {
+        if($this->level==0){
+            if($this->input->method()=="post"){
+                $id = $this->input->post('id');
+                $val = $this->input->post('val');
+
+                if(!isset($id) || !isset($val)){
+                    $this->session->set_flashdata('empty_val','empty');
+                }elseif($val == 0 || $val == 1){
+
+                    $model = $this->Pengaturan_model;
+
+                    $update = $model->open_nilai($id,$val);
+
+                    if($update){
+                        $this->session->set_flashdata('success_set_permission','sukses');
+                    }else{
+                        $this->session->set_flashdata('failed_set_permission','gagal');
+                    }
+                }else{
+                    $this->session->set_flashdata('empty_val','kosong');
+                }
+            }else{
+                redirect('pengaturan');
+            }
+        }else{
+            redirect('pengaturan');
+        }
+    }
+
+    public function status_permission()
+    {
+        // $status = 0;
+
+        if($this->session->flashdata('empty_val')) {
+            $data["status"] = 500; 
+            //data is empty
+        }elseif ($this->session->flashdata('success_set_permission')) {
+            $data["status"] = 200; 
+            //success change permission
+        }elseif ($this->session->flashdata('failed_set_permission')) {
+            $data["status"] = 430; 
+            //failed to change permission
+        }else{
+            $data["status"] = 0;
+        }
+
+        echo json_encode($data);
+    }
 }

@@ -33,7 +33,14 @@
             $data['title'] = "Daftar Nilai";
             $data["tahunajarans"]=$model->getTahunAjaran();
             $data['model'] = $model;
-            $this->load->view('dasbor/wargabelajar/nilai',$data,FALSE);
+
+            $tahunajaran = $model->get_tahun_ajaran($this->ta_id);
+            
+            if($tahunajaran['open_nilai']==1){
+                $this->load->view('dasbor/wargabelajar/nilai',$data,FALSE);
+            }else{
+                $this->load->view('dasbor/wargabelajar/nilai_0',$data,FALSE);
+            }
         }
         public function cetak($type=null)
         {

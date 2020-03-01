@@ -39,4 +39,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         {
             return $this->db->query("SELECT SUM(nilai_details.nilai_details_nilai) / COUNT(nilai_details.nilai_details_nilai) as rata FROM nilai_details WHERE nilai_details.nilai_id='$idnilai'")->row_array();
         }
+        public function get_tahun_ajaran($id)
+        {
+            $this->db->where('tahunajaran_id',$id);
+            return $this->db->get('tahunajaran')->row_array();
+        }
     }

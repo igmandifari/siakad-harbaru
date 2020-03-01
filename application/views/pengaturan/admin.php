@@ -521,8 +521,8 @@
                                                                     <td><?php echo $tahunajaran["tahunajaran_nama"];?></td>
                                                                     <td class="text-center">
                                                                         <div class="custom-control custom-switch mb-1">
-                                                                            <input type="checkbox" class="custom-control-input" id="switch-<?php echo $no;?>" name="switch-<?php echo $no;?>" >
-                                                                            <label class="custom-control-label" for="switch-<?php echo $no;?>">Buka</label>
+                                                                            <input type="checkbox" class="switch custom-control-input" id="switch-<?php echo $no;?>" name="switch-<?php echo $no;?>" data-id="<?php echo $tahunajaran['tahunajaran_id'];?>" <?php if($tahunajaran['open_nilai']== 1) echo "checked";?>>
+                                                                            <label class="custom-control-label" for="switch-<?php echo $no;?>"><?php if($tahunajaran['open_nilai']== 1){ echo "Tutup Nilai";}else{echo "Buka";}?></label>
                                                                         </div>
                                                                     </td>
                                                                 </tr>
@@ -645,13 +645,55 @@
          <!-- Page JS Code -->
         <script src="<?=base_url('assets/js/pages/be_forms_wizard.min.js');?>"></script>
         <script type="text/javascript">
-            jQuery('#switch-1').click(function(){
-                if($(this).prop("checked") == true){
-                    alert("Checkbox is checked.");
-                }else if($(this).prop("checked") == false){
-                    alert("Checkbox is unchecked.");
+            jQuery(function(){
+                
+                jQuery('#pengaturan-nilai').on('click','.switch',function(){
+                    var id = jQuery(this).data('id');
+                    if($(this).prop("checked") == true){
+                        jQuery.ajax({
+                            type:'POST',
+                            url:'<?php echo base_url('pengaturan/set_permission');?>',
+                            data:{id:id,val:1},
+                            success:function(data){
+                                status();
+                            }
+
+                        })
+                    }else if($(this).prop("checked") == false){
+                        jQuery.ajax({
+                            type:'POST',
+                            url:'<?php echo base_url('pengaturan/set_permission');?>',
+                            data:{id:id,val:0},
+                            success:function(data){
+                                status();
+                            }
+
+                        })
+                    }                
+                });
+
+                function status(){
+                    jQuery.ajax({
+                        type:'GET',
+                        url:'<?php echo base_url('pengaturan/status_permission');?>',
+                        dataType:'json',
+                        success:function(data){
+                            console.log(data.status);
+                            if(data.status == 0){
+                                One.helpers('notify', {align: 'center', type: 'warning', icon: 'fa fa-exclamation mr-1', message: 'Oops terjadi kesalahan....'});
+                            }else if(data.status == 200){
+                                One.helpers('notify', {align: 'center', type: 'success', icon: 'fa fa-check mr-1', message: 'Behasil diubah! :)'});
+                            }else if(data.status == 430){
+                                One.helpers('notify', {align: 'center', type: 'danger', icon: 'fa fa-times mr-1', message: 'Ooops terjadi kesalahan....Yuk, coba lagi!'});
+                            }else if(data.status == 500){
+                                One.helpers('notify', {align: 'center', type: 'warning', icon: 'fa fa-exclamation mr-1', message: 'Oops terjadi kesalahan....'});
+                            }
+                        },error:function(data){
+                            console.log('cant get status');
+                        }
+                    });
                 }
-            })
+            });
         </script>
     </body>
 </html>

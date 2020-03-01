@@ -40,7 +40,15 @@ class Dasbor extends CI_Controller
     {
         if($this->input->method()=="post"){
             $thnid = $this->input->post('tahunajaran_id');
-            $this->session->set_userdata('tahunajaran_id',$thnid);
+
+            $model = $this->Dasbor_model;
+            $tahunajaran = $model->get_tahun_ajaran($thnid);
+            $data = array(
+                'tahunajaran_id'    => $tahunajaran['tahunajaran_id'],
+                'tahunajaran_nama'  => $tahunajaran['tahunajaran_nama'],
+                'open_nilai'            => $tahunajaran['open_nilai']
+            );
+            $this->session->set_userdata($data);
         }
     }
 }

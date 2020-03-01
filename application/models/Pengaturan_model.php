@@ -85,4 +85,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             $this->db->where('pimpinan_id',$id);
             return $this->db->update('pimpinan',$data);
         }
+        public function open_nilai($id,$val)
+        {
+            $this->db->where('tahunajaran_id',$id);
+            $this->db->set('open_nilai',$val);
+
+            return $this->db->update('tahunajaran');
+        }
 	}

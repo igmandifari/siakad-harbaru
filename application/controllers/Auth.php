@@ -63,6 +63,7 @@ class Auth extends CI_Controller
                     'level'                 => 1,
                     'tahunajaran_id'        => $tahunajaran['tahunajaran_id'],
                     'tahunajaran_nama'      => $tahunajaran['tahunajaran_nama'],
+                    'open_nilai'            => $tahunajaran['open_nilai']
                 );
                 $this->session->set_userdata($session);
                 redirect('dasbor');
