@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 25, 2020 at 05:58 PM
+-- Generation Time: Mar 02, 2020 at 01:27 PM
 -- Server version: 10.0.38-MariaDB-0ubuntu0.16.04.1
 -- PHP Version: 7.3.15-3+ubuntu16.04.1+deb.sury.org+1
 
@@ -56,6 +56,7 @@ CREATE TABLE `jadwal` (
   `jadwal_hari` varchar(15) DEFAULT NULL,
   `tahunajaran_id` varchar(100) NOT NULL,
   `matpel_id` varchar(100) NOT NULL,
+  `tutor_id` varchar(100) NOT NULL,
   `rombel_id` varchar(100) NOT NULL,
   `jadwal_waktu` varchar(15) DEFAULT NULL,
   `created_at` datetime NOT NULL,
@@ -66,18 +67,16 @@ CREATE TABLE `jadwal` (
 -- Dumping data for table `jadwal`
 --
 
-INSERT INTO `jadwal` (`jadwal_id`, `jadwal_tipe_pembelajaran`, `jadwal_hari`, `tahunajaran_id`, `matpel_id`, `rombel_id`, `jadwal_waktu`, `created_at`, `updated_at`) VALUES
-('5dfc9c4b29ca8', 'Tatap Muka', 'Jum\'at', '5dfc3970e4387', '5dfc9b6d70641', '5dfc397184367', '13:00-14:00', '2019-12-20 17:02:51', '0000-00-00 00:00:00'),
-('5dfc9d1b7968b', 'Tatap Muka', 'Jum\'at', '5dfc3970e4387', '5dfc9b3db0980', '5dfc397184367', '14:00-15:00', '2019-12-20 17:06:19', '0000-00-00 00:00:00'),
-('5dfc9d36a3f25', 'Tatap Muka', 'Sabtu', '5dfc3970e4387', '5dfc9b496c0f2', '5dfc397184367', '13:00-14:00', '2019-12-20 17:06:46', '0000-00-00 00:00:00'),
-('5dfc9d620f773', 'Tatap Muka', 'Sabtu', '5dfc3970e4387', '5dfc9b5f4c607', '5dfc397184367', '14:00-15:00', '2019-12-20 17:07:30', '0000-00-00 00:00:00'),
-('5dfc9da09b91e', 'Tatap Muka', 'Minggu', '5dfc3970e4387', '5df84e99f335f', '5dfc397184367', '13:00-14:00', '2019-12-20 17:08:32', '0000-00-00 00:00:00'),
-('5dfc9dd11bb3f', 'Mandiri', NULL, '5dfc3970e4387', '5dfc9c2a3f68d', '5dfc397184367', NULL, '2019-12-20 17:09:21', '0000-00-00 00:00:00'),
-('5dfc9ded08c0c', 'Tutorial', NULL, '5dfc3970e4387', '5df84eb0476f9', '5dfc397184367', NULL, '2019-12-20 17:09:49', '0000-00-00 00:00:00'),
-('5dfc9e164dcf0', 'Tatap Muka', 'Minggu', '5dfc3970e4387', '5dfc9b8d1a405', '5dfc397184367', '14:00-15:00', '2019-12-20 17:10:30', '0000-00-00 00:00:00'),
-('5e09494499b1d', 'Tatap Muka', 'Sabtu', '5dfc3970e4387', '5dfc9b3db0980', '5dfc397155e30', '14:00-15:00', '2019-12-30 07:48:04', '0000-00-00 00:00:00'),
-('5e54f255d6a03', 'Tutorial', NULL, '5dfc3970e4387', '5dfc9b6d70641', '5dfc397184367', NULL, '2020-02-25 17:09:25', '0000-00-00 00:00:00'),
-('5e54f5c72eb82', 'Mandiri', NULL, '5dfc3970e4387', '5df84e99f335f', '5dfc397184367', NULL, '2020-02-25 17:24:07', '0000-00-00 00:00:00');
+INSERT INTO `jadwal` (`jadwal_id`, `jadwal_tipe_pembelajaran`, `jadwal_hari`, `tahunajaran_id`, `matpel_id`, `tutor_id`, `rombel_id`, `jadwal_waktu`, `created_at`, `updated_at`) VALUES
+('5dfc9c4b29ca8', 'Tatap Muka', 'Jum\'at', '5dfc3970e4387', '5dfc9b6d70641', '5dfc9b297a427', '5dfc397184367', '13:00-14:00', '2019-12-20 17:02:51', '0000-00-00 00:00:00'),
+('5dfc9d1b7968b', 'Tatap Muka', 'Jum\'at', '5dfc3970e4387', '5dfc9b3db0980', '5dfc9a88e27cb', '5dfc397184367', '14:00-15:00', '2019-12-20 17:06:19', '0000-00-00 00:00:00'),
+('5dfc9d36a3f25', 'Tatap Muka', 'Sabtu', '5dfc3970e4387', '5dfc9b496c0f2', '5dfc9aab6ada9', '5dfc397184367', '13:00-14:00', '2019-12-20 17:06:46', '2020-03-01 17:35:32'),
+('5dfc9d620f773', 'Tatap Muka', 'Sabtu', '5dfc3970e4387', '5dfc9b5f4c607', '5dfc9a88e27cb', '5dfc397184367', '14:00-15:00', '2019-12-20 17:07:30', '0000-00-00 00:00:00'),
+('5dfc9da09b91e', 'Tatap Muka', 'Minggu', '5dfc3970e4387', '5df84e99f335f', '5df69881a9a58', '5dfc397184367', '13:00-14:00', '2019-12-20 17:08:32', '0000-00-00 00:00:00'),
+('5dfc9e164dcf0', 'Tatap Muka', 'Minggu', '5dfc3970e4387', '5dfc9b8d1a405', '5df69881a9a58', '5dfc397184367', '14:00-15:00', '2019-12-20 17:10:30', '0000-00-00 00:00:00'),
+('5e09494499b1d', 'Tatap Muka', 'Sabtu', '5dfc3970e4387', '5dfc9b3db0980', '5dfc9a88e27cb', '5dfc397155e30', '14:00-15:00', '2019-12-30 07:48:04', '0000-00-00 00:00:00'),
+('5e54f5c72eb82', 'Mandiri', NULL, '5dfc3970e4387', '5df84e99f335f', '5df69881a9a58', '5dfc397184367', NULL, '2020-02-25 17:24:07', '0000-00-00 00:00:00'),
+('5e5b913fde20d', 'Tutorial', NULL, '5dfc3970e4387', '5df84eb0476f9', '5ded0e21b5aea', '5dfc397184367', NULL, '2020-03-01 17:41:03', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -136,7 +135,6 @@ INSERT INTO `masukan` (`masukan_id`, `masukan`, `status`, `tahunajaran_id`, `war
 CREATE TABLE `matpel` (
   `matpel_id` varchar(100) NOT NULL,
   `matpel_nama` varchar(50) NOT NULL,
-  `tutor_id` varchar(100) NOT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -145,15 +143,15 @@ CREATE TABLE `matpel` (
 -- Dumping data for table `matpel`
 --
 
-INSERT INTO `matpel` (`matpel_id`, `matpel_nama`, `tutor_id`, `created_at`, `updated_at`) VALUES
-('5df84e99f335f', 'Bahasa Indonesia', '5df69881a9a58', '2019-12-17 10:42:17', NULL),
-('5df84eb0476f9', 'Teknologi Informasi dan Komunikasi', '5ded0e21b5aea', '2019-12-17 10:42:40', NULL),
-('5dfc9b3db0980', 'Geografi', '5dfc9a88e27cb', '2019-12-20 16:58:21', NULL),
-('5dfc9b496c0f2', 'Matematika', '5dfc9aab6ada9', '2019-12-20 16:58:33', NULL),
-('5dfc9b5f4c607', 'Sosiologi', '5dfc9a88e27cb', '2019-12-20 16:58:55', NULL),
-('5dfc9b6d70641', 'Ekonomi', '5dfc9b297a427', '2019-12-20 16:59:09', NULL),
-('5dfc9b8d1a405', 'Pendidikan Pancasila dan Kewarganegaraan', '5df69881a9a58', '2019-12-20 16:59:41', NULL),
-('5dfc9c2a3f68d', 'Pendidikan Agama Islam', '5dfc9bafd6bb6', '2019-12-20 17:02:18', NULL);
+INSERT INTO `matpel` (`matpel_id`, `matpel_nama`, `created_at`, `updated_at`) VALUES
+('5df84e99f335f', 'Bahasa Indonesia', '2019-12-17 10:42:17', NULL),
+('5df84eb0476f9', 'Teknologi Informasi dan Komunikasi', '2019-12-17 10:42:40', NULL),
+('5dfc9b3db0980', 'Geografi', '2019-12-20 16:58:21', NULL),
+('5dfc9b496c0f2', 'Matematika', '2019-12-20 16:58:33', NULL),
+('5dfc9b5f4c607', 'Sosiologi', '2019-12-20 16:58:55', NULL),
+('5dfc9b6d70641', 'Ekonomi', '2019-12-20 16:59:09', NULL),
+('5dfc9b8d1a405', 'Pendidikan Pancasila dan Kewarganegaraan', '2019-12-20 16:59:41', NULL),
+('5dfc9c2a3f68d', 'Pendidikan Agama Islam', '2019-12-20 17:02:18', NULL);
 
 -- --------------------------------------------------------
 
@@ -319,7 +317,7 @@ INSERT INTO `presensi_details` (`presensi_det_id`, `presensi_id`, `wargabelajar_
 (73, '5e43a00761aad', '5df8cc7a68b47', 'A', '2020-02-12 13:49:45'),
 (74, '5e43a00761aad', '5df8ce3c7570f', 'A', '2020-02-12 13:49:45'),
 (75, '5e43a00761aad', '5dfc3f1b90991', 'A', '2020-02-12 13:49:45'),
-(76, '5e513bb5a5186', '5df8c9b8e20e9', 'H', '2020-02-25 17:28:54'),
+(76, '5e513bb5a5186', '5df8c9b8e20e9', 'I', '2020-02-27 10:55:08'),
 (77, '5e513bb5a5186', '5df8cbbfd492d', 'S', '2020-02-22 21:33:34'),
 (78, '5e513bb5a5186', '5df8cc7a68b47', 'A', '2020-02-22 21:33:30'),
 (79, '5e513bb5a5186', '5df8ce3c7570f', 'A', '2020-02-22 21:33:30'),
@@ -381,6 +379,7 @@ INSERT INTO `rombel_details` (`rombel_details_id`, `rombel_id`, `wargabelajar_id
 CREATE TABLE `tahunajaran` (
   `tahunajaran_id` varchar(100) NOT NULL,
   `tahunajaran_nama` varchar(50) NOT NULL,
+  `open_nilai` tinyint(1) NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -389,9 +388,9 @@ CREATE TABLE `tahunajaran` (
 -- Dumping data for table `tahunajaran`
 --
 
-INSERT INTO `tahunajaran` (`tahunajaran_id`, `tahunajaran_nama`, `created_at`, `updated_at`) VALUES
-('5dfc3966f0b29', '2017/2018', '0000-00-00 00:00:00', '2020-01-28 16:57:19'),
-('5dfc3970e4387', '2018/2019', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+INSERT INTO `tahunajaran` (`tahunajaran_id`, `tahunajaran_nama`, `open_nilai`, `created_at`, `updated_at`) VALUES
+('5dfc3966f0b29', '2017/2018', 0, '0000-00-00 00:00:00', '2020-01-28 16:57:19'),
+('5dfc3970e4387', '2018/2019', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -516,7 +515,8 @@ ALTER TABLE `jadwal`
   ADD PRIMARY KEY (`jadwal_id`),
   ADD KEY `jadwal_kelas` (`rombel_id`),
   ADD KEY `jadwal_matpel` (`matpel_id`),
-  ADD KEY `tahunajaran_id` (`tahunajaran_id`);
+  ADD KEY `tahunajaran_id` (`tahunajaran_id`),
+  ADD KEY `tutor_id` (`tutor_id`);
 
 --
 -- Indexes for table `kelas`
@@ -536,8 +536,7 @@ ALTER TABLE `masukan`
 --
 ALTER TABLE `matpel`
   ADD PRIMARY KEY (`matpel_id`),
-  ADD UNIQUE KEY `matpel_nama` (`matpel_nama`),
-  ADD KEY `tutor_id` (`tutor_id`);
+  ADD UNIQUE KEY `matpel_nama` (`matpel_nama`);
 
 --
 -- Indexes for table `nilai`
@@ -644,13 +643,8 @@ ALTER TABLE `rombel_details`
 ALTER TABLE `jadwal`
   ADD CONSTRAINT `from rombel to jadwal` FOREIGN KEY (`rombel_id`) REFERENCES `rombel` (`rombel_id`) ON UPDATE CASCADE,
   ADD CONSTRAINT `from thn to jadwal` FOREIGN KEY (`tahunajaran_id`) REFERENCES `tahunajaran` (`tahunajaran_id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `jadwal_matpel` FOREIGN KEY (`matpel_id`) REFERENCES `matpel` (`matpel_id`) ON UPDATE CASCADE;
-
---
--- Constraints for table `matpel`
---
-ALTER TABLE `matpel`
-  ADD CONSTRAINT `tutor` FOREIGN KEY (`tutor_id`) REFERENCES `tutor` (`tutor_id`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `jadwal_matpel` FOREIGN KEY (`matpel_id`) REFERENCES `matpel` (`matpel_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `jadwal_tutor` FOREIGN KEY (`tutor_id`) REFERENCES `tutor` (`tutor_id`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `nilai`
