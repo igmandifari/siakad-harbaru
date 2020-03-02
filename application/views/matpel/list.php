@@ -42,12 +42,11 @@
         <?php endif;?>
             <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _es6/pages/be_tables_datatables.js -->
             <div class="table-responsive">
-                <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
+                <table id="table" class="table table-bordered table-striped table-vcenter js-dataTable-full">
                     <thead>
                         <tr>
                             <th>NO</th>
                             <th>Nama Mata Pelajaran</th>
-                            <th>Nama Tutor</th>
                             <th style="width: 15%;">Aksi</th>
                         </tr>
                     </thead>
@@ -56,7 +55,6 @@
                         <tr id="<?=$matpel->matpel_id;?>">
                             <td><?=$no;?></td>
                             <td><?=$matpel->matpel_nama;?></td>
-                            <td><?=$matpel->tutor_nama;?></td>
                             <td class="text-center">
                                 <div class="btn-group">
                                     <a href="<?=base_url('matpel/ubah/').$matpel->matpel_id;?>">

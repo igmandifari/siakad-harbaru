@@ -50,6 +50,7 @@ class Jadwal extends CI_Controller
         $data["actor"] = "Jadwal";
         $data["kelass"] = $jadwal->getKelas($tahun);
         $data["matpels"] = $jadwal->getMatpel();
+        $data["tutors"] = $jadwal->getTutors();
         $data["jadwal"] = $jadwal->getById($id);
         $data["tahuns"] = $jadwal->getTahunajaran();
 
@@ -70,7 +71,7 @@ class Jadwal extends CI_Controller
             $jadwal->simpan();
             $this->session->set_flashdata('success', 'Berhasil Ditambahkan');
 
-            redirect('jadwal');
+            redirect('jadwal/matpel_lihat/'.$tahun);
 
         }
         $data['tahun'] = $jadwal->getTahun($tahun);
@@ -78,6 +79,7 @@ class Jadwal extends CI_Controller
         $data["actor"] = "Jadwal";
         $data["kelas_all"] = $jadwal->getKelas($tahun);
         $data["matpel_all"] = $jadwal->getMatpel();
+        $data["tutors"] = $jadwal->getTutors();
         $data["tahuns"] = $jadwal->getTahunajaran();
         
         $this->load->view("jadwal/tambah",$data);
@@ -197,7 +199,7 @@ class Jadwal extends CI_Controller
 
         
     }
-    public function tambah_tutorial_mandiri(){
+    public function tambah_tutorial_mandiri($id){
         $jadwal = $this->Jadwal_model;
         $validasi = $this->form_validation;
         $validasi->set_rules($jadwal->rules_tutorial_mandiri());
@@ -205,15 +207,16 @@ class Jadwal extends CI_Controller
         if($validasi->run()){
             $tahun = $this->uri->segment('3');
             $jadwal->save_tutorial_mandiri();
-            $this->session->set_flashdata('success', 'Berhasil Ditambahkan');
+            $this->session->set_flashdata('success', 'Berhasil Ditambahan');
 
-            redirect('jadwal');
+            redirect('jadwal/matpel_lihat/'.$id);
         }else{
-            redirect('jadwal/matpel_tambah#tutorial-mandiri');
             $this->session->set_flashdata('failed', 'Gagal');
+            redirect('jadwal/matpel_tambah/'.$id.'#tutorial-mandiri');
+            
         }
     }
-    public function update_tutorial_mandiri(){
+    public function update_tutorial_mandiri($tahun=null,$id=null){
         $jadwal = $this->Jadwal_model;
         $validasi = $this->form_validation;
         $validasi->set_rules($jadwal->rules_tutorial_mandiri());
@@ -222,9 +225,9 @@ class Jadwal extends CI_Controller
             $jadwal->update_tutorial_mandiri();
             $this->session->set_flashdata('success', 'Berhasil Diubah');
 
-            redirect('jadwal');
+            redirect('jadwal/ubah/'.$tahun.'/'.$id);
         }else{
-            redirect('jadwal');
+            redirect('jadwal/ubah/'.$tahun.'/'.$id);
             $this->session->set_flashdata('failed', 'Gagal');
         }
     }

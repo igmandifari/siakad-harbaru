@@ -45,17 +45,7 @@
                             <label for="matpel_nama">Nama Mata Pelajaran</label>
                             <input type="text" class="form-control" id="matpel_nama" name="matpel_nama" value="<?=$matpel["matpel_nama"];?>" autofocus>
                             <small class="form-text text-danger"><?= form_error('matpel_nama'); ?></small>
-                        </div> 
-                        <div class="form-group">
-                            <label for="tutor_id">Nama Tutor</label>
-                            <select class="js-select2 form-control form-control-lg form-control-alt" id="tutor_id" name="tutor_id" data-placeholder="Silahkan Pilih Tutor">
-                                <option></option>
-                                        <?php foreach($tutors as $tutor) :?>
-                                            <option value="<?=$tutor->tutor_id?>"<?php if($tutor->tutor_id == $matpel["tutor_id"]) echo "selected"?>><?=$tutor->tutor_nama?></option>
-                                        <?php endforeach;?>
-                            </select>
-                            <small class="form-text text-danger"><?= form_error('tutor_id'); ?></small>
-                        </div>                         
+                        </div>                        
                     </div>
                 </div>
                 <div class="row push">

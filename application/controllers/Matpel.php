@@ -45,7 +45,6 @@ class Matpel extends CI_Controller
 
         $data["title"] = "Tambah Data";
         $data["actor"] = "Mata Pelajaran";
-        $data["tutors"] = $matpel->getTutor();
         $data["tahunajarans"] = $this->Matpel_model->getTahunAjaran();
         $this->load->view('matpel/tambah',$data);
     }
@@ -78,7 +77,6 @@ class Matpel extends CI_Controller
 
         $data["title"] = "Ubah Data";
         $data["actor"] = "Kelas";
-        $data["tutors"] = $matpel->getTutor();
         $data["tahunajarans"] = $this->Matpel_model->getTahunAjaran();
 
         $this->load->view("matpel/ubah",$data);
@@ -115,17 +113,15 @@ class Matpel extends CI_Controller
                 $spreadsheet->getActiveSheet();
                 $spreadsheet->setActiveSheetIndex(0)
                     ->setCellValue('A1', 'PKBM Harapan Baru')
-                    ->mergeCells('A1:C1')
+                    ->mergeCells('A1:B1')
                     ->setCellValue('A2', 'Data Mata Pelajaran')
-                    ->mergeCells('A2:C2')
+                    ->mergeCells('A2:B2')
                     ->setCellValue('A5','NO')
-                    ->setCellValue('B5','Nama Mata Pelajaran')
-                    ->setCellValue('C5','Tutor');
+                    ->setCellValue('B5','Nama Mata Pelajaran');
 
                 // Set Width
                 $spreadsheet->getActiveSheet()->getColumnDimension('A')->setAutoSize(true);
                 $spreadsheet->getActiveSheet()->getColumnDimension('B')->setAutoSize(true);
-                $spreadsheet->getActiveSheet()->getColumnDimension('C')->setAutoSize(true);
                 
 
                 // Parsing data from database
@@ -134,8 +130,7 @@ class Matpel extends CI_Controller
                 foreach ($data["matpels"] as $matpel) {
                     $spreadsheet->setActiveSheetIndex(0)
                         ->setCellValue('A'.$row,$n)
-                        ->setCellValue('B'.$row,$matpel->matpel_nama)
-                        ->setCellValue('C'.$row,$matpel->tutor_nama);
+                        ->setCellValue('B'.$row,$matpel->matpel_nama);
                     $row++;
                     $n++;
                 }

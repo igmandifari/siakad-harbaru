@@ -62,7 +62,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        <?php $no=0; foreach($jadwalss as $jadwal):$no++?>
+                                        <?php $no=0; foreach($jadwals as $jadwal):$no++?>
                                             <tr id="<?=$jadwal->jadwal_id;?>">
                                                 <td class="text-center"><?=$no;?></td>
                                                 <td><?=$jadwal->kelas_nama;?></td>

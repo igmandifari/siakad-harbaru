@@ -77,7 +77,7 @@
                 One.helpers(['select2']);
 
                  // Dialog confirmation delete start
-                    $(".hapus").on("click",function(){
+                    jQuery("#table").on("click",".hapus",function(){
                        
                         var id = $(this).parents("tr").attr("id");
                         Swal.fire({

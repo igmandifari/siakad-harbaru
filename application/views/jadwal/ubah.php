@@ -28,7 +28,7 @@
         <div class="block-header block-header-default">
             <h3 class="block-title"><?=$title;?></h3>
             <div class="block-options">
-                <a href="<?=base_url('jadwal');?>">
+                <a href="<?=base_url('jadwal/matpel_lihat/').$this->uri->segment(3);?>">
                     <button type="button" class="btn btn-sm btn-light">
                         Kembali
                     </button>
@@ -59,7 +59,7 @@
         </div>
         <?php endif;?>
         <?php if($jadwal["jadwal_tipe_pembelajaran"] != "Tatap Muka"){?>
-                <form action="<?php echo site_url('jadwal/update_tutorial_mandiri');?>" method="post">
+                <form action="<?php echo site_url('jadwal/update_tutorial_mandiri/').$this->uri->segment(3).'/'.$this->uri->segment(4);?>" method="post">
                 <div class="row push">
                     <div class="col-lg-12">
                         <div class="form-group">
@@ -79,7 +79,16 @@
                                     <option value="<?=$matpel->matpel_id?>"<?php if($jadwal["matpel_id"]==$matpel->matpel_id) echo 'selected'?>><?=$matpel->matpel_nama?></option>
                                 <?php endforeach;?>
                             </select>
-                        </div> 
+                        </div>
+                        <div class="form-group">
+                            <label for="tutor_id_other">Tutor</label>
+                            <select class="js-select2 form-control form-control-lg form-control-alt" id="tutor_id_other" name="tutor_id_other" data-placeholder="Silahkan Pilih Tutor">
+                                        <option></option>
+                                <?php foreach($tutors as $tutor ):?>
+                                    <option value="<?=$tutor->tutor_id?>"<?php if($jadwal["tutor_id"]==$tutor->tutor_id) echo 'selected'?>><?=$tutor->tutor_nama.' ('.$tutor->tutor_nomor_induk.')'?></option>
+                                <?php endforeach;?>
+                            </select>
+                        </div>  
                         <div class="form-group">
                             <label for="rombel_id_other">Kelas</label>
                             <select class="js-select2 form-control form-control-lg form-control-alt" id="rombel_id_other" name="rombel_id_other" data-placeholder="Silahkan Pilih Kelas">
@@ -135,13 +144,22 @@
                         </div>  
                         <div class="form-group">
                             <label for="matpel_id">Mata Pelajaran</label>
-                            <select class="js-select2 form-control form-control-lg form-control-alt" id="matpel_id" name="matpel_id" data-placeholder="Silahkan Pilih Mata Pelajaran" data-placeholder="Silahkan Pilih Mata Pelajaran">
+                            <select class="js-select2 form-control form-control-lg form-control-alt" id="matpel_id" name="matpel_id" data-placeholder="Silahkan Pilih Mata Pelajaran">
                                         <option></option>
                                 <?php foreach($matpels as $matpel ):?>
                                     <option value="<?=$matpel->matpel_id?>"<?php if($jadwal["matpel_id"]==$matpel->matpel_id) echo 'selected'?>><?=$matpel->matpel_nama?></option>
                                 <?php endforeach;?>
                             </select>
-                        </div> 
+                        </div>
+                        <div class="form-group">
+                            <label for="tutor_id">Tutor</label>
+                            <select class="js-select2 form-control form-control-lg form-control-alt" id="tutor_id" name="tutor_id" data-placeholder="Silahkan Pilih Tutor" >
+                                        <option></option>
+                                <?php foreach($tutors as $tutor ):?>
+                                    <option value="<?=$tutor->tutor_id?>"<?php if($jadwal["tutor_id"]==$tutor->tutor_id) echo 'selected'?>><?=$tutor->tutor_nama.' ('.$tutor->tutor_nomor_induk.')'?></option>
+                                <?php endforeach;?>
+                            </select>
+                        </div>  
                         <div class="form-group">
                             <label for="rombel_id">Kelas</label>
                             <select class="js-select2 form-control form-control-lg form-control-alt" id="rombel_id" name="rombel_id" data-placeholder="Silahkan Pilih Kelas">

@@ -52,7 +52,6 @@
 											<tr class="text-center">
 												<th style="vertical-align: middle;width:15px;">NO</th>
 												<th style="vertical-align: middle;">Mata Pelajaran</th>
-                                                <th style="vertical-align: middle;">Tutor</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -60,7 +59,6 @@
                                                 <tr id="<?=$matpel->matpel_id;?>">
                                                     <td><?=$no;?></td>
                                                     <td><?=$matpel->matpel_nama;?></td>
-                                                    <td><?=$matpel->tutor_nama;?></td>
                                                 </tr>
                                             <?php endforeach;?>
 										</tbody>

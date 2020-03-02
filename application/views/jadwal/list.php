@@ -68,7 +68,7 @@
         <?php endif;?>
             <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _es6/pages/be_tables_datatables.js -->
             <div class="table-responsive">
-                <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
+                <table id="table" class="table table-bordered table-striped table-vcenter js-dataTable-full">
                                     <thead class="text-center">
                                         <tr>
                                             <th style="vertical-align: middle;">NO</th>
@@ -100,7 +100,7 @@
                                                             </button>
                                                         </a>
                                                         
-                                                            <button type="button" class="hapus btn btn-sm btn-warning js-tooltip-enabled push mb-md-0" data-id="<?=$jadwal->jadwal_id;?>" data-toggle="tooltip" title="" data-original-title="Hapus">
+                                                            <button type="button" class="btn btn-sm btn-warning js-tooltip-enabled push mb-md-0 hapus" data-id="<?=$jadwal->jadwal_id;?>" data-toggle="tooltip" data-original-title="Hapus">
                                                                 <i class="fa fa-fw fa-times"></i>
                                                                 Hapus
                                                             </button>

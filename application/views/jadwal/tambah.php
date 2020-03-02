@@ -41,7 +41,7 @@
                                     Pilih antara tatap muka atau tutorial dan mandiri.
                                 </p>
                                 <?php if ($this->session->flashdata('failed')): ?>
-                                    <div class="alert alert-success d-flex align-items-center" role="alert">
+                                    <div class="alert alert-danger d-flex align-items-center" role="alert">
                                         <div class="flex-00-auto">
                                             <i class="fa fa-fw fa-check"></i>
                                         </div>
@@ -91,6 +91,16 @@
                                                     <?php endforeach;?>
                                                 </select>
                                                 <small class="form-text text-danger"><?= form_error('matpel_id'); ?></small>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="tutor_id">Tutor</label>
+                                                <select class="js-select2 form-control form-control-lg form-control-alt" id="tutor_id" name="tutor_id" data-placeholder="Silahkan Pilih Tutor">
+                                                    <option></option>
+                                                    <?php foreach($tutors as $tutor ):?>
+                                                        <option value="<?=$tutor->tutor_id?>"><?=$tutor->tutor_nama?></option>
+                                                    <?php endforeach;?>
+                                                </select>
+                                                <small class="form-text text-danger"><?= form_error('tutor_id'); ?></small>
                                             </div> 
                                             <div class="form-group">
                                                 <label for="rombel_id">Kelas</label>
@@ -114,9 +124,8 @@
                                         </div>
                                     </div>
 
-                                    <div class="tab-pane fade fade-right show" id="tutorial-mandiri" role="tabpanel">
+                                    <div class="fade fade-right show" id="tutorial-mandiri" role="tabpanel">
                                         <form action="<?php echo base_url('jadwal/tambah_tutorial_mandiri/'.$this->uri->segment(3))?>" method="post">
-                                        <input type="hidden" name="tahunajaran_id" value="<?=$this->uri->segment('3')?>">
                                             <div class="form-group">
                                                 <label for="jadwal_tipe_pembelajaran">Tipe Pembelajaran</label>
                                                 <select class="js-select2 form-control form-control-lg form-control-alt" id="jadwal_tipe_pembelajaran" name="jadwal_tipe_pembelajaran" data-placeholder="Silahkan Pilih Tipe Pembelajaran">
@@ -135,7 +144,17 @@
                                                     <?php endforeach;?>
                                                 </select>
                                                 <small class="form-text text-danger"><?= form_error('matpel_id_other'); ?></small>
-                                            </div> 
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="tutor_id_other">Tutor</label>
+                                                <select class="js-select2 form-control form-control-lg form-control-alt" id="tutor_id_other" name="tutor_id_other" data-placeholder="Silahkan Pilih Tutor">
+                                                    <option></option>
+                                                    <?php foreach($tutors as $tutor ):?>
+                                                        <option value="<?=$tutor->tutor_id?>"><?=$tutor->tutor_nama?></option>
+                                                    <?php endforeach;?>
+                                                </select>
+                                                <small class="form-text text-danger"><?= form_error('tutor_id_other'); ?></small>
+                                            </div>  
                                             <div class="form-group">
                                                 <label for="rombel_id_other">Kelas</label>
                                                 <select class="js-select2 form-control form-control-lg form-control-alt" id="rombel_id_other" name="rombel_id_other" data-placeholder="Silahkan Pilih Kelas">
