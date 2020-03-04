@@ -1,6 +1,13 @@
 <?php
 
 class Dasbor_model extends CI_Model {
+    public $nm_wb;
+    public $nm_pimpinan;
+    public $nm_admin;
+    public $nm_tutor;
+    public $level;
+
+
 
     public function countWargaBelajar(){
         $query= $this->db->query("SELECT COUNT(wargabelajar_id) as jumlah FROM wargabelajar WHERE wargabelajar_status='Aktif'");

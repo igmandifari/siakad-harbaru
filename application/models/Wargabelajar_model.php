@@ -5,7 +5,48 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     Class Wargabelajar_model extends CI_Model 
     {
         private $_table = "wargabelajar";
-        public $wargabelajar_id;
+        public $id;
+        public $nomor_induk;
+        public $nisn;
+        public $nama;
+        public $nik;
+        public $jenis_kelamin;
+        public $tempat_lahir;
+        public $tanggal_lahir;
+        public $kewarganegaraan;
+        public $alamat_jalan;
+        public $alamat_rtrw;
+        public $alamat_desa;
+        public $alamat_kecamatan;
+        public $alamat_kabupaten;
+        public $alamat_provinsi;
+        public $alamat_kodepos;
+        public $kejar;
+        public $kejar_alamat;
+        public $sttb;
+        public $masuk;
+        public $tahunajaran_id;
+        public $foto;
+        public $password;
+        public $orangtua_ayah_nama;
+        public $orangtua_ayah_pekerjaan;
+        public $orangtua_ayah_alamat_jalan;
+        public $orangtua_ayah_alamat_rtrw;
+        public $orangtua_ayah_alamat_desa;
+        public $orangtua_ayah_alamat_kecamatan;
+        public $orangtua_ayah_alamat_kabupaten;
+        public $orangtua_ayah_alamat_provinsi;
+        public $orangtua_ayah_alamat_kodepos;
+        public $orangtua_ibu_nama;
+        public $orangtua_wali_nama; 
+        public $orangtua_wali_pekerjaan; 
+        public $orangtua_wali_alamat_jalan; 
+        public $orangtua_wali_alamat_rtrw; 
+        public $orangtua_wali_alamat_desa; 
+        public $orangtua_wali_alamat_kecamatan; 
+        public $orangtua_wali_alamat_kabupaten; 
+        public $orangtua_wali_alamat_provinsi; 
+        public $orangtua_wali_alamat_kodepos;
 
         public function rules_ortu()
         {

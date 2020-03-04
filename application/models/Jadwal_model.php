@@ -3,6 +3,10 @@
 class Jadwal_model extends CI_Model{
 
     private $_table = "jadwal";
+    public $id;
+    public $nama;
+    public $tutor;
+    public $matpel;
 
     public function rules(){
         return[

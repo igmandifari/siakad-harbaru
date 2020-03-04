@@ -1,6 +1,10 @@
 <?php
 
 class Masukan_model extends CI_Model {
+	public $pesan;
+	public $id;
+	public $wb;
+	private $_table;
 
 	public function insert($data=array())
 	{

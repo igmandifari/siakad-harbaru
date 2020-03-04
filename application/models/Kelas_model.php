@@ -2,6 +2,8 @@
 
     Class Kelas_model extends CI_Model 
     {
+        public $id;
+        public $nama;
         private $_table = "kelas";
         public function rules_tambah_rombel(){
             return[

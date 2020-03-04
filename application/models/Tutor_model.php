@@ -3,7 +3,24 @@
     Class Tutor_model extends CI_Model 
     {
         private $_table = "tutor";
-        public $tutor_id;
+        public $id;
+        public $nomor_induk;
+        public $nama;
+        public $jenis_kelamin;
+        public $tempat_lahir;
+        public $tanggal_lahir;
+        public $agama;
+        public $kewarganegaraan;
+        public $pendidikan_terakhir;
+        public $alamat_jalan;
+        public $alamat_rtrw;
+        public $alamat_desa;
+        public $alamat_kecamatan;
+        public $alamat_kabupaten;
+        public $alamat_provinsi;
+        public $alamat_kodepos;
+        public $foto;
+        public $password;
         public function getTahunAjaran(){
             return $this->db->get('tahunajaran')->result_array();
         }

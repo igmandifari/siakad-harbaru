@@ -1,6 +1,11 @@
 <?php
     class Presensi_model extends CI_Model
     {
+        private $_table;
+        public $wb_id;
+        public $id;
+        public $keterangan;
+        
         public function getTahunAjaran(){
             return $this->db->get('tahunajaran')->result_array();
         }

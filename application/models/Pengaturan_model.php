@@ -4,6 +4,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	class Pengaturan_model extends CI_model
 	{
+        public $level;
+        public $id;
+        private $_table;
+
 		public function getTahunAjaran(){
             return $this->db->get('tahunajaran')->result_array();
         }

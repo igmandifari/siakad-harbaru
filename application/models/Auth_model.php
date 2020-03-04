@@ -1,6 +1,9 @@
 <?php
 
 class Auth_model extends CI_Model {
+    public $username;
+    public $password;
+    public $level;  
 
     public function rules(){
         return[

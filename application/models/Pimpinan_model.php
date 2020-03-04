@@ -4,6 +4,8 @@
     {
         private $_table = "pimpinan";
         public $pimpinan_id;
+        public $nama;
+        
         public function getTahunAjaran(){
             return $this->db->get('tahunajaran')->result_array();
         }
