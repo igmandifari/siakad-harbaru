@@ -20,6 +20,7 @@
         }
         public function index()
         {
+            $logs = $this->Jadwalbelajar_model->logs();
         	$tahun= $this->session->userdata('tahunajaran_id');
         	// $data["id"] =  $this->session->userdata('id');
         	$jadwal = $this->Jadwalbelajar_model;
@@ -33,6 +34,7 @@
         }
         public function cetak($type=null)
         {
+            $logs = $this->Jadwalbelajar_model->logs();
             $model = $this->Jadwalbelajar_model;
             $tahun = $this->session->userdata('tahunajaran_id');
             $data['jadwals'] = $model->getJadwals($tahun);

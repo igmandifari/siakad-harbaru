@@ -10,6 +10,7 @@ class Auth extends CI_Controller
         $this->load->model('Auth_model');
         $this->load->library('form_validation');
         $this->load->helper('security');
+        $logs = $this->Auth_model->logs();
     }
     
     public function index(){

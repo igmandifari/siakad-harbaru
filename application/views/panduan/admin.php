@@ -205,17 +205,17 @@
                         <li class="nav-main-heading">Data Master</li>
                         <li class="nav-main-item">
                             <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
-                                <i class="nav-main-link-icon si si-energy"></i>
+                                <i class="nav-main-link-icon fa fa-users"></i>
                                 <span class="nav-main-link-name">Warga Belajar</span>
                             </a>
                             <ul class="nav-main-submenu">
                                 <li class="nav-main-item">
-                                    <a class="nav-main-link" href="<?=base_url('wargabelajar')?>">
+                                    <a class="nav-main-link" href="<?=base_url('wargabelajar/');?>">
                                         <span class="nav-main-link-name">Daftar Warga Belajar</span>
                                     </a>
                                 </li>
                                 <li class="nav-main-item">
-                                    <a class="nav-main-link" href="<?=base_url('wargabelajar/tambah')?>">
+                                    <a class="nav-main-link" href="<?=base_url('wargabelajar/tambah');?>">
                                         <span class="nav-main-link-name">Tambah Warga Belajar</span>
                                     </a>
                                 </li>
@@ -223,17 +223,17 @@
                         </li>
                         <li class="nav-main-item">
                             <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
-                                <i class="nav-main-link-icon si si-energy"></i>
+                                <i class="nav-main-link-icon fa fa-users"></i>
                                 <span class="nav-main-link-name">Tutor</span>
                             </a>
                             <ul class="nav-main-submenu">
                                 <li class="nav-main-item">
-                                    <a class="nav-main-link" href="<?=base_url('tutor')?>">
+                                    <a class="nav-main-link" href="<?=base_url('tutor/');?>">
                                         <span class="nav-main-link-name">Daftar Tutor</span>
                                     </a>
                                 </li>
                                 <li class="nav-main-item">
-                                    <a class="nav-main-link" href="<?=base_url('tutor/tambah')?>">
+                                    <a class="nav-main-link" href="<?=base_url('tutor/tambah');?>">
                                         <span class="nav-main-link-name">Tambah Tutor</span>
                                     </a>
                                 </li>
@@ -241,22 +241,22 @@
                         </li>
                         <li class="nav-main-item">
                             <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
-                                <i class="nav-main-link-icon si si-energy"></i>
+                                <i class="nav-main-link-icon fa fa-door-open"></i>
                                 <span class="nav-main-link-name">Kelas</span>
                             </a>
                             <ul class="nav-main-submenu">
                                 <li class="nav-main-item">
-                                    <a class="nav-main-link" href="<?=base_url('kelas')?>">
+                                    <a class="nav-main-link" href="<?=base_url('kelas/');?>">
                                         <span class="nav-main-link-name">Daftar Kelas</span>
                                     </a>
                                 </li>
                                 <li class="nav-main-item">
-                                    <a class="nav-main-link" href="<?=base_url('kelas/tambah')?>">
+                                    <a class="nav-main-link" href="<?=base_url('kelas/tambah');?>">
                                         <span class="nav-main-link-name">Tambah Kelas</span>
                                     </a>
                                 </li>
                                 <li class="nav-main-item">
-                                    <a class="nav-main-link" href="<?=base_url('kelas/rombel')?>">
+                                    <a class="nav-main-link" href="<?=base_url('kelas/rombel');?>">
                                         <span class="nav-main-link-name">Rombel</span>
                                     </a>
                                 </li>
@@ -264,22 +264,22 @@
                         </li>
                         <li class="nav-main-item">
                             <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
-                                <i class="nav-main-link-icon si si-energy"></i>
+                                <i class="nav-main-link-icon fa fa-book"></i>
                                 <span class="nav-main-link-name">Mata Pelajaran</span>
                             </a>
                             <ul class="nav-main-submenu">
                                 <li class="nav-main-item">
-                                    <a class="nav-main-link" href="<?=base_url('matpel')?>">
+                                    <a class="nav-main-link" href="<?=base_url('matpel/');?>">
                                         <span class="nav-main-link-name">Daftar Mata Pelajaran</span>
                                     </a>
                                 </li>
                                 <li class="nav-main-item">
-                                    <a class="nav-main-link" href="<?=base_url('matpel/tambah')?>">
+                                    <a class="nav-main-link" href="<?=base_url('matpel/tambah');?>">
                                         <span class="nav-main-link-name">Tambah Mata Pelajaran</span>
                                     </a>
                                 </li>
                                 <li class="nav-main-item">
-                                    <a class="nav-main-link" href="<?=base_url('jadwal')?>">
+                                    <a class="nav-main-link" href="<?=base_url('jadwal');?>">
                                         <span class="nav-main-link-name">Jadwal Mata Pelajaran</span>
                                     </a>
                                 </li>
@@ -287,17 +287,17 @@
                         </li>
                         <li class="nav-main-item">
                             <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
-                                <i class="nav-main-link-icon si si-energy"></i>
+                                <i class="nav-main-link-icon fa fa-users"></i>
                                 <span class="nav-main-link-name">Admin</span>
                             </a>
                             <ul class="nav-main-submenu">
                                 <li class="nav-main-item">
-                                    <a class="nav-main-link" href="<?=base_url('admin')?>">
+                                    <a class="nav-main-link" href="<?=base_url('admin/');?>">
                                         <span class="nav-main-link-name">Daftar Admin</span>
                                     </a>
                                 </li>
                                 <li class="nav-main-item">
-                                    <a class="nav-main-link" href="<?=base_url('admin/tambah')?>">
+                                    <a class="nav-main-link" href="<?=base_url('admin/tambah');?>">
                                         <span class="nav-main-link-name">Tambah Admin</span>
                                     </a>
                                 </li>
@@ -305,17 +305,17 @@
                         </li>
                         <li class="nav-main-item">
                             <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
-                                <i class="nav-main-link-icon si si-energy"></i>
+                                <i class="nav-main-link-icon fa fa-users"></i>
                                 <span class="nav-main-link-name">Pimpinan</span>
                             </a>
                             <ul class="nav-main-submenu">
                                 <li class="nav-main-item">
-                                    <a class="nav-main-link" href="<?=base_url('pimpinan')?>">
+                                    <a class="nav-main-link" href="<?=base_url('pimpinan/');?>">
                                         <span class="nav-main-link-name">Daftar Pimpinan</span>
                                     </a>
                                 </li>
                                 <li class="nav-main-item">
-                                    <a class="nav-main-link" href="<?=base_url('pimpinan/tambah')?>">
+                                    <a class="nav-main-link" href="<?=base_url('pimpinan/tambah');?>">
                                         <span class="nav-main-link-name">Tambah Pimpinan</span>
                                     </a>
                                 </li>
@@ -323,17 +323,17 @@
                         </li>
                         <li class="nav-main-item">
                             <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
-                                <i class="nav-main-link-icon si si-energy"></i>
+                                <i class="nav-main-link-icon fa fa-calendar-times"></i>
                                 <span class="nav-main-link-name">Tahun Ajaran</span>
                             </a>
                             <ul class="nav-main-submenu">
                                 <li class="nav-main-item">
-                                    <a class="nav-main-link" href="<?=base_url('tahunajaran')?>">
+                                    <a class="nav-main-link" href="<?=base_url('tahunajaran/');?>">
                                         <span class="nav-main-link-name">Daftar Tahun Ajaran</span>
                                     </a>
                                 </li>
                                 <li class="nav-main-item">
-                                    <a class="nav-main-link" href="<?=base_url('tahunajaran/tambah')?>">
+                                    <a class="nav-main-link" href="<?=base_url('tahunajaran/tambah');?>">
                                         <span class="nav-main-link-name">Tambah Tahun Ajaran</span>
                                     </a>
                                 </li>
@@ -348,7 +348,7 @@
                         <li class="nav-main-heading">Options</li>
                         <li class="nav-main-item">
                             <a class="nav-main-link active" href="<?=base_url('panduan')?>">
-                            <i class="nav-main-link-icon fab fa-rocketchat ml-1"></i>
+                            <i class="nav-main-link-icon fa fa-book"></i>
                                 <span class="nav-main-link-name">Panduan</span>
                             </a>
                         </li>

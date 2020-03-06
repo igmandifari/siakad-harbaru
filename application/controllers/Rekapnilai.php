@@ -21,7 +21,7 @@
 
             $this->wb_id = $this->session->userdata('id');
             $this->ta_id = $this->session->userdata('tahunajaran_id');
-	        
+	        $logs = $this->Rekapnilai_model->logs();
         }
         public function index()
         {

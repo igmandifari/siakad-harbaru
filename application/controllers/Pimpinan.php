@@ -18,6 +18,7 @@ class Pimpinan extends CI_Controller
         $this->load->model("Pimpinan_model");
         $this->load->library('form_validation');
         $this->load->helper('security');
+        $logs = $this->Pimpinan_model->logs();
     }
 
     public function index()

@@ -16,6 +16,7 @@ class Rekapmasukan extends CI_Controller
         if($this->session->userdata('MASUK') != TRUE)redirect($url);
         if($this->session->userdata('level') != 0) redirect("dasbor");
         $this->load->model('Masukan_model');
+        $logs = $this->Masukan_model->logs();
     }
     public function index()
     {

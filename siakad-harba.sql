@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 02, 2020 at 01:27 PM
+-- Generation Time: Mar 06, 2020 at 10:58 AM
 -- Server version: 10.0.38-MariaDB-0ubuntu0.16.04.1
 -- PHP Version: 7.3.15-3+ubuntu16.04.1+deb.sury.org+1
 
@@ -76,7 +76,9 @@ INSERT INTO `jadwal` (`jadwal_id`, `jadwal_tipe_pembelajaran`, `jadwal_hari`, `t
 ('5dfc9e164dcf0', 'Tatap Muka', 'Minggu', '5dfc3970e4387', '5dfc9b8d1a405', '5df69881a9a58', '5dfc397184367', '14:00-15:00', '2019-12-20 17:10:30', '0000-00-00 00:00:00'),
 ('5e09494499b1d', 'Tatap Muka', 'Sabtu', '5dfc3970e4387', '5dfc9b3db0980', '5dfc9a88e27cb', '5dfc397155e30', '14:00-15:00', '2019-12-30 07:48:04', '0000-00-00 00:00:00'),
 ('5e54f5c72eb82', 'Mandiri', NULL, '5dfc3970e4387', '5df84e99f335f', '5df69881a9a58', '5dfc397184367', NULL, '2020-02-25 17:24:07', '0000-00-00 00:00:00'),
-('5e5b913fde20d', 'Tutorial', NULL, '5dfc3970e4387', '5df84eb0476f9', '5ded0e21b5aea', '5dfc397184367', NULL, '2020-03-01 17:41:03', '0000-00-00 00:00:00');
+('5e5b913fde20d', 'Tutorial', NULL, '5dfc3970e4387', '5df84eb0476f9', '5ded0e21b5aea', '5dfc397184367', NULL, '2020-03-01 17:41:03', '0000-00-00 00:00:00'),
+('5e617de11c2ed', 'Tatap Muka', 'Jum\'at', '5dfc3966f0b29', '5dfc9b5f4c607', '5dfc9a88e27cb', '5e617d681e1d3', '13:00-14:00', '2020-03-06 05:32:01', '0000-00-00 00:00:00'),
+('5e6180634f9a9', 'Mandiri', NULL, '5dfc3966f0b29', '5dfc9c2a3f68d', '5dfc9bafd6bb6', '5e617d681e1d3', NULL, '2020-03-06 05:42:43', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -106,6 +108,180 @@ INSERT INTO `kelas` (`kelas_id`, `kelas_nama`, `created_at`, `updated_at`) VALUE
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `logs`
+--
+
+CREATE TABLE `logs` (
+  `id` int(11) NOT NULL,
+  `users` varchar(100) DEFAULT NULL,
+  `level` int(11) DEFAULT NULL,
+  `name` varchar(100) DEFAULT NULL,
+  `url` varchar(100) NOT NULL,
+  `ip` varchar(100) NOT NULL,
+  `times` datetime NOT NULL,
+  `browser` varchar(100) NOT NULL,
+  `os` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `logs`
+--
+
+INSERT INTO `logs` (`id`, `users`, `level`, `name`, `url`, `ip`, `times`, `browser`, `os`) VALUES
+(1, '5de15e4e0de9d', 0, NULL, 'admin///', '127.0.0.1', '0000-00-00 00:00:00', '73.0', 'Linux'),
+(2, '5de15e4e0de9d', 0, NULL, 'admin///', '127.0.0.1', '2020-03-06 09:30:09', 'Firefox 73.0', 'Linux'),
+(3, '5de15e4e0de9d', 0, NULL, 'matpel///', '127.0.0.1', '2020-03-06 09:37:30', 'Firefox 73.0', 'Linux'),
+(4, '5de15e4e0de9d', 0, NULL, 'matpel/tambah//', '127.0.0.1', '2020-03-06 09:37:40', 'Firefox 73.0', 'Linux'),
+(5, '5de15e4e0de9d', 0, NULL, 'kiri///', '127.0.0.1', '2020-03-06 09:40:54', 'Firefox 73.0', 'Linux'),
+(6, '5de15e4e0de9d', 0, NULL, 'auth/logout//', '127.0.0.1', '2020-03-06 09:41:48', 'Firefox 73.0', 'Linux'),
+(7, NULL, NULL, NULL, 'auth/logout//', '127.0.0.1', '2020-03-06 09:43:06', 'Firefox 73.0', 'Linux'),
+(8, NULL, NULL, NULL, 'auth///', '127.0.0.1', '2020-03-06 09:43:06', 'Firefox 73.0', 'Linux'),
+(9, NULL, NULL, NULL, 'auth/cek_login//', '127.0.0.1', '2020-03-06 09:45:27', 'Firefox 73.0', 'Linux'),
+(10, '5de15e4e0de9d', 0, 'Zam Zam Saeful Bahtiar', 'dasbor///', '127.0.0.1', '2020-03-06 09:45:27', 'Firefox 73.0', 'Linux'),
+(11, '5de15e4e0de9d', 0, 'Zam Zam Saeful Bahtiar', 'wargabelajar///', '127.0.0.1', '2020-03-06 09:45:46', 'Firefox 73.0', 'Linux'),
+(12, '5de15e4e0de9d', 0, 'Zam Zam Saeful Bahtiar', 'tutor///', '127.0.0.1', '2020-03-06 09:45:53', 'Firefox 73.0', 'Linux'),
+(13, '5de15e4e0de9d', 0, NULL, 'kelas///', '127.0.0.1', '2020-03-06 09:45:56', 'Firefox 73.0', 'Linux'),
+(14, '5de15e4e0de9d', 0, NULL, 'kelas/rombel//', '127.0.0.1', '2020-03-06 09:45:58', 'Firefox 73.0', 'Linux'),
+(15, '5de15e4e0de9d', 0, 'Zam Zam Saeful Bahtiar', 'matpel///', '127.0.0.1', '2020-03-06 09:46:00', 'Firefox 73.0', 'Linux'),
+(16, '5de15e4e0de9d', 0, 'Zam Zam Saeful Bahtiar', 'matpel/tambah//', '127.0.0.1', '2020-03-06 09:46:03', 'Firefox 73.0', 'Linux'),
+(17, '5de15e4e0de9d', 0, 'Zam Zam Saeful Bahtiar', 'jadwal///', '127.0.0.1', '2020-03-06 09:46:04', 'Firefox 73.0', 'Linux'),
+(18, '5de15e4e0de9d', 0, 'Zam Zam Saeful Bahtiar', 'admin///', '127.0.0.1', '2020-03-06 09:46:08', 'Firefox 73.0', 'Linux'),
+(19, '5de15e4e0de9d', 0, 'Zam Zam Saeful Bahtiar', 'admin/tambah//', '127.0.0.1', '2020-03-06 09:46:10', 'Firefox 73.0', 'Linux'),
+(20, '5de15e4e0de9d', 0, 'Zam Zam Saeful Bahtiar', 'pimpinan///', '127.0.0.1', '2020-03-06 09:46:13', 'Firefox 73.0', 'Linux'),
+(21, '5de15e4e0de9d', 0, 'Zam Zam Saeful Bahtiar', 'pimpinan/tambah//', '127.0.0.1', '2020-03-06 09:46:19', 'Firefox 73.0', 'Linux'),
+(22, '5de15e4e0de9d', 0, 'Zam Zam Saeful Bahtiar', 'tahunajaran///', '127.0.0.1', '2020-03-06 09:46:22', 'Firefox 73.0', 'Linux'),
+(23, '5de15e4e0de9d', 0, 'Zam Zam Saeful Bahtiar', 'tahunajaran/tambah//', '127.0.0.1', '2020-03-06 09:46:24', 'Firefox 73.0', 'Linux'),
+(24, '5de15e4e0de9d', 0, 'Zam Zam Saeful Bahtiar', 'rekapmasukan///', '127.0.0.1', '2020-03-06 09:46:26', 'Firefox 73.0', 'Linux'),
+(25, '5de15e4e0de9d', 0, 'Zam Zam Saeful Bahtiar', 'panduan///', '127.0.0.1', '2020-03-06 09:46:35', 'Firefox 73.0', 'Linux'),
+(26, '5de15e4e0de9d', 0, 'Zam Zam Saeful Bahtiar', 'pengaturan///', '127.0.0.1', '2020-03-06 09:46:46', 'Firefox 73.0', 'Linux'),
+(27, '5de15e4e0de9d', 0, 'Zam Zam Saeful Bahtiar', 'wargabelajar///', '127.0.0.1', '2020-03-06 09:46:52', 'Firefox 73.0', 'Linux'),
+(28, '5de15e4e0de9d', 0, 'Zam Zam Saeful Bahtiar', 'auth/logout//', '127.0.0.1', '2020-03-06 09:46:57', 'Firefox 73.0', 'Linux'),
+(29, NULL, NULL, NULL, 'auth///', '127.0.0.1', '2020-03-06 09:46:57', 'Firefox 73.0', 'Linux'),
+(30, NULL, NULL, NULL, 'auth/cek_login//', '127.0.0.1', '2020-03-06 09:47:01', 'Firefox 73.0', 'Linux'),
+(31, '5dfc3f1b90991', 1, 'Amat Rustendi', 'dasbor///', '127.0.0.1', '2020-03-06 09:47:01', 'Firefox 73.0', 'Linux'),
+(32, '5dfc3f1b90991', 1, 'Amat Rustendi', 'jadwalbelajar///', '127.0.0.1', '2020-03-06 09:47:04', 'Firefox 73.0', 'Linux'),
+(33, '5dfc3f1b90991', 1, 'Amat Rustendi', 'rekappresensi///', '127.0.0.1', '2020-03-06 09:47:06', 'Firefox 73.0', 'Linux'),
+(34, '5dfc3f1b90991', 1, 'Amat Rustendi', 'rekapnilai///', '127.0.0.1', '2020-03-06 09:47:08', 'Firefox 73.0', 'Linux'),
+(35, '5dfc3f1b90991', 1, 'Amat Rustendi', 'panduan///', '127.0.0.1', '2020-03-06 09:47:10', 'Firefox 73.0', 'Linux'),
+(36, '5dfc3f1b90991', 1, 'Amat Rustendi', 'pengaturan///', '127.0.0.1', '2020-03-06 09:47:13', 'Firefox 73.0', 'Linux'),
+(37, '5dfc3f1b90991', 1, 'Amat Rustendi', 'auth/logout//', '127.0.0.1', '2020-03-06 09:47:16', 'Firefox 73.0', 'Linux'),
+(38, NULL, NULL, NULL, 'auth///', '127.0.0.1', '2020-03-06 09:47:16', 'Firefox 73.0', 'Linux'),
+(39, NULL, NULL, NULL, 'auth/cek_login//', '127.0.0.1', '2020-03-06 09:47:22', 'Firefox 73.0', 'Linux'),
+(40, '5df69881a9a58', 3, 'Dewi Fortuna Kamila', 'dasbor///', '127.0.0.1', '2020-03-06 09:47:22', 'Firefox 73.0', 'Linux'),
+(41, '5df69881a9a58', 3, 'Dewi Fortuna Kamila', 'jadwalmengajar///', '127.0.0.1', '2020-03-06 09:47:24', 'Firefox 73.0', 'Linux'),
+(42, '5df69881a9a58', 3, 'Dewi Fortuna Kamila', 'presensi///', '127.0.0.1', '2020-03-06 09:47:26', 'Firefox 73.0', 'Linux'),
+(43, '5df69881a9a58', 3, 'Dewi Fortuna Kamila', 'panduan///', '127.0.0.1', '2020-03-06 09:47:29', 'Firefox 73.0', 'Linux'),
+(44, '5df69881a9a58', 3, 'Dewi Fortuna Kamila', 'pengaturan///', '127.0.0.1', '2020-03-06 09:47:34', 'Firefox 73.0', 'Linux'),
+(45, '5df69881a9a58', 3, 'Dewi Fortuna Kamila', 'auth/logout//', '127.0.0.1', '2020-03-06 09:47:37', 'Firefox 73.0', 'Linux'),
+(46, NULL, NULL, NULL, 'auth///', '127.0.0.1', '2020-03-06 09:47:37', 'Firefox 73.0', 'Linux'),
+(47, NULL, NULL, NULL, 'auth/cek_login//', '127.0.0.1', '2020-03-06 09:52:53', 'Firefox 73.0', 'Linux'),
+(48, '5de15e4e0de9d', 0, 'Zam Zam Saeful Bahtiar', 'dasbor///', '127.0.0.1', '2020-03-06 09:52:53', 'Firefox 73.0', 'Linux'),
+(49, '5de15e4e0de9d', 0, 'Zam Zam Saeful Bahtiar', 'dasbor///', '127.0.0.1', '2020-03-06 09:53:07', 'Firefox 73.0', 'Linux'),
+(50, '5de15e4e0de9d', 0, 'Zam Zam Saeful Bahtiar', 'dasbor///', '127.0.0.1', '2020-03-06 09:56:21', 'Firefox 73.0', 'Linux'),
+(51, '5de15e4e0de9d', 0, 'Zam Zam Saeful Bahtiar', 'dasbor///', '127.0.0.1', '2020-03-06 09:58:39', 'Firefox 73.0', 'Linux'),
+(52, '5de15e4e0de9d', 0, 'Zam Zam Saeful Bahtiar', 'dasbor///', '127.0.0.1', '2020-03-06 10:01:43', 'Firefox 73.0', 'Linux'),
+(53, '5de15e4e0de9d', 0, 'Zam Zam Saeful Bahtiar', 'dasbor///', '127.0.0.1', '2020-03-06 10:02:04', 'Firefox 73.0', 'Linux'),
+(54, '5de15e4e0de9d', 0, 'Zam Zam Saeful Bahtiar', 'dasbor///', '127.0.0.1', '2020-03-06 10:02:45', 'Firefox 73.0', 'Linux'),
+(55, '5de15e4e0de9d', 0, 'Zam Zam Saeful Bahtiar', 'dasbor///', '127.0.0.1', '2020-03-06 10:02:55', 'Firefox 73.0', 'Linux'),
+(56, '5de15e4e0de9d', 0, 'Zam Zam Saeful Bahtiar', 'dasbor///', '127.0.0.1', '2020-03-06 10:03:04', 'Firefox 73.0', 'Linux'),
+(57, '5de15e4e0de9d', 0, 'Zam Zam Saeful Bahtiar', 'dasbor///', '127.0.0.1', '2020-03-06 10:04:32', 'Firefox 73.0', 'Linux'),
+(58, '5de15e4e0de9d', 0, 'Zam Zam Saeful Bahtiar', 'dasbor///', '127.0.0.1', '2020-03-06 10:04:52', 'Firefox 73.0', 'Linux'),
+(59, '5de15e4e0de9d', 0, 'Zam Zam Saeful Bahtiar', 'dasbor///', '127.0.0.1', '2020-03-06 10:09:42', 'Firefox 73.0', 'Linux'),
+(60, '5de15e4e0de9d', 0, 'Zam Zam Saeful Bahtiar', 'dasbor///', '127.0.0.1', '2020-03-06 10:13:13', 'Firefox 73.0', 'Linux'),
+(61, '5de15e4e0de9d', 0, 'Zam Zam Saeful Bahtiar', 'dasbor///', '127.0.0.1', '2020-03-06 10:29:01', 'Firefox 73.0', 'Linux'),
+(62, '5de15e4e0de9d', 0, 'Zam Zam Saeful Bahtiar', 'dasbor///', '127.0.0.1', '2020-03-06 10:30:46', 'Firefox 73.0', 'Linux'),
+(63, '5de15e4e0de9d', 0, 'Zam Zam Saeful Bahtiar', 'dasbor///', '127.0.0.1', '2020-03-06 10:30:58', 'Firefox 73.0', 'Linux'),
+(64, '5de15e4e0de9d', 0, 'Zam Zam Saeful Bahtiar', 'dasbor///', '127.0.0.1', '2020-03-06 10:33:04', 'Firefox 73.0', 'Linux'),
+(65, '5de15e4e0de9d', 0, 'Zam Zam Saeful Bahtiar', 'dasbor///', '127.0.0.1', '2020-03-06 10:34:11', 'Firefox 73.0', 'Linux'),
+(66, '5de15e4e0de9d', 0, 'Zam Zam Saeful Bahtiar', 'dasbor///', '127.0.0.1', '2020-03-06 10:34:33', 'Firefox 73.0', 'Linux'),
+(67, '5de15e4e0de9d', 0, 'Zam Zam Saeful Bahtiar', 'dasbor/logs//', '127.0.0.1', '2020-03-06 10:35:23', 'Firefox 73.0', 'Linux'),
+(68, '5de15e4e0de9d', 0, 'Zam Zam Saeful Bahtiar', 'dasbor/logs//', '127.0.0.1', '2020-03-06 10:35:27', 'Firefox 73.0', 'Linux'),
+(69, '5de15e4e0de9d', 0, 'Zam Zam Saeful Bahtiar', 'wargabelajar///', '127.0.0.1', '2020-03-06 10:36:20', 'Firefox 73.0', 'Linux'),
+(70, '5de15e4e0de9d', 0, 'Zam Zam Saeful Bahtiar', 'admin///', '127.0.0.1', '2020-03-06 10:38:32', 'Firefox 73.0', 'Linux'),
+(71, '5de15e4e0de9d', 0, 'Zam Zam Saeful Bahtiar', 'admin///', '127.0.0.1', '2020-03-06 10:39:19', 'Firefox 73.0', 'Linux'),
+(72, '5de15e4e0de9d', 0, 'Zam Zam Saeful Bahtiar', 'admin/tambah//', '127.0.0.1', '2020-03-06 10:40:07', 'Firefox 73.0', 'Linux'),
+(73, '5de15e4e0de9d', 0, 'Zam Zam Saeful Bahtiar', 'admin/tambah//', '127.0.0.1', '2020-03-06 10:40:21', 'Firefox 73.0', 'Linux'),
+(74, '5de15e4e0de9d', 0, 'Zam Zam Saeful Bahtiar', 'dasbor///', '127.0.0.1', '2020-03-06 10:41:31', 'Firefox 73.0', 'Linux'),
+(75, '5de15e4e0de9d', 0, 'Zam Zam Saeful Bahtiar', 'dasbor///', '127.0.0.1', '2020-03-06 10:41:31', 'Firefox 73.0', 'Linux'),
+(76, '5de15e4e0de9d', 0, 'Zam Zam Saeful Bahtiar', 'dasbor///', '127.0.0.1', '2020-03-06 10:41:44', 'Firefox 73.0', 'Linux'),
+(77, '5de15e4e0de9d', 0, 'Zam Zam Saeful Bahtiar', 'dasbor///', '127.0.0.1', '2020-03-06 10:41:44', 'Firefox 73.0', 'Linux'),
+(78, '5de15e4e0de9d', 0, 'Zam Zam Saeful Bahtiar', 'dasbor///', '127.0.0.1', '2020-03-06 10:41:47', 'Firefox 73.0', 'Linux'),
+(79, '5de15e4e0de9d', 0, 'Zam Zam Saeful Bahtiar', 'dasbor///', '127.0.0.1', '2020-03-06 10:41:47', 'Firefox 73.0', 'Linux'),
+(80, '5de15e4e0de9d', 0, 'Zam Zam Saeful Bahtiar', 'dasbor///', '127.0.0.1', '2020-03-06 10:42:00', 'Firefox 73.0', 'Linux'),
+(81, '5de15e4e0de9d', 0, 'Zam Zam Saeful Bahtiar', 'dasbor///', '127.0.0.1', '2020-03-06 10:42:00', 'Firefox 73.0', 'Linux'),
+(82, '5de15e4e0de9d', 0, 'Zam Zam Saeful Bahtiar', 'wargabelajar///', '127.0.0.1', '2020-03-06 10:42:06', 'Firefox 73.0', 'Linux'),
+(83, '5de15e4e0de9d', 0, 'Zam Zam Saeful Bahtiar', 'wargabelajar///', '127.0.0.1', '2020-03-06 10:43:40', 'Firefox 73.0', 'Linux'),
+(84, '5de15e4e0de9d', 0, 'Zam Zam Saeful Bahtiar', 'jadwal///', '127.0.0.1', '2020-03-06 10:43:45', 'Firefox 73.0', 'Linux'),
+(85, '5de15e4e0de9d', 0, 'Zam Zam Saeful Bahtiar', 'jadwal/matpel_tambah/5dfc3970e4387/', '127.0.0.1', '2020-03-06 10:44:40', 'Firefox 73.0', 'Linux'),
+(86, '5de15e4e0de9d', 0, 'Zam Zam Saeful Bahtiar', 'jadwal/matpel_tambah/5dfc3970e4387/', '127.0.0.1', '2020-03-06 10:44:52', 'Firefox 73.0', 'Linux'),
+(87, '5de15e4e0de9d', 0, 'Zam Zam Saeful Bahtiar', 'matpel/tambah//', '127.0.0.1', '2020-03-06 10:45:08', 'Firefox 73.0', 'Linux'),
+(88, '5de15e4e0de9d', 0, 'Zam Zam Saeful Bahtiar', 'matpel///', '127.0.0.1', '2020-03-06 10:45:11', 'Firefox 73.0', 'Linux'),
+(89, '5de15e4e0de9d', 0, 'Zam Zam Saeful Bahtiar', 'jadwal///', '127.0.0.1', '2020-03-06 10:45:17', 'Firefox 73.0', 'Linux'),
+(90, '5de15e4e0de9d', 0, 'Zam Zam Saeful Bahtiar', 'jadwal/matpel_lihat/5dfc3970e4387/', '127.0.0.1', '2020-03-06 10:45:20', 'Firefox 73.0', 'Linux'),
+(91, '5de15e4e0de9d', 0, 'Zam Zam Saeful Bahtiar', 'jadwal/ubah/5dfc3970e4387/5dfc9e164dcf0', '127.0.0.1', '2020-03-06 10:45:24', 'Firefox 73.0', 'Linux'),
+(92, '5de15e4e0de9d', 0, 'Zam Zam Saeful Bahtiar', 'kelas///', '127.0.0.1', '2020-03-06 10:46:19', 'Firefox 73.0', 'Linux'),
+(93, '5de15e4e0de9d', 0, 'Zam Zam Saeful Bahtiar', 'kelas/tambah//', '127.0.0.1', '2020-03-06 10:47:01', 'Firefox 73.0', 'Linux'),
+(94, '5de15e4e0de9d', 0, 'Zam Zam Saeful Bahtiar', 'kelas/rombel//', '127.0.0.1', '2020-03-06 10:47:18', 'Firefox 73.0', 'Linux'),
+(95, '5de15e4e0de9d', 0, 'Zam Zam Saeful Bahtiar', 'kelas/tambah//', '127.0.0.1', '2020-03-06 10:47:20', 'Firefox 73.0', 'Linux'),
+(96, '5de15e4e0de9d', 0, 'Zam Zam Saeful Bahtiar', 'kelas/rombel//', '127.0.0.1', '2020-03-06 10:47:48', 'Firefox 73.0', 'Linux'),
+(97, '5de15e4e0de9d', 0, 'Zam Zam Saeful Bahtiar', 'kelas///', '127.0.0.1', '2020-03-06 10:47:52', 'Firefox 73.0', 'Linux'),
+(98, '5de15e4e0de9d', 0, 'Zam Zam Saeful Bahtiar', 'matpel///', '127.0.0.1', '2020-03-06 10:47:56', 'Firefox 73.0', 'Linux'),
+(99, '5de15e4e0de9d', 0, 'Zam Zam Saeful Bahtiar', 'rekapmasukan///', '127.0.0.1', '2020-03-06 10:48:42', 'Firefox 73.0', 'Linux'),
+(100, '5de15e4e0de9d', 0, 'Zam Zam Saeful Bahtiar', 'panduan///', '127.0.0.1', '2020-03-06 10:50:10', 'Firefox 73.0', 'Linux'),
+(101, '5de15e4e0de9d', 0, 'Zam Zam Saeful Bahtiar', 'pengaturan///', '127.0.0.1', '2020-03-06 10:50:48', 'Firefox 73.0', 'Linux'),
+(102, '5de15e4e0de9d', 0, 'Zam Zam Saeful Bahtiar', 'auth/logout//', '127.0.0.1', '2020-03-06 10:50:52', 'Firefox 73.0', 'Linux'),
+(103, NULL, NULL, NULL, 'auth///', '127.0.0.1', '2020-03-06 10:50:52', 'Firefox 73.0', 'Linux'),
+(104, NULL, NULL, NULL, 'auth/cek_login//', '127.0.0.1', '2020-03-06 10:50:57', 'Firefox 73.0', 'Linux'),
+(105, '5df69881a9a58', 3, 'Dewi Fortuna Kamila', 'dasbor///', '127.0.0.1', '2020-03-06 10:50:57', 'Firefox 73.0', 'Linux'),
+(106, '5df69881a9a58', 3, 'Dewi Fortuna Kamila', 'dasbor///', '127.0.0.1', '2020-03-06 10:50:57', 'Firefox 73.0', 'Linux'),
+(107, '5df69881a9a58', 3, 'Dewi Fortuna Kamila', 'dasbor///', '127.0.0.1', '2020-03-06 10:51:26', 'Firefox 73.0', 'Linux'),
+(108, '5df69881a9a58', 3, 'Dewi Fortuna Kamila', 'dasbor///', '127.0.0.1', '2020-03-06 10:51:26', 'Firefox 73.0', 'Linux'),
+(109, '5df69881a9a58', 3, 'Dewi Fortuna Kamila', 'presensi///', '127.0.0.1', '2020-03-06 10:52:10', 'Firefox 73.0', 'Linux'),
+(110, '5df69881a9a58', 3, 'Dewi Fortuna Kamila', 'panduan///', '127.0.0.1', '2020-03-06 10:53:08', 'Firefox 73.0', 'Linux'),
+(111, '5df69881a9a58', 3, 'Dewi Fortuna Kamila', 'panduan///', '127.0.0.1', '2020-03-06 10:53:59', 'Firefox 73.0', 'Linux'),
+(112, '5df69881a9a58', 3, 'Dewi Fortuna Kamila', 'pengaturan///', '127.0.0.1', '2020-03-06 10:54:01', 'Firefox 73.0', 'Linux'),
+(113, '5df69881a9a58', 3, 'Dewi Fortuna Kamila', 'presensi///', '127.0.0.1', '2020-03-06 10:54:05', 'Firefox 73.0', 'Linux'),
+(114, '5df69881a9a58', 3, 'Dewi Fortuna Kamila', 'presensi/details/5dfc9da09b91e/', '127.0.0.1', '2020-03-06 10:54:08', 'Firefox 73.0', 'Linux'),
+(115, '5df69881a9a58', 3, 'Dewi Fortuna Kamila', 'auth/logout//', '127.0.0.1', '2020-03-06 10:54:13', 'Firefox 73.0', 'Linux'),
+(116, NULL, NULL, NULL, 'auth///', '127.0.0.1', '2020-03-06 10:54:13', 'Firefox 73.0', 'Linux'),
+(117, NULL, NULL, NULL, 'auth/cek_login//', '127.0.0.1', '2020-03-06 10:54:17', 'Firefox 73.0', 'Linux'),
+(118, '5df8c9b8e20e9', 1, 'Maulana Sabirin', 'dasbor///', '127.0.0.1', '2020-03-06 10:54:17', 'Firefox 73.0', 'Linux'),
+(119, '5df8c9b8e20e9', 1, 'Maulana Sabirin', 'dasbor///', '127.0.0.1', '2020-03-06 10:54:17', 'Firefox 73.0', 'Linux'),
+(120, '5df8c9b8e20e9', 1, 'Maulana Sabirin', 'pengaturan///', '127.0.0.1', '2020-03-06 10:55:21', 'Firefox 73.0', 'Linux'),
+(121, '5df8c9b8e20e9', 1, 'Maulana Sabirin', 'dasbor///', '127.0.0.1', '2020-03-06 10:55:24', 'Firefox 73.0', 'Linux'),
+(122, '5df8c9b8e20e9', 1, 'Maulana Sabirin', 'dasbor///', '127.0.0.1', '2020-03-06 10:55:24', 'Firefox 73.0', 'Linux'),
+(123, '5df8c9b8e20e9', 1, 'Maulana Sabirin', 'jadwalbelajar///', '127.0.0.1', '2020-03-06 10:55:32', 'Firefox 73.0', 'Linux'),
+(124, '5df8c9b8e20e9', 1, 'Maulana Sabirin', 'dasbor///', '127.0.0.1', '2020-03-06 10:55:35', 'Firefox 73.0', 'Linux'),
+(125, '5df8c9b8e20e9', 1, 'Maulana Sabirin', 'dasbor///', '127.0.0.1', '2020-03-06 10:55:35', 'Firefox 73.0', 'Linux'),
+(126, '5df8c9b8e20e9', 1, 'Maulana Sabirin', 'jadwalbelajar///', '127.0.0.1', '2020-03-06 10:55:39', 'Firefox 73.0', 'Linux'),
+(127, '5df8c9b8e20e9', 1, 'Maulana Sabirin', 'rekappresensi///', '127.0.0.1', '2020-03-06 10:55:42', 'Firefox 73.0', 'Linux'),
+(128, '5df8c9b8e20e9', 1, 'Maulana Sabirin', 'rekapnilai///', '127.0.0.1', '2020-03-06 10:55:44', 'Firefox 73.0', 'Linux'),
+(129, '5df8c9b8e20e9', 1, 'Maulana Sabirin', 'panduan///', '127.0.0.1', '2020-03-06 10:55:46', 'Firefox 73.0', 'Linux'),
+(130, '5df8c9b8e20e9', 1, 'Maulana Sabirin', 'pengaturan///', '127.0.0.1', '2020-03-06 10:55:48', 'Firefox 73.0', 'Linux'),
+(131, '5df8c9b8e20e9', 1, 'Maulana Sabirin', 'panduan///', '127.0.0.1', '2020-03-06 10:55:53', 'Firefox 73.0', 'Linux'),
+(132, '5df8c9b8e20e9', 1, 'Maulana Sabirin', 'pengaturan///', '127.0.0.1', '2020-03-06 10:55:55', 'Firefox 73.0', 'Linux'),
+(133, '5df8c9b8e20e9', 1, 'Maulana Sabirin', 'dasbor///', '127.0.0.1', '2020-03-06 10:56:01', 'Firefox 73.0', 'Linux'),
+(134, '5df8c9b8e20e9', 1, 'Maulana Sabirin', 'dasbor///', '127.0.0.1', '2020-03-06 10:56:01', 'Firefox 73.0', 'Linux'),
+(135, '5df8c9b8e20e9', 1, 'Maulana Sabirin', 'jadwalbelajar///', '127.0.0.1', '2020-03-06 10:56:14', 'Firefox 73.0', 'Linux'),
+(136, '5df8c9b8e20e9', 1, 'Maulana Sabirin', 'dasbor///', '127.0.0.1', '2020-03-06 10:56:16', 'Firefox 73.0', 'Linux'),
+(137, '5df8c9b8e20e9', 1, 'Maulana Sabirin', 'dasbor///', '127.0.0.1', '2020-03-06 10:56:17', 'Firefox 73.0', 'Linux'),
+(138, '5df8c9b8e20e9', 1, 'Maulana Sabirin', 'pengaturan///', '127.0.0.1', '2020-03-06 10:56:21', 'Firefox 73.0', 'Linux'),
+(139, '5df8c9b8e20e9', 1, 'Maulana Sabirin', 'pengaturan///', '127.0.0.1', '2020-03-06 10:56:45', 'Firefox 73.0', 'Linux'),
+(140, '5df8c9b8e20e9', 1, 'Maulana Sabirin', 'panduan///', '127.0.0.1', '2020-03-06 10:56:46', 'Firefox 73.0', 'Linux'),
+(141, '5df8c9b8e20e9', 1, 'Maulana Sabirin', 'dasbor///', '127.0.0.1', '2020-03-06 10:56:50', 'Firefox 73.0', 'Linux'),
+(142, '5df8c9b8e20e9', 1, 'Maulana Sabirin', 'dasbor///', '127.0.0.1', '2020-03-06 10:56:50', 'Firefox 73.0', 'Linux'),
+(143, '5df8c9b8e20e9', 1, 'Maulana Sabirin', 'auth/logout//', '127.0.0.1', '2020-03-06 10:56:52', 'Firefox 73.0', 'Linux'),
+(144, NULL, NULL, NULL, 'auth///', '127.0.0.1', '2020-03-06 10:56:52', 'Firefox 73.0', 'Linux'),
+(145, NULL, NULL, NULL, 'auth///', '127.0.0.1', '2020-03-06 10:56:55', 'Firefox 73.0', 'Linux'),
+(146, NULL, NULL, NULL, 'auth/cek_login//', '127.0.0.1', '2020-03-06 10:57:00', 'Firefox 73.0', 'Linux'),
+(147, '5de15e4e0de9d', 0, 'Zam Zam Saeful Bahtiar', 'dasbor///', '127.0.0.1', '2020-03-06 10:57:00', 'Firefox 73.0', 'Linux'),
+(148, '5de15e4e0de9d', 0, 'Zam Zam Saeful Bahtiar', 'dasbor///', '127.0.0.1', '2020-03-06 10:57:00', 'Firefox 73.0', 'Linux'),
+(149, '5de15e4e0de9d', 0, 'Zam Zam Saeful Bahtiar', 'auth/logout//', '127.0.0.1', '2020-03-06 10:57:17', 'Firefox 73.0', 'Linux'),
+(150, NULL, NULL, NULL, 'auth///', '127.0.0.1', '2020-03-06 10:57:17', 'Firefox 73.0', 'Linux');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `masukan`
 --
 
@@ -117,14 +293,6 @@ CREATE TABLE `masukan` (
   `wargabelajar_id` varchar(100) NOT NULL,
   `created_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `masukan`
---
-
-INSERT INTO `masukan` (`masukan_id`, `masukan`, `status`, `tahunajaran_id`, `wargabelajar_id`, `created_at`) VALUES
-('5e4b9e8883056', 'Mantab', '0', '5dfc3970e4387', '5dfc3f1b90991', '2020-02-18 15:21:28'),
-('5e513c9d635bc', 'tambah', '0', '5dfc3970e4387', '5dfc3f1b90991', '2020-02-22 21:37:17');
 
 -- --------------------------------------------------------
 
@@ -233,7 +401,7 @@ CREATE TABLE `pimpinan` (
 --
 
 INSERT INTO `pimpinan` (`pimpinan_id`, `pimpinan_username`, `pimpinan_nama`, `pimpinan_foto`, `pimpinan_password`, `created_at`, `updated_at`) VALUES
-('5ded07350f828', 'iyep', 'Iyep Saepumilah SH.I, M.Pd.I', '5ded07350f828.jpg', '3bdf4234006fa37fab9cbe0134d9429b', '0000-00-00 00:00:00', '2020-02-22 20:41:19');
+('5ded07350f828', 'iyep', 'Iyep Saepumilah SH.I, M.Pd.I', '5ded07350f828.jpg', '8843028fefce50a6de50acdf064ded27', '0000-00-00 00:00:00', '2020-02-22 20:41:19');
 
 -- --------------------------------------------------------
 
@@ -343,7 +511,10 @@ CREATE TABLE `rombel` (
 
 INSERT INTO `rombel` (`rombel_id`, `tahunajaran_id`, `kelas_id`, `created_at`, `updated_at`) VALUES
 ('5dfc397155e30', '5dfc3970e4387', '5df888b63addd', '2019-12-20 10:01:05', '0000-00-00 00:00:00'),
-('5dfc397184367', '5dfc3970e4387', '5df888c17d8f0', '2019-12-20 10:01:05', '0000-00-00 00:00:00');
+('5dfc397184367', '5dfc3970e4387', '5df888c17d8f0', '2019-12-20 10:01:05', '0000-00-00 00:00:00'),
+('5e617d550cac4', '5dfc3966f0b29', '5df888b63addd', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+('5e617d5ea2d2f', '5dfc3966f0b29', '5df888c17d8f0', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+('5e617d681e1d3', '5dfc3966f0b29', '5e4b45170cbf0', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -368,7 +539,12 @@ INSERT INTO `rombel_details` (`rombel_details_id`, `rombel_id`, `wargabelajar_id
 (3, '5dfc397184367', '5df8cbbfd492d', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (4, '5dfc397184367', '5df8cc7a68b47', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (5, '5dfc397184367', '5df8ce3c7570f', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(6, '5dfc397184367', '5dfc3f1b90991', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+(6, '5dfc397184367', '5dfc3f1b90991', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(7, '5e617d681e1d3', '5df8c9b8e20e9', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(8, '5e617d681e1d3', '5df8cbbfd492d', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(9, '5e617d681e1d3', '5df8cc7a68b47', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(10, '5e617d681e1d3', '5df8ce3c7570f', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(11, '5e617d681e1d3', '5dfc3f1b90991', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -390,7 +566,7 @@ CREATE TABLE `tahunajaran` (
 
 INSERT INTO `tahunajaran` (`tahunajaran_id`, `tahunajaran_nama`, `open_nilai`, `created_at`, `updated_at`) VALUES
 ('5dfc3966f0b29', '2017/2018', 0, '0000-00-00 00:00:00', '2020-01-28 16:57:19'),
-('5dfc3970e4387', '2018/2019', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+('5dfc3970e4387', '2018/2019', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -526,6 +702,12 @@ ALTER TABLE `kelas`
   ADD UNIQUE KEY `kelas_nama` (`kelas_nama`);
 
 --
+-- Indexes for table `logs`
+--
+ALTER TABLE `logs`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `masukan`
 --
 ALTER TABLE `masukan`
@@ -619,6 +801,11 @@ ALTER TABLE `wargabelajar`
 --
 
 --
+-- AUTO_INCREMENT for table `logs`
+--
+ALTER TABLE `logs`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=151;
+--
 -- AUTO_INCREMENT for table `nilai_details`
 --
 ALTER TABLE `nilai_details`
@@ -632,7 +819,7 @@ ALTER TABLE `presensi_details`
 -- AUTO_INCREMENT for table `rombel_details`
 --
 ALTER TABLE `rombel_details`
-  MODIFY `rombel_details_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `rombel_details_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- Constraints for dumped tables
 --

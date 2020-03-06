@@ -21,6 +21,7 @@ Class Pengaturan extends CI_Controller
             $this->load->model("Pengaturan_model");
             $this->load->library("form_validation");
             $this->load->helper('security');
+            $logs = $this->Pengaturan_model->logs();
         }
 
     public function index()

@@ -15,6 +15,7 @@
             if($this->session->userdata('MASUK') != TRUE)redirect($url);
             if($this->session->userdata('level') != 3) redirect("dasbor");
             $this->load->model('Nilai_model');
+            $logs = $this->Nilai_model->logs(); 
 
         }
         public function index(){

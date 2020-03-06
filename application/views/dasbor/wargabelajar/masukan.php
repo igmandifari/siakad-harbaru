@@ -221,7 +221,7 @@
                         </li>
                         <li class="nav-main-item">
                             <a class="nav-main-link" href="<?=base_url('panduan')?>">
-                            <i class="nav-main-link-icon fab fa-rocketchat ml-1"></i>
+                            <i class="nav-main-link-icon fa fa-book"></i>
                                 <span class="nav-main-link-name">Panduan</span>
                             </a>
                         </li>

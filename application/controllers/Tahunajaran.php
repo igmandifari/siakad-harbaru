@@ -17,7 +17,8 @@ class Tahunajaran extends CI_Controller
         if($this->session->userdata('level') != 0) redirect("dasbor");
         $this->load->model('Tahunajaran_model');
         $this->load->library('form_validation'); 
-        $this->load->helper('security'); 
+        $this->load->helper('security');
+        $logs = $this->Tahunajaran_model->logs(); 
     }
 
     public function index()

@@ -20,6 +20,7 @@ class Jadwalmengajar extends CI_Controller
 
     public function index()
     {
+        $logs = $this->Jadwalmengajar_model->logs();
         $jadwalmengajar = $this->Jadwalmengajar_model;
         
         $data["all_jadwal_mengajar"] = $jadwalmengajar->getJadwalByIdTutor();
@@ -31,6 +32,7 @@ class Jadwalmengajar extends CI_Controller
     }
     public function cetak($type=null)
     {
+        $logs = $this->Jadwalmengajar_model->logs();
         $model = $this->Jadwalmengajar_model;
         $tahun = $this->session->userdata('tahunajaran_id');
         $data['jadwals'] = $model->getJadwal($tahun);

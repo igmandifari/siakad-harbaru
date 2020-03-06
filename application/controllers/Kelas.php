@@ -22,7 +22,7 @@ class Kelas extends CI_Controller
 
     public function index()
     {
-
+        $logs = $this->Kelas_model->logs();
         $data["title"] = "Data Kelas";
         $data["actor"] = "Kelas";
         $data["kelass"] = $this->Kelas_model->getAll();
@@ -32,6 +32,7 @@ class Kelas extends CI_Controller
     }
     public function tambah()
     {
+        $logs = $this->Kelas_model->logs();
         $kelas = $this->Kelas_model;
         
         $validasi = $this->form_validation;
@@ -53,6 +54,7 @@ class Kelas extends CI_Controller
 
     public function hapus($id=null)
     {
+        $logs = $this->Kelas_model->logs();
         if(!isset($id)){
             redirect('kelas');
         }else{
@@ -64,6 +66,7 @@ class Kelas extends CI_Controller
 
     public function ubah($id=null)
     {
+        $logs = $this->Kelas_model->logs();
         if (!isset($id)) redirect('kelas');
 
         $kelas = $this->Kelas_model;
@@ -87,6 +90,7 @@ class Kelas extends CI_Controller
     }
     public function rombel($type=null)
     {
+        $logs = $this->Kelas_model->logs();
         $kelas = $this->Kelas_model;
 
         $data["actor"] = "Rombel";
@@ -96,7 +100,9 @@ class Kelas extends CI_Controller
 
         $this->load->view('kelas/rombel_list',$data);
     }
-    public function tambah_rombel(){
+    public function tambah_rombel()
+    {
+        $logs = $this->Kelas_model->logs();
         $kelas = $this->Kelas_model;
         $validasi = $this->form_validation;
         $validasi->set_rules($kelas->rules_tambah_rombel());
@@ -115,7 +121,9 @@ class Kelas extends CI_Controller
 
         $this->load->view('kelas/tambah_rombel',$data);
     }
-    public function rombel_tambah($id=null){
+    public function rombel_tambah($id=null)
+    {
+        $logs = $this->Kelas_model->logs();
         if (!isset($id)) redirect('kelas/rombel');
         $kelas = $this->Kelas_model;
         $data['kelas'] = $kelas->getRombelbyId($id);
@@ -128,7 +136,9 @@ class Kelas extends CI_Controller
         $this->load->view('kelas/rombel_tambah',$data);
         
     }
-    public function rombel_lihat($id=null,$type=null){
+    public function rombel_lihat($id=null,$type=null)
+    {
+        $logs = $this->Kelas_model->logs();
         if (!isset($id)) redirect('kelas/rombel');
         $kelas = $this->Kelas_model;
         $data['kelas'] = $kelas->getRombelbyId($id);
@@ -217,7 +227,9 @@ class Kelas extends CI_Controller
                     exit;
                 }
     }
-    public function rombel_simpan(){
+    public function rombel_simpan()
+    {
+        $logs = $this->Kelas_model->logs();
         $validasi = $this->form_validation;
         $kelas = $this->Kelas_model;
         if($this->input->method()=="post"){
@@ -232,6 +244,7 @@ class Kelas extends CI_Controller
 
     public function rombel_det_hapus($id=null,$rombel_id=null)
     {
+        $logs = $this->Kelas_model->logs();
         if(!isset($id)){
             redirect('kelas/rombel_lihat/'.$rombel_id);
         }else{
@@ -240,7 +253,9 @@ class Kelas extends CI_Controller
             redirect('kelas/rombel_lihat/'.$rombel_id);
         }
     }
-    public function rombel_hapus($id=null){
+    public function rombel_hapus($id=null)
+    {
+        $logs = $this->Kelas_model->logs();
         $kelas = $this->Kelas_model;
             
         if(!isset($id)){
@@ -262,6 +277,7 @@ class Kelas extends CI_Controller
     }
     public function cetak($type=null)
     {
+        $logs = $this->Kelas_model->logs();
         $kelas = $this->Kelas_model;
         $data['kelass'] = $kelas->getAll();
         if ($type != "xlsx" && $type !="pdf") {

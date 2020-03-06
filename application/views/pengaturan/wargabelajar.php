@@ -184,7 +184,7 @@
                         </li>
                         <li class="nav-main-item">
                             <a class="nav-main-link" href="<?=base_url('panduan')?>">
-                            <i class="nav-main-link-icon fab fa-rocketchat ml-1"></i>
+                            <i class="nav-main-link-icon fa fa-book"></i>
                                 <span class="nav-main-link-name">Panduan</span>
                             </a>
                         </li>
@@ -192,6 +192,12 @@
                             <a class="nav-main-link active" href="<?=base_url('pengaturan')?>">
                             <i class="nav-main-link-icon si si-settings"></i>
                                 <span class="nav-main-link-name">Pengaturan</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="<?=base_url('masukan')?>">
+                            <i class="nav-main-link-icon fab fa-rocketchat ml-1"></i>
+                                <span class="nav-main-link-name">Kirim Masukan</span>
                             </a>
                         </li>
                         <li class="nav-main-item">

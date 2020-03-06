@@ -13,6 +13,8 @@
             if($this->session->userdata('MASUK') != TRUE)redirect($url);
 
             $this->level = $this->session->userdata('level');
+            $this->load->model('Masukan_model');
+            $logs = $this->Masukan_model->logs();
         }
 
     	public function index()

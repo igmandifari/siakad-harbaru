@@ -18,11 +18,12 @@
         $this->load->model('Admin_model');
         $this->load->library('form_validation');
         $this->load->helper('security');
+        
     }
 
     public function index()
     {
-
+        $logs = $this->Admin_model->logs();
         $data["title"] = "Data Admin";
         $data["actor"] = "admin";
         $data["admins"] = $this->Admin_model->getAll();
@@ -33,6 +34,7 @@
 
     public function tambah()
     {
+        $logs = $this->Admin_model->logs();
         $admin = $this->Admin_model;    
         $validasi = $this->form_validation;
         $validasi->set_rules($admin->rules());
@@ -53,6 +55,7 @@
 
     public function hapus($id=null)
     {
+        $logs = $this->Admin_model->logs();
         if(!isset($id)){
             redirect('admin');
         }else{
@@ -61,6 +64,7 @@
         }
     }
     public function ubah_password($asal=null){
+        $logs = $this->Admin_model->logs();
         $admin = $this->Admin_model;
         $validation= $this->form_validation;
 
@@ -86,6 +90,7 @@
 
     public function ubah($id=null)
     {
+        $logs = $this->Admin_model->logs();
         if(!isset($id)) redirect('admin');
 
         $admin = $this->Admin_model;
@@ -127,6 +132,7 @@
 
     public function cetak($type=null)
     {
+        $logs = $this->Admin_model->logs();
             $model = $this->Admin_model;
             $data['admins'] = $model->getAll();
 

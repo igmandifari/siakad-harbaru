@@ -18,6 +18,7 @@ class Tutor extends CI_Controller
         $this->load->model("Tutor_model");
         $this->load->library('form_validation');
         $this->load->helper('security');
+        $logs = $this->Tutor_model->logs(); 
     }
 
     public function index()

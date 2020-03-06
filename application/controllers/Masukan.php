@@ -14,12 +14,14 @@ Class Masukan extends CI_Controller{
 	}
     public function index()
     {
+        $logs = $this->Masukan_model->logs();
         $data['title'] = 'Kirim Masukan';
         $data['tahunajarans']=$this->Masukan_model->getTahunAjaran();
         $this->load->view('dasbor/wargabelajar/masukan',$data);
     }
     public function kirim_masukan()
     {
+        $logs = $this->Masukan_model->logs();
     	if($this->input->method()=="post"){
     		$masukan = $this->Masukan_model;
     		$insert = $masukan->insert(array(
@@ -34,6 +36,7 @@ Class Masukan extends CI_Controller{
     }
     public function history_masukan()
     {
+        $logs = $this->Masukan_model->logs();
     	$masukan = $this->Masukan_model;
     	$id = $this->session->userdata('id');
     	$tahun = $this->session->userdata('tahunajaran_id');

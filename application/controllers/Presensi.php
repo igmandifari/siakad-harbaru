@@ -16,6 +16,7 @@
             if($this->session->userdata('level') != 3) redirect("dasbor");
 
             $this->load->model('Presensi_model');
+            $logs = $this->Presensi_model->logs();
         }
 
         public function index()

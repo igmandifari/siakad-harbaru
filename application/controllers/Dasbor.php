@@ -6,15 +6,29 @@ class Dasbor extends CI_Controller
         parent::__construct();
         $url=base_url();
         if($this->session->userdata('MASUK') != TRUE)redirect($url);
-        $this->load->model('Dasbor_model');   
+        $this->load->model('Dasbor_model');
+        $logs = $this->Dasbor_model->logs();   
+    }
+    public function logs()
+    {
+        if($this->session->userdata('level')==0){
+            $logs = $this->Dasbor_model->get_logs();
+
+            echo json_encode($logs);
+
+        }else{
+            redirect('dasbor');
+        }
     }
     public function index(){
         $dasbor = $this->Dasbor_model;
+        $logs = $dasbor->logs();
         $data["title"] = "Dasbor";
         $data["tahunajarans"] = $dasbor->getTahunAjaran();
 
 
         if($this->session->userdata('level') == 0){
+            $data["logs"] = $dasbor->get_logs();
             $data["countWargaBelajar"] = $dasbor->countWargaBelajar();
             $data["countAdmin"] = $dasbor->countAdmin();
             $data["countTutor"] = $dasbor->countTutor();
@@ -38,6 +52,7 @@ class Dasbor extends CI_Controller
     }
     public function setTahunajaran()
     {
+        $logs = $this->Dasbor_model->logs();
         if($this->input->method()=="post"){
             $thnid = $this->input->post('tahunajaran_id');
 
@@ -53,6 +68,7 @@ class Dasbor extends CI_Controller
     }
     public function wargabelajar()
     {
+        $logs = $this->Dasbor_model->logs();
         if($this->session->userdata('level') != 2){
             redirect('dasbor');
         }else{
@@ -64,6 +80,7 @@ class Dasbor extends CI_Controller
     }
     public function tutor()
     {
+        $logs = $this->Dasbor_model->logs();
         if($this->session->userdata('level') != 2){
             redirect('dasbor');
         }else{
@@ -75,6 +92,7 @@ class Dasbor extends CI_Controller
     }
     public function kelas($jenis=null,$id=null)
     {
+        $logs = $this->Dasbor_model->logs();
         if($this->session->userdata('level') != 2){
             redirect('dasbor');
         }else{

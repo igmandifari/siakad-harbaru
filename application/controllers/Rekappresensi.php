@@ -17,6 +17,7 @@
 	        if($this->session->userdata('level') != 1) redirect("dasbor");
 
 	        $this->load->model('Rekappresensi_model');
+            $logs = $this->Rekappresensi_model->logs();
         }
         public function index()
         {

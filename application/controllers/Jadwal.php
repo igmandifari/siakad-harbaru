@@ -22,6 +22,7 @@ class Jadwal extends CI_Controller
     }
     public function index()
     {
+        $logs = $this->Jadwal_model->logs();
         $jadwal = $this->Jadwal_model;
 
         $data["tahuns"] = $jadwal->getTahunajaran();
@@ -33,6 +34,7 @@ class Jadwal extends CI_Controller
     }
     public function ubah($tahun=null,$id=null)
     {
+        $logs = $this->Jadwal_model->logs();
         if(!isset($id))redirect('jadwal');
 
         $jadwal = $this->Jadwal_model;
@@ -61,6 +63,7 @@ class Jadwal extends CI_Controller
 
     public function matpel_tambah($tahun=null)
     {
+        $logs = $this->Jadwal_model->logs();
         if(!isset($tahun)) redirect('jadwal');
 
         $jadwal = $this->Jadwal_model;
@@ -84,7 +87,9 @@ class Jadwal extends CI_Controller
         
         $this->load->view("jadwal/tambah",$data);
     }
-    public function matpel_lihat($tahun=null,$type=null){
+    public function matpel_lihat($tahun=null,$type=null)
+    {
+        $logs = $this->Jadwal_model->logs();
         if(!isset($tahun)) redirect('jadwal');
 
         $jadwal = $this->Jadwal_model;
@@ -183,6 +188,7 @@ class Jadwal extends CI_Controller
         $this->load->view('jadwal/list',$data);
     }
     public function hapus($id=null){
+        $logs = $this->Jadwal_model->logs();
         $jadwal = $this->Jadwal_model;
         $tahun = $this->uri->segment('3');
         $data['jadwal'] = $jadwal->getById($id);
@@ -200,6 +206,7 @@ class Jadwal extends CI_Controller
         
     }
     public function tambah_tutorial_mandiri($id){
+        $logs = $this->Jadwal_model->logs();
         $jadwal = $this->Jadwal_model;
         $validasi = $this->form_validation;
         $validasi->set_rules($jadwal->rules_tutorial_mandiri());
@@ -217,6 +224,7 @@ class Jadwal extends CI_Controller
         }
     }
     public function update_tutorial_mandiri($tahun=null,$id=null){
+        $logs = $this->Jadwal_model->logs();
         $jadwal = $this->Jadwal_model;
         $validasi = $this->form_validation;
         $validasi->set_rules($jadwal->rules_tutorial_mandiri());
@@ -232,6 +240,7 @@ class Jadwal extends CI_Controller
         }
     }
     public function delTahun($id=null){
+        $logs = $this->Jadwal_model->logs();
         $jadwal = $this->Jadwal_model;
             
         if(!isset($id)){
@@ -253,6 +262,7 @@ class Jadwal extends CI_Controller
     }
     public function cetak($type=null)
         {
+            $logs = $this->Jadwal_model->logs();
             $model = $this->Jadwal_model;
 
             if(!isset($cetak)){
