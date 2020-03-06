@@ -277,7 +277,7 @@
                                                 <td><?=$jadwal->jadwal_hari?></td>
                                                 <td><?=$jadwal->jadwal_waktu?></td>
                                                 <td class="text-center">
-                                                    <?php if($jadwal->jadwal_tipe_pembelajaran != 'Tatap Muka'){?>
+                                                    <?php if($jadwal->jadwal_tipe_pembelajaran == 'Mandiri'){?>
                                                         <a href="<?=base_url('dasbor/kelas/presensi/'.$jadwal->jadwal_id)?>">
                                                             <button type="button" class="btn btn-success btn-sm">Nilai</button>
                                                         </a>

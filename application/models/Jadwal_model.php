@@ -72,7 +72,7 @@ class Jadwal_model extends CI_Model{
             'rombel_id'                 => $this->input->post("rombel_id"),
             'tahunajaran_id'            => $this->uri->segment('3'),
             'jadwal_waktu'              => $this->input->post("jadwal_waktu"),
-            'jadwal_tipe_pembelajaran'  => 'Tatap Muka',
+            'jadwal_tipe_pembelajaran'  => $this->input->post("jadwal_tipe_pembelajaran"),
             'created_at'                => date('Y-m-d H:i:s')
 
         );
@@ -82,12 +82,13 @@ class Jadwal_model extends CI_Model{
     public function perbarui()
     {
         $data = array(
-            'jadwal_hari'           => $this->input->post("jadwal_hari"),
-            'matpel_id'             => $this->input->post("matpel_id"),
-            'tutor_id'              => $this->input->post("tutor_id"),
-            'rombel_id'             => $this->input->post("rombel_id"),
-            'jadwal_waktu'          => $this->input->post("jadwal_waktu"),
-            'updated_at'            => date('Y-m-d H:i:s')
+            'jadwal_hari'               => $this->input->post("jadwal_hari"),
+            'jadwal_tipe_pembelajaran'  => $this->input->post("jadwal_tipe_pembelajaran"),
+            'matpel_id'                 => $this->input->post("matpel_id"),
+            'tutor_id'                  => $this->input->post("tutor_id"),
+            'rombel_id'                 => $this->input->post("rombel_id"),
+            'jadwal_waktu'              => $this->input->post("jadwal_waktu"),
+            'updated_at'                => date('Y-m-d H:i:s')
 
         );
         $this->db->where('jadwal_id',$this->input->post("id"));
@@ -98,7 +99,7 @@ class Jadwal_model extends CI_Model{
     {
         $data = array(
             'jadwal_id'                 => uniqid(),
-            'jadwal_tipe_pembelajaran'  => $this->input->post("jadwal_tipe_pembelajaran"),
+            'jadwal_tipe_pembelajaran'  => 'Mandiri',
             'tahunajaran_id'            => $this->uri->segment('3'),
             'matpel_id'                 => $this->input->post("matpel_id_other"),
             'tutor_id'                  => $this->input->post("tutor_id_other"),
@@ -114,7 +115,6 @@ class Jadwal_model extends CI_Model{
             'matpel_id'                     => $this->input->post("matpel_id_other"),
             'rombel_id'                     => $this->input->post("rombel_id_other"),
             'tutor_id'                  => $this->input->post("tutor_id_other"),
-            'jadwal_tipe_pembelajaran'      => $this->input->post("jadwal_tipe_pembelajaran"),
             'updated_at'                    => date('Y-m-d H:i:s')
 
         );

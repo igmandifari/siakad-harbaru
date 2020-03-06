@@ -74,6 +74,51 @@
                 ]
             ];
         }
+        public function rules2()
+        {
+            return[
+                [
+                    'field' => 'tutor_nama',
+                    'label' => 'Nama',
+                    'rules' => 'required|trim|xss_clean',
+                ],
+                [
+                    'field' => 'tutor_tempat_lahir',
+                    'label' => 'Tempat Lahir',
+                    'rules' => 'trim|xss_clean',
+                ],
+                [
+                    'field' => 'tutor_alamat_rtrw',
+                    'label' => 'RT/RW',
+                    'rules' => 'trim|xss_clean',
+                ],
+                [
+                    'field' => 'tutor_alamat_desa',
+                    'label' => 'Des/Kel',
+                    'rules' => 'trim|xss_clean',
+                ],
+                [
+                    'field' => 'tutor_alamat_kecamatan',
+                    'label' => 'Kecamatan',
+                    'rules' => 'trim|xss_clean',
+                ],
+                [
+                    'field' => 'tutor_alamat_kabupaten',
+                    'label' => 'Kota/Kabupaten',
+                    'rules' => 'trim|xss_clean',
+                ],
+                [
+                    'field' => 'tutor_alamat_provinsi',
+                    'label' => 'Provinsi',
+                    'rules' => 'trim|xss_clean',
+                ],
+                [
+                    'field' => 'tutor_alamat_kodepos',
+                    'label' => 'Kode POS',
+                    'rules' => 'trim|numeric|xss_clean',
+                ]
+            ];
+        }
         private function _uploadImage()
         {
             $config['upload_path']          = './upload/images/';
@@ -137,7 +182,6 @@
                 $foto = $this->input->post("old_image");
             }
             $data= array(
-                'tutor_nomor_induk'         => $this->input->post("tutor_nomor_induk"),
                 'tutor_nama'                => $this->input->post("tutor_nama"),
                 'tutor_jenis_kelamin'       => $this->input->post("tutor_jenis_kelamin"),
                 'tutor_tempat_lahir'        => $this->input->post("tutor_tempat_lahir"),

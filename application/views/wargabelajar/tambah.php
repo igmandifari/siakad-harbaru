@@ -57,6 +57,17 @@
                                         <!-- Step 1 -->
                                         <div class="tab-pane active" id="wizard-personal" role="tabpanel">
                                             <div class="form-group">
+                                                <label for="rec_nik">Rekomendasi NIK</label>
+                                                <div class="col-sm-4">
+                                                    <div class="custom-control-inline">
+                                                    <input id="rec_nik" type="text" class="form-control" value="<?=$rec_nik;?>" disabled>
+
+                                                    <button id="btn-rec-nik" class="btn btn-sm btn-secondary">Gunakan</button>
+                                                </div>
+                                                </div>
+                                                
+                                            </div>
+                                            <div class="form-group">
                                                 <label for="wargabelajar_nis">Nomor Induk</label>
                                                 <input type="text" class="form-control" id="wargabelajar_nomor_induk" name="wargabelajar_nomor_induk" placeholder="Masukan Nomor Induk">   
                                                 <small class="form-text text-danger"><?= form_error('wargabelajar_nomor_induk'); ?></small>

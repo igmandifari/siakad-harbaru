@@ -72,7 +72,7 @@ class Tutor extends CI_Controller
         if(!$data['tutor']) redirect('tutor');
         
         $validasi = $this->form_validation;
-        $validasi->set_rules($tutor->rules());
+        $validasi->set_rules($tutor->rules2());
         if ($validasi->run()){
                 $tutor->perbarui();
                 $this->session->set_flashdata('success', 'Berhasil');

@@ -32,6 +32,16 @@
             </div>
         </div>
         <?php endif;?>
+        <?php if ($this->session->flashdata('failed')): ?>
+        <div class="alert alert-danger d-flex align-items-center" role="alert">
+            <div class="flex-00-auto">
+                <i class="fa fa-fw fa-check"></i>
+            </div>
+            <div class="flex-fill ml-3">
+                <p class="mb-0"><?php echo $this->session->flashdata('failed'); ?></p>
+            </div>
+        </div>
+        <?php endif;?>
         
           <div class='text-center'>
             <div class="block-content">

@@ -61,6 +61,9 @@
         <!-- Page JS Helpers-->
        <script>
             jQuery(function(){
+                jQuery("#btn-rec-nik").click(function(){
+                    jQuery("#wargabelajar_nomor_induk").val(jQuery("#rec_nik").val());
+                });
                 $("#tahunajaran").change(function(){
                     var id=this.value;
                     $.ajax({

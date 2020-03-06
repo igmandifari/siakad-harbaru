@@ -108,7 +108,9 @@ Class Wargabelajar extends CI_Controller
             $this->session->set_flashdata('success', 'Berhasil');
 
             redirect('wargabelajar');
-        } 
+        }
+        $nik = $wargabelajar->get_nik();
+        $data["rec_nik"] = ($nik['nik'] + 1); 
         $data["title"] = "Tambah Data";
         $data["actor"] = "Warga Belajar";
         $data["tahunajaran_all"] = $wargabelajar->getTahunAjaran();

@@ -541,4 +541,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             );
             return $this->db->insert('logs',$data);
         }
+        public function get_nik()
+        {
+            return $this->db->query("SELECT wargabelajar.wargabelajar_nomor_induk as nik FROM wargabelajar ORDER BY wargabelajar.wargabelajar_nomor_induk DESC LIMIT 1")->row_array();
+        }
     }

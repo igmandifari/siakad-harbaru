@@ -66,7 +66,7 @@
             // tatap muka as tm
             $validastm = $presensi->isTatapMuka($id);
             if(!isset($pertemuan) && isset($id)){
-                if($validastm['jadwal_tipe_pembelajaran'] != "Tatap Muka") redirect('presensi');
+                if($validastm['jadwal_tipe_pembelajaran'] == "Mandiri") redirect('presensi');
                 $this->load->view('tutor/presensi/pertemuan',$data);
             }elseif(!$data["wargabelajars"]){
                 redirect('presensi/jadwal/'.$this->uri->segment(3));
