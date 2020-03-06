@@ -5,7 +5,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
-        <title><?php echo $title." Semester ".$this->uri->segment(3)." ".$wb['wargabelajar_nama'];?></title>
+        <title><?php echo $title." ".$wb['wargabelajar_nama'];?></title>
 
         <meta name="robots" content="noindex, nofollow">
 
@@ -221,15 +221,15 @@
                             </a>
                         </li>
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="<?=base_url('pengaturan')?>">
-                            <i class="nav-main-link-icon si si-settings"></i>
-                                <span class="nav-main-link-name">Pengaturan</span>
+                            <a class="nav-main-link" href="<?=base_url('panduan')?>">
+                            <i class="nav-main-link-icon fa fa-book"></i>
+                                <span class="nav-main-link-name">Panduan</span>
                             </a>
                         </li>
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="<?=base_url('profil')?>">
-                            <i class="nav-main-link-icon si si-user ml-1"></i>
-                                <span class="nav-main-link-name">Profil</span>
+                            <a class="nav-main-link" href="<?=base_url('pengaturan')?>">
+                            <i class="nav-main-link-icon si si-settings"></i>
+                                <span class="nav-main-link-name">Pengaturan</span>
                             </a>
                         </li>
                         <li class="nav-main-item">
@@ -294,17 +294,11 @@
                                     <img class="img-avatar img-avatar48 img-avatar-thumb" src="<?= base_url ('upload/images/'.$this->session->userdata('foto'));?>" alt="">
                                 </div>
                                 <div class="p-2">
-                                    <h5 class="dropdown-header text-uppercase">User Options</h5>
-                                    <a class="dropdown-item d-flex align-items-center justify-content-between" href="<?=base_url('profil')?>">
-                                        <span>Profil</span>
-                                            <i class="si si-user ml-1"></i>
-                                    </a>
+                                    <h5 class="dropdown-header text-uppercase">Pilihan</h5>
                                     <a class="dropdown-item d-flex align-items-center justify-content-between" href="<?=base_url('pengaturan')?>">
                                         <span>Pengaturan</span>
                                         <i class="si si-settings"></i>
                                     </a>
-                                    <div role="separator" class="dropdown-divider"></div>
-                                    <h5 class="dropdown-header text-uppercase">Aksi</h5>
                                     <a class="dropdown-item d-flex align-items-center justify-content-between" href="<?=base_url('auth/logout')?>">
                                         <span>Log Out</span>
                                         <i class="si si-logout ml-1"></i>
@@ -347,13 +341,17 @@
                         <div class="block-header block-header-default">
                             <h3 class="block-title"><?=$title;?></h3>
                             <div class="block-options">
-                                <a href="<?=base_url('jadwalmengajar/cetak');?>">
-                                    <button type="button" class="btn btn-sm btn-secondary">
-                                        Cetak
+                                <button type="button" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#modal-cetak">
+                                    Cetak
+                                </button>
+
+                                <a href="<?=base_url('nilai/rekap/').$this->uri->segment(3);?>">
+                                    <button type="button" class="btn btn-sm btn-info">
+                                        Rekap
                                     </button>
                                 </a>
 
-                                <a href="<?=base_url('dashboard');?>">
+                                <a href="<?=base_url('nilai');?>">
                                     <button type="button" class="btn btn-sm btn-light">
                                         Kembali
                                     </button>
@@ -391,8 +389,8 @@
                                             <td><strong>: <?php echo $matpel["matpel_nama"];?></strong></td>
                                         </tr>
                                         <tr>
-                                            <td><strong>Semester</strong></td>
-                                            <td><strong>: <?php echo $this->uri->segment(3);?></strong></td>
+                                            <td><strong>Tahun Ajaran</strong></td>
+                                            <td><strong>: <?php echo $this->session->userdata('tahunajaran_nama')?></strong></td>
                                         </tr>
                                         <tr>
                                             <td><strong>Guru</strong></td>
@@ -404,7 +402,7 @@
                                             </td>
                                         </tr>
                                     </table>
-                                </strong>
+                                
 
                             
                             <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _es6/pages/be_tables_datatables.js -->
@@ -431,6 +429,7 @@
                     </div>
                     <!-- End List Matpel -->
 
+                    <!-- Modal tambah nilai start -->
                     <div class="modal fade" id="tambah-nilai" tabindex="-1" role="dialog" aria-labelledby="modal-block-popout" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-popout" role="document">
                             <div class="modal-content">
@@ -447,17 +446,18 @@
                                         <p>Silahkan masukan nilai pada kolom dibawah ini</p>
                                         <div class="form-group">
                                             <label for="nilai_details_jenis">Jenis</label>
-                                            <select class="js-select2 form-control" id="nilai_details_jenis" style="width: 100%;" data-placeholder="Silahkan Pilih.." required>
-                                                <option></option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
+                                            <select class="js-select2 form-control" id="nilai_details_jenis" style="width: 100%;" id="select-tambah-nilai" data-placeholder="Silahkan Pilih.." required>
+                                                <option></option>
                                                 <option value="Tugas">Tugas</option>
                                                 <option value="Harian">Harian</option>
-                                                <option value="UTS">UTS</option>
-                                                <option value="UAS">UAS</option>
+                                                <option value="PTS">PTS</option>
+                                                <option value="PAS">PAS</option>
+                                                <option value="PAT">PAT</option>
                                             </select>
                                         </div>
                                         <div class="form-group">
                                             <label for="nilai_details_nilai"> Jumlah Nilai(0-100)</label>
-                                            <input type="text" class="form-control" id="nilai_details_nilai" placeholder="Masukan Jumlah Nilai Dari 1-100">
+                                            <input type="number" class="form-control" id="nilai_details_nilai" placeholder="Masukan Jumlah Nilai Dari 1-100">
                                         </div>
                                     </div>
                                     <div class="block-content block-content-full text-right border-top">
@@ -468,6 +468,44 @@
                             </div>
                         </div>
                     </div>
+                    <!-- Modal tambah nilai end -->
+
+                    <!-- Modal ubah nilai start -->
+                    <div class="modal fade" id="ubah-nilai" tabindex="-1" role="dialog" aria-labelledby="modal-block-popout" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-popout" role="document">
+                            <div class="modal-content">
+                                <div class="block block-themed block-transparent mb-0">
+                                    <div class="block-header bg-primary-dark">
+                                        <h3 class="block-title">Ubah Nilai</h3>
+                                        <div class="block-options">
+                                            <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
+                                                <i class="fa fa-fw fa-times"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="block-content font-size-sm">
+                                        <p>Silahkan ubah nilai pada kolom dibawah ini</p>
+                                        <div class="form-group">
+                                            <label for="nilai_details_jenis">Jenis</label>
+                                            <select class="js-select2 form-control" id="nilai_details_jenis_ubah" style="width: 100%;" data-placeholder="Silahkan Pilih.." required>
+                                                
+                                            </select>
+                                        </div>
+                                        <input type="hidden" id="nilai_details_id_ubah" value="">
+                                        <div class="form-group">
+                                            <label for="nilai_details_nilai_ubah"> Jumlah Nilai(0-100)</label>
+                                            <input type="number" class="form-control" id="nilai_details_nilai_ubah" placeholder="Masukan Jumlah Nilai Dari 1-100">
+                                        </div>
+                                    </div>
+                                    <div class="block-content block-content-full text-right border-top">
+                                        <button type="button" class="btn btn-sm btn-light" data-dismiss="modal">Tutup</button>
+                                        <button type="button" id="simpan-ubah-nilai" class="btn btn-sm btn-primary"><i class="fa fa-check mr-1"></i>Ubah Nilai</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Modal ubah nilai end -->
 
                 </div>
                 <!-- END Page Content -->
@@ -489,6 +527,37 @@
             </footer>
             <!-- END Footer -->
 
+            <!-- Dialog print -->
+            <div class="modal fade" id="modal-cetak" tabindex="-1" role="dialog" aria-labelledby="modal-block-fadein" style="display: none;" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="block block-themed block-transparent mb-0">
+                                    <div class="block-header bg-primary-dark">
+                                        <h3 class="block-title">Cetak <?=$title;?></h3>
+                                        <div class="block-options">
+                                            <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
+                                                <i class="fa fa-fw fa-times"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="block-content block-content-full font-size-sm">
+                                        <p>Silahkan pilih tipe file cetak yang kamu inginkan!</p>
+                                        <div class="text-center">
+                                            <a href="<?=base_url('nilai/matpel/').$this->uri->segment(3).'/'.$this->uri->segment(4).'/pdf';?>" title="Klik Berikut Untuk Download tipe .PDF">
+                                                <button type="button" class="btn btn-rounded btn-danger">
+                                                    <i class="far fa-file-pdf"></i> PDF
+                                                </button>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="block-content block-content-full text-right border-top">
+                                        <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal"><i class="fa fa-check mr-1"></i>Tutup</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            <!-- End print dialog -->
         </div>
         <!-- END Page Container -->
 
@@ -562,6 +631,13 @@
                             'warning'
                             )
                         $("#nilai_details_nilai").val("");
+                    }else if($nilai < 0 || $nilai >100){
+                        Swal.fire(
+                            'Perhatikan!',
+                            'Tidak boleh memasukan nilai '+$nilai,
+                            'warning'
+                            )
+                        $("#nilai_details_nilai").val("");
                     }else{
 
                         $.ajax({
@@ -588,15 +664,17 @@
                             var $tempNilai;
                     $.ajax({
                         type:'GET',
-                        url:'<?php echo base_url('nilai/getnilai/');?>'+$id,
+                        url:'<?php echo base_url('nilai/getnilais/');?>'+$id,
                         dataType:'json',
                         success:function(data){
                             
                             for(var row=0;row<data.length;row++){
-                                $tempNilai+='<tr><td class="text-center">'+(row+1)+'</td><td>'+data[row].nilai_details_jenis+'</td><td>'+data[row].nilai_details_nilai+'</td><td class="text-center"><a href="<?php echo base_url('nilai/ubah/').$this->uri->segment(3)."/".$this->uri->segment(4)."/".$this->uri->segment(5)."/"?>'+data[row].nilai_details_id+'"><button type="button" class="ubah btn btn-sm btn-secondary push" data-id="'+data[row].nilai_details_id+'" data-toggle="modal" data-target="#ubah-nilai">Ubah</button></a><a href="<?php echo base_url('nilai/hapus/').$this->uri->segment(3)."/".$this->uri->segment(4)."/".$this->uri->segment(5)."/"?>'+data[row].nilai_details_id+'"><button type="button" class="hapus btn btn-sm btn-light push" data-id="'+data[row].nilai_details_id+'">Hapus</button></a></td></tr>';
+                                $tempNilai+='<tr id="'+data[row].nilai_details_id+'"><td class="text-center">'+(row+1)+'</td><td>'+data[row].nilai_details_jenis+'</td><td>'+data[row].nilai_details_nilai+'</td><td class="text-center"><button type="button" class="ubah btn btn-sm btn-secondary push" data-id="'+data[row].nilai_details_id+'">Ubah</button><button type="button" class="hapus btn btn-sm btn-warning push">Hapus</button></td></tr>';
                             }
-
+                            $(".js-dataTable-full").dataTable().fnClearTable();
+                            $(".js-dataTable-full").dataTable().fnDestroy();
                             $NilaiTabel.html($tempNilai);
+                            $(".js-dataTable-full").dataTable({pageLength:10,lengthMenu:[[5,10,15,20],[5,10,15,20]],autoWidth:!1});
                         }
                     });
                     calcNilai();
@@ -610,6 +688,10 @@
                         url:'<?php echo base_url('nilai/countNilai/');?>'+$id,
                         dataType:'json',
                         success:function(data){
+                            if(data[0].total==null){
+                                data[0].total="";
+                                data[0].rata="";
+                            }
                             $keterangan.html('<tr><th>Total Nilai</th><th class="text-center">'+data[0].total+'</th><th>Rata-Rata</th><th class="text-center">'+data[0].rata+'</th></tr>');
                         }
                     });
@@ -626,7 +708,147 @@
 
                     });
                 });
+                // Dialog confirmation delete start
+                    jQuery("#table-details-nilai").on("click",".hapus",function(){
+                        var id = $(this).parents("tr").attr("id");
+                        Swal.fire({
+                            title:"Peringatan",
+                            text:"Apakah kamu benar ingin menghapus ini?",
+                            type:"warning",
+                            showCancelButton:!0,
+                            customClass:{
+                                confirmButton:"btn btn-danger m-1",
+                                cancelButton:"btn btn-secondary m-1"
+                            },
+                            buttonsStyling:false,
+                            confirmButtonText:"Ya, hapus ini!",
+                            html:!1,
+                            preConfirm:function(Swal){
+                                return new Promise(function(Swal){
+                                    setTimeout(function(){
+                                        Swal()},
+                                        50)}
+                                    )}
+                            }).then(function(n){
+                                n.value?$.ajax({
+                                        url: '<?php echo base_url('nilai/hapus/').$this->uri->segment(3).'/'.$this->uri->segment(4).'/';?>'+id,
+                                        type: 'DELETE',
+                                        error: function() {
+                                            Swal.fire("Oops...", "Terjadi kesalahan", "error");
+                                        },success: function(data) {
+                                            $("#"+id).remove();
+                                            Swal.fire(
+                                                "Berhasil",
+                                                "Data berhasil dihapus.",
+                                                "success");
+                                            getNilai();
+                                        }}):"cancel"===n.dismiss&&Swal.fire(
+                                        "Dibatalkan",
+                                        "Tenang, data masih ada :)",
+                                        "error")
+                            })
+                })
+    
+                 // End Dialog confirmation 
+
+
+            jQuery("#simpan-ubah-nilai").on('click',function(){
+                var $score = jQuery("#nilai_details_nilai_ubah").val();
+                var $category = jQuery("#nilai_details_jenis_ubah").val();
+                var $id = jQuery("#nilai_details_id_ubah").val();
+
+                if($category == "" || $score==""){
+                        Swal.fire(
+                            'Perhatikan!',
+                            'Seluruh Kolom Harus diisi!',
+                            'warning'
+                            )
+                    }else if(!($.isNumeric($score))){
+                        Swal.fire(
+                            'Perhatikan!',
+                            'Kolom Nilai diisi Dengan Angka!',
+                            'warning'
+                            )
+                        jQuery("#nilai_details_nilai_ubah").val("");
+                    }else if($score < 0 || $score >100){
+                        Swal.fire(
+                            'Perhatikan!',
+                            'Tidak boleh memasukan nilai '+$score,
+                            'warning'
+                            )
+                        jQuery("#nilai_details_nilai_ubah").val("");
+                    }else if(jQuery("#nilai_details_id_ubah").val()==""){
+                        Swal.fire(
+                            'Ooops!',
+                            'Terjadi kesalahan, tunggu sebentar',
+                            'warning'
+                            )
+                        location.reload();
+                    }else{
+                        jQuery.ajax({
+                            url: "<?php echo base_url('nilai/updatenilai');?>",
+                            type:"POST",
+                            data:{id:$id,nilai:$score,jenis:$category},
+                            success:function(data){
+                                Swal.fire(
+                                    'Berhasil!',
+                                    'Nilai berhasil diubah!',
+                                    'success'
+                                    )
+                                jQuery("#ubah-nilai").modal('hide');
+                                getNilai();
+                                jQuery("#nilai_details_nilai").val("");
+                                jQuery("#nilai_details_nilai_ubah").val("");
+                            },error:function(data){
+                                Swal.fire(
+                                    'Ooopss..',
+                                    'Terjadi kesalahan!',
+                                    'warning'
+                                    );
+                            }
+                        })
+                    }
+
             });
+            jQuery("#table-details-nilai").on("click",".ubah",function(){
+                var id = jQuery(this).data('id');
+                jQuery("#nilai_details_id_ubah").val(id);
+                jQuery.ajax({
+                    url : '<?php echo base_url('nilai/getnilai/');?>'+id,
+                    type : 'get',
+                    dataType:'json',
+                    success:function(data){
+                        var nilai = data.nilai_details_nilai;
+                        var jenis = data.nilai_details_jenis;
+
+                        jQuery("#nilai_details_nilai_ubah").val(nilai);
+                            var jenistugas = '<option></option><option value="Tugas" selected>Tugas</option><option value="Harian">Harian</option><option value="PTS">PTS</option><option value="PAS">PAS</option><option value="PAT">PAT</option>';
+                            var jenisharian = '<option></option><option value="Tugas">Tugas</option><option value="Harian" selected>Harian</option><option value="PTS">PTS</option><option value="PAS">PAS</option><option value="PAT">PAT</option>';
+                            var jenispts = '<option></option><option value="Tugas">Tugas</option><option value="Harian">Harian</option><option value="PTS" selected>PTS</option><option value="PAS">PAS</option><option value="PAT">PAT</option>';
+                            var jenispas = '<option></option><option value="Tugas">Tugas</option><option value="Harian">Harian</option><option value="PTS">PTS</option><option value="PAS" selected>PAS</option><option value="PAT">PAT</option>';
+                            var jenispat = '<option></option><option value="Tugas">Tugas</option><option value="Harian">Harian</option><option value="PTS">PTS</option><option value="PAS">PAS</option><option value="PAT" selected>PAT</option>';
+                            if(jenis=="Tugas"){
+                                jQuery("#nilai_details_jenis_ubah").html(jenistugas);
+                            }else if(jenis=="Harian"){
+                                jQuery("#nilai_details_jenis_ubah").html(jenisharian);
+                            }else if(jenis=="PTS"){
+                                jQuery("#nilai_details_jenis_ubah").html(jenispts);
+                            }else if(jenis=="PAS"){
+                                jQuery("#nilai_details_jenis_ubah").html(jenispas);
+                            }else if(jenis=="PAT"){
+                                jQuery("#nilai_details_jenis_ubah").html(jenispat);
+                            }
+                        jQuery("#ubah-nilai").modal('show');
+                    },error:function(data){
+                        console.log('gagal mengambil nilai');
+                    }
+                });
+                
+            });
+            });
+
+            
+
         </script>
     </body>
 </html>

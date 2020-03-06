@@ -2,7 +2,7 @@
 <li class="nav-main-heading">Data Master</li>
                         <li class="nav-main-item">
                             <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
-                                <i class="nav-main-link-icon si si-energy"></i>
+                                <i class="nav-main-link-icon fa fa-users"></i>
                                 <span class="nav-main-link-name">Warga Belajar</span>
                             </a>
                             <ul class="nav-main-submenu">
@@ -20,7 +20,7 @@
                         </li>
                         <li class="nav-main-item">
                             <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
-                                <i class="nav-main-link-icon si si-energy"></i>
+                                <i class="nav-main-link-icon fa fa-users"></i>
                                 <span class="nav-main-link-name">Tutor</span>
                             </a>
                             <ul class="nav-main-submenu">
@@ -38,7 +38,7 @@
                         </li>
                         <li class="nav-main-item">
                             <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
-                                <i class="nav-main-link-icon si si-energy"></i>
+                                <i class="nav-main-link-icon fa fa-door-open"></i>
                                 <span class="nav-main-link-name">Kelas</span>
                             </a>
                             <ul class="nav-main-submenu">
@@ -61,7 +61,7 @@
                         </li>
                         <li class="nav-main-item">
                             <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
-                                <i class="nav-main-link-icon si si-energy"></i>
+                                <i class="nav-main-link-icon fa fa-book"></i>
                                 <span class="nav-main-link-name">Mata Pelajaran</span>
                             </a>
                             <ul class="nav-main-submenu">
@@ -84,7 +84,7 @@
                         </li>
                         <li class="nav-main-item">
                             <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
-                                <i class="nav-main-link-icon si si-energy"></i>
+                                <i class="nav-main-link-icon fa fa-users"></i>
                                 <span class="nav-main-link-name">Admin</span>
                             </a>
                             <ul class="nav-main-submenu">
@@ -102,7 +102,7 @@
                         </li>
                         <li class="nav-main-item">
                             <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
-                                <i class="nav-main-link-icon si si-energy"></i>
+                                <i class="nav-main-link-icon fa fa-users"></i>
                                 <span class="nav-main-link-name">Pimpinan</span>
                             </a>
                             <ul class="nav-main-submenu">
@@ -120,7 +120,7 @@
                         </li>
                         <li class="nav-main-item">
                             <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
-                                <i class="nav-main-link-icon si si-energy"></i>
+                                <i class="nav-main-link-icon fa fa-calendar-times"></i>
                                 <span class="nav-main-link-name">Tahun Ajaran</span>
                             </a>
                             <ul class="nav-main-submenu">
@@ -142,16 +142,17 @@
                                 <span class="nav-main-link-name">Data Masukan</span>
                             </a>
                         </li>
+                        <li class="nav-main-heading">Options</li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="<?=base_url('panduan')?>">
+                            <i class="nav-main-link-icon fa fa-book"></i>
+                                <span class="nav-main-link-name">Panduan</span>
+                            </a>
+                        </li>
                         <li class="nav-main-item">
                             <a class="nav-main-link" href="<?=base_url('pengaturan')?>">
                             <i class="nav-main-link-icon si si-settings"></i>
                                 <span class="nav-main-link-name">Pengaturan</span>
-                            </a>
-                        </li>
-                        <li class="nav-main-item">
-                            <a class="nav-main-link" href="<?=base_url('profil')?>">
-                            <i class="nav-main-link-icon si si-user ml-1"></i>
-                                <span class="nav-main-link-name">Profil</span>
                             </a>
                         </li>
                         <li class="nav-main-item">
@@ -184,14 +185,6 @@
                         <button type="button" class="btn btn-sm btn-dual mr-2 d-none d-lg-inline-block" data-toggle="layout" data-action="sidebar_mini_toggle">
                             <i class="fa fa-fw fa-ellipsis-v"></i>
                         </button>
-
-                        <!-- Tahun Ajaran  -->
-                        <select id="tahunajaran" class="js-select2 form-control form-control-lg form-control-alt" id="tahunajaran_id" name="tahunajaran_id" style="width: 100%;" data-placeholder="Silahkan pilih tahun ajaran" required>
-                            <option value=""></option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
-                            <?php foreach($tahunajarans as $tahunajaran):?>
-                                <option value="<?php echo $tahunajaran["tahunajaran_id"]?>" <?php if($this->session->userdata('tahunajaran_id')==$tahunajaran["tahunajaran_id"]) echo "selected";?>>Tahun Ajaran <?=$tahunajaran["tahunajaran_nama"]?></option>
-                            <?php endforeach;?>
-                        </select>
                         <!-- END Toggle Mini Sidebar -->
 
                         <!-- END Apps Modal -->
@@ -214,17 +207,11 @@
                                     <img class="img-avatar img-avatar48 img-avatar-thumb" src="<?= base_url ('upload/images/'.$this->session->userdata('foto'));?>" alt="">
                                 </div>
                                 <div class="p-2">
-                                    <h5 class="dropdown-header text-uppercase">User Options</h5>
-                                    <a class="dropdown-item d-flex align-items-center justify-content-between" href="<?=base_url('profil')?>">
-                                        <span>Profil</span>
-                                            <i class="si si-user ml-1"></i>
-                                    </a>
+                                    <h5 class="dropdown-header text-uppercase">Options</h5>
                                     <a class="dropdown-item d-flex align-items-center justify-content-between" href="<?=base_url('pengaturan')?>">
                                         <span>Pengaturan</span>
                                         <i class="si si-settings"></i>
                                     </a>
-                                    <div role="separator" class="dropdown-divider"></div>
-                                    <h5 class="dropdown-header text-uppercase">Aksi</h5>
                                     <a class="dropdown-item d-flex align-items-center justify-content-between" href="<?=base_url('auth/logout')?>">
                                         <span>Log Out</span>
                                         <i class="si si-logout ml-1"></i>
@@ -245,33 +232,26 @@
             <!-- Main Container -->
 <main id="main-container">
 
-<!-- Hero -->
-<div class="bg-body-light">
-    <div class="content content-full">
-        <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
-            <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
-                <ol class="breadcrumb breadcrumb-alt">
-                    <li class="breadcrumb-item"><?=$title;?></li>
-                    <li class="breadcrumb-item" aria-current="page">
-                        <a class="link-fx" href=""><?=$title;?></a>
-                    </li>
-                </ol>
-            </nav>
-        </div>
-    </div>
-</div>
-<!-- END Hero -->
-
 <!-- Page Content -->
 <div class="content">
     <!-- Basic -->
     <div class="block">
-        <div class="block-header">
-            <h3 class="block-title">Data Masukan</h3>
+        <div class="block-header block-header-default">
+            <h3 class="block-title"><?=$title;?></h3>
+            <div class="block-options">
+                <button type="button" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#modal-cetak">
+                    Cetak
+                </button>
+                <a href="<?=base_url();?>">
+                    <button type="button" class="btn btn-sm btn-light">
+                        Kembali
+                    </button>
+                </a>
+            </div>
         </div>
         <div class="block-content block-content-full">
             <div class="table-responsive">
-                <table class="table table-bordered table-striped table-vcenter">
+                <table id="table" class="table table-bordered table-striped table-vcenter js-dataTable-full">
                     <thead>
                         <tr class="text-center">
                             <th>NO</th>
@@ -283,16 +263,17 @@
                     </thead>
                     <tbody id="riwayat-masukan">
                         <?php $no=0;foreach($masukans as $masukan):$no++?>
-                            <tr>
-                                <td><?=$no;?></td>
+                            <tr id="<?=$masukan["masukan_id"];?>">
+                                <td class="text-center"><?=$no;?></td>
                                 <td><?=$masukan["created_at"];?></td>
-                                <td><?=$masukan["wargabelajar_nama"];?></td>
+                                <td><?=$masukan["wargabelajar_nama"].'<br>'.$masukan["wargabelajar_nomor_induk"];?></td>
                                 <td><?=$masukan["masukan"];?></td>
-                                <td>
-                                    <a href="<?=base_url('rekapmasukan/index/').$masukan['masukan_id'];?>">
-                                        <button type="button" class="btn btn-warning">Hapus
+                                <td class="text-center">
+                                    
+                                        <button type="button" class="btn btn-warning hapus">
+                                            <i class="fa fa-fw fa-times"></i> Hapus
                                         </button>
-                                    </a>
+                                   
                                 </td>
                             </tr>
                         <?php endforeach;?>
@@ -307,7 +288,40 @@
         </div>
     </div>
     <!-- END Basic -->
-
+<div class="modal fade" id="modal-cetak" tabindex="-1" role="dialog" aria-labelledby="modal-block-fadein" style="display: none;" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="block block-themed block-transparent mb-0">
+                        <div class="block-header bg-primary-dark">
+                            <h3 class="block-title">Cetak <?=$title;?></h3>
+                            <div class="block-options">
+                                <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
+                                    <i class="fa fa-fw fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="block-content block-content-full font-size-sm">
+                            <p>Silahkan pilih tipe file cetak yang kamu inginkan!</p>
+                            <div class="text-center">
+                                <a href="<?=base_url('rekapmasukan/cetak/xlsx');?>" title="Klik Berikut Untuk Download tipe .xlsx">
+                                    <button type="button" class="btn btn-rounded btn-success">
+                                        <i class="far fa-file-excel"></i> Spreadsheet
+                                    </button>
+                                </a>
+                                <a href="<?=base_url('rekapmasukan/cetak/pdf');?>" title="Klik Berikut Untuk Download tipe .PDF">
+                                    <button type="button" class="btn btn-rounded btn-danger">
+                                        <i class="far fa-file-pdf"></i> PDF
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="block-content block-content-full text-right border-top">
+                            <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal"><i class="fa fa-check mr-1"></i>Tutup</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 </div>
 <!-- END Page Content -->
 

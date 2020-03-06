@@ -1,7 +1,7 @@
-                        <li class="nav-main-heading">Data Master</li>
+<li class="nav-main-heading">Data Master</li>
                         <li class="nav-main-item">
                             <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
-                                <i class="nav-main-link-icon si si-energy"></i>
+                                <i class="nav-main-link-icon fa fa-users"></i>
                                 <span class="nav-main-link-name">Warga Belajar</span>
                             </a>
                             <ul class="nav-main-submenu">
@@ -19,7 +19,7 @@
                         </li>
                         <li class="nav-main-item">
                             <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
-                                <i class="nav-main-link-icon si si-energy"></i>
+                                <i class="nav-main-link-icon fa fa-users"></i>
                                 <span class="nav-main-link-name">Tutor</span>
                             </a>
                             <ul class="nav-main-submenu">
@@ -37,7 +37,7 @@
                         </li>
                         <li class="nav-main-item">
                             <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
-                                <i class="nav-main-link-icon si si-energy"></i>
+                                <i class="nav-main-link-icon fa fa-door-open"></i>
                                 <span class="nav-main-link-name">Kelas</span>
                             </a>
                             <ul class="nav-main-submenu">
@@ -60,7 +60,7 @@
                         </li>
                         <li class="nav-main-item open">
                             <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
-                                <i class="nav-main-link-icon si si-energy"></i>
+                                <i class="nav-main-link-icon fa fa-book"></i>
                                 <span class="nav-main-link-name">Mata Pelajaran</span>
                             </a>
                             <ul class="nav-main-submenu">
@@ -69,8 +69,8 @@
                                         <span class="nav-main-link-name">Daftar Mata Pelajaran</span>
                                     </a>
                                 </li>
-                                <li class="nav-main-item">
-                                    <a class="nav-main-link active" href="<?=base_url('matpel/tambah');?>">
+                                <li class="nav-main-item active">
+                                    <a class="nav-main-link" href="<?=base_url('matpel/tambah');?>">
                                         <span class="nav-main-link-name">Tambah Mata Pelajaran</span>
                                     </a>
                                 </li>
@@ -83,7 +83,7 @@
                         </li>
                         <li class="nav-main-item">
                             <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
-                                <i class="nav-main-link-icon si si-energy"></i>
+                                <i class="nav-main-link-icon fa fa-users"></i>
                                 <span class="nav-main-link-name">Admin</span>
                             </a>
                             <ul class="nav-main-submenu">
@@ -101,7 +101,7 @@
                         </li>
                         <li class="nav-main-item">
                             <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
-                                <i class="nav-main-link-icon si si-energy"></i>
+                                <i class="nav-main-link-icon fa fa-users"></i>
                                 <span class="nav-main-link-name">Pimpinan</span>
                             </a>
                             <ul class="nav-main-submenu">
@@ -119,7 +119,7 @@
                         </li>
                         <li class="nav-main-item">
                             <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
-                                <i class="nav-main-link-icon si si-energy"></i>
+                                <i class="nav-main-link-icon fa fa-calendar-times"></i>
                                 <span class="nav-main-link-name">Tahun Ajaran</span>
                             </a>
                             <ul class="nav-main-submenu">
@@ -141,16 +141,17 @@
                                 <span class="nav-main-link-name">Data Masukan</span>
                             </a>
                         </li>
+                        <li class="nav-main-heading">Options</li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="<?=base_url('panduan')?>">
+                            <i class="nav-main-link-icon fa fa-book"></i>
+                                <span class="nav-main-link-name">Panduan</span>
+                            </a>
+                        </li>
                         <li class="nav-main-item">
                             <a class="nav-main-link" href="<?=base_url('pengaturan')?>">
                             <i class="nav-main-link-icon si si-settings"></i>
                                 <span class="nav-main-link-name">Pengaturan</span>
-                            </a>
-                        </li>
-                        <li class="nav-main-item">
-                            <a class="nav-main-link" href="<?=base_url('profil')?>">
-                            <i class="nav-main-link-icon si si-user ml-1"></i>
-                                <span class="nav-main-link-name">Profil</span>
                             </a>
                         </li>
                         <li class="nav-main-item">
@@ -183,13 +184,6 @@
                         <button type="button" class="btn btn-sm btn-dual mr-2 d-none d-lg-inline-block" data-toggle="layout" data-action="sidebar_mini_toggle">
                             <i class="fa fa-fw fa-ellipsis-v"></i>
                         </button>
-                        <!-- Tahun Ajaran  -->
-                        <select id="tahunajaran" class="js-select2 form-control form-control-lg form-control-alt" id="tahunajaran_id" name="tahunajaran_id" style="width: 100%;" data-placeholder="Silahkan pilih tahun ajaran" required>
-                            <option value=""></option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
-                            <?php foreach($tahunajarans as $tahunajaran):?>
-                                <option value="<?php echo $tahunajaran["tahunajaran_id"]?>" <?php if($this->session->userdata('tahunajaran_id')==$tahunajaran["tahunajaran_id"]) echo "selected";?>>Tahun Ajaran <?=$tahunajaran["tahunajaran_nama"]?></option>
-                            <?php endforeach;?>
-                        </select>
                         <!-- END Toggle Mini Sidebar -->
 
                         <!-- END Apps Modal -->
@@ -212,17 +206,11 @@
                                     <img class="img-avatar img-avatar48 img-avatar-thumb" src="<?= base_url ('upload/images/'.$this->session->userdata('foto'));?>" alt="">
                                 </div>
                                 <div class="p-2">
-                                    <h5 class="dropdown-header text-uppercase">User Options</h5>
-                                    <a class="dropdown-item d-flex align-items-center justify-content-between" href="<?=base_url('profil')?>">
-                                        <span>Profil</span>
-                                            <i class="si si-user ml-1"></i>
-                                    </a>
+                                    <h5 class="dropdown-header text-uppercase">Options</h5>
                                     <a class="dropdown-item d-flex align-items-center justify-content-between" href="<?=base_url('pengaturan')?>">
                                         <span>Pengaturan</span>
                                         <i class="si si-settings"></i>
                                     </a>
-                                    <div role="separator" class="dropdown-divider"></div>
-                                    <h5 class="dropdown-header text-uppercase">Aksi</h5>
                                     <a class="dropdown-item d-flex align-items-center justify-content-between" href="<?=base_url('auth/logout')?>">
                                         <span>Log Out</span>
                                         <i class="si si-logout ml-1"></i>

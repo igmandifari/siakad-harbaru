@@ -18,11 +18,10 @@
         <!-- END Icons -->
 
         <!-- Stylesheets -->
-        <!-- PageJS Plugins CSS -->
-        <link rel="stylesheet" href="<?=base_url('assets/js/plugins/select2/css/select2.min.css')?>">
         <!-- Fonts and OneUI framework -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400italic,600,700%7COpen+Sans:300,400,400italic,600,700">
         <link rel="stylesheet" id="css-main" href="<?=base_url('assets/css/oneui.min.css')?>">
+        <link rel="stylesheet" href="<?=base_url('assets/js/plugins/datatables/dataTables.bootstrap4.css');?>">
 
         <!-- You can include a specific file from css/themes/ folder to alter the default color theme of the template. eg: -->
         <!-- <link rel="stylesheet" id="css-theme" href="assets/css/themes/amethyst.min.css"> -->
@@ -207,17 +206,17 @@
                         <li class="nav-main-heading">Data Master</li>
                         <li class="nav-main-item">
                             <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
-                                <i class="nav-main-link-icon si si-energy"></i>
+                                <i class="nav-main-link-icon fa fa-users"></i>
                                 <span class="nav-main-link-name">Warga Belajar</span>
                             </a>
                             <ul class="nav-main-submenu">
                                 <li class="nav-main-item">
-                                    <a class="nav-main-link" href="<?=base_url('wargabelajar')?>">
+                                    <a class="nav-main-link" href="<?=base_url('wargabelajar/');?>">
                                         <span class="nav-main-link-name">Daftar Warga Belajar</span>
                                     </a>
                                 </li>
                                 <li class="nav-main-item">
-                                    <a class="nav-main-link" href="<?=base_url('wargabelajar/tambah')?>">
+                                    <a class="nav-main-link" href="<?=base_url('wargabelajar/tambah');?>">
                                         <span class="nav-main-link-name">Tambah Warga Belajar</span>
                                     </a>
                                 </li>
@@ -225,17 +224,17 @@
                         </li>
                         <li class="nav-main-item">
                             <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
-                                <i class="nav-main-link-icon si si-energy"></i>
+                                <i class="nav-main-link-icon fa fa-users"></i>
                                 <span class="nav-main-link-name">Tutor</span>
                             </a>
                             <ul class="nav-main-submenu">
                                 <li class="nav-main-item">
-                                    <a class="nav-main-link" href="<?=base_url('tutor')?>">
+                                    <a class="nav-main-link" href="<?=base_url('tutor/');?>">
                                         <span class="nav-main-link-name">Daftar Tutor</span>
                                     </a>
                                 </li>
                                 <li class="nav-main-item">
-                                    <a class="nav-main-link" href="<?=base_url('tutor/tambah')?>">
+                                    <a class="nav-main-link" href="<?=base_url('tutor/tambah');?>">
                                         <span class="nav-main-link-name">Tambah Tutor</span>
                                     </a>
                                 </li>
@@ -243,45 +242,45 @@
                         </li>
                         <li class="nav-main-item">
                             <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
-                                <i class="nav-main-link-icon si si-energy"></i>
+                                <i class="nav-main-link-icon fa fa-door-open"></i>
                                 <span class="nav-main-link-name">Kelas</span>
                             </a>
                             <ul class="nav-main-submenu">
                                 <li class="nav-main-item">
-                                    <a class="nav-main-link" href="<?=base_url('kelas')?>">
+                                    <a class="nav-main-link" href="<?=base_url('kelas/');?>">
                                         <span class="nav-main-link-name">Daftar Kelas</span>
                                     </a>
                                 </li>
                                 <li class="nav-main-item">
-                                    <a class="nav-main-link" href="<?=base_url('kelas/tambah')?>">
+                                    <a class="nav-main-link" href="<?=base_url('kelas/tambah');?>">
                                         <span class="nav-main-link-name">Tambah Kelas</span>
                                     </a>
                                 </li>
                                 <li class="nav-main-item">
-                                    <a class="nav-main-link" href="<?=base_url('kelas/rombel')?>">
-                                        <span class="nav-main-link-name">Tambah Rombel</span>
+                                    <a class="nav-main-link" href="<?=base_url('kelas/rombel');?>">
+                                        <span class="nav-main-link-name">Rombel</span>
                                     </a>
                                 </li>
                             </ul>
                         </li>
                         <li class="nav-main-item">
                             <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
-                                <i class="nav-main-link-icon si si-energy"></i>
+                                <i class="nav-main-link-icon fa fa-book"></i>
                                 <span class="nav-main-link-name">Mata Pelajaran</span>
                             </a>
                             <ul class="nav-main-submenu">
                                 <li class="nav-main-item">
-                                    <a class="nav-main-link" href="<?=base_url('matpel')?>">
+                                    <a class="nav-main-link" href="<?=base_url('matpel/');?>">
                                         <span class="nav-main-link-name">Daftar Mata Pelajaran</span>
                                     </a>
                                 </li>
                                 <li class="nav-main-item">
-                                    <a class="nav-main-link" href="<?=base_url('matpel/tambah')?>">
+                                    <a class="nav-main-link" href="<?=base_url('matpel/tambah');?>">
                                         <span class="nav-main-link-name">Tambah Mata Pelajaran</span>
                                     </a>
                                 </li>
                                 <li class="nav-main-item">
-                                    <a class="nav-main-link" href="<?=base_url('jadwal')?>">
+                                    <a class="nav-main-link" href="<?=base_url('jadwal');?>">
                                         <span class="nav-main-link-name">Jadwal Mata Pelajaran</span>
                                     </a>
                                 </li>
@@ -289,17 +288,17 @@
                         </li>
                         <li class="nav-main-item">
                             <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
-                                <i class="nav-main-link-icon si si-energy"></i>
+                                <i class="nav-main-link-icon fa fa-users"></i>
                                 <span class="nav-main-link-name">Admin</span>
                             </a>
                             <ul class="nav-main-submenu">
                                 <li class="nav-main-item">
-                                    <a class="nav-main-link" href="<?=base_url('admin')?>">
+                                    <a class="nav-main-link" href="<?=base_url('admin/');?>">
                                         <span class="nav-main-link-name">Daftar Admin</span>
                                     </a>
                                 </li>
                                 <li class="nav-main-item">
-                                    <a class="nav-main-link" href="<?=base_url('admin/tambah')?>">
+                                    <a class="nav-main-link" href="<?=base_url('admin/tambah');?>">
                                         <span class="nav-main-link-name">Tambah Admin</span>
                                     </a>
                                 </li>
@@ -307,17 +306,17 @@
                         </li>
                         <li class="nav-main-item">
                             <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
-                                <i class="nav-main-link-icon si si-energy"></i>
+                                <i class="nav-main-link-icon fa fa-users"></i>
                                 <span class="nav-main-link-name">Pimpinan</span>
                             </a>
                             <ul class="nav-main-submenu">
                                 <li class="nav-main-item">
-                                    <a class="nav-main-link" href="<?=base_url('pimpinan')?>">
+                                    <a class="nav-main-link" href="<?=base_url('pimpinan/');?>">
                                         <span class="nav-main-link-name">Daftar Pimpinan</span>
                                     </a>
                                 </li>
                                 <li class="nav-main-item">
-                                    <a class="nav-main-link" href="<?=base_url('pimpinan/tambah')?>">
+                                    <a class="nav-main-link" href="<?=base_url('pimpinan/tambah');?>">
                                         <span class="nav-main-link-name">Tambah Pimpinan</span>
                                     </a>
                                 </li>
@@ -325,17 +324,17 @@
                         </li>
                         <li class="nav-main-item">
                             <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
-                                <i class="nav-main-link-icon si si-energy"></i>
+                                <i class="nav-main-link-icon fa fa-calendar-times"></i>
                                 <span class="nav-main-link-name">Tahun Ajaran</span>
                             </a>
                             <ul class="nav-main-submenu">
                                 <li class="nav-main-item">
-                                    <a class="nav-main-link" href="<?=base_url('tahunajaran')?>">
+                                    <a class="nav-main-link" href="<?=base_url('tahunajaran/');?>">
                                         <span class="nav-main-link-name">Daftar Tahun Ajaran</span>
                                     </a>
                                 </li>
                                 <li class="nav-main-item">
-                                    <a class="nav-main-link" href="<?=base_url('tahunajaran/tambah')?>">
+                                    <a class="nav-main-link" href="<?=base_url('tahunajaran/tambah');?>">
                                         <span class="nav-main-link-name">Tambah Tahun Ajaran</span>
                                     </a>
                                 </li>
@@ -347,16 +346,17 @@
                                 <span class="nav-main-link-name">Data Masukan</span>
                             </a>
                         </li>
+                        <li class="nav-main-heading">Options</li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="<?=base_url('panduan')?>">
+                            <i class="nav-main-link-icon fa fa-book"></i>
+                                <span class="nav-main-link-name">Panduan</span>
+                            </a>
+                        </li>
                         <li class="nav-main-item">
                             <a class="nav-main-link" href="<?=base_url('pengaturan')?>">
                             <i class="nav-main-link-icon si si-settings"></i>
                                 <span class="nav-main-link-name">Pengaturan</span>
-                            </a>
-                        </li>
-                        <li class="nav-main-item">
-                            <a class="nav-main-link" href="<?=base_url('profil')?>">
-                            <i class="nav-main-link-icon si si-user ml-1"></i>
-                                <span class="nav-main-link-name">Profil</span>
                             </a>
                         </li>
                         <li class="nav-main-item">
@@ -389,13 +389,6 @@
                         <button type="button" class="btn btn-sm btn-dual mr-2 d-none d-lg-inline-block" data-toggle="layout" data-action="sidebar_mini_toggle">
                             <i class="fa fa-fw fa-ellipsis-v"></i>
                         </button>
-                        <!-- Tahun Ajaran  -->
-                        <select id="tahunajaran" class="js-select2 form-control form-control-lg form-control-alt" id="tahunajaran_id" name="tahunajaran_id" style="width: 100%;" data-placeholder="Silahkan pilih tahun ajaran" required>
-                            <option value=""></option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
-                            <?php foreach($tahunajarans as $tahunajaran):?>
-                                <option value="<?php echo $tahunajaran["tahunajaran_id"]?>" <?php if($this->session->userdata('tahunajaran_id')==$tahunajaran["tahunajaran_id"]) echo "selected";?>>Tahun Ajaran <?=$tahunajaran["tahunajaran_nama"]?></option>
-                            <?php endforeach;?>
-                        </select>
                         <!-- END Toggle Mini Sidebar -->
 
                         <!-- END Apps Modal -->
@@ -418,17 +411,11 @@
                                     <img class="img-avatar img-avatar48 img-avatar-thumb" src="<?= base_url ('upload/images/'.$this->session->userdata('foto'));?>" alt="">
                                 </div>
                                 <div class="p-2">
-                                    <h5 class="dropdown-header text-uppercase">User Options</h5>
-                                    <a class="dropdown-item d-flex align-items-center justify-content-between" href="<?=base_url('profil')?>">
-                                        <span>Profil</span>
-                                            <i class="si si-user ml-1"></i>
-                                    </a>
+                                    <h5 class="dropdown-header text-uppercase">Options</h5>
                                     <a class="dropdown-item d-flex align-items-center justify-content-between" href="<?=base_url('pengaturan')?>">
                                         <span>Pengaturan</span>
                                         <i class="si si-settings"></i>
                                     </a>
-                                    <div role="separator" class="dropdown-divider"></div>
-                                    <h5 class="dropdown-header text-uppercase">Aksi</h5>
                                     <a class="dropdown-item d-flex align-items-center justify-content-between" href="<?=base_url('auth/logout')?>">
                                         <span>Log Out</span>
                                         <i class="si si-logout ml-1"></i>
@@ -458,6 +445,11 @@
                                 <div class="flex-sm-fill">
                                     <h1 class="font-w600 text-white mb-0 invisible" data-toggle="appear"><?=$title?></h1>
                                     <h2 class="h4 font-w400 text-white-75 mb-0 invisible" data-toggle="appear" data-timeout="250">Selamat Datang <?= $this->session->userdata('nama');?></h2>
+                                    <div class="text-sm-right">
+                                        <a href="<?=base_url('panduan');?>">
+                                            <button type="button" class="btn btn-light invisible" data-toggle="appear" data-timeout="250">Bingung? Yuk Baca Panduan</button>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -466,8 +458,8 @@
                 <!-- END Hero -->
 
                 <!-- Page Content -->
-                <div class="content content-narrow">
-                    <!-- Stats -->
+                <div class="content">
+                    <!-- Count -->
                     <div class="row">
                         <div class="col-6 col-md-3 col-lg-6 col-xl-3">
                             <a class="block block-rounded block-link-pop border-left border-primary border-4x" href="<?=base_url('wargabelajar');?>">
@@ -502,8 +494,74 @@
                             </a>
                         </div>
                     </div>
-                    <!-- END Stats -->
+                    <!-- END Count -->
 
+                    <div class="block block-mode-loading-refresh">
+                        <div class="block-header">
+                            <h3 class="block-title">Logs</h3>
+                            <div class="block-options">
+                                <button id="refresh" type="button" class="btn-block-option" data-toggle="block-option" data-action="state_toggle" data-action-mode="demo">
+                                    <i class="si si-refresh"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="block-content">
+                            <p class="font-size-sm">
+                                Berikut ini adalah data aktivitas dari siak harba
+                            </p>
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
+                                    <thead>
+                                        <tr>
+                                            <th>NO</th>
+                                            <th>Nama</th>
+                                            <th>Level</th>
+                                            <th>URL</th>
+                                            <th>Browser</th>
+                                            <th>Sistem Operasi</th>
+                                            <th>Waktu</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="logs-table">
+                                        <?php $no=0; foreach ($logs as $log) :$no++?>
+                                            <tr>
+                                                <td><?php echo $no;?></td>
+                                                <td>
+                                                    <?php
+                                                        $name = $log['name'];
+
+                                                        if($name==NULL){
+                                                            $name = "unknown";
+                                                        }
+
+                                                        echo  $name.'<br>'.$log['ip'];?>
+                                                        
+                                                    </td>
+                                                <td>
+                                                    <?php if($log['level']==0){
+                                                        echo "admin";
+                                                    }elseif ($log['level']==1) {
+                                                        echo "wargabelajar";
+                                                    }elseif ($log['level']==2) {
+                                                        echo "pimpinan";
+                                                    }elseif ($log['level']==3) {
+                                                        echo "tutor";
+                                                    }else{
+                                                        echo "unknown";
+                                                    };?>
+                                                        
+                                                    </td>
+                                                <td><?php echo $log['url'];?></td>
+                                                <td><?php echo $log['browser'];?></td>
+                                                <td><?php echo $log['os'];?></td>
+                                                <td><?php echo $log['times'];?></td>
+                                            </tr>
+                                        <?php endforeach;?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                    
                 </div>
                 <!-- END Page Content -->
@@ -526,77 +584,6 @@
             </footer>
             <!-- END Footer -->
 
-            <!-- Apps Modal -->
-            <!-- Opens from the modal toggle button in the header -->
-            <div class="modal fade" id="one-modal-apps" tabindex="-1" role="dialog" aria-labelledby="one-modal-apps" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-top modal-sm" role="document">
-                    <div class="modal-content">
-                        <div class="block block-themed block-transparent mb-0">
-                            <div class="block-header bg-primary-dark">
-                                <h3 class="block-title">Apps</h3>
-                                <div class="block-options">
-                                    <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
-                                        <i class="si si-close"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="block-content block-content-full">
-                                <div class="row gutters-tiny">
-                                    <div class="col-6">
-                                        <!-- CRM -->
-                                        <a class="block block-rounded block-themed bg-default" href="javascript:void(0)">
-                                            <div class="block-content text-center">
-                                                <i class="si si-speedometer fa-2x text-white-75"></i>
-                                                <p class="font-w600 font-size-sm text-white mt-2 mb-3">
-                                                    CRM
-                                                </p>
-                                            </div>
-                                        </a>
-                                        <!-- END CRM -->
-                                    </div>
-                                    <div class="col-6">
-                                        <!-- Products -->
-                                        <a class="block block-rounded block-themed bg-danger" href="javascript:void(0)">
-                                            <div class="block-content text-center">
-                                                <i class="si si-rocket fa-2x text-white-75"></i>
-                                                <p class="font-w600 font-size-sm text-white mt-2 mb-3">
-                                                    Products
-                                                </p>
-                                            </div>
-                                        </a>
-                                        <!-- END Products -->
-                                    </div>
-                                    <div class="col-6">
-                                        <!-- Sales -->
-                                        <a class="block block-rounded block-themed bg-success mb-0" href="javascript:void(0)">
-                                            <div class="block-content text-center">
-                                                <i class="si si-plane fa-2x text-white-75"></i>
-                                                <p class="font-w600 font-size-sm text-white mt-2 mb-3">
-                                                    Sales
-                                                </p>
-                                            </div>
-                                        </a>
-                                        <!-- END Sales -->
-                                    </div>
-                                    <div class="col-6">
-                                        <!-- Payments -->
-                                        <a class="block block-rounded block-themed bg-warning mb-0" href="javascript:void(0)">
-                                            <div class="block-content text-center">
-                                                <i class="si si-wallet fa-2x text-white-75"></i>
-                                                <p class="font-w600 font-size-sm text-white mt-2 mb-3">
-                                                    Payments
-                                                </p>
-                                            </div>
-                                        </a>
-                                        <!-- END Payments -->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- END Apps Modal -->
         </div>
         <!-- END Page Container -->
 
@@ -625,28 +612,54 @@
             webpack is putting everything together at assets/_es6/main/app.js
         -->
         <script src="<?=base_url('assets/js/oneui.app.min.js')?>"></script>
+        <script src="<?=base_url('assets/js/plugins/datatables/jquery.dataTables.min.js');?>"></script>
+        <script src="<?=base_url('assets/js/plugins/datatables/dataTables.bootstrap4.min.js');?>"></script>
 
-        <!-- PageJS Plugins -->
-         <script src="<?=base_url('assets/js/plugins/select2/js/select2.full.min.js');?>"></script>
+        <script src="<?=base_url('assets/js/pages/be_tables_datatables.min.js');?>"></script>
 
-        <!-- Page JS Code -->
-        <script src="<?=base_url('assets/js/pages/be_pages_dashboard.min.js')?>"></script>
-        <script>
-        jQuery(function(){
-            $("#tahunajaran").change(function(){
-                var id=this.value;
-                $.ajax({
-                    type:'POST',
-                    url:'<?php echo base_url('dasbor/setTahunajaran');?>',
-                    data:{tahunajaran_id:id},
-                    success:function(data){
-                        location.reload();
-                    }
+        <script type="text/javascript">
+            jQuery(function(){
 
+                const $btnrefresh = jQuery("#refresh");
+
+                $btnrefresh.click(function(){
+                    jQuery.ajax({
+                        type: 'GET',
+                        dataType: 'json',
+                        url:'<?php echo base_url('dasbor/logs');?>',
+                        success:function(data){
+                            var row = 0;
+                            var temptdata = '';
+                            for (var i = 0; i<data.length; i++) {
+                                var nama = data[i].name;
+                                var level = data[i].level;
+                                if(nama == null){
+                                    nama = "unknown"
+                                }
+                                if(level == 1){
+                                    level = "admin";
+                                }else if(level==2){
+                                    level = "wargabelajar";
+                                }else if(level==3){
+                                    level = "pimpinan";
+                                }else if(level==4){
+                                    level = "tutor";
+                                }else{
+                                    level = "unknown";
+                                }
+
+                                temptdata += '<tr><td>'+(i+1)+'</td><td>'+nama+'<br>'+data[i].ip+'</td><td>'+level+'</td><td>'+data[i].url+'</td><td>'+data[i].browser+'</td><td>'+data[i].os+'</td><td>'+data[i].times+'</td></tr>';
+                            }
+                            jQuery(".js-dataTable-fulll").dataTable().fnClearTable();
+                            jQuery(".js-dataTable-fulll").dataTable().fnDestroy();
+                            jQuery("#logs-table").html(temptdata);
+                            jQuery(".js-dataTable-fulll").dataTable({pageLength:10,lengthMenu:[[5,10,15,20],[5,10,15,20]],autoWidth:!1});
+                        },error:function(data){
+                            console.log('error');
+                        }
+                    })
                 });
             });
-            One.helpers(['select2']); 
-    });
-</script>
+        </script>
     </body>
 </html>

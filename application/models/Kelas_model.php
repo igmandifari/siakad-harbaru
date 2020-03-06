@@ -2,6 +2,8 @@
 
     Class Kelas_model extends CI_Model 
     {
+        public $id;
+        public $nama;
         private $_table = "kelas";
         public function rules_tambah_rombel(){
             return[
@@ -60,6 +62,7 @@
             return $this->db->update($this->_table, $data);    
         }
         public function getAll(){
+            $this->db->order_by('kelas_nama desc');
             return $this->db->get($this->_table)->result();
         }
         public function getById($id)
@@ -87,7 +90,7 @@
 
         public function getRombel()
         {
-            return $this->db->query('SELECT rombel.rombel_id, kelas.kelas_nama, tahunajaran.tahunajaran_nama FROM rombel inner join kelas on kelas.kelas_id = rombel.kelas_id INNER join tahunajaran on tahunajaran.tahunajaran_id = rombel.tahunajaran_id order by tahunajaran.tahunajaran_id desc')->result();
+            return $this->db->query('SELECT rombel.rombel_id, kelas.kelas_nama, tahunajaran.tahunajaran_nama FROM rombel inner join kelas on kelas.kelas_id = rombel.kelas_id INNER join tahunajaran on tahunajaran.tahunajaran_id = rombel.tahunajaran_id order by tahunajaran.tahunajaran_nama DESC, kelas.kelas_nama desc')->result();
         }
         public function getRombelbyId($id){
             return $this->db->query("select kelas.kelas_id,kelas.kelas_nama, tahunajaran.tahunajaran_id, tahunajaran.tahunajaran_nama,rombel_id from rombel inner join kelas on kelas.kelas_id=rombel.kelas_id INNER join tahunajaran on tahunajaran.tahunajaran_id=rombel.tahunajaran_id where rombel_id = '$id' ")->row_array();
@@ -125,5 +128,20 @@
         );
         return $this->db->insert('rombel',$data);
     }
+    public function logs()
+        {
+            $this->load->library('user_agent');
+            $data = array(
+                'users'     => $this->session->userdata('id'),
+                'level'     => $this->session->userdata('level'),
+                'name'      => $this->session->userdata('nama'),
+                'url'       => $this->uri->segment(1).'/'.$this->uri->segment(2).'/'.$this->uri->segment(3).'/'.$this->uri->segment(4),
+                'ip'        =>$this->input->ip_address(),
+                'times'     => date('Y-m-d H:i:s'),
+                'browser'   => $this->agent->browser().' '.$this->agent->version(),
+                'os'        => $this->agent->platform()
+            );
+            return $this->db->insert('logs',$data);
+        }
 }
     

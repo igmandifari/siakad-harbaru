@@ -220,15 +220,15 @@
                             </a>
                         </li>
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="<?=base_url('pengaturan')?>">
-                            <i class="nav-main-link-icon si si-settings"></i>
-                                <span class="nav-main-link-name">Pengaturan</span>
+                            <a class="nav-main-link" href="<?=base_url('panduan')?>">
+                            <i class="nav-main-link-icon fa fa-book"></i>
+                                <span class="nav-main-link-name">Panduan</span>
                             </a>
                         </li>
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="<?=base_url('profil')?>">
-                            <i class="nav-main-link-icon si si-user ml-1"></i>
-                                <span class="nav-main-link-name">Profil</span>
+                            <a class="nav-main-link" href="<?=base_url('pengaturan')?>">
+                            <i class="nav-main-link-icon si si-settings"></i>
+                                <span class="nav-main-link-name">Pengaturan</span>
                             </a>
                         </li>
                         <li class="nav-main-item">
@@ -293,17 +293,11 @@
                                     <img class="img-avatar img-avatar48 img-avatar-thumb" src="<?= base_url ('upload/images/'.$this->session->userdata('foto'));?>" alt="">
                                 </div>
                                 <div class="p-2">
-                                    <h5 class="dropdown-header text-uppercase">User Options</h5>
-                                    <a class="dropdown-item d-flex align-items-center justify-content-between" href="<?=base_url('profil')?>">
-                                        <span>Profil</span>
-                                            <i class="si si-user ml-1"></i>
-                                    </a>
+                                    <h5 class="dropdown-header text-uppercase">Pilihan</h5>
                                     <a class="dropdown-item d-flex align-items-center justify-content-between" href="<?=base_url('pengaturan')?>">
                                         <span>Pengaturan</span>
                                         <i class="si si-settings"></i>
                                     </a>
-                                    <div role="separator" class="dropdown-divider"></div>
-                                    <h5 class="dropdown-header text-uppercase">Aksi</h5>
                                     <a class="dropdown-item d-flex align-items-center justify-content-between" href="<?=base_url('auth/logout')?>">
                                         <span>Log Out</span>
                                         <i class="si si-logout ml-1"></i>
@@ -327,15 +321,9 @@
             <!-- Page Content -->
                 <div class="content">
                     <!-- Jadwal -->
-                    <?php foreach($pertemuans as $data){
-                            $kelas = $data->kelas_nama;
-                            $matpel = $data->matpel_nama;
-                            $tanggal = $data->presensi_tanggal;
-                        }
-                        ?>
                     <div class="block">
                         <div class="block-header block-header-default">
-                            <h3 class="block-title"><?php echo "Presensi ".$kelas." Mata Pelajaran ".$matpel;?></h3>
+                            <h3 class="block-title"><?php echo "Presensi ".$kelas['kelas_nama']." Mata Pelajaran ".$kelas['matpel_nama'];?></h3>
                             <div class="block-options">
                                 
 
@@ -344,6 +332,10 @@
                                         Jadwal
                                     </button>
                                 </a>
+
+                                <button type="button" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#modal-cetak">
+                                    Cetak
+                                </button>
 
                                 <a href="<?=base_url('presensi/jadwal/').$this->uri->segment(3);?>">
                                     <button type="button" class="btn btn-sm btn-light">
@@ -355,8 +347,33 @@
                       
                         
                         <div class="block-content block-content-full">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped table-vcenter">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="2" class="text-center"><?php echo date("d-F-Y",strtotime($tanggal['presensi_tanggal']));?></th>
+                                        </tr>
+                                        <tbody>
+                                            <tr>
+                                                <td>Mata Pelajaran</td>
+                                                <td>: <?=$kelas['matpel_nama'];?></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Tipe Pembelajaran</td>
+                                                <td>: Tatap Muka</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Tutor</td>
+                                                <td>: <?=$this->session->userdata('nama');?></td>
+                                            </tr>
+                                        </tbody>
+                                    </thead>
+                                    <!-- <tbody>
+                                    </tbody> -->
+                                </table>
+                            </div>
                             <p>
-                                Silahkan memasukan data presensi pada tanggal <?php echo $tanggal;?>
+                                Silahkan memasukan data presensi pada tanggal <?php echo date("d F Y",strtotime($tanggal['presensi_tanggal']));?>
                             </p>
                             <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _es6/pages/be_tables_datatables.js -->
                             <div class="table-responsive">
@@ -373,15 +390,15 @@
                                         <?php $no=0;foreach($wargabelajars as $wargabelajar):$no++?>
                                             <tr>
                                                 <td class="text-center"><?=$no?></td>
-                                                <td><?=$wargabelajar->wargabelajar_nama?></td>
+                                                <td><?=$wargabelajar->wargabelajar_nama.'<br>'.$wargabelajar->wargabelajar_nomor_induk?></td>
                                                 <td class="text-center"><span id="<?=$wargabelajar->presensi_det_id?>"><?=$wargabelajar->presensi_det_ket?></span></td>
                                                 <td class="text-center">
-                                                    <div class="btn-group btn-group-sm mr-2 mb-2" role="group" aria-label="Small Primary First group">
-                                                       <button type="button" class="do_presensi btn btn-primary js-click-ripple-enabled btn-sm" data-toggle="click-ripple" style="overflow: hidden; position: relative; z-index: 1;" data-status="H" data-id="<?=$wargabelajar->presensi_det_id?>">H</button>
-                                                       <button type="button" class="do_presensi btn btn-success js-click-ripple-enabled btn-sm" data-toggle="click-ripple" style="overflow: hidden; position: relative; z-index: 1;"data-status="I" data-id="<?=$wargabelajar->presensi_det_id?>">I</button>
-                                                       <button type="button" class="do_presensi btn btn-warning js-click-ripple-enabled btn-sm" data-toggle="click-ripple" style="overflow: hidden; position: relative; z-index: 1;"data-status="S" data-id="<?=$wargabelajar->presensi_det_id?>">S</button>
+                                                    
+                                                       <button type="button" class="do_presensi btn btn-info js-click-ripple-enabled btn-sm" data-toggle="click-ripple" style="overflow: hidden; position: relative; z-index: 1;" data-status="H" data-id="<?=$wargabelajar->presensi_det_id?>">H</button>
+                                                       <button type="button" class="do_presensi btn btn-success js-click-ripple-enabled btn-sm" data-toggle="click-ripple" style="overflow: hidden; position: relative; z-index: 1;"data-status="S" data-id="<?=$wargabelajar->presensi_det_id?>">S</button>
+                                                       <button type="button" class="do_presensi btn btn-warning js-click-ripple-enabled btn-sm" data-toggle="click-ripple" style="overflow: hidden; position: relative; z-index: 1;"data-status="I" data-id="<?=$wargabelajar->presensi_det_id?>">I</button>
                                                        <button type="button" class="do_presensi btn btn-danger js-click-ripple-enabled btn-sm" data-toggle="click-ripple" style="overflow: hidden; position: relative; z-index: 1;"data-status="A" data-id="<?=$wargabelajar->presensi_det_id?>">A</button>
-                                                    </div>
+                                                    
                                                 </td>
                                             </tr>
                                         <?php endforeach;?>
@@ -397,6 +414,36 @@
                         </div>
                     </div>
                     <!-- End Jadwal -->
+                     <div class="modal fade" id="modal-cetak" tabindex="-1" role="dialog" aria-labelledby="modal-block-fadein" style="display: none;" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="block block-themed block-transparent mb-0">
+                        <div class="block-header bg-primary-dark">
+                            <h3 class="block-title">Cetak <?=$title;?></h3>
+                            <div class="block-options">
+                                <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
+                                    <i class="fa fa-fw fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="block-content block-content-full font-size-sm">
+                            <p>Silahkan pilih tipe file cetak yang kamu inginkan!</p>
+                            <div class="text-center">
+                                
+                            <a href="<?=base_url('presensi/jadwal/').$this->uri->segment(3).'/'.$this->uri->segment(4).'/pdf';?>" title="Klik Berikut Untuk Download tipe .PDF">
+                                <button type="button" class="btn btn-rounded btn-danger">
+                                    <i class="far fa-file-pdf"></i> PDF
+                                </button>
+                            </a>
+                            </div>
+                        </div>
+                        <div class="block-content block-content-full text-right border-top">
+                            <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal"><i class="fa fa-check mr-1"></i>Tutup</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
                 </div>
                 <!-- END Page Content -->
 

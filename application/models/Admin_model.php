@@ -69,12 +69,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             }
         }
         
-        public function perbarui_password()
+        public function perbarui_password($id=null)
         {
-            $this->admin_id = $this->input->post("admin_id");
+            if($id ==null){
+                $id = $this->input->post("admin_id");
+            }
             $password = MD5(SHA1($this->input->post("admin_password")));
         
-            return $this->db->query("UPDATE admin SET admin_password='$password' WHERE admin_id='$this->admin_id'");
+            return $this->db->query("UPDATE admin SET admin_password='$password' WHERE admin_id='$id'");
         }
 
         public function perbarui()
@@ -109,6 +111,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         public function delete($id){
             return $this->db->delete($this->_table, array("admin_id" => $id));
             $this->_deleteImage($id);
+        }
+        public function logs()
+        {
+            $this->load->library('user_agent');
+            $data = array(
+                'users'     => $this->session->userdata('id'),
+                'level'     => $this->session->userdata('level'),
+                'name'      => $this->session->userdata('nama'),
+                'url'       => $this->uri->segment(1).'/'.$this->uri->segment(2).'/'.$this->uri->segment(3).'/'.$this->uri->segment(4),
+                'ip'        =>$this->input->ip_address(),
+                'times'     => date('Y-m-d H:i:s'),
+                'browser'   => $this->agent->browser().' '.$this->agent->version(),
+                'os'        => $this->agent->platform()
+            );
+            return $this->db->insert('logs',$data);
         }
     }
 ?>

@@ -220,15 +220,15 @@
                             </a>
                         </li>
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="<?=base_url('pengaturan')?>">
-                            <i class="nav-main-link-icon si si-settings"></i>
-                                <span class="nav-main-link-name">Pengaturan</span>
+                            <a class="nav-main-link" href="<?=base_url('panduan')?>">
+                            <i class="nav-main-link-icon fa fa-book"></i>
+                                <span class="nav-main-link-name">Panduan</span>
                             </a>
                         </li>
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="<?=base_url('profil')?>">
-                            <i class="nav-main-link-icon si si-user ml-1"></i>
-                                <span class="nav-main-link-name">Profil</span>
+                            <a class="nav-main-link" href="<?=base_url('pengaturan')?>">
+                            <i class="nav-main-link-icon si si-settings"></i>
+                                <span class="nav-main-link-name">Pengaturan</span>
                             </a>
                         </li>
                         <li class="nav-main-item">
@@ -293,17 +293,11 @@
                                     <img class="img-avatar img-avatar48 img-avatar-thumb" src="<?= base_url ('upload/images/'.$this->session->userdata('foto'));?>" alt="">
                                 </div>
                                 <div class="p-2">
-                                    <h5 class="dropdown-header text-uppercase">User Options</h5>
-                                    <a class="dropdown-item d-flex align-items-center justify-content-between" href="<?=base_url('profil')?>">
-                                        <span>Profil</span>
-                                            <i class="si si-user ml-1"></i>
-                                    </a>
+                                    <h5 class="dropdown-header text-uppercase">Pilihan</h5>
                                     <a class="dropdown-item d-flex align-items-center justify-content-between" href="<?=base_url('pengaturan')?>">
                                         <span>Pengaturan</span>
                                         <i class="si si-settings"></i>
                                     </a>
-                                    <div role="separator" class="dropdown-divider"></div>
-                                    <h5 class="dropdown-header text-uppercase">Aksi</h5>
                                     <a class="dropdown-item d-flex align-items-center justify-content-between" href="<?=base_url('auth/logout')?>">
                                         <span>Log Out</span>
                                         <i class="si si-logout ml-1"></i>
@@ -347,11 +341,9 @@
                         <div class="block-header block-header-default">
                             <h3 class="block-title"><?=$title;?></h3>
                             <div class="block-options">
-                                <a href="<?=base_url('jadwalmengajar/cetak');?>">
-                                    <button type="button" class="btn btn-sm btn-secondary">
-                                        Cetak
-                                    </button>
-                                </a>
+                                <!-- <button type="button" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#modal-cetak">
+                                    Cetak
+                                </button> -->
 
                                 <a href="<?=base_url('jadwalmengajar');?>">
                                     <button type="button" class="btn btn-sm btn-info">
@@ -394,9 +386,9 @@
                                                 <td><?=$kelas->jadwal_hari?></td>
                                                 <td><?=$kelas->jadwal_waktu?></td>
                                                 <td class="text-center">
-                                                        <button type="button" class="nilai btn btn-secondary btn-sm" data-toggle="modal" data-target="#modal-block-popout" data-matpel="<?=$kelas->jadwal_id?>">Masukan Nilai</button>
-                                                    <a href="<?=base_url('nilai/rekap/'.$kelas->jadwal_id.'')?>">
-                                                        <button type="button" class="btn btn-secondary btn-sm">Rekap</button>
+                                                        <button type="button" class="nilai btn btn-primary btn-sm" data-toggle="modal" data-target="#modal-block-popout" data-matpel="<?=$kelas->jadwal_id?>">Masukan Nilai</button>
+                                                        <a href="<?=base_url('nilai/rekap/').$kelas->jadwal_id;?>">     
+                                                        <button type="button" class="btn btn-success btn-sm">Rekap</button>
                                                     </a>
                                                     
                                             </td>
@@ -428,7 +420,7 @@
                                     <div class="block-content">
                                         <p>Pilih warga belajar untuk memasukan nilai!</p>
                                         <div class="table-responsive">
-                                            <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
+                                            <table class="table table-bordered table-striped table-vcenter js-dataTable-fulll">
                                                 <thead class="text-center">
                                                     <tr>
                                                         <th>NO</th>
@@ -450,6 +442,33 @@
                         </div>
                     </div>
                     <!-- END Pop Out Block Modal -->
+                    <!-- Pop Out Block Rekap -->
+                    <div class="modal fade" id="modal-block-rekap" tabindex="-1" role="dialog" aria-labelledby="modal-block-popout" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-popout" role="document">
+                            <div class="modal-content">
+                                <div class="block block-themed block-transparent mb-0">
+                                    <div class="block-header bg-primary-dark">
+                                        <h3 class="block-title">Daftar Nilai Semster</h3>
+                                        <div class="block-options">
+                                            <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
+                                                <i class="fa fa-fw fa-times"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="block-content">
+                                        <p>Pilih semester untuk melihat detail nilai!</p>
+                                        <div id="pilihan-rekap" class="text-center">
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="block-content block-content-full text-right border-top">
+                                        <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal"><i class="fa fa-check mr-1"></i>Tutup</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END Pop Out Block Rekap -->
                 </div>
                 <!-- END Page Content -->
 
@@ -523,9 +542,13 @@
                         dataType:'json',
                         success:function(data){
                             for(var row=0;row<data.length;row++){
-                                $tempWarga+='<tr><td class="text-center">'+(row+1)+'</td><td>'+data[row].wargabelajar_nama+'</td><td class="text-center"><a href="<?php echo base_url('nilai/matpel/ganjil/');?>'+$idmatpel+'/'+data[row].wargabelajar_id+'" target="_blank"><button type="button" class="btn btn-sm btn-success">Ganjil</button></a><a href="<?php echo base_url('nilai/matpel/genap/');?>'+$idmatpel+'/'+data[row].wargabelajar_id+'" target="_blank"><button type="button" class="btn btn-sm btn-secondary">Genap</button></a></td></tr>';
+                                $tempWarga+='<tr><td class="text-center">'+(row+1)+'</td><td>'+data[row].wargabelajar_nama+'</td><td class="text-center"><a href="<?php echo base_url('nilai/matpel/');?>'+$idmatpel+'/'+data[row].wargabelajar_id+'" target="_blank"><button type="button" class="btn btn-sm btn-success">Pilih</button></a></td></tr>';
                             }
+                            $(".js-dataTable-fulll").dataTable().fnClearTable();
+                            $(".js-dataTable-fulll").dataTable().fnDestroy();
                             $WargaBelajars.html($tempWarga);
+                            $(".js-dataTable-fulll").dataTable({pageLength:10,lengthMenu:[[5,10,15,20],[5,10,15,20]],autoWidth:!1});
+                            
                         }
                     });
                 });

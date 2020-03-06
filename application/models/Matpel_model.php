@@ -2,6 +2,9 @@
 
     Class Matpel_model extends CI_Model 
     {
+        public $id;
+        public $nama;
+        
         private $_table = "matpel";
         public function getTahunAjaran(){
             return $this->db->get('tahunajaran')->result_array();
@@ -12,12 +15,7 @@
                 [
                     'field' => 'matpel_nama',
                     'label' => 'Nama Mata Pelajaran',
-                    'rules' => 'required|trim|xss_clean',
-                ],
-                [
-                    'field' => 'tutor_id',
-                    'label' => 'Tutor',
-                    'rules' => 'required|callback_select_validate|xss_clean',
+                    'rules' => 'required|trim|xss_clean|is_unique[matpel.matpel_nama]',
                 ]
             ];
         }
@@ -26,7 +24,6 @@
             $data= array(
                 'matpel_id'                  => uniqid(),
                 'matpel_nama'                => $this->input->post("matpel_nama"),
-                'tutor_id'                   => $this->input->post("tutor_id"),
                 'created_at'                 => date('Y-m-d H:i:s')
                 );
             return $this->db->insert($this->_table, $data);
@@ -35,14 +32,13 @@
         {
             $data= array(
                 'matpel_nama'                => $this->input->post("matpel_nama"),
-                'tutor_id'                   => $this->input->post("tutor_id"),
                 'updated_at'                 => date('Y-m-d H:i:s')
             );
             $this->db->where('matpel_id',$this->input->post("matpel_id"));
             return $this->db->update($this->_table, $data);    
         }
         public function getAll(){
-            return $this->db->query("SELECT * FROM matpel INNER JOIN tutor on tutor.tutor_id=matpel.tutor_id")->result();
+            return $this->db->query("SELECT * FROM matpel ORDER BY matpel.matpel_nama ASC")->result();
         }
         public function getById($id)
         {
@@ -51,8 +47,20 @@
         public function delete($id){
             return $this->db->delete($this->_table, array("matpel_id" => $id));
         }
-        public function getTutor(){
-            return $this->db->get("tutor")->result();
+        public function logs()
+        {
+            $this->load->library('user_agent');
+            $data = array(
+                'users'     => $this->session->userdata('id'),
+                'level'     => $this->session->userdata('level'),
+                'name'      => $this->session->userdata('nama'),
+                'url'       => $this->uri->segment(1).'/'.$this->uri->segment(2).'/'.$this->uri->segment(3).'/'.$this->uri->segment(4),
+                'ip'        =>$this->input->ip_address(),
+                'times'     => date('Y-m-d H:i:s'),
+                'browser'   => $this->agent->browser().' '.$this->agent->version(),
+                'os'        => $this->agent->platform()
+            );
+            return $this->db->insert('logs',$data);
         }
     }
 ?>

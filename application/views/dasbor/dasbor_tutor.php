@@ -218,15 +218,15 @@
                             </a>
                         </li>
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="<?=base_url('pengaturan')?>">
-                            <i class="nav-main-link-icon si si-settings"></i>
-                                <span class="nav-main-link-name">Pengaturan</span>
+                            <a class="nav-main-link" href="<?=base_url('panduan')?>">
+                            <i class="nav-main-link-icon fa fa-book"></i>
+                                <span class="nav-main-link-name">Panduan</span>
                             </a>
                         </li>
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="<?=base_url('profil')?>">
-                            <i class="nav-main-link-icon si si-user ml-1"></i>
-                                <span class="nav-main-link-name">Profil</span>
+                            <a class="nav-main-link" href="<?=base_url('pengaturan')?>">
+                            <i class="nav-main-link-icon si si-settings"></i>
+                                <span class="nav-main-link-name">Pengaturan</span>
                             </a>
                         </li>
                         <li class="nav-main-item">
@@ -291,17 +291,11 @@
                                     <img class="img-avatar img-avatar48 img-avatar-thumb" src="<?= base_url ('upload/images/'.$this->session->userdata('foto'));?>" alt="">
                                 </div>
                                 <div class="p-2">
-                                    <h5 class="dropdown-header text-uppercase">User Options</h5>
-                                    <a class="dropdown-item d-flex align-items-center justify-content-between" href="<?=base_url('profil')?>">
-                                        <span>Profil</span>
-                                            <i class="si si-user ml-1"></i>
-                                    </a>
+                                    <h5 class="dropdown-header text-uppercase">Pilihan</h5>
                                     <a class="dropdown-item d-flex align-items-center justify-content-between" href="<?=base_url('pengaturan')?>">
                                         <span>Pengaturan</span>
                                         <i class="si si-settings"></i>
                                     </a>
-                                    <div role="separator" class="dropdown-divider"></div>
-                                    <h5 class="dropdown-header text-uppercase">Aksi</h5>
                                     <a class="dropdown-item d-flex align-items-center justify-content-between" href="<?=base_url('auth/logout')?>">
                                         <span>Log Out</span>
                                         <i class="si si-logout ml-1"></i>
@@ -331,16 +325,86 @@
                                 <div class="flex-sm-fill">
                                     <h1 class="font-w600 text-white mb-0 invisible" data-toggle="appear"><?=$title?></h1>
                                     <h2 class="h4 font-w400 text-white-75 mb-0 invisible" data-toggle="appear" data-timeout="250">Selamat Datang <?= $this->session->userdata('nama');?></h2>
+                                    <div class="text-sm-right">
+                                        <a href="<?=base_url('panduan');?>">
+                                            <button type="button" class="btn btn-light invisible" data-toggle="appear" data-timeout="250">Bingung? Yuk Baca Panduan</button>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
                 <!-- END Hero -->
 
                 <!-- Page Content -->
-              
+                <div class="content">
+                    <!-- Jadwal  -->
+                    <div class="row row-deck">
+                        <div class="col-lg-12">
+                            <div class="block block-mode-loading-oneui">
+                                <div class="block-header border-bottom">
+                                    <h3 class="block-title">Jadwal Kamu!</h3>
+                                    <div class="block-options">
+                                        <button type="button" class="btn-block-option" data-toggle="block-option" data-action="state_toggle" data-action-mode="demo">
+                                            <i class="si si-refresh"></i>
+                                        </button>
+                                        <a href="<?=base_url('pengaturan');?>">
+                                            <button type="button" class="btn-block-option">
+                                                <i class="si si-settings"></i>
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="block-content block-content-full">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered table-striped table-vcenter">
+                                            <thead>
+                                                <tr class="text-center">
+                                                    <th>
+                                                       NO
+                                                    </th>
+                                                    <th>Tipe Pembelajaran</th>
+                                                    <th>Mata Pelajaran</th>
+                                                    <th>Kelas</th>
+                                                    <th>Hari</th>
+                                                    <th>Waktu</th>
+                                                    <th>Aksi</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php $no=0; foreach($all_jadwal_mengajar as $jadwalmengajar):$no++?>
+                                                    <tr>
+                                                        <td><?=$no?></td>
+                                                        <td><?=$jadwalmengajar->jadwal_tipe_pembelajaran?></td>
+                                                        <td><?=$jadwalmengajar->matpel_nama?></td>
+                                                        <td><?=$jadwalmengajar->kelas_nama?></td>
+                                                        <td><?=$jadwalmengajar->jadwal_hari?></td>
+                                                        <td><?=$jadwalmengajar->jadwal_waktu?></td>
+                                                        <td class="text-center">
+                                                            <?php if($jadwalmengajar->jadwal_tipe_pembelajaran == "Tatap Muka"){?>
+                                                                <a href="<?=base_url('presensi/jadwal/').$jadwalmengajar->jadwal_id;?>">
+                                                                    <button type="button" class="btn btn-primary btn-sm">Presensi</button>
+                                                                </a>
+                                                            <?php } ?>
+                                                            <a href="<?=base_url('nilai/rekap/').$jadwalmengajar->jadwal_id;?>">
+                                                                <button type="button" class="btn btn-success btn-sm">Nilai</button>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                <?php endforeach;?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END Jadwal -->
+                </div>
                 <!-- END Page Content -->
+
 
             </main>
             <!-- END Main Container -->

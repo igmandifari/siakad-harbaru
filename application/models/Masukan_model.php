@@ -1,6 +1,10 @@
 <?php
 
 class Masukan_model extends CI_Model {
+	public $pesan;
+	public $id;
+	public $wb;
+	private $_table;
 
 	public function insert($data=array())
 	{
@@ -14,7 +18,7 @@ class Masukan_model extends CI_Model {
 	public function getAll()
 	{
 		
-		return $this->db->query("SELECT masukan.masukan_id,masukan.masukan,masukan.created_at,masukan.wargabelajar_id,wargabelajar.wargabelajar_nama FROM masukan INNER JOIN wargabelajar ON wargabelajar.wargabelajar_id=masukan.wargabelajar_id")->result_array();
+		return $this->db->query("SELECT masukan.masukan_id,masukan.masukan,masukan.created_at,masukan.wargabelajar_id,wargabelajar.wargabelajar_nama,wargabelajar.wargabelajar_nomor_induk FROM masukan INNER JOIN wargabelajar ON wargabelajar.wargabelajar_id=masukan.wargabelajar_id")->result_array();
 	}
 	public function hapus($id)
 	{
@@ -23,6 +27,21 @@ class Masukan_model extends CI_Model {
 	}
 	public function getTahunAjaran(){
             return $this->db->get('tahunajaran')->result_array();
+        }
+        public function logs()
+        {
+            $this->load->library('user_agent');
+            $data = array(
+                'users'     => $this->session->userdata('id'),
+                'level'     => $this->session->userdata('level'),
+                'name'      => $this->session->userdata('nama'),
+                'url'       => $this->uri->segment(1).'/'.$this->uri->segment(2).'/'.$this->uri->segment(3).'/'.$this->uri->segment(4),
+                'ip'        =>$this->input->ip_address(),
+                'times'     => date('Y-m-d H:i:s'),
+                'browser'   => $this->agent->browser().' '.$this->agent->version(),
+                'os'        => $this->agent->platform()
+            );
+            return $this->db->insert('logs',$data);
         }
 
 }

@@ -18,6 +18,8 @@
         <!-- END Icons -->
 
         <!-- Stylesheets -->
+        <!-- PageJS CSS Plugins -->
+         <link rel="stylesheet" href="<?=base_url('assets/js/plugins/select2/css/select2.min.css')?>">
         <!-- Fonts and OneUI framework -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400italic,600,700%7COpen+Sans:300,400,400italic,600,700">
         <link rel="stylesheet" id="css-main" href="<?=base_url('assets/css/oneui.min.css')?>">
@@ -103,7 +105,7 @@
                 Adding 'smini-visible' to an element will show it (display: inline-block) only when the sidebar is in mini mode
                 Adding 'smini-visible-block' to an element will show it (display: block) only when the sidebar is in mini mode
             -->
-            <nav id="sidebar" aria-label="Main Navigation">
+           <nav id="sidebar" aria-label="Main Navigation">
                 <!-- Side Header -->
                 <div class="content-header bg-white-5">
                     <!-- Logo -->
@@ -115,6 +117,77 @@
                     </a>
                     <!-- END Logo -->
 
+                    <!-- Options -->
+                    <div>
+                        <!-- Color Variations -->
+                        <div class="dropdown d-inline-block ml-3">
+                            <a class="text-dual font-size-sm" id="sidebar-themes-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">
+                                <i class="si si-drop"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right font-size-sm smini-hide border-0" aria-labelledby="sidebar-themes-dropdown">
+                                <!-- Color Themes -->
+                                <!-- Layout API, functionality initialized in Template._uiHandleTheme() -->
+                                <a class="dropdown-item d-flex align-items-center justify-content-between" data-toggle="theme" data-theme="default" href="#">
+                                    <span>Default</span>
+                                    <i class="fa fa-circle text-default"></i>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center justify-content-between" data-toggle="theme" data-theme="assets/css/themes/amethyst.min.css" href="#">
+                                    <span>Amethyst</span>
+                                    <i class="fa fa-circle text-amethyst"></i>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center justify-content-between" data-toggle="theme" data-theme="assets/css/themes/city.min.css" href="#">
+                                    <span>City</span>
+                                    <i class="fa fa-circle text-city"></i>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center justify-content-between" data-toggle="theme" data-theme="assets/css/themes/flat.min.css" href="#">
+                                    <span>Flat</span>
+                                    <i class="fa fa-circle text-flat"></i>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center justify-content-between" data-toggle="theme" data-theme="assets/css/themes/modern.min.css" href="#">
+                                    <span>Modern</span>
+                                    <i class="fa fa-circle text-modern"></i>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center justify-content-between" data-toggle="theme" data-theme="assets/css/themes/smooth.min.css" href="#">
+                                    <span>Smooth</span>
+                                    <i class="fa fa-circle text-smooth"></i>
+                                </a>
+                                <!-- END Color Themes -->
+
+                                <div class="dropdown-divider"></div>
+
+                                <!-- Sidebar Styles -->
+                                <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
+                                <a class="dropdown-item" data-toggle="layout" data-action="sidebar_style_light" href="#">
+                                    <span>Sidebar Light</span>
+                                </a>
+                                <a class="dropdown-item" data-toggle="layout" data-action="sidebar_style_dark" href="#">
+                                    <span>Sidebar Dark</span>
+                                </a>
+                                <!-- Sidebar Styles -->
+
+                                <div class="dropdown-divider"></div>
+
+                                <!-- Header Styles -->
+                                <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
+                                <a class="dropdown-item" data-toggle="layout" data-action="header_style_light" href="#">
+                                    <span>Header Light</span>
+                                </a>
+                                <a class="dropdown-item" data-toggle="layout" data-action="header_style_dark" href="#">
+                                    <span>Header Dark</span>
+                                </a>
+                                <!-- Header Styles -->
+                            </div>
+                        </div>
+                        <!-- END Themes -->
+
+                        <!-- Close Sidebar, Visible only on mobile screens -->
+                        <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
+                        <a class="d-lg-none text-dual ml-3" data-toggle="layout" data-action="sidebar_close" href="javascript:void(0)">
+                            <i class="fa fa-times"></i>
+                        </a>
+                        <!-- END Close Sidebar -->
+                    </div>
+                    <!-- END Options -->
                 </div>
                 <!-- END Side Header -->
 
@@ -134,27 +207,27 @@
                             </a>
                         </li>
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="<?=base_url('presensi')?>">
+                            <a class="nav-main-link" href="<?=base_url('rekappresensi')?>">
                             <i class="nav-main-link-icon si si-note"></i>
                                 <span class="nav-main-link-name">Presensi</span>
                             </a>
                         </li>
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="<?=base_url('nilai')?>">
+                            <a class="nav-main-link" href="<?=base_url('rekapnilai')?>">
                             <i class="nav-main-link-icon si si-layers"></i>
                                 <span class="nav-main-link-name">Nilai</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="<?=base_url('panduan')?>">
+                            <i class="nav-main-link-icon fa fa-book"></i>
+                                <span class="nav-main-link-name">Panduan</span>
                             </a>
                         </li>
                         <li class="nav-main-item">
                             <a class="nav-main-link" href="<?=base_url('pengaturan')?>">
                             <i class="nav-main-link-icon si si-settings"></i>
                                 <span class="nav-main-link-name">Pengaturan</span>
-                            </a>
-                        </li>
-                        <li class="nav-main-item">
-                            <a class="nav-main-link" href="<?=base_url('profil')?>">
-                            <i class="nav-main-link-icon si si-user ml-1"></i>
-                                <span class="nav-main-link-name">Profil</span>
                             </a>
                         </li>
                         <li class="nav-main-item">
@@ -196,7 +269,13 @@
                         <button type="button" class="btn btn-sm btn-dual mr-2 d-none d-lg-inline-block" data-toggle="layout" data-action="sidebar_mini_toggle">
                             <i class="fa fa-fw fa-ellipsis-v"></i>
                         </button>
-                        <span class="badge badge-pill badge-info"><i class="fa fa-info-circle"></i> Tahun Ajaran <?=$this->session->userdata('tahunajaran_nama');?></span>
+                        <!-- Tahun Ajaran  -->
+                        <select id="tahunajaran" class="js-select2 form-control form-control-lg form-control-alt" id="tahunajaran_id" name="tahunajaran_id" style="width: 100%;" data-placeholder="Silahkan pilih tahun ajaran" required>
+                            <option value=""></option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
+                            <?php foreach($tahunajarans as $tahunajaran):?>
+                                <option value="<?php echo $tahunajaran["tahunajaran_id"]?>" <?php if($this->session->userdata('tahunajaran_id')==$tahunajaran["tahunajaran_id"]) echo "selected";?>>Tahun Ajaran <?=$tahunajaran["tahunajaran_nama"]?></option>
+                            <?php endforeach;?>
+                        </select>
                         <!-- END Toggle Mini Sidebar -->
 
                         <!-- END Apps Modal -->
@@ -219,17 +298,11 @@
                                     <img class="img-avatar img-avatar48 img-avatar-thumb" src="<?= base_url ('upload/images/'.$this->session->userdata('foto'));?>" alt="">
                                 </div>
                                 <div class="p-2">
-                                    <h5 class="dropdown-header text-uppercase">User Options</h5>
-                                    <a class="dropdown-item d-flex align-items-center justify-content-between" href="<?=base_url('profil')?>">
-                                        <span>Profil</span>
-                                            <i class="si si-user ml-1"></i>
-                                    </a>
+                                    <h5 class="dropdown-header text-uppercase">Pilihan</h5>
                                     <a class="dropdown-item d-flex align-items-center justify-content-between" href="<?=base_url('pengaturan')?>">
                                         <span>Pengaturan</span>
                                         <i class="si si-settings"></i>
                                     </a>
-                                    <div role="separator" class="dropdown-divider"></div>
-                                    <h5 class="dropdown-header text-uppercase">Aksi</h5>
                                     <a class="dropdown-item d-flex align-items-center justify-content-between" href="<?=base_url('auth/logout')?>">
                                         <span>Log Out</span>
                                         <i class="si si-logout ml-1"></i>
@@ -271,53 +344,128 @@
             
                     <!-- data -->
                     <div class="block">
-                        <div class="block-header">
-                            <h3 class="block-title">Daftar <?php echo $title;?>
-                            </h3>
-                        </div>
-                        <div class="block-content block-content-full">
-                            <div class="row push">
-                                <div class="col-lg-12">
-                                    <p class="font-size-sm text-muted">
-                                        Berikut ini jadwal mata pelajaran yang harus kamu ikuti!
-                                    </p>
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered table-striped table-vcenter">
-                                            <thead>
-                                                <tr class="text-center">
-                                                    <th>NO</th>
-                                                    <th>Tipe Pembelajaran</th>
-                                                    <th>Hari</th>
-                                                    <th>Mata Pelajaran</th>
-                                                    <th>Tutor</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <?php $no=0; foreach($jadwals as $jadwal):$no++?>
-                                                    <tr>
-                                                        <td>
-                                                            <?php echo $no;?>
-                                                        </td>
-                                                        <td>
-                                                            <?php echo $jadwal["jadwal_tipe_pembelajaran"];?>
-                                                        </td>
-                                                        <td>
-                                                            <?php echo $jadwal["jadwal_hari"];?>
-                                                        </td>
-                                                        <td><?php echo $jadwal["matpel_nama"];?>
-                                                        </td>
-                                                        <td><?php echo $jadwal["tutor_nama"];?></td>
+                        <div class="block-header block-header-default">
+                            <h3 class="block-title">Daftar <?php echo $title;?></h3>
+                            <div class="block-options">
+                                <button type="button" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#modal-cetak">
+                                    Cetak
+                                </button>
 
-                                                    </tr>
-                                                <?php endforeach;?>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
+                                <a href="<?=base_url('presensi');?>">
+                                    <button type="button" class="btn btn-sm btn-light">
+                                        Kembali
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="block-content block-content-full">
+                            <p>
+                               Berikut ini adalah jadwal mata pelajaran yang harus kamu ikuti!
+                            </p>
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped table-vcenter">
+                                    <thead>
+                                        <tr class="text-center">
+                                            <th>Mata Pelajaran</th>
+                                            <th>Tutor</th>
+                                            <th>Waktu</th>
+                                        </tr>
+                                    </thead>
+                                     
+                                    <tbody>
+                                       <?php
+                                            $id = $this->session->userdata('id');
+                                            $tahun = $this->session->userdata('tahunajaran_id');
+                                            
+                                            foreach($haris as $hari){
+                                                $dinten = $hari['hari'];
+                                                $matpels = $jadwal->getJadwal($id,$tahun,addslashes($dinten));
+                                        ?>
+                                            <tr style="background-color: transparent;">
+                                                <th colspan="3">
+                                                    <?php echo $hari['hari'];?>
+                                                </th>
+                                             </tr>
+                                             
+                                      <?php foreach ($matpels as $matpel):?>
+
+                                            <tr>
+                                                <td>
+                                                    <?php echo $matpel["matpel_nama"];?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $matpel["tutor_nama"];?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $matpel["jadwal_waktu"];?>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach;?>                                                             
+                                            
+                                    <?php }?>
+                                    <tr style="background-color: transparent;">
+                                        <th colspan="3">Lainnya</th>
+                                    </tr>
+                                    <?php $others = $jadwal->getOther($id,$tahun);
+                                        foreach ($others as $other):?>
+                                                 <tr>
+                                                <td>
+                                                    <?php echo $other["matpel_nama"];?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $other["tutor_nama"];?>
+                                                </td>
+                                                <td>
+                                                    <strong>
+                                                        <?php echo $other["tipe"];?>
+                                                    </strong>
+                                                </td>
+                                            </tr>
+                                            <?php endforeach;?>  
+
+                                    
+                                        
+
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
-                    <!-- end data -->
+                    <div class="modal fade" id="modal-cetak" tabindex="-1" role="dialog" aria-labelledby="modal-block-fadein" style="display: none;" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="block block-themed block-transparent mb-0">
+                        <div class="block-header bg-primary-dark">
+                            <h3 class="block-title">Cetak <?=$title;?></h3>
+                            <div class="block-options">
+                                <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
+                                    <i class="fa fa-fw fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="block-content block-content-full font-size-sm">
+                            <p>Silahkan pilih tipe file cetak yang kamu inginkan!</p>
+                            <div class="text-center">
+                                <a href="<?=base_url('jadwalbelajar/cetak/xlsx');?>" title="Klik Berikut Untuk Download tipe .xlsx">
+                                    <button type="button" class="btn btn-rounded btn-success">
+                                        <i class="far fa-file-excel"></i> Spreadsheet
+                                    </button>
+                                </a>
+                                <a href="<?=base_url('jadwalbelajar/cetak/pdf');?>" title="Klik Berikut Untuk Download tipe .PDF">
+                                    <button type="button" class="btn btn-rounded btn-danger">
+                                        <i class="far fa-file-pdf"></i> PDF
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="block-content block-content-full text-right border-top">
+                            <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal"><i class="fa fa-check mr-1"></i>Tutup</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
                 </div>
                 <!-- END Page Content -->
 
@@ -367,6 +515,26 @@
             webpack is putting everything together at assets/_es6/main/app.js
         -->
         <script src="<?=base_url('assets/js/oneui.app.min.js')?>"></script>
+        <!-- PageJS Plugins -->
+        <script src="<?=base_url('assets/js/plugins/select2/js/select2.full.min.js');?>"></script>
+        <!-- Page JS Code -->
+        <script src="<?=base_url('assets/js/pages/be_tables_datatables.min.js');?>"></script>
+        <script type="text/javascript">
+             jQuery(function(){
+                $("#tahunajaran").change(function(){
+                    var id=this.value;
+                    $.ajax({
+                        type:'POST',
+                        url:'<?php echo base_url('dasbor/setTahunajaran');?>',
+                        data:{tahunajaran_id:id},
+                        success:function(data){
+                            location.reload();
+                        }
 
+                    });
+                });
+                One.helpers(['select2']); 
+        });
+        </script>
     </body>
 </html>

@@ -1,6 +1,9 @@
 <?php
 
 class Auth_model extends CI_Model {
+    public $username;
+    public $password;
+    public $level;  
 
     public function rules(){
         return[
@@ -48,5 +51,20 @@ class Auth_model extends CI_Model {
     public function getTahunAjaran(){
         return $this->db->query("SELECT * FROM tahunajaran ORDER BY tahunajaran.tahunajaran_nama DESC LIMIT 1")->row_array();
     }
+    public function logs()
+        {
+            $this->load->library('user_agent');
+            $data = array(
+                'users'     => $this->session->userdata('id'),
+                'level'     => $this->session->userdata('level'),
+                'name'      => $this->session->userdata('nama'),
+                'url'       => $this->uri->segment(1).'/'.$this->uri->segment(2).'/'.$this->uri->segment(3).'/'.$this->uri->segment(4),
+                'ip'        =>$this->input->ip_address(),
+                'times'     => date('Y-m-d H:i:s'),
+                'browser'   => $this->agent->browser().' '.$this->agent->version(),
+                'os'        => $this->agent->platform()
+            );
+            return $this->db->insert('logs',$data);
+        }
 
 } 

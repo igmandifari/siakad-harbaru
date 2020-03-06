@@ -10,6 +10,7 @@ class Auth extends CI_Controller
         $this->load->model('Auth_model');
         $this->load->library('form_validation');
         $this->load->helper('security');
+        $logs = $this->Auth_model->logs();
     }
     
     public function index(){
@@ -57,11 +58,13 @@ class Auth extends CI_Controller
                 $this->session->set_userdata('MASUK',TRUE);
                 $session = array(
                     'nama'                  => $WargaBelajar['wargabelajar_nama'],
+                    'induk'                  => $WargaBelajar['wargabelajar_nomor_induk'],
                     'id'                    => $WargaBelajar['wargabelajar_id'],
                     'foto'                  => $WargaBelajar['wargabelajar_foto'],
                     'level'                 => 1,
                     'tahunajaran_id'        => $tahunajaran['tahunajaran_id'],
                     'tahunajaran_nama'      => $tahunajaran['tahunajaran_nama'],
+                    'open_nilai'            => $tahunajaran['open_nilai']
                 );
                 $this->session->set_userdata($session);
                 redirect('dasbor');

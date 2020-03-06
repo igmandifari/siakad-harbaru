@@ -5,7 +5,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
-        <title>Presensi <?=$title?></title>
+        <title><?=$title.' '.$actor?></title>
 
         <meta name="robots" content="noindex, nofollow">
 
@@ -220,15 +220,15 @@
                             </a>
                         </li>
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="<?=base_url('pengaturan')?>">
-                            <i class="nav-main-link-icon si si-settings"></i>
-                                <span class="nav-main-link-name">Pengaturan</span>
+                            <a class="nav-main-link" href="<?=base_url('panduan')?>">
+                            <i class="nav-main-link-icon fa fa-book"></i>
+                                <span class="nav-main-link-name">Panduan</span>
                             </a>
                         </li>
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="<?=base_url('profil')?>">
-                            <i class="nav-main-link-icon si si-user ml-1"></i>
-                                <span class="nav-main-link-name">Profil</span>
+                            <a class="nav-main-link" href="<?=base_url('pengaturan')?>">
+                            <i class="nav-main-link-icon si si-settings"></i>
+                                <span class="nav-main-link-name">Pengaturan</span>
                             </a>
                         </li>
                         <li class="nav-main-item">
@@ -293,17 +293,11 @@
                                     <img class="img-avatar img-avatar48 img-avatar-thumb" src="<?= base_url ('upload/images/'.$this->session->userdata('foto'));?>" alt="">
                                 </div>
                                 <div class="p-2">
-                                    <h5 class="dropdown-header text-uppercase">User Options</h5>
-                                    <a class="dropdown-item d-flex align-items-center justify-content-between" href="<?=base_url('profil')?>">
-                                        <span>Profil</span>
-                                            <i class="si si-user ml-1"></i>
-                                    </a>
+                                    <h5 class="dropdown-header text-uppercase">Pilihan</h5>
                                     <a class="dropdown-item d-flex align-items-center justify-content-between" href="<?=base_url('pengaturan')?>">
                                         <span>Pengaturan</span>
                                         <i class="si si-settings"></i>
                                     </a>
-                                    <div role="separator" class="dropdown-divider"></div>
-                                    <h5 class="dropdown-header text-uppercase">Aksi</h5>
                                     <a class="dropdown-item d-flex align-items-center justify-content-between" href="<?=base_url('auth/logout')?>">
                                         <span>Log Out</span>
                                         <i class="si si-logout ml-1"></i>
@@ -328,47 +322,202 @@
                 <div class="content">
                     <!-- Jadwal -->
                     <div class="block">
-                        <div class="block-header">
-                            <!-- <h3 class="block-title">Dynamic Table <small>Full</small></h3> -->
+                        <div class="block-header block-header-default">
+                            <h3 class="block-title"><?php echo "Rekap Presensi ".$kelas['kelas_nama']." Mata Pelajaran ".$kelas['matpel_nama'];?></h3>
+                            <div class="block-options">
+
+                                <button type="button" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#modal-cetak">
+                                    Cetak
+                                </button>
+
+                                <a href="<?=base_url('presensi')?>">
+                                    <button type="button" class="btn btn-sm btn-light">
+                                        Kembali
+                                    </button>
+                                </a>
+                            </div>
                         </div>
+                      
                         
                         <div class="block-content block-content-full">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped table-vcenter">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="2" class="text-center">Rekap Presensi</th>
+                                        </tr>
+                                        <tbody>
+                                            <tr>
+                                                <td>Kelas</td>
+                                                <td>: <?=$kelas["kelas_nama"];?></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Mata Pelajaran</td>
+                                                <td>: <?=$kelas["matpel_nama"];?></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Tipe Pembelajaran</td>
+                                                <td>: Tatap Muka</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Tutor</td>
+                                                <td>: <?=$this->session->userdata('nama');?></td>
+                                            </tr>
+                                        </tbody>
+                                    </thead>
+                                    <!-- <tbody>
+                                    </tbody> -->
+                                </table>
+                            </div>
                             <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _es6/pages/be_tables_datatables.js -->
-                            <table class="table table-bordered table-striped table-vcenter js-dataTable-full table-responsive">
-                                <thead class="text-center">
-                                    <tr>
-                                        <th rowspan="2" style="vertical-align:middle;width:8%;">NO</th>
-                                        <th rowspan="2" style="vertical-align:middle;">Nama</th>
-                                        <th colspan="4" style="vertical-align:middle;">Keterangan</th>
-                                    </tr>
-                                    <tr>
-                                        <th width="5%">H</th>
-                                        <th width="5%">I</th>
-                                        <th width="5%">S</th>
-                                        <th width="5%">A</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped table-vcenter">
+                                    <thead class="text-center">
+                                        <tr>
+                                            <th rowspan="2" style="vertical-align:middle;width:8%;">NO</th>
+                                            <th rowspan="2" style="vertical-align:middle;">Nama</th>
+                                            <?php 
+                                                $n = 5;
+                                                $tanggal =$details->getDate($this->uri->segment(3));
+                                                if(!isset($tanggal)){
+                                                    $n=5;
+                                                }
+                                                foreach($tanggal as $date){
+                                                    $n++;
+                                                }
+
+                                            ;?>
+                                            <th colspan="<?php echo $n;?>" style="vertical-align:middle;">Keterangan</th>
+                                        </tr>
+                                        <tr>
+                                            <th width="5%" style="vertical-align:middle;">Total</th>
+                                            <th width="5%" style="vertical-align:middle;">H</th>
+                                            <th width="5%" style="vertical-align:middle;">I</th>
+                                            <th width="5%" style="vertical-align:middle;">S</th>
+                                            <th width="5%" style="vertical-align:middle;">A</th>
+                                            <?php
+                                                foreach($tanggal as $tgl){
+
+                                            ?>
+                                            <th width="5%" style="vertical-align:middle;"><small><?php echo date("d-m-y",strtotime($tgl->tanggal));?></small></th>
+                                            <?php }?>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php $no=0;foreach ($wargabelajars as $wargabelajar){
+                                            $alpa = $details->getAlpa($this->uri->segment(3),$wargabelajar->id);
+                                            $izin = $details->getizin($this->uri->segment(3),$wargabelajar->id);
+                                            $sakit =$details->getSakit($this->uri->segment(3),$wargabelajar->id);
+                                            $hadir =$details->getHadir($this->uri->segment(3),$wargabelajar->id);
+                                            $total =$details->countTotal($this->uri->segment(3),$wargabelajar->id);
+                                            $no++;
+                                        ?>
+                                        
+                                        <tr>
+                                            <td class="text-center"><?php echo $no;?></td>
+                                            <td><?php echo $wargabelajar->wargabelajar_nama.'<br>'.$wargabelajar->wargabelajar_nomor_induk;?></td>
+                                            <td class="text-center"><?php echo $total['total'];?></td>
+                                            <td class="text-center"><?php echo $hadir['hadir'];?></td>
+                                            <td class="text-center"><?php echo $izin['izin'];?></td>
+                                            <td class="text-center"><?php echo $sakit['sakit'];?></td>
+                                            <td class="text-center"><?php echo $alpa['alpa'];?></td>
+                                            <?php
+                                                foreach($tanggal as $dt){
+                                                    $keteranganPresensei = $details->getDetailBanget($dt->id,$wargabelajar->id);
+
+                                                    if($keteranganPresensei['ket']=="A"){
+                                            ?>
+                                                        <td class="bg-danger"></td>
+                                                     <?php } elseif ($keteranganPresensei['ket']=="S"){?>
+                                                        <td class="bg-success"></td>
+                                                    <?php } elseif ($keteranganPresensei['ket']=="I"){?>
+                                                        <td class="bg-warning"></td>
+                                                    <?php } elseif ($keteranganPresensei['ket']=="H"){?>
+                                                        <td class="bg-info"></td>
+                                                    <?php }
+                                                }?>
+                                        </tr>
+                                    <?php }?>
+                                    </tbody>
                                     
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Zam Zam</td>
-                                        <td>1</td>
-                                        <td>2</td>
-                                        <td>3</td>
-                                        <td>4</td>
-                                    </tr>
-                                </tbody>
-                                
-                            </table>
+                                </table>
+                                <div class="col-sm-4">
+                                    <table class="table table-bordered table-striped table-vcenter">
+                                        <thead class="text-center">
+                                            <tr>
+                                                <th colspan="2">Keterangan</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td width="60%">Hadir</td>
+                                                <td class="bg-info"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Sakit</td>
+                                               <td class="bg-success"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Izin</td>
+                                                <td class="bg-warning"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Tanpa Keterangan</td>
+                                                <td class="bg-danger"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="col-sm-8">
+                                </div>
+                            </div>
+
+                            
+                                   
+
+                           
                             <div class="col-sm-12 text-center">
-                                <a href="<?=base_url('presensi/jadwal/').$this->uri->segment(3)?>">
+                                <a href="<?=base_url('presensi')?>">
                                     <button type="button" class="btn btn-primary js-click-ripple-enabled" data-toggle="click-ripple" style="overflow: hidden; position: relative; z-index: 1;"><span class="click-ripple animate" style="height: 87.2656px; width: 87.2656px; top: -21.625px; left: 31.375px;"></span>Kembali</button>
                                 </a>
                             </div>
                         </div>
                     </div>
                     <!-- End Jadwal -->
+                    <div class="modal fade" id="modal-cetak" tabindex="-1" role="dialog" aria-labelledby="modal-block-fadein" style="display: none;" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="block block-themed block-transparent mb-0">
+                        <div class="block-header bg-primary-dark">
+                            <h3 class="block-title">Cetak <?=$title;?></h3>
+                            <div class="block-options">
+                                <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
+                                    <i class="fa fa-fw fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="block-content block-content-full font-size-sm">
+                            <p>Silahkan pilih tipe file cetak yang kamu inginkan!</p>
+                            <div class="text-center">
+                                <a href="<?=base_url('presensi/details/').$this->uri->segment(3).'/xlsx';?>" title="Klik Berikut Untuk Download tipe .xlsx">
+                                    <button type="button" class="btn btn-rounded btn-success">
+                                        <i class="far fa-file-excel"></i> Spreadsheet
+                                    </button>
+                                </a>
+                            <a href="<?=base_url('presensi/details/').$this->uri->segment(3).'/pdf';?>" title="Klik Berikut Untuk Download tipe .PDF">
+                                <button type="button" class="btn btn-rounded btn-danger">
+                                    <i class="far fa-file-pdf"></i> PDF
+                                </button>
+                            </a>
+                            </div>
+                        </div>
+                        <div class="block-content block-content-full text-right border-top">
+                            <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal"><i class="fa fa-check mr-1"></i>Tutup</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
                 </div>
                 <!-- END Page Content -->
 
@@ -429,20 +578,7 @@
         
         <script>
             jQuery(function(){
-                $(".do_presensi").click(function(){
-                    var status = $(this).data("status");
-                    var id = $(this).data("id");
-                    
-                    $("#"+id+"").text("loading....");
-                    $.ajax({
-                        type:"POST",
-                        url:"<?=base_url('presensi/update_presensi_det/')?>",
-                        data:{status:status,id:id},
-                        success: function(data){
-                            $("#"+id+"").text(status);
-                        }
-                    });
-                });
+            
                 $("#tahunajaran").change(function(){
                     var id=this.value;
                     $.ajax({

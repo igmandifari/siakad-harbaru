@@ -4,23 +4,6 @@
 <!-- Main Container -->
 <main id="main-container">
 
-<!-- Hero -->
-<div class="bg-body-light">
-    <div class="content content-full">
-        <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
-            <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
-                <ol class="breadcrumb breadcrumb-alt">
-                    <li class="breadcrumb-item"><?=$actor;?></li>
-                    <li class="breadcrumb-item" aria-current="page">
-                        <a class="link-fx" href=""><?=$title;?></a>
-                    </li>
-                </ol>
-            </nav>
-        </div>
-    </div>
-</div>
-<!-- END Hero -->
-
 <!-- Page Content -->
 <div class="content">
     <!-- Basic -->
@@ -35,8 +18,15 @@
             </div>
         </div>
     <?php endif;?>
-        <div class="block-header">
-            <h3 class="block-title">Data Kelas</h3>
+        <div class="block-header block-header-default">
+            <h3 class="block-title"><?=$title;?></h3>
+            <div class="block-options">
+                <a href="<?=base_url('/kelas');?>">
+                    <button type="button" class="btn btn-sm btn-light">
+                        Kembali
+                    </button>
+                </a>
+            </div>
         </div>
         <div class="block-content block-content-full">
             <form action="<?=base_url('kelas/tambah');?>" method="POST" enctype="multipart/form-data">

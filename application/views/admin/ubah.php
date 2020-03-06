@@ -4,39 +4,39 @@
 <!-- Main Container -->
 <main id="main-container">
 
-<!-- Hero -->
-<div class="bg-body-light">
-    <div class="content content-full">
-        <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
-            <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
-                <ol class="breadcrumb breadcrumb-alt">
-                    <li class="breadcrumb-item"><?=$actor;?></li>
-                    <li class="breadcrumb-item"><?=$title;?></li>
-                    <li class="breadcrumb-item" aria-current="page">
-                        <a class="link-fx" href=""><?=$admin["admin_nama"];?></a>
-                    </li>
-                    
-                </ol>
-            </nav>
-        </div>
-    </div>
-</div>
-<!-- END Hero -->
-
 <!-- Page Content -->
 <div class="content">
     <!-- Basic -->
     <div class="block">
-    <?php if ($this->session->flashdata('success')): ?>
-        <div class="alert alert-success d-flex align-items-center" role="alert">
-            <div class="flex-00-auto">
-                <i class="fa fa-fw fa-check"></i>
-            </div>
-            <div class="flex-fill ml-3">
-                <p class="mb-0"><?php echo $this->session->flashdata('success'); ?></p>
+        <div class="block-header block-header-default">
+            <h3 class="block-title"><?=$title;?></h3>
+            <div class="block-options">
+                <a href="<?=base_url('admin/tambah');?>">
+                <button type="button" class="btn btn-sm btn-primary">
+                    Tambah
+                </button>
+                </a>
+                <a href="<?=base_url('admin');?>">
+                    <button type="button" class="btn btn-sm btn-light">
+                        Kembali
+                    </button>
+                </a>
             </div>
         </div>
-    <?php endif;?>
+        <div class="block-content block-content-full">
+            <p class="font-size-sm text-muted">
+               Silahkan isi semua kolom untuk mengubah data admin.
+            </p>
+            <?php if ($this->session->flashdata('success')): ?>
+                <div class="alert alert-success d-flex align-items-center" role="alert">
+                    <div class="flex-00-auto">
+                        <i class="fa fa-fw fa-check"></i>
+                    </div>
+                    <div class="flex-fill ml-3">
+                        <p class="mb-0"><?php echo $this->session->flashdata('success'); ?></p>
+                    </div>
+                </div>
+            <?php endif;?>
                 <div class="row push">
                     <div class="col-12">
                         <div class="block">

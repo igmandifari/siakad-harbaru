@@ -5,7 +5,48 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     Class Wargabelajar_model extends CI_Model 
     {
         private $_table = "wargabelajar";
-        public $wargabelajar_id;
+        public $id;
+        public $nomor_induk;
+        public $nisn;
+        public $nama;
+        public $nik;
+        public $jenis_kelamin;
+        public $tempat_lahir;
+        public $tanggal_lahir;
+        public $kewarganegaraan;
+        public $alamat_jalan;
+        public $alamat_rtrw;
+        public $alamat_desa;
+        public $alamat_kecamatan;
+        public $alamat_kabupaten;
+        public $alamat_provinsi;
+        public $alamat_kodepos;
+        public $kejar;
+        public $kejar_alamat;
+        public $sttb;
+        public $masuk;
+        public $tahunajaran_id;
+        public $foto;
+        public $password;
+        public $orangtua_ayah_nama;
+        public $orangtua_ayah_pekerjaan;
+        public $orangtua_ayah_alamat_jalan;
+        public $orangtua_ayah_alamat_rtrw;
+        public $orangtua_ayah_alamat_desa;
+        public $orangtua_ayah_alamat_kecamatan;
+        public $orangtua_ayah_alamat_kabupaten;
+        public $orangtua_ayah_alamat_provinsi;
+        public $orangtua_ayah_alamat_kodepos;
+        public $orangtua_ibu_nama;
+        public $orangtua_wali_nama; 
+        public $orangtua_wali_pekerjaan; 
+        public $orangtua_wali_alamat_jalan; 
+        public $orangtua_wali_alamat_rtrw; 
+        public $orangtua_wali_alamat_desa; 
+        public $orangtua_wali_alamat_kecamatan; 
+        public $orangtua_wali_alamat_kabupaten; 
+        public $orangtua_wali_alamat_provinsi; 
+        public $orangtua_wali_alamat_kodepos;
 
         public function rules_ortu()
         {
@@ -467,6 +508,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             return $this->db->update($this->_table, $data);    
         }
         public function getAll(){
+            $this->db->order_by('wargabelajar_nomor_induk desc');
             return $this->db->get($this->_table)->result();
         }
         public function getById($id)
@@ -480,7 +522,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         public function getTahunAjaran(){
             return $this->db->get('tahunajaran')->result();
         }
-        
-        
+        public function getAlls()
+        {
+            return $this->db->query("SELECT * FROM wargabelajar INNER JOIN tahunajaran ON tahunajaran.tahunajaran_id=wargabelajar.tahunajaran_id")->result();
+        }
+        public function logs()
+        {
+            $this->load->library('user_agent');
+            $data = array(
+                'users'     => $this->session->userdata('id'),
+                'level'     => $this->session->userdata('level'),
+                'name'      => $this->session->userdata('nama'),
+                'url'       => $this->uri->segment(1).'/'.$this->uri->segment(2).'/'.$this->uri->segment(3).'/'.$this->uri->segment(4),
+                'ip'        =>$this->input->ip_address(),
+                'times'     => date('Y-m-d H:i:s'),
+                'browser'   => $this->agent->browser().' '.$this->agent->version(),
+                'os'        => $this->agent->platform()
+            );
+            return $this->db->insert('logs',$data);
+        }
     }
-?>

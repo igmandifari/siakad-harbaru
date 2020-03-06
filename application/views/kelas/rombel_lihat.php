@@ -4,35 +4,32 @@
 <!-- Main Container -->
 <main id="main-container">
 
-<!-- Hero -->
-<div class="bg-body-light">
-    <div class="content content-full">
-        <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
-            <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
-                <ol class="breadcrumb breadcrumb-alt">
-                    <li class="breadcrumb-item"><?=$actor;?></li>
-                    <li class="breadcrumb-item" aria-current="page">
-                        <a class="link-fx" href=""><?=$title;?></a>
-                    </li>
-                </ol>
-            </nav>
-        </div>
-    </div>
-</div>
-<!-- END Hero -->
-
 <!-- Page Content -->
 <div class="content">
     <!-- Dynamic Table Full -->
     <div class="block">
-        <div class="block-header">
-            <a href="<?=base_url('kelas/rombel_tambah/'.$this->uri->segment('3'));?>">
-                <button type="button" class="btn btn-success mr-1 mb-3">
-                    <i class="fa fa-fw fa-plus mr-1"></i> Tambah Data
+        <div class="block-header block-header-default">
+            <h3 class="block-title"><?=$title;?></h3>
+            <div class="block-options">
+                <a href="<?=base_url('kelas/rombel_tambah/').$this->uri->segment(3);?>">
+                <button type="button" class="btn btn-sm btn-primary">
+                    Tambah
                 </button>
-            </a>
+                </a>
+                <button type="button" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#modal-cetak">
+                    Cetak
+                </button>
+                <a href="<?=base_url('kelas/rombel');?>">
+                    <button type="button" class="btn btn-sm btn-light">
+                        Kembali
+                    </button>
+                </a>
+            </div>
         </div>
         <div class="block-content block-content-full">
+            <p class="font-size-sm text-muted">
+                Berikut ini adalah seluruh peserta rombel dari
+            </p>
         <?php if ($this->session->flashdata('success')): ?>
         <div class="alert alert-success d-flex align-items-center" role="alert">
             <div class="flex-00-auto">
@@ -43,13 +40,23 @@
             </div>
         </div>
         <?php endif;?>
-        <div class='text-center'>
-            <div class="block-content">
-                <h3>Data Warga Belajar</h3>
-                <p>Kelas        : <?=$kelas["kelas_nama"]?></p>
-                <p>Tahun Ajaran : <?=$kelas["tahunajaran_nama"]?></p>
-            </div>
-          </div>
+        <div class='table-responsive'>
+            <table class="table table-bordered table-striped table-vcenter">
+                <thead>
+                    <tr>
+                        <th colspan="2" class="text-center">Data Rombel</th>
+                    </tr>
+                    <tr>
+                        <th>Kelas</th>
+                        <th>: <?=$kelas["kelas_nama"]?></th>
+                    </tr>
+                    <tr>
+                        <th>Tahun Ajaran</th>
+                        <th>: <?=$kelas["tahunajaran_nama"]?></th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
             <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _es6/pages/be_tables_datatables.js -->
             <div class="table-responsive">
                 <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
@@ -64,15 +71,18 @@
                 </thead>
                 <tbody>
                     <?php $no=0;foreach($semua_wargabelajar as $wargabelajar):$no++;?>
-                        <tr>
+                        <tr id="<?=$wargabelajar->rombel_details_id;?>">
                             <td class="text-center"><?=$no?></td>
                             <td><?=$wargabelajar->wargabelajar_nama;?>
                             <td><?=$wargabelajar->wargabelajar_nomor_induk;?>
                             <td><?=$wargabelajar->wargabelajar_nisn;?>
                             <td class="text-center">
-                                <a href="<?=base_url('kelas/rombel_det_hapus/').$wargabelajar->rombel_details_id.'/'.$wargabelajar->rombel_id?>">
-                                    <button id="<?=$no?>" type="submit" class="btn btn-outline-secondary btn-sm">Hapus</button>
-                                </a>  
+                                
+                                    <button id="<?=$no?>" type="submit" class="btn btn-sm btn-warning js-tooltip-enabled push mb-md-0 hapus-rombel-det" data-id="<?=$wargabelajar->rombel_details_id;?>">
+                                        <i class="fa fa-fw fa-times"></i>
+                                        Hapus
+                                    </button>
+  
                             </td>
                         </tr>
                     <?php endforeach;?>
@@ -87,7 +97,40 @@
         </div>
     </div>
     <!-- END Dynamic Table Full -->
-
+<div class="modal fade" id="modal-cetak" tabindex="-1" role="dialog" aria-labelledby="modal-block-fadein" style="display: none;" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="block block-themed block-transparent mb-0">
+                        <div class="block-header bg-primary-dark">
+                            <h3 class="block-title">Cetak <?=$title;?></h3>
+                            <div class="block-options">
+                                <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
+                                    <i class="fa fa-fw fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="block-content block-content-full font-size-sm">
+                            <p>Silahkan pilih tipe file cetak yang kamu inginkan!</p>
+                            <div class="text-center">
+                                <a href="<?=base_url('kelas/rombel_lihat/').$this->uri->segment(3).'/xlsx';?>" title="Klik Berikut Untuk Download tipe .xlsx">
+                                    <button type="button" class="btn btn-rounded btn-success">
+                                        <i class="far fa-file-excel"></i> Spreadsheet
+                                    </button>
+                                </a>
+                            <a href="<?=base_url('kelas/rombel_lihat/').$this->uri->segment(3).'/pdf';?>" title="Klik Berikut Untuk Download tipe .pdf">
+                                <button type="button" class="btn btn-rounded btn-danger">
+                                    <i class="far fa-file-pdf"></i> PDF
+                                </button>
+                            </a>
+                            </div>
+                        </div>
+                        <div class="block-content block-content-full text-right border-top">
+                            <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal"><i class="fa fa-check mr-1"></i>Tutup</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 </div>
 <!-- END Page Content -->
 

@@ -18,6 +18,8 @@
         <!-- END Icons -->
 
         <!-- Stylesheets -->
+        <!-- PageJS CSS Plugins -->
+        <link rel="stylesheet" href="<?=base_url('assets/js/plugins/select2/css/select2.min.css')?>">
         <!-- Fonts and OneUI framework -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400italic,600,700%7COpen+Sans:300,400,400italic,600,700">
         <link rel="stylesheet" id="css-main" href="<?=base_url('assets/css/oneui.min.css')?>">
@@ -115,6 +117,77 @@
                     </a>
                     <!-- END Logo -->
 
+                    <!-- Options -->
+                    <div>
+                        <!-- Color Variations -->
+                        <div class="dropdown d-inline-block ml-3">
+                            <a class="text-dual font-size-sm" id="sidebar-themes-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">
+                                <i class="si si-drop"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right font-size-sm smini-hide border-0" aria-labelledby="sidebar-themes-dropdown">
+                                <!-- Color Themes -->
+                                <!-- Layout API, functionality initialized in Template._uiHandleTheme() -->
+                                <a class="dropdown-item d-flex align-items-center justify-content-between" data-toggle="theme" data-theme="default" href="#">
+                                    <span>Default</span>
+                                    <i class="fa fa-circle text-default"></i>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center justify-content-between" data-toggle="theme" data-theme="assets/css/themes/amethyst.min.css" href="#">
+                                    <span>Amethyst</span>
+                                    <i class="fa fa-circle text-amethyst"></i>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center justify-content-between" data-toggle="theme" data-theme="assets/css/themes/city.min.css" href="#">
+                                    <span>City</span>
+                                    <i class="fa fa-circle text-city"></i>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center justify-content-between" data-toggle="theme" data-theme="assets/css/themes/flat.min.css" href="#">
+                                    <span>Flat</span>
+                                    <i class="fa fa-circle text-flat"></i>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center justify-content-between" data-toggle="theme" data-theme="assets/css/themes/modern.min.css" href="#">
+                                    <span>Modern</span>
+                                    <i class="fa fa-circle text-modern"></i>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center justify-content-between" data-toggle="theme" data-theme="assets/css/themes/smooth.min.css" href="#">
+                                    <span>Smooth</span>
+                                    <i class="fa fa-circle text-smooth"></i>
+                                </a>
+                                <!-- END Color Themes -->
+
+                                <div class="dropdown-divider"></div>
+
+                                <!-- Sidebar Styles -->
+                                <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
+                                <a class="dropdown-item" data-toggle="layout" data-action="sidebar_style_light" href="#">
+                                    <span>Sidebar Light</span>
+                                </a>
+                                <a class="dropdown-item" data-toggle="layout" data-action="sidebar_style_dark" href="#">
+                                    <span>Sidebar Dark</span>
+                                </a>
+                                <!-- Sidebar Styles -->
+
+                                <div class="dropdown-divider"></div>
+
+                                <!-- Header Styles -->
+                                <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
+                                <a class="dropdown-item" data-toggle="layout" data-action="header_style_light" href="#">
+                                    <span>Header Light</span>
+                                </a>
+                                <a class="dropdown-item" data-toggle="layout" data-action="header_style_dark" href="#">
+                                    <span>Header Dark</span>
+                                </a>
+                                <!-- Header Styles -->
+                            </div>
+                        </div>
+                        <!-- END Themes -->
+
+                        <!-- Close Sidebar, Visible only on mobile screens -->
+                        <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
+                        <a class="d-lg-none text-dual ml-3" data-toggle="layout" data-action="sidebar_close" href="javascript:void(0)">
+                            <i class="fa fa-times"></i>
+                        </a>
+                        <!-- END Close Sidebar -->
+                    </div>
+                    <!-- END Options -->
                 </div>
                 <!-- END Side Header -->
 
@@ -134,27 +207,27 @@
                             </a>
                         </li>
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="<?=base_url('presensi')?>">
+                            <a class="nav-main-link" href="<?=base_url('rekappresensi')?>">
                             <i class="nav-main-link-icon si si-note"></i>
                                 <span class="nav-main-link-name">Presensi</span>
                             </a>
                         </li>
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="<?=base_url('nilai')?>">
+                            <a class="nav-main-link" href="<?=base_url('rekapnilai')?>">
                             <i class="nav-main-link-icon si si-layers"></i>
                                 <span class="nav-main-link-name">Nilai</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="<?=base_url('panduan')?>">
+                            <i class="nav-main-link-icon fa fa-book"></i>
+                                <span class="nav-main-link-name">Panduan</span>
                             </a>
                         </li>
                         <li class="nav-main-item">
                             <a class="nav-main-link" href="<?=base_url('pengaturan')?>">
                             <i class="nav-main-link-icon si si-settings"></i>
                                 <span class="nav-main-link-name">Pengaturan</span>
-                            </a>
-                        </li>
-                        <li class="nav-main-item">
-                            <a class="nav-main-link" href="<?=base_url('profil')?>">
-                            <i class="nav-main-link-icon si si-user ml-1"></i>
-                                <span class="nav-main-link-name">Profil</span>
                             </a>
                         </li>
                         <li class="nav-main-item">
@@ -196,7 +269,13 @@
                         <button type="button" class="btn btn-sm btn-dual mr-2 d-none d-lg-inline-block" data-toggle="layout" data-action="sidebar_mini_toggle">
                             <i class="fa fa-fw fa-ellipsis-v"></i>
                         </button>
-                        <span class="badge badge-pill badge-info"><i class="fa fa-info-circle"></i> Tahun Ajaran <?=$this->session->userdata('tahunajaran_nama');?></span>
+                        <!-- Tahun Ajaran  -->
+                        <select id="tahunajaran" class="js-select2 form-control form-control-lg form-control-alt" id="tahunajaran_id" name="tahunajaran_id" style="width: 100%;" data-placeholder="Silahkan pilih tahun ajaran" required>
+                            <option value=""></option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
+                            <?php foreach($tahunajarans as $tahunajaran):?>
+                                <option value="<?php echo $tahunajaran["tahunajaran_id"]?>" <?php if($this->session->userdata('tahunajaran_id')==$tahunajaran["tahunajaran_id"]) echo "selected";?>>Tahun Ajaran <?=$tahunajaran["tahunajaran_nama"]?></option>
+                            <?php endforeach;?>
+                        </select>
                         <!-- END Toggle Mini Sidebar -->
 
                         <!-- END Apps Modal -->
@@ -219,17 +298,11 @@
                                     <img class="img-avatar img-avatar48 img-avatar-thumb" src="<?= base_url ('upload/images/'.$this->session->userdata('foto'));?>" alt="">
                                 </div>
                                 <div class="p-2">
-                                    <h5 class="dropdown-header text-uppercase">User Options</h5>
-                                    <a class="dropdown-item d-flex align-items-center justify-content-between" href="<?=base_url('profil')?>">
-                                        <span>Profil</span>
-                                            <i class="si si-user ml-1"></i>
-                                    </a>
+                                    <h5 class="dropdown-header text-uppercase">Pilihan</h5>
                                     <a class="dropdown-item d-flex align-items-center justify-content-between" href="<?=base_url('pengaturan')?>">
                                         <span>Pengaturan</span>
                                         <i class="si si-settings"></i>
                                     </a>
-                                    <div role="separator" class="dropdown-divider"></div>
-                                    <h5 class="dropdown-header text-uppercase">Aksi</h5>
                                     <a class="dropdown-item d-flex align-items-center justify-content-between" href="<?=base_url('auth/logout')?>">
                                         <span>Log Out</span>
                                         <i class="si si-logout ml-1"></i>
@@ -259,15 +332,190 @@
                                 <div class="flex-sm-fill">
                                     <h1 class="font-w600 text-white mb-0 invisible" data-toggle="appear"><?=$title?></h1>
                                     <h2 class="h4 font-w400 text-white-75 mb-0 invisible" data-toggle="appear" data-timeout="250">Selamat Datang <?= $this->session->userdata('nama');?></h2>
+                                    <div class="text-sm-right">
+                                        <a href="<?=base_url('panduan');?>">
+                                            <button type="button" class="btn btn-light invisible" data-toggle="appear" data-timeout="250">Bingung? Yuk Baca Panduan</button>
+                                        </a>
+                                    </div>
                                 </div>
+                          
                             </div>
                         </div>
                     </div>
                 </div>
                 <!-- END Hero -->
-
                 <!-- Page Content -->
-              
+                <div class="content">
+                    <h2 class="content-heading">Shortcut</h2>
+                    <div class="row">
+                        <div class="col-md-6 col-xl-3">
+                            <!-- Success Color -->
+                            <a href="<?=base_url('rekapnilai');?>">
+                                <div class="block">
+                                    <div class="block-content block-content-full ribbon ribbon-bookmark ribbon-success">
+                                        <div class="ribbon-box">
+                                            Nilai
+                                        </div>
+                                        <div class="text-center py-4">
+                                            <p>
+                                                <i class="fa fa-3x si si-layers text-gray"></i>
+                                            </p>
+                                            <h4 class="mb-0">Selengkapnya</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            <!-- END Success Color -->
+                        </div>
+                        <div class="col-md-6 col-xl-3">
+                            <!-- Info Color -->
+                            <a href="<?=base_url('rekappresensi');?>">
+                                <div class="block">
+                                    <div class="block-content block-content-full ribbon ribbon-bookmark ribbon-info">
+                                        <div class="ribbon-box">
+                                            Presensi
+                                        </div>
+                                        <div class="text-center py-4">
+                                            <p>
+                                                <i class="fa fa-3x si si-note text-gray"></i>
+                                            </p>
+                                            <h4 class="mb-0">Selengkapnya</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            <!-- END Info Color -->
+                        </div>
+                        <div class="col-md-6 col-xl-3">
+                            <!-- Warning Color -->
+                            <a href="<?=base_url('masukan');?>">
+                                <div class="block">
+                                    <div class="block-content block-content-full ribbon ribbon-bookmark ribbon-warning">
+                                        <div class="ribbon-box">
+                                            Kirim Masukan
+                                        </div>
+                                        <div class="text-center py-4">
+                                            <p>
+                                                <i class="fa fa-3x fab fa-rocketchat ml-1 text-gray"></i>
+                                            </p>
+                                            <h4 class="mb-0">Selengkapnya</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            <!-- END Warning Color -->
+                        </div>
+                        <div class="col-md-6 col-xl-3">
+                            <!-- Danger Color -->
+                            <a href="<?=base_url('pengaturan');?>">
+                                <div class="block">
+                                    <div class="block-content block-content-full ribbon ribbon-bookmark ribbon-danger">
+                                        <div class="ribbon-box">
+                                            Pengaturan
+                                        </div>
+                                        <div class="text-center py-4">
+                                            <p>
+                                                <i class="fa fa-3x si si-settings text-gray"></i>
+                                            </p>
+                                            <h4 class="mb-0">Selengkapnya</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            <!-- END Danger Color -->
+                        </div>
+                    </div>
+                    <!-- Jadwal  -->
+                    <div class="row row-deck">
+                        <div class="col-lg-12">
+                            <div class="block block-mode-loading-oneui">
+                                <div class="block-header border-bottom">
+                                    <h3 class="block-title">Jadwal Kamu!</h3>
+                                    <div class="block-options">
+                                        <button type="button" class="btn-block-option" data-toggle="block-option" data-action="state_toggle" data-action-mode="demo">
+                                            <i class="si si-refresh"></i>
+                                        </button>
+                                        <a href="<?=base_url('pengaturan');?>">
+                                            <button type="button" class="btn-block-option">
+                                                <i class="si si-settings"></i>
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="block-content block-content-full">
+                                    <div class="table-responsive">
+                                <table class="table table-bordered table-striped table-vcenter">
+                                    <thead>
+                                        <tr class="text-center">
+                                            <th>Mata Pelajaran</th>
+                                            <th>Tutor</th>
+                                            <th>Waktu</th>
+                                        </tr>
+                                    </thead>
+                                     
+                                    <tbody>
+                                       <?php
+                                            $id = $this->session->userdata('id');
+                                            $tahun = $this->session->userdata('tahunajaran_id');
+                                            
+                                            foreach($haris as $hari){
+                                                $dinten = $hari['hari'];
+                                                $matpels = $dasbor->getJadwal($id,$tahun,addslashes($dinten));
+                                        ?>
+                                            <tr style="background-color: transparent;">
+                                                <th colspan="3">
+                                                    <?php echo $hari['hari'];?>
+                                                </th>
+                                             </tr>
+                                             
+                                      <?php foreach ($matpels as $matpel):?>
+
+                                            <tr>
+                                                <td>
+                                                    <?php echo $matpel["matpel_nama"];?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $matpel["tutor_nama"];?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $matpel["jadwal_waktu"];?>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach;?>                                                             
+                                            
+                                    <?php }?>
+                                    <tr style="background-color: transparent;">
+                                        <th colspan="3">Lainnya</th>
+                                    </tr>
+                                    <?php $others = $dasbor->getOther($id,$tahun);
+                                        foreach ($others as $other):?>
+                                                 <tr>
+                                                <td>
+                                                    <?php echo $other["matpel_nama"];?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $other["tutor_nama"];?>
+                                                </td>
+                                                <td>
+                                                    <strong>
+                                                        <?php echo $other["tipe"];?>
+                                                    </strong>
+                                                </td>
+                                            </tr>
+                                            <?php endforeach;?>  
+
+                                    
+                                        
+
+                                    </tbody>
+                                </table>
+                            </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END Jadwal -->
+                </div>
                 <!-- END Page Content -->
 
             </main>
@@ -317,10 +565,27 @@
         -->
         <script src="<?=base_url('assets/js/oneui.app.min.js')?>"></script>
 
-        <!-- Page JS Plugins -->
-        <script src="<?=base_url('assets/js/plugins/chart.js/Chart.bundle.min.js')?>"></script>
+        <!-- PageJS Plugins -->
+         <script src="<?=base_url('assets/js/plugins/select2/js/select2.full.min.js');?>"></script>
 
         <!-- Page JS Code -->
         <script src="<?=base_url('assets/js/pages/be_pages_dashboard.min.js')?>"></script>
+        <script type="text/javascript">
+             jQuery(function(){
+                $("#tahunajaran").change(function(){
+                    var id=this.value;
+                    $.ajax({
+                        type:'POST',
+                        url:'<?php echo base_url('dasbor/setTahunajaran');?>',
+                        data:{tahunajaran_id:id},
+                        success:function(data){
+                            location.reload();
+                        }
+
+                    });
+                });
+                One.helpers(['select2']); 
+        });
+        </script>
     </body>
 </html>

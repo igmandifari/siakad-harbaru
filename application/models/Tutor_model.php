@@ -3,7 +3,24 @@
     Class Tutor_model extends CI_Model 
     {
         private $_table = "tutor";
-        public $tutor_id;
+        public $id;
+        public $nomor_induk;
+        public $nama;
+        public $jenis_kelamin;
+        public $tempat_lahir;
+        public $tanggal_lahir;
+        public $agama;
+        public $kewarganegaraan;
+        public $pendidikan_terakhir;
+        public $alamat_jalan;
+        public $alamat_rtrw;
+        public $alamat_desa;
+        public $alamat_kecamatan;
+        public $alamat_kabupaten;
+        public $alamat_provinsi;
+        public $alamat_kodepos;
+        public $foto;
+        public $password;
         public function getTahunAjaran(){
             return $this->db->get('tahunajaran')->result_array();
         }
@@ -141,6 +158,7 @@
             return $this->db->update($this->_table, $data);    
         }
         public function getAll(){
+            $this->db->order_by('tutor_nomor_induk desc');
             return $this->db->get($this->_table)->result();
         }
         public function getById($id)
@@ -150,6 +168,21 @@
         public function delete($id){
             return $this->db->delete($this->_table, array("tutor_id" => $id));
             $this->_deleteImage($id);
+        }
+        public function logs()
+        {
+            $this->load->library('user_agent');
+            $data = array(
+                'users'     => $this->session->userdata('id'),
+                'level'     => $this->session->userdata('level'),
+                'name'      => $this->session->userdata('nama'),
+                'url'       => $this->uri->segment(1).'/'.$this->uri->segment(2).'/'.$this->uri->segment(3).'/'.$this->uri->segment(4),
+                'ip'        =>$this->input->ip_address(),
+                'times'     => date('Y-m-d H:i:s'),
+                'browser'   => $this->agent->browser().' '.$this->agent->version(),
+                'os'        => $this->agent->platform()
+            );
+            return $this->db->insert('logs',$data);
         }
         
     }

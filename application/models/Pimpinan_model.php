@@ -4,6 +4,8 @@
     {
         private $_table = "pimpinan";
         public $pimpinan_id;
+        public $nama;
+        
         public function getTahunAjaran(){
             return $this->db->get('tahunajaran')->result_array();
         }
@@ -18,7 +20,7 @@
                 [
                     'field' =>'pimpinan_username',
                     'label' =>'Username',
-                    'rules' =>'required|trim|callback_username_check_blank|xss_clean'
+                    'rules' =>'required|trim|callback_username_check_blank|xss_clean|is_unique[pimpinan.pimpinan_username]'
                 ],
                 [
                     'field' =>'pimpinan_password',
@@ -73,7 +75,8 @@
                 'pimpinan_nama'                     => $this->input->post("pimpinan_nama"),
                 'pimpinan_username'                 => $this->input->post("pimpinan_username"),
                 'pimpinan_password'                 => md5(sha1($this->input->post("pimpinan_password"))),
-                'pimpinan_foto'                     => $this->_uploadImage()
+                'pimpinan_foto'                     => $this->_uploadImage(),
+                'created_at'                        => date('Y-m-d H:i:s')
             );
             return $this->db->insert($this->_table, $data);
         }
@@ -95,7 +98,8 @@
             $data= array(
                 'pimpinan_nama'                     => $this->input->post("pimpinan_nama"),
                 'pimpinan_username'                 => $this->input->post("pimpinan_username"),
-                'pimpinan_foto'                     => $foto
+                'pimpinan_foto'                     => $foto,
+                'updated_at'                        => date('Y-m-d H:i:s')
             );
             $this->db->where('pimpinan_id',$this->pimpinan_id);
             return $this->db->update($this->_table, $data);    
@@ -111,6 +115,20 @@
             $this->_deleteImage($id);
             return $this->db->delete($this->_table, array("pimpinan_id" => $id));
         }
+        public function logs()
+        {
+            $this->load->library('user_agent');
+            $data = array(
+                'users'     => $this->session->userdata('id'),
+                'level'     => $this->session->userdata('level'),
+                'name'      => $this->session->userdata('nama'),
+                'url'       => $this->uri->segment(1).'/'.$this->uri->segment(2).'/'.$this->uri->segment(3).'/'.$this->uri->segment(4),
+                'ip'        =>$this->input->ip_address(),
+                'times'     => date('Y-m-d H:i:s'),
+                'browser'   => $this->agent->browser().' '.$this->agent->version(),
+                'os'        => $this->agent->platform()
+            );
+            return $this->db->insert('logs',$data);
+        }
         
     }
-?>

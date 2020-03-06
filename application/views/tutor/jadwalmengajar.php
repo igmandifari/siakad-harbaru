@@ -220,15 +220,15 @@
                             </a>
                         </li>
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="<?=base_url('pengaturan')?>">
-                            <i class="nav-main-link-icon si si-settings"></i>
-                                <span class="nav-main-link-name">Pengaturan</span>
+                            <a class="nav-main-link" href="<?=base_url('panduan')?>">
+                            <i class="nav-main-link-icon fa fa-book"></i>
+                                <span class="nav-main-link-name">Panduan</span>
                             </a>
                         </li>
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="<?=base_url('profil')?>">
-                            <i class="nav-main-link-icon si si-user ml-1"></i>
-                                <span class="nav-main-link-name">Profil</span>
+                            <a class="nav-main-link" href="<?=base_url('pengaturan')?>">
+                            <i class="nav-main-link-icon si si-settings"></i>
+                                <span class="nav-main-link-name">Pengaturan</span>
                             </a>
                         </li>
                         <li class="nav-main-item">
@@ -293,17 +293,11 @@
                                     <img class="img-avatar img-avatar48 img-avatar-thumb" src="<?= base_url ('upload/images/'.$this->session->userdata('foto'));?>" alt="">
                                 </div>
                                 <div class="p-2">
-                                    <h5 class="dropdown-header text-uppercase">User Options</h5>
-                                    <a class="dropdown-item d-flex align-items-center justify-content-between" href="<?=base_url('profil')?>">
-                                        <span>Profil</span>
-                                            <i class="si si-user ml-1"></i>
-                                    </a>
+                                    <h5 class="dropdown-header text-uppercase">Pilihan</h5>
                                     <a class="dropdown-item d-flex align-items-center justify-content-between" href="<?=base_url('pengaturan')?>">
                                         <span>Pengaturan</span>
                                         <i class="si si-settings"></i>
                                     </a>
-                                    <div role="separator" class="dropdown-divider"></div>
-                                    <h5 class="dropdown-header text-uppercase">Aksi</h5>
                                     <a class="dropdown-item d-flex align-items-center justify-content-between" href="<?=base_url('auth/logout')?>">
                                         <span>Log Out</span>
                                         <i class="si si-logout ml-1"></i>
@@ -349,11 +343,9 @@
                         <div class="block-header block-header-default">
                             <h3 class="block-title"><?=$title;?></h3>
                             <div class="block-options">
-                                <a href="<?=base_url('jadwalmengajar/cetak');?>">
-                                    <button type="button" class="btn btn-sm btn-secondary">
-                                        Cetak
-                                    </button>
-                                </a>
+                                <button type="button" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#modal-cetak">
+                                    Cetak
+                                </button>
 
                                 <a href="<?=base_url('presensi');?>">
                                     <button type="button" class="btn btn-sm btn-info">
@@ -405,6 +397,40 @@
                         </div>
                     </div>
                     <!-- End Jadwal -->
+                     <div class="modal fade" id="modal-cetak" tabindex="-1" role="dialog" aria-labelledby="modal-block-fadein" style="display: none;" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="block block-themed block-transparent mb-0">
+                                    <div class="block-header bg-primary-dark">
+                                        <h3 class="block-title">Cetak <?=$title;?></h3>
+                                        <div class="block-options">
+                                            <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
+                                                <i class="fa fa-fw fa-times"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="block-content block-content-full font-size-sm">
+                                        <p>Silahkan pilih tipe file cetak yang kamu inginkan!</p>
+                                        <div class="text-center">
+                                            <a href="<?=base_url('jadwalmengajar/cetak/xlsx');?>" title="Klik Berikut Untuk Download tipe .xlsx">
+                                                <button type="button" class="btn btn-rounded btn-success">
+                                                    <i class="far fa-file-excel"></i> Spreadsheet
+                                                </button>
+                                            </a>
+                                            <a href="<?=base_url('jadwalmengajar/cetak/pdf');?>" title="Klik Berikut Untuk Download tipe .PDF">
+                                                <button type="button" class="btn btn-rounded btn-danger">
+                                                    <i class="far fa-file-pdf"></i> PDF
+                                                </button>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="block-content block-content-full text-right border-top">
+                                        <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal"><i class="fa fa-check mr-1"></i>Tutup</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <!-- END Page Content -->
 

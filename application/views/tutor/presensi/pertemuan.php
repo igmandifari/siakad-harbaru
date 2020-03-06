@@ -21,6 +21,7 @@
         <!-- Page JS Plugins CSS -->
         <link rel="stylesheet" href="<?=base_url('assets/js/plugins/datatables/dataTables.bootstrap4.css')?>">
         <link rel="stylesheet" href="<?=base_url('assets/js/plugins/select2/css/select2.min.css')?>">
+        <link rel="stylesheet" href="<?=base_url('assets/js/plugins/sweetalert2/sweetalert2.min.css');?>">
         <!-- Fonts and OneUI framework -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400italic,600,700%7COpen+Sans:300,400,400italic,600,700">
         <link rel="stylesheet" id="css-main" href="<?=base_url('assets/css/oneui.min.css')?>">
@@ -220,15 +221,15 @@
                             </a>
                         </li>
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="<?=base_url('pengaturan')?>">
-                            <i class="nav-main-link-icon si si-settings"></i>
-                                <span class="nav-main-link-name">Pengaturan</span>
+                            <a class="nav-main-link" href="<?=base_url('panduan')?>">
+                            <i class="nav-main-link-icon fa fa-book"></i>
+                                <span class="nav-main-link-name">Panduan</span>
                             </a>
                         </li>
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="<?=base_url('profil')?>">
-                            <i class="nav-main-link-icon si si-user ml-1"></i>
-                                <span class="nav-main-link-name">Profil</span>
+                            <a class="nav-main-link" href="<?=base_url('pengaturan')?>">
+                            <i class="nav-main-link-icon si si-settings"></i>
+                                <span class="nav-main-link-name">Pengaturan</span>
                             </a>
                         </li>
                         <li class="nav-main-item">
@@ -290,17 +291,11 @@
                                     <img class="img-avatar img-avatar48 img-avatar-thumb" src="<?= base_url ('upload/images/'.$this->session->userdata('foto'));?>" alt="">
                                 </div>
                                 <div class="p-2">
-                                    <h5 class="dropdown-header text-uppercase">User Options</h5>
-                                    <a class="dropdown-item d-flex align-items-center justify-content-between" href="<?=base_url('profil')?>">
-                                        <span>Profil</span>
-                                            <i class="si si-user ml-1"></i>
-                                    </a>
+                                    <h5 class="dropdown-header text-uppercase">Pilihan</h5>
                                     <a class="dropdown-item d-flex align-items-center justify-content-between" href="<?=base_url('pengaturan')?>">
                                         <span>Pengaturan</span>
                                         <i class="si si-settings"></i>
                                     </a>
-                                    <div role="separator" class="dropdown-divider"></div>
-                                    <h5 class="dropdown-header text-uppercase">Aksi</h5>
                                     <a class="dropdown-item d-flex align-items-center justify-content-between" href="<?=base_url('auth/logout')?>">
                                         <span>Log Out</span>
                                         <i class="si si-logout ml-1"></i>
@@ -324,16 +319,11 @@
             <!-- Page Content -->
                 <div class="content">
                     <!-- Jadwal -->
-                    <?php foreach($pertemuans as $data){
-                            $kelas = $data->kelas_nama;
-                            $matpel = $data->matpel_nama;
-                        }
-                        ?>
                     <div class="block">
                         <div class="block-header block-header-default">
-                            <h3 class="block-title">Data Pertemuan <?=$kelas;?></h3>
+                            <h3 class="block-title">Data Pertemuan <?=$kelas['kelas_nama'];?></h3>
                             <div class="block-options">
-                                <a href="<?=base_url('presensi/detail/').$this->uri->segment(3);?>">
+                                <a href="<?=base_url('presensi/details/').$this->uri->segment(3);?>">
                                     <button type="button" class="btn btn-sm btn-secondary">
                                         Detail
                                     </button>
@@ -355,25 +345,33 @@
 
                         <div class="block-content block-content-full">
                             <p>
-                                Berikut ini data-data presensi Tatap Muka yang Ibu/Bapak pernah lakukan pada mata pelajaran <?php echo $matpel;?>.
+                                Berikut ini data-data presensi Tatap Muka yang Ibu/Bapak pernah lakukan pada mata pelajaran <?php echo $kelas['matpel_nama'];?>.
                             </p>
                             <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _es6/pages/be_tables_datatables.js -->
                             <div class="table-responsive">
                                 <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
                                     <thead class="text-center">
                                         <tr>
-                                            <th width="10%">NO</th>
+                                            <th width="5%">NO</th>
                                             <th>Tanggal</th>
+                                            <th width="10%">Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php $no=0;foreach($pertemuans as $pertemuan):$no++?>
-                                            <tr>
+                                            <tr id="<?=$pertemuan->presensi_id;?>">
                                                 <td class="text-center"><?=$no;?></td>
                                                 <td>
                                                     <a href="<?=base_url('presensi/jadwal/').$this->uri->segment(3).'/'.$pertemuan->presensi_id?>">
-                                                    <button type="button" class="btn btn-info js-click-ripple-enabled btn-lg" data-toggle="click-ripple" style="overflow: hidden; position: relative; z-index: 1; width:100%;"><span class="click-ripple animate" style="height: 87.2656px; width: 87.2656px; top: -21.625px; left: 31.375px;"></span><?=$pertemuan->presensi_tanggal?></button></td>
+                                                    <button type="button" class="btn btn-info js-click-ripple-enabled btn-lg" data-toggle="click-ripple" style="overflow: hidden; position: relative; z-index: 1; width:100%;"><span class="click-ripple animate" style="height: 87.2656px; width: 87.2656px; top: -21.625px; left: 31.375px;"></span><?=date("d-F-Y",strtotime($pertemuan->presensi_tanggal))?></button></td>
                                                 </a>
+                                                <td class="text-center">
+                                                    
+                                                        <button type="button" class="hapus btn btn-sm btn-warning js-tooltip-enabled push mb-md-0">
+                                                            <i class="fa fa-fw fa-times"></i> Hapus
+                                                        </button>
+                                                    
+                                                </td>
                                             </tr>
                                             
                                                 
@@ -452,6 +450,8 @@
         <script src="<?=base_url('assets/js/plugins/datatables/jquery.dataTables.min.js')?>"></script>
         <script src="<?=base_url('assets/js/plugins/datatables/dataTables.bootstrap4.min.js')?>"></script>
         <script src="<?=base_url('assets/js/plugins/select2/js/select2.full.min.js');?>"></script>
+        <script src="<?=base_url('assets/js/plugins/es6-promise/es6-promise.auto.min.js');?>"></script>
+        <script src="<?=base_url('assets/js/plugins/sweetalert2/sweetalert2.min.js');?>"></script>
 
         <!-- Page JS Code -->
         <script src="<?=base_url('assets/js/pages/be_tables_datatables.min.js')?>"></script>
@@ -470,6 +470,48 @@
                     });
                 });
                 One.helpers(['select2']);
+                // Dialog confirmation delete start
+                    $(".hapus").on("click",function(){
+                       
+                        var id = $(this).parents("tr").attr("id");
+                        Swal.fire({
+                            title:"Peringatan",
+                            text:"Apakah kamu benar ingin menghapus ini?",
+                            type:"warning",
+                            showCancelButton:!0,
+                            customClass:{
+                                confirmButton:"btn btn-danger m-1",
+                                cancelButton:"btn btn-secondary m-1"
+                            },
+                            buttonsStyling:false,
+                            confirmButtonText:"Ya, hapus ini!",
+                            html:!1,
+                            preConfirm:function(Swal){
+                                return new Promise(function(Swal){
+                                    setTimeout(function(){
+                                        Swal()},
+                                        50)}
+                                    )}
+                            }).then(function(n){
+                                n.value?$.ajax({
+                                        url: '<?php echo base_url().$this->uri->segment(1).'/'.'hapus/';?>'+id+'/<?=$this->uri->segment(3);?>',
+                                        type: 'DELETE',
+                                        error: function() {
+                                            Swal.fire("Oops...", "Terjadi kesalahan", "error");
+                                        },success: function(data) {
+                                            $("#"+id).remove();
+                                            Swal.fire(
+                                                "Berhasil",
+                                                "Data berhasil dihapus.",
+                                                "success");
+                                        }}):"cancel"===n.dismiss&&Swal.fire(
+                                        "Dibatalkan",
+                                        "Tenang, data masih ada :)",
+                                        "error")
+                            })
+                })
+    
+                 // End Dialog confirmation 
             });
         </script>
         
