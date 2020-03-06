@@ -164,26 +164,26 @@
                             </a>
                         </li>
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="<?=base_url('jadwalmengajar')?>">
-                            <i class="nav-main-link-icon far fa-calendar-times"></i>
-                                <span class="nav-main-link-name">Jadwal</span>
+                            <a class="nav-main-link" href="<?=base_url('dasbor/wargabelajar')?>">
+                            <i class="nav-main-link-icon fa fa-users"></i>
+                                <span class="nav-main-link-name">Wargabelajar</span>
                             </a>
                         </li>
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="<?=base_url('presensi')?>">
-                            <i class="nav-main-link-icon si si-note"></i>
-                                <span class="nav-main-link-name">Presensi</span>
+                            <a class="nav-main-link" href="<?=base_url('dasbor/tutor')?>">
+                            <i class="nav-main-link-icon fa fa-users"></i>
+                                <span class="nav-main-link-name">Tutor</span>
                             </a>
                         </li>
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="<?=base_url('nilai')?>">
-                            <i class="nav-main-link-icon si si-layers"></i>
-                                <span class="nav-main-link-name">Nilai</span>
+                            <a class="nav-main-link" href="<?=base_url('dasbor/kelas')?>">
+                            <i class="nav-main-link-icon fa fa-door-open"></i>
+                                <span class="nav-main-link-name">Kelas</span>
                             </a>
                         </li>
                         <li class="nav-main-item">
                             <a class="nav-main-link" href="<?=base_url('panduan')?>">
-                            <i class="nav-main-link-icon fab fa-rocketchat ml-1"></i>
+                            <i class="nav-main-link-icon fa fa-book"></i>
                                 <span class="nav-main-link-name">Panduan</span>
                             </a>
                         </li>
@@ -199,6 +199,9 @@
                                 <span class="nav-main-link-name">Keluar</span>
                             </a>
                         </li>
+                        
+                   
+                       
                     </ul>
                 </div>
                 <!-- END Side Navigation -->

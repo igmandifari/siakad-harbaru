@@ -5,7 +5,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
-        <title>Panduan</title>
+        <title><?=$title?></title>
 
         <meta name="robots" content="noindex, nofollow">
 
@@ -21,6 +21,7 @@
         <!-- Fonts and OneUI framework -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400italic,600,700%7COpen+Sans:300,400,400italic,600,700">
         <link rel="stylesheet" id="css-main" href="<?=base_url('assets/css/oneui.min.css')?>">
+        <link rel="stylesheet" href="<?=base_url('assets/js/plugins/datatables/dataTables.bootstrap4.css');?>">
 
         <!-- You can include a specific file from css/themes/ folder to alter the default color theme of the template. eg: -->
         <!-- <link rel="stylesheet" id="css-theme" href="assets/css/themes/amethyst.min.css"> -->
@@ -83,15 +84,11 @@
                     </div>
                     <!-- END User Info -->
 
-                    <!-- Close Side Overlay -->
-                    <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
-                    <a class="ml-auto btn btn-sm btn-dual" href="javascript:void(0)" data-toggle="layout" data-action="side_overlay_close">
-                        <i class="fa fa-fw fa-times text-danger"></i>
-                    </a>
-                    <!-- END Close Side Overlay -->
+                  
                 </div>
                 <!-- END Side Header -->
 
+                
             </aside>
             <!-- END Side Overlay -->
 
@@ -119,77 +116,6 @@
                     </a>
                     <!-- END Logo -->
 
-                    <!-- Options -->
-                    <div>
-                        <!-- Color Variations -->
-                        <div class="dropdown d-inline-block ml-3">
-                            <a class="text-dual font-size-sm" id="sidebar-themes-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">
-                                <i class="si si-drop"></i>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right font-size-sm smini-hide border-0" aria-labelledby="sidebar-themes-dropdown">
-                                <!-- Color Themes -->
-                                <!-- Layout API, functionality initialized in Template._uiHandleTheme() -->
-                                <a class="dropdown-item d-flex align-items-center justify-content-between" data-toggle="theme" data-theme="default" href="#">
-                                    <span>Default</span>
-                                    <i class="fa fa-circle text-default"></i>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center justify-content-between" data-toggle="theme" data-theme="assets/css/themes/amethyst.min.css" href="#">
-                                    <span>Amethyst</span>
-                                    <i class="fa fa-circle text-amethyst"></i>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center justify-content-between" data-toggle="theme" data-theme="assets/css/themes/city.min.css" href="#">
-                                    <span>City</span>
-                                    <i class="fa fa-circle text-city"></i>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center justify-content-between" data-toggle="theme" data-theme="assets/css/themes/flat.min.css" href="#">
-                                    <span>Flat</span>
-                                    <i class="fa fa-circle text-flat"></i>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center justify-content-between" data-toggle="theme" data-theme="assets/css/themes/modern.min.css" href="#">
-                                    <span>Modern</span>
-                                    <i class="fa fa-circle text-modern"></i>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center justify-content-between" data-toggle="theme" data-theme="assets/css/themes/smooth.min.css" href="#">
-                                    <span>Smooth</span>
-                                    <i class="fa fa-circle text-smooth"></i>
-                                </a>
-                                <!-- END Color Themes -->
-
-                                <div class="dropdown-divider"></div>
-
-                                <!-- Sidebar Styles -->
-                                <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
-                                <a class="dropdown-item" data-toggle="layout" data-action="sidebar_style_light" href="#">
-                                    <span>Sidebar Light</span>
-                                </a>
-                                <a class="dropdown-item" data-toggle="layout" data-action="sidebar_style_dark" href="#">
-                                    <span>Sidebar Dark</span>
-                                </a>
-                                <!-- Sidebar Styles -->
-
-                                <div class="dropdown-divider"></div>
-
-                                <!-- Header Styles -->
-                                <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
-                                <a class="dropdown-item" data-toggle="layout" data-action="header_style_light" href="#">
-                                    <span>Header Light</span>
-                                </a>
-                                <a class="dropdown-item" data-toggle="layout" data-action="header_style_dark" href="#">
-                                    <span>Header Dark</span>
-                                </a>
-                                <!-- Header Styles -->
-                            </div>
-                        </div>
-                        <!-- END Themes -->
-
-                        <!-- Close Sidebar, Visible only on mobile screens -->
-                        <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
-                        <a class="d-lg-none text-dual ml-3" data-toggle="layout" data-action="sidebar_close" href="javascript:void(0)">
-                            <i class="fa fa-times"></i>
-                        </a>
-                        <!-- END Close Sidebar -->
-                    </div>
-                    <!-- END Options -->
                 </div>
                 <!-- END Side Header -->
 
@@ -203,7 +129,7 @@
                             </a>
                         </li>
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="<?=base_url('dasbor/wargabelajar')?>">
+                            <a class="nav-main-link active" href="<?=base_url('dasbor/wargabelajar')?>">
                             <i class="nav-main-link-icon fa fa-users"></i>
                                 <span class="nav-main-link-name">Wargabelajar</span>
                             </a>
@@ -221,7 +147,7 @@
                             </a>
                         </li>
                         <li class="nav-main-item">
-                            <a class="nav-main-link active" href="<?=base_url('panduan')?>">
+                            <a class="nav-main-link" href="<?=base_url('panduan')?>">
                             <i class="nav-main-link-icon fa fa-book"></i>
                                 <span class="nav-main-link-name">Panduan</span>
                             </a>
@@ -287,7 +213,7 @@
                                     <img class="img-avatar img-avatar48 img-avatar-thumb" src="<?= base_url ('upload/images/'.$this->session->userdata('foto'));?>" alt="">
                                 </div>
                                 <div class="p-2">
-                                    <h5 class="dropdown-header text-uppercase">Options</h5>
+                                    <h5 class="dropdown-header text-uppercase">Pilihan</h5>
                                     <a class="dropdown-item d-flex align-items-center justify-content-between" href="<?=base_url('pengaturan')?>">
                                         <span>Pengaturan</span>
                                         <i class="si si-settings"></i>
@@ -313,41 +239,48 @@
             <!-- Main Container -->
             <main id="main-container">
 
+
                 <!-- Page Content -->
                 <div class="content">
-                     <div class="block">
+                    <div class="block">
+        
                         <div class="block-header block-header-default">
-                            <h3 class="block-title">Panduan</h3>
-                            <div class="block-options">
-                                <a href="<?=base_url('panduan');?>">
-                                    <button type="button" class="btn btn-sm btn-primary">
-                                        Reload
-                                    </button>
-                                </a>
-                                <a href="<?=base_url();?>">
-                                    <button type="button" class="btn btn-sm btn-light">
-                                        Kembali
-                                    </button>
+                            <h3 class="block-title"><?=$title;?></h3>
+                        </div>
+                   
+                        <div class="block-content">
+                            <p class="font-size-sm text-muted">
+                                Berikut ini adalah seluruh <?=$title;?>
+                            </p>
+                            <div class="table-responsive">
+                                <table id="jadwal" class="table table-bordered table-striped table-vcenter js-dataTable-full">
+                                    <thead>
+                                        <tr class="text-center">
+                                            <th>No</th>
+                                            <th>Nomor Induk</th>
+                                            <th>NISN</th>
+                                            <th>Nama</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php $no=0;foreach($wargabelajars as $wargabelajar):$no++?>
+                                            <tr id="<?=$wargabelajar->wargabelajar_id;?>">
+                                                <td class="text-center"><?=$no;?></td>
+                                                <td><?=$wargabelajar->wargabelajar_nomor_induk;?>
+                                                <td><?=$wargabelajar->wargabelajar_nisn;?>
+                                                <td><?=$wargabelajar->wargabelajar_nama;?>
+                                            </tr>
+                                        <?php endforeach;?>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="text-sm-left">
+                                <a href="<?=base_url('dasbor');?>">
+                                    <button type="buttn" class="btn btn-light">Kembali Ke Dasbor</button>
                                 </a>
                             </div>
                         </div>
-                        <div id="content" class="block-content block-content-full">
-                            <div class="col-lg-12" style="height: 20000px!important;">
-                                <iframe frameborder="0" width="100%" height="100%" src="https://docs.google.com/document/d/e/2PACX-1vROX4TO7tQy2O4B6G3C2mAB173r-bUfSI1vxwPOa9CcWv_5PskmGCw2OyqGGb_Xmi1CeXMrc9_bpJ10/pub?embedded=true"></iframe>
-                            </div>
-                            <div class="row push">
-                                <div class="col-lg-6 text-left">
-                                    <a href="<?=base_url('dasbor');?>">
-                                        <button type="button" class="btn btn-light">Kembali Ke Dasbor</button>
-                                    </a>
-                                </div>
-                                <div class="col-lg-6 text-right">
-                                    <a href="#content">
-                                        <button type="button" class="btn btn-light">Kembali Ke Atas</button>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
+                      
                     </div>
                 </div>
                 <!-- END Page Content -->
@@ -398,5 +331,8 @@
             webpack is putting everything together at assets/_es6/main/app.js
         -->
         <script src="<?=base_url('assets/js/oneui.app.min.js')?>"></script>
+        <script src="<?=base_url('assets/js/plugins/datatables/jquery.dataTables.min.js');?>"></script>
+        <script src="<?=base_url('assets/js/plugins/datatables/dataTables.bootstrap4.min.js');?>"></script>
+        <script src="<?=base_url('assets/js/pages/be_tables_datatables.min.js');?>"></script>
     </body>
 </html>

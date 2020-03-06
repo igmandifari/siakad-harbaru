@@ -424,7 +424,7 @@
                                                 $no++;
 
                                                 $id = $wargabelajar["wargabelajar_id"];
-                                                $idnilai = $model->getIDNIilai($this->uri->segment(3),$id,$this->uri->segment(4));
+                                                $idnilai = $model->getIDNIilai($this->uri->segment(3),$id);
 
                                                 
 

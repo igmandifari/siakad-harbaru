@@ -128,26 +128,26 @@
                             </a>
                         </li>
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="<?=base_url('jadwalbelajar')?>">
-                            <i class="nav-main-link-icon far fa-calendar-times"></i>
-                                <span class="nav-main-link-name">Jadwal</span>
+                            <a class="nav-main-link" href="<?=base_url('dasbor/wargabelajar')?>">
+                            <i class="nav-main-link-icon fa fa-users"></i>
+                                <span class="nav-main-link-name">Wargabelajar</span>
                             </a>
                         </li>
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="<?=base_url('rekappresensi')?>">
-                            <i class="nav-main-link-icon si si-note"></i>
-                                <span class="nav-main-link-name">Presensi</span>
+                            <a class="nav-main-link" href="<?=base_url('dasbor/tutor')?>">
+                            <i class="nav-main-link-icon fa fa-users"></i>
+                                <span class="nav-main-link-name">Tutor</span>
                             </a>
                         </li>
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="<?=base_url('rekapnilai')?>">
-                            <i class="nav-main-link-icon si si-layers"></i>
-                                <span class="nav-main-link-name">Nilai</span>
+                            <a class="nav-main-link" href="<?=base_url('dasbor/kelas')?>">
+                            <i class="nav-main-link-icon fa fa-door-open"></i>
+                                <span class="nav-main-link-name">Kelas</span>
                             </a>
                         </li>
                         <li class="nav-main-item">
                             <a class="nav-main-link" href="<?=base_url('panduan')?>">
-                            <i class="nav-main-link-icon fab fa-rocketchat ml-1"></i>
+                            <i class="nav-main-link-icon fa fa-book"></i>
                                 <span class="nav-main-link-name">Panduan</span>
                             </a>
                         </li>
@@ -155,12 +155,6 @@
                             <a class="nav-main-link" href="<?=base_url('pengaturan')?>">
                             <i class="nav-main-link-icon si si-settings"></i>
                                 <span class="nav-main-link-name">Pengaturan</span>
-                            </a>
-                        </li>
-                        <li class="nav-main-item">
-                            <a class="nav-main-link" href="<?=base_url('masukan')?>">
-                            <i class="nav-main-link-icon fab fa-rocketchat ml-1"></i>
-                                <span class="nav-main-link-name">Kirim Masukan</span>
                             </a>
                         </li>
                         <li class="nav-main-item">
@@ -252,7 +246,13 @@
                                 <div class="flex-sm-fill">
                                     <h1 class="font-w600 text-white mb-0 invisible" data-toggle="appear"><?=$title?></h1>
                                     <h2 class="h4 font-w400 text-white-75 mb-0 invisible" data-toggle="appear" data-timeout="250">Selamat Datang <?= $this->session->userdata('nama');?></h2>
+                                    <div class="text-sm-right">
+                                        <a href="<?=base_url('panduan');?>">
+                                            <button type="button" class="btn btn-light invisible" data-toggle="appear" data-timeout="250">Bingung? Yuk Baca Panduan</button>
+                                        </a>
+                                    </div>
                                 </div>
+                          
                             </div>
                         </div>
                     </div>
@@ -260,6 +260,53 @@
                 <!-- END Hero -->
 
                 <!-- Page Content -->
+                <div class="content">
+                    <!-- Link Blocks -->
+                    <h2 class="content-heading">Shortcut</h2>
+                    <div class="row">
+                        <div class="col-md-6 col-xl-3">
+                            <a class="block block-rounded" href="<?=base_url('dasbor/wargabelajar');?>">
+                                <div class="block-header">
+                                    <h3 class="block-title">Data<small> Wargabelajar</small></h3>
+                                </div>
+                                <div class="block-content">
+                                    <p>Klik untuk melihat lebih lengkap...</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-md-6 col-xl-3">
+                            <a class="block block-rounded block-link-rotate" href="<?=base_url('dasbor/tutor');?>">
+                                <div class="block-header">
+                                    <h3 class="block-title">Data <small>Tutor</small></h3>
+                                </div>
+                                <div class="block-content">
+                                    <p>Klik untuk melihat lebih lengkap...</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-md-6 col-xl-3">
+                            <a class="block block-rounded block-link-pop" href="<?=base_url('dasbor/kelas');?>">
+                                <div class="block-header">
+                                    <h3 class="block-title">Data <small>Kelas</small></h3>
+                                </div>
+                                <div class="block-content">
+                                    <p>Klik untuk melihat lebih lengkap...</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-md-6 col-xl-3">
+                            <a class="block block-rounded block-link-shadow" href="<?=base_url('pengaturan');?>">
+                                <div class="block-header">
+                                    <h3 class="block-title">Pengaturan</h3>
+                                </div>
+                                <div class="block-content">
+                                    <p>Klik untuk mengatur akun...</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- END Link Blocks -->
+                </div>
               
                 <!-- END Page Content -->
 

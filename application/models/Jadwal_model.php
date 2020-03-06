@@ -135,7 +135,7 @@ class Jadwal_model extends CI_Model{
         return $this->db->delete($this->_table, array("jadwal_id" => $id));
     }
     public function getKelas($tahun){
-        return $this->db->query("select rombel.rombel_id, kelas_nama from kelas inner join rombel on rombel.kelas_id=kelas.kelas_id where rombel.tahunajaran_id='$tahun'")->result();
+        return $this->db->query("select rombel.rombel_id, kelas.kelas_nama from kelas inner join rombel on rombel.kelas_id=kelas.kelas_id where rombel.tahunajaran_id='$tahun'")->result();
     }
     public function getMatpel(){
         return $this->db->get("matpel")->result();

@@ -51,4 +51,53 @@ class Dasbor extends CI_Controller
             $this->session->set_userdata($data);
         }
     }
+    public function wargabelajar()
+    {
+        if($this->session->userdata('level') != 2){
+            redirect('dasbor');
+        }else{
+            $model = $this->Dasbor_model;
+            $data['title'] = "Wargabelajar";
+            $data['wargabelajars'] = $model->getWargabelajars();
+            $this->load->view('dasbor/pimpinan/wargabelajar',$data);
+        }
+    }
+    public function tutor()
+    {
+        if($this->session->userdata('level') != 2){
+            redirect('dasbor');
+        }else{
+            $model = $this->Dasbor_model;
+            $data['title'] = "Tutor";
+            $data['tutors'] = $model->getTutors();
+            $this->load->view('dasbor/pimpinan/tutor',$data);
+        }
+    }
+    public function kelas($jenis=null,$id=null)
+    {
+        if($this->session->userdata('level') != 2){
+            redirect('dasbor');
+        }else{
+            $model = $this->Dasbor_model;
+            $data['title'] = "Daftar Kelas";
+            $data['tahunajarans'] =  $model->getTahunAjaran();
+            $data['model'] = $model;
+
+            if($jenis=="nilai"){
+                $data["wargabelajars"]= $model->getWargaBelajar($id);
+                $data["jadwal"]= $model->getKelasAndMatpel($id);
+
+                $this->load->view('dasbor/pimpinan/nilai',$data,FALSE);
+            }elseif($jenis=="presensi"){
+                $idpresensi=$model->getIDPresensi($id);
+                if(!$idpresensi) redirect('dasbor/kelas');
+                $data["wargabelajars"] = $model->getWb($idpresensi["presensi_id"]);
+                $data["kelas"] = $model->getNameKelas($id);
+                $data["actor"] = $data["kelas"]["kelas_nama"];
+                $this->load->view('dasbor/pimpinan/presensi',$data);
+            }else{
+                $this->load->view('dasbor/pimpinan/kelas',$data,FALSE);
+            }
+        }
+    }
 }

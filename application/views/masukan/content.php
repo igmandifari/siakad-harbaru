@@ -251,7 +251,7 @@
         </div>
         <div class="block-content block-content-full">
             <div class="table-responsive">
-                <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
+                <table id="table" class="table table-bordered table-striped table-vcenter js-dataTable-full">
                     <thead>
                         <tr class="text-center">
                             <th>NO</th>

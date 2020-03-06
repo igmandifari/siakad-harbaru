@@ -124,7 +124,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="fade fade-right show" id="tutorial-mandiri" role="tabpanel">
+                                    <div class="tab-pane fade fade-right show" id="tutorial-mandiri" role="tabpanel">
                                         <form action="<?php echo base_url('jadwal/tambah_tutorial_mandiri/'.$this->uri->segment(3))?>" method="post">
                                             <div class="form-group">
                                                 <label for="jadwal_tipe_pembelajaran">Tipe Pembelajaran</label>

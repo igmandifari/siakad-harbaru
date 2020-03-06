@@ -55,7 +55,7 @@
         <?php endif;?>
             <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _es6/pages/be_tables_datatables.js -->
             <div class="table-responsive">
-            <table id="jadwal" class="table table-bordered table-striped table-vcenter js-dataTable-full">
+            <table id="table" class="table table-bordered table-striped table-vcenter js-dataTable-full">
                                 <thead>
                                     <tr>
                                         <th>NO</th>

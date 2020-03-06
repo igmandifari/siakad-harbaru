@@ -1,11 +1,10 @@
-
 <!doctype html>
 <html lang="en">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
-        <title>Panduan</title>
+        <title>Rekap Nilai</title>
 
         <meta name="robots" content="noindex, nofollow">
 
@@ -21,6 +20,7 @@
         <!-- Fonts and OneUI framework -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400italic,600,700%7COpen+Sans:300,400,400italic,600,700">
         <link rel="stylesheet" id="css-main" href="<?=base_url('assets/css/oneui.min.css')?>">
+        <link rel="stylesheet" href="<?=base_url('assets/js/plugins/datatables/dataTables.bootstrap4.css');?>">
 
         <!-- You can include a specific file from css/themes/ folder to alter the default color theme of the template. eg: -->
         <!-- <link rel="stylesheet" id="css-theme" href="assets/css/themes/amethyst.min.css"> -->
@@ -83,15 +83,11 @@
                     </div>
                     <!-- END User Info -->
 
-                    <!-- Close Side Overlay -->
-                    <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
-                    <a class="ml-auto btn btn-sm btn-dual" href="javascript:void(0)" data-toggle="layout" data-action="side_overlay_close">
-                        <i class="fa fa-fw fa-times text-danger"></i>
-                    </a>
-                    <!-- END Close Side Overlay -->
+                  
                 </div>
                 <!-- END Side Header -->
 
+                
             </aside>
             <!-- END Side Overlay -->
 
@@ -119,77 +115,6 @@
                     </a>
                     <!-- END Logo -->
 
-                    <!-- Options -->
-                    <div>
-                        <!-- Color Variations -->
-                        <div class="dropdown d-inline-block ml-3">
-                            <a class="text-dual font-size-sm" id="sidebar-themes-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">
-                                <i class="si si-drop"></i>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right font-size-sm smini-hide border-0" aria-labelledby="sidebar-themes-dropdown">
-                                <!-- Color Themes -->
-                                <!-- Layout API, functionality initialized in Template._uiHandleTheme() -->
-                                <a class="dropdown-item d-flex align-items-center justify-content-between" data-toggle="theme" data-theme="default" href="#">
-                                    <span>Default</span>
-                                    <i class="fa fa-circle text-default"></i>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center justify-content-between" data-toggle="theme" data-theme="assets/css/themes/amethyst.min.css" href="#">
-                                    <span>Amethyst</span>
-                                    <i class="fa fa-circle text-amethyst"></i>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center justify-content-between" data-toggle="theme" data-theme="assets/css/themes/city.min.css" href="#">
-                                    <span>City</span>
-                                    <i class="fa fa-circle text-city"></i>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center justify-content-between" data-toggle="theme" data-theme="assets/css/themes/flat.min.css" href="#">
-                                    <span>Flat</span>
-                                    <i class="fa fa-circle text-flat"></i>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center justify-content-between" data-toggle="theme" data-theme="assets/css/themes/modern.min.css" href="#">
-                                    <span>Modern</span>
-                                    <i class="fa fa-circle text-modern"></i>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center justify-content-between" data-toggle="theme" data-theme="assets/css/themes/smooth.min.css" href="#">
-                                    <span>Smooth</span>
-                                    <i class="fa fa-circle text-smooth"></i>
-                                </a>
-                                <!-- END Color Themes -->
-
-                                <div class="dropdown-divider"></div>
-
-                                <!-- Sidebar Styles -->
-                                <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
-                                <a class="dropdown-item" data-toggle="layout" data-action="sidebar_style_light" href="#">
-                                    <span>Sidebar Light</span>
-                                </a>
-                                <a class="dropdown-item" data-toggle="layout" data-action="sidebar_style_dark" href="#">
-                                    <span>Sidebar Dark</span>
-                                </a>
-                                <!-- Sidebar Styles -->
-
-                                <div class="dropdown-divider"></div>
-
-                                <!-- Header Styles -->
-                                <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
-                                <a class="dropdown-item" data-toggle="layout" data-action="header_style_light" href="#">
-                                    <span>Header Light</span>
-                                </a>
-                                <a class="dropdown-item" data-toggle="layout" data-action="header_style_dark" href="#">
-                                    <span>Header Dark</span>
-                                </a>
-                                <!-- Header Styles -->
-                            </div>
-                        </div>
-                        <!-- END Themes -->
-
-                        <!-- Close Sidebar, Visible only on mobile screens -->
-                        <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
-                        <a class="d-lg-none text-dual ml-3" data-toggle="layout" data-action="sidebar_close" href="javascript:void(0)">
-                            <i class="fa fa-times"></i>
-                        </a>
-                        <!-- END Close Sidebar -->
-                    </div>
-                    <!-- END Options -->
                 </div>
                 <!-- END Side Header -->
 
@@ -215,13 +140,13 @@
                             </a>
                         </li>
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="<?=base_url('dasbor/kelas')?>">
+                            <a class="nav-main-link active" href="<?=base_url('dasbor/kelas')?>">
                             <i class="nav-main-link-icon fa fa-door-open"></i>
                                 <span class="nav-main-link-name">Kelas</span>
                             </a>
                         </li>
                         <li class="nav-main-item">
-                            <a class="nav-main-link active" href="<?=base_url('panduan')?>">
+                            <a class="nav-main-link" href="<?=base_url('panduan')?>">
                             <i class="nav-main-link-icon fa fa-book"></i>
                                 <span class="nav-main-link-name">Panduan</span>
                             </a>
@@ -287,7 +212,7 @@
                                     <img class="img-avatar img-avatar48 img-avatar-thumb" src="<?= base_url ('upload/images/'.$this->session->userdata('foto'));?>" alt="">
                                 </div>
                                 <div class="p-2">
-                                    <h5 class="dropdown-header text-uppercase">Options</h5>
+                                    <h5 class="dropdown-header text-uppercase">Pilihan</h5>
                                     <a class="dropdown-item d-flex align-items-center justify-content-between" href="<?=base_url('pengaturan')?>">
                                         <span>Pengaturan</span>
                                         <i class="si si-settings"></i>
@@ -312,43 +237,178 @@
 
             <!-- Main Container -->
             <main id="main-container">
-
-                <!-- Page Content -->
+            <!-- Page Content -->
                 <div class="content">
-                     <div class="block">
+                    <!-- Jadwal -->
+                    <div class="block">
                         <div class="block-header block-header-default">
-                            <h3 class="block-title">Panduan</h3>
+                            <h3 class="block-title"><?php echo "Rekap Nilai ".$jadwal['kelas_nama']." Mata Pelajaran ".$jadwal['matpel_nama'];?></h3>
+                            
                             <div class="block-options">
-                                <a href="<?=base_url('panduan');?>">
-                                    <button type="button" class="btn btn-sm btn-primary">
-                                        Reload
+
+                                <a href="<?=base_url('dasbor/kelas/presensi/').$this->uri->segment(4);?>">
+                                    <button type="button" class="btn btn-sm btn-secondary">
+                                        Presensi
                                     </button>
                                 </a>
-                                <a href="<?=base_url();?>">
+
+                                <a href="<?=base_url('dasbor/kelas/')?>">
                                     <button type="button" class="btn btn-sm btn-light">
                                         Kembali
                                     </button>
                                 </a>
                             </div>
                         </div>
-                        <div id="content" class="block-content block-content-full">
-                            <div class="col-lg-12" style="height: 20000px!important;">
-                                <iframe frameborder="0" width="100%" height="100%" src="https://docs.google.com/document/d/e/2PACX-1vROX4TO7tQy2O4B6G3C2mAB173r-bUfSI1vxwPOa9CcWv_5PskmGCw2OyqGGb_Xmi1CeXMrc9_bpJ10/pub?embedded=true"></iframe>
-                            </div>
-                            <div class="row push">
-                                <div class="col-lg-6 text-left">
-                                    <a href="<?=base_url('dasbor');?>">
-                                        <button type="button" class="btn btn-light">Kembali Ke Dasbor</button>
-                                    </a>
-                                </div>
-                                <div class="col-lg-6 text-right">
-                                    <a href="#content">
-                                        <button type="button" class="btn btn-light">Kembali Ke Atas</button>
-                                    </a>
-                                </div>
-                            </div>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped table-vcenter">
+                                <thead>
+                                    <tr>
+                                        <th colspan="2" class="text-center">Rekap Nilai</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Kelas</td>
+                                        <td>: <?=$jadwal["kelas_nama"];?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Mata Pelajaran</td>
+                                        <td>: <?=$jadwal["matpel_nama"];?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tutor</td>
+                                        <td>: <?=$jadwal["tutor_nama"];?></td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
+                                <thead class="text-center">
+                                    <tr>
+                                        <th rowspan="2" style="vertical-align:middle;"><strong>NO</strong></th>
+                                        <th rowspan="2" style="vertical-align:middle;"><strong>NAMA</strong></th>
+                                        <th colspan="5"><strong>TOTAL</strong></th>
+                                        <th colspan="5"><strong>NILAI</strong></th>
+                                        <th rowspan="2" style="vertical-align:middle;"><strong>Total</strong></th>
+                                        <th rowspan="2" style="vertical-align:middle;"><strong>Rata-Rata</strong></th>
+                                        <th rowspan="2" style="vertical-align:middle;"><strong>Keterangan</strong></th>
+                                    </tr>
+                                    <tr>
+                                        <th width="5%"><strong>Harian</strong></th>
+                                        <th width="5%"><strong>Tugas</strong></th>
+                                        <th width="5%"><strong>PTS</strong></th>
+                                        <th width="5%"><strong>PAS</strong></th>
+                                        <th width="5%"><strong>PAT</strong></th>
+                                        <th width="5%"><strong>Harian</strong></th>
+                                        <th width="5%"><strong>Tugas</strong></th>
+                                        <th width="5%"><strong>PTS</strong></th>
+                                        <th width="5%"><strong>PAS</strong></th>
+                                        <th width="5%"><strong>PAT</strong></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                            $sumTotal=0;
+                                            $sumAverage=0;
+
+                                            $avgOfTotal=0;
+                                            $avgOfavg=0;
+
+                                            $no=0;
+
+                                            foreach($wargabelajars as $wargabelajar){
+
+                                                $no++;
+
+                                                $id = $wargabelajar["wargabelajar_id"];
+                                                $idnilai = $model->getIDNIilai($this->uri->segment(4),$id);
+
+                                                
+
+                                                $nilai = $idnilai["nilai_id"];
+
+                                                $CountPAT = $model->countPAT($nilai);
+                                                $CountPAS = $model->countPAS($nilai);
+                                                $CountPTS = $model->countPTS($nilai);
+                                                $CountTugas = $model->countTugas($nilai);
+                                                $CountHarian = $model->countHarian($nilai);
+
+                                                $sumPAT = $model->sumPAT($nilai);
+                                                $sumPAS = $model->sumPAS($nilai);
+                                                $sumPTS = $model->sumPTS($nilai);
+                                                $sumTugas = $model->sumTugas($nilai);
+                                                $sumHarian = $model->sumHarian($nilai);
+
+                                                $total = $sumPAT['pat']+$sumPTS['pts']+$sumPAS['pas']+$sumTugas['tugas']+$sumHarian['harian'];
+                                                $average = ($total / 5);
+                                                $status;
+
+                                                if($average>=90 && $average<=100){
+                                                    $status ="A";
+                                                }elseif($average>=80 && $average<90){
+                                                    $status = "B";
+                                                }elseif($average>=70 && $average<80){
+                                                    $status = "C";
+                                                }elseif($average>=60 && $average<70){
+                                                    $status = "D";
+                                                }else{
+                                                    $status = "E";
+                                                }
+
+                                                $sumTotal +=$total;
+                                                $sumAverage += $average;
+
+
+
+
+                                        ?>
+                                    <tr>
+                                            <td class="text-center"><?php echo $no;?></td>
+                                            <td>
+                                                <?php echo $wargabelajar["wargabelajar_nama"]."<br>".$wargabelajar["wargabelajar_nomor_induk"];?>
+                                            </td>
+                                            <td class="text-center" style="vertical-align:middle;"><?php echo $CountHarian['harian'];?></td>
+                                            <td class="text-center" style="vertical-align:middle;"><?php echo $CountTugas['tugas'];?></td>
+                                            <td class="text-center" style="vertical-align:middle;"><?php echo $CountPTS['pts'];?></td>
+                                            <td class="text-center" style="vertical-align:middle;"><?php echo $CountPAS['pas'];?></td>
+                                            <td class="text-center" style="vertical-align:middle;"><?php echo $CountPAT['pat'];?></td>
+                                            <td class="text-center" style="vertical-align:middle;"><?php echo number_format($sumHarian['harian'],2);?></td>
+                                            <td class="text-center" style="vertical-align:middle;"><?php echo number_format($sumTugas['tugas'],2);?></td>
+                                            <td class="text-center" style="vertical-align:middle;"><?php echo number_format($sumPTS['pts'],2);?></td>
+                                            <td class="text-center" style="vertical-align:middle;"><?php echo number_format($sumPAS['pas'],2);?></td>
+                                            <td class="text-center" style="vertical-align:middle;"><?php echo number_format($sumPAT['pat'],2);?></td>
+                                            <td class="text-center" style="vertical-align:middle;"><?php echo number_format($total,2);?></td>
+                                            <td class="text-center" style="vertical-align:middle;"><?php echo number_format($average,2);?></td>
+                                            <td class="text-center" style="vertical-align:middle;"><?php echo $status;?></td>
+                                    </tr>
+                                        <?php } 
+                                            $avgOfTotal=$sumTotal/$no;
+                                            $avgOfavg=$sumAverage/$no;
+                                        ?>
+                                    <tr>
+                                            <th colspan="12">Total</th>
+                                            <td class="text-center"><?php echo number_format($sumTotal,2);?></td>
+                                            <td class="text-center"><?php echo number_format($sumAverage,2);?></td>
+                                            <td class="text-center"></td>
+                                    </tr>
+                                    <tr>
+                                            <th colspan="12">Rata-Rata</th>
+                                            <td class="text-center"><?php echo number_format($avgOfTotal,2);?></td>
+                                            <td class="text-center"><?php echo number_format($avgOfavg,2);?></td>
+                                            <td class="text-center"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                            <a href="<?=base_url('dasbor');?>">
+                                <button type="button" class="btn btn-light js-click-ripple-enabled" data-toggle="click-ripple" style="overflow: hidden; position: relative; z-index: 1;"><span class="click-ripple animate" style="height: 87.2656px; width: 87.2656px; top: -21.625px; left: 31.375px;"></span>Kembali Ke Halaman Dasbor</button>
+                            </a>
+                      
+                        
                     </div>
+                    <!-- End Jadwal -->
+                   
                 </div>
                 <!-- END Page Content -->
 
@@ -398,5 +458,16 @@
             webpack is putting everything together at assets/_es6/main/app.js
         -->
         <script src="<?=base_url('assets/js/oneui.app.min.js')?>"></script>
+
+        <!-- Page JS Plugins -->
+        <script src="<?=base_url('assets/js/plugins/datatables/jquery.dataTables.min.js')?>"></script>
+        <script src="<?=base_url('assets/js/plugins/datatables/dataTables.bootstrap4.min.js')?>"></script>
+        <script src="<?=base_url('assets/js/plugins/select2/js/select2.full.min.js');?>"></script>
+
+        <!-- Page JS Code -->
+        <script src="<?=base_url('assets/js/pages/be_tables_datatables.min.js')?>"></script>
+        
+        
+
     </body>
 </html>
