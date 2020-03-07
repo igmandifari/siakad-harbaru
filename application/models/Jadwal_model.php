@@ -34,6 +34,11 @@ class Jadwal_model extends CI_Model{
                 'field' => 'jadwal_waktu',
                 'label' => 'Waktu',
                 'rules'    => 'required|trim|xss_clean|callback_select_validate',
+            ],
+            [
+                'field' => 'jadwal_tipe_pembelajaran',
+                'label' => 'Tipe Pembelajaran',
+                'rules'    => 'required|trim|xss_clean|callback_select_validate',
             ]
            
         ];
@@ -53,11 +58,6 @@ class Jadwal_model extends CI_Model{
             [
                 'field' => 'tutor_id_other',
                 'label' => 'Tutor',
-                'rules'    => 'required|trim|xss_clean|callback_select_validate',
-            ],
-            [
-                'field' => 'jadwal_tipe_pembelajaran',
-                'label' => 'Tipe Pembelajaran',
                 'rules'    => 'required|trim|xss_clean|callback_select_validate',
             ]
         ];
