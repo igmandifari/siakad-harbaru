@@ -45,9 +45,9 @@
         
           <div class='text-center'>
             <div class="block-content">
-                <h3>Masukan Warga Belajar Kesini...</h3>
-                <p>Kelas        : <?=$kelas["kelas_nama"]?></p>
-                <p>Tahun Ajaran : <?=$kelas["tahunajaran_nama"]?></p>
+                <h3 class="block-title">Masukan Warga Belajar Kesini...</h3>
+                <p class="font-size-sm text-muted">Kelas        : <?=$kelas["kelas_nama"]?></p>
+                <p class="font-size-sm text-muted">Tahun Ajaran : <?=$kelas["tahunajaran_nama"]?></p>
             </div>
           </div>
           <div class="table-responsive">

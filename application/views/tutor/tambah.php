@@ -12,7 +12,7 @@
         <div class="block-header block-header-default">
             <h3 class="block-title"><?=$title;?></h3>
             <div class="block-options">
-                <a href="<?=base_url('wargabelajar');?>">
+                <a href="<?=base_url('tutor');?>">
                     <button type="button" class="btn btn-sm btn-light">
                         Kembali
                     </button>
@@ -36,6 +36,15 @@
             <form action="<?=base_url('tutor/tambah');?>" method="POST" enctype="multipart/form-data">
                 <div class="row push">
                     <div class="col-lg-12">
+                        <div class="form-group">
+                            <label for="rec_nik">Rekomendasi NIK</label>
+                            <div class="col-sm-4">
+                                <div class="custom-control-inline">
+                                    <input id="rec_nik" type="text" class="form-control" value="<?=$rec_nik;?>" disabled>
+                                    <button id="btn-rec-nik-tutor" class="btn btn-sm btn-secondary" type="button">Gunakan</button>
+                                </div>
+                            </div>
+                        </div>
                         <div class="form-group">
                             <label for="tutor_nomor_induk">Nomor Induk</label>
                             <input type="text" class="form-control" id="tutor_nomor_induk" name="tutor_nomor_induk" placeholder="Masukan Nomor Induk">

@@ -62,7 +62,7 @@
                                                     <div class="custom-control-inline">
                                                     <input id="rec_nik" type="text" class="form-control" value="<?=$rec_nik;?>" disabled>
 
-                                                    <button id="btn-rec-nik" class="btn btn-sm btn-secondary">Gunakan</button>
+                                                    <button id="btn-rec-nik" class="btn btn-sm btn-secondary" type="button">Gunakan</button>
                                                 </div>
                                                 </div>
                                                 
@@ -101,7 +101,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="wargabelajar_tanggal_lahir">Tanggal Lahir</label>
-                                                <input type="date" class="js-flatpickr form-control bg-white js-flatpickr-enabled flatpickr-input active" id="wargabelajar_tanggal_lahir" name="wargabelajar_tanggal_lahir">
+                                                <input type="date" class="js-flatpickr form-control bg-white js-flatpickr-enabled flatpickr-input active" id="wargabelajar_tanggal_lahir" name="wargabelajar_tanggal_lahir" max="2003-01-01">
                                             </div>
                                             <div class="form-group">
                                                 <label for="wargabelajar_agama">Agama</label>

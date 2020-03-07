@@ -99,7 +99,8 @@ class Tutor extends CI_Controller
             $this->session->set_flashdata('success', 'Berhasil');
             redirect('tutor');
         }
-        
+        $nik = $tutor->get_nik();
+        $data["rec_nik"] = ($nik['nik'] + 1);         
         $data["title"] = "Tambah Data";
         $data["actor"] = "Tutor";
         $data["tahunajarans"] = $this->Tutor_model->getTahunAjaran();

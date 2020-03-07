@@ -228,5 +228,9 @@
             );
             return $this->db->insert('logs',$data);
         }
+        public function get_nik()
+        {
+            return $this->db->query("SELECT tutor.tutor_nomor_induk as nik FROM tutor ORDER BY tutor.tutor_nomor_induk DESC LIMIT 1")->row_array();
+        }
         
     }

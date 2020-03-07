@@ -181,4 +181,23 @@ class Jadwal_model extends CI_Model{
             );
             return $this->db->insert('logs',$data);
         }
+        public function cek_tatap($tahun,$matpel,$hari,$waktu,$rombel)
+        {
+            $this->db->where('tahunajaran_id',$tahun);
+            $this->db->where('matpel_id',$matpel);
+            $this->db->where('jadwal_hari',$hari);
+            $this->db->where('jadwal_waktu',$waktu);
+            $this->db->where('rombel_id',$rombel);
+
+            return $this->db->get('jadwal')->row_array();
+        }
+        public function cek_mandiri($tahun,$matpel,$rombel)
+        {
+            $this->db->where('jadwal_tipe_pembelajaran','Mandiri');
+            $this->db->where('tahunajaran_id',$tahun);
+            $this->db->where('matpel_id',$matpel);
+            $this->db->where('rombel_id',$rombel);
+
+            return $this->db->get('jadwal')->row_array();
+        }
 }
