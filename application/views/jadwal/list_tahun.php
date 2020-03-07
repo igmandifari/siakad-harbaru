@@ -12,9 +12,6 @@
         <div class="block-header block-header-default">
             <h3 class="block-title"><?=$title;?></h3>
             <div class="block-options">
-                <button type="button" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#modal-cetak">
-                    Cetak
-                </button>
                 <a href="<?=base_url();?>">
                     <button type="button" class="btn btn-sm btn-light">
                         Kembali
