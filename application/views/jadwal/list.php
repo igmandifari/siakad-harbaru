@@ -76,20 +76,31 @@
                                                 <td><?=$jadwal->tutor_nama;?></td>
                                                 <td><?=$jadwal->jadwal_waktu;?></td>
                                                 <td class="text-center">
-                                                    <div class="btn-group">
+                                                    <div class="btn-group btn-group-sm btn-group-vertical push" style="vertical-align: middle;" role="group" aria-label="Small Primary First group">
+                                                        <?php if($jadwal->jadwal_tipe_pembelajaran!="Mandiri"){?>
+                                                            <a href="<?=base_url('dasbor/kelas/presensi/').$jadwal->jadwal_id.'/'.$jadwal->tahunajaran_id;?>">
+                                                                <button type="button" class="btn btn-sm btn-success js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Ubah">
+                                                                    Presensi
+                                                                </button>
+                                                            </a>
+                                                        <?php }?>
+                                                        <a href="<?=base_url('dasbor/kelas/nilai/').$jadwal->jadwal_id.'/'.$jadwal->tahunajaran_id;?>">
+                                                            <button type="button" class="btn btn-sm btn-danger js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Ubah">
+                                                                Nilai
+                                                            </button>
+                                                        </a>
+
+     
                                                         <a href="<?=base_url('jadwal/ubah/').$jadwal->tahunajaran_id.'/'.$jadwal->jadwal_id;?>">
                                                             <button type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Ubah">
-                                                                <i class="fa fa-fw fa-pencil-alt"></i>
                                                                 Ubah
                                                             </button>
                                                         </a>
-                                                        
-                                                            <button type="button" class="btn btn-sm btn-warning js-tooltip-enabled push mb-md-0 hapus" data-id="<?=$jadwal->jadwal_id;?>" data-toggle="tooltip" data-original-title="Hapus">
-                                                                <i class="fa fa-fw fa-times"></i>
-                                                                Hapus
-                                                            </button>
-                                                       
+                                                        <button type="button" class="btn btn-sm btn-warning js-tooltip-enabled push mb-md-0 hapus" data-id="<?=$jadwal->jadwal_id;?>" data-toggle="tooltip" data-original-title="Hapus">
+                                                            Hapus
+                                                        </button>
                                                     </div>
+                                                    
                                                 </td>
                                             </tr>
                                         <?php endforeach;?>

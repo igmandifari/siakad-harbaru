@@ -69,6 +69,7 @@
                         <div class="form-group">
                             <label for="tutor_tanggal_lahir">Tanggal Lahir</label>
                             <input type="date" class="js-flatpickr form-control bg-white js-flatpickr-enabled flatpickr-input active" id="tutor_tanggal_lahir" name="tutor_tanggal_lahir">
+                            <small class="form-text text-danger"><?= form_error('tutor_tanggal_lahir'); ?></small>
                         </div>
                         <div class="form-grup">
                             <label for="tutor_tempat_lahir">Tempat Lahir</label>

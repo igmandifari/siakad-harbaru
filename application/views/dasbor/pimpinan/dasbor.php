@@ -20,6 +20,8 @@
         <!-- Stylesheets -->
         <!-- Fonts and OneUI framework -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400italic,600,700%7COpen+Sans:300,400,400italic,600,700">
+        <link rel="stylesheet" href="<?=base_url('assets/js/plugins/datatables/dataTables.bootstrap4.css');?>">
+        <link rel="stylesheet" href="<?=base_url('assets/js/plugins/sweetalert2/sweetalert2.min.css');?>">
         <link rel="stylesheet" id="css-main" href="<?=base_url('assets/css/oneui.min.css')?>">
 
         <!-- You can include a specific file from css/themes/ folder to alter the default color theme of the template. eg: -->
@@ -143,6 +145,12 @@
                             <a class="nav-main-link" href="<?=base_url('dasbor/kelas')?>">
                             <i class="nav-main-link-icon fa fa-door-open"></i>
                                 <span class="nav-main-link-name">Kelas</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="<?=base_url('masukan')?>">
+                            <i class="nav-main-link-icon fab fa-rocketchat ml-1"></i>
+                                <span class="nav-main-link-name">Data Masukan</span>
                             </a>
                         </li>
                         <li class="nav-main-item">
@@ -306,6 +314,45 @@
                         </div>
                     </div>
                     <!-- END Link Blocks -->
+                    <!-- Masukan -->
+                    <div class="row">
+                        <h2 class="content-heading">Data Masukan</h2>
+                        <div class="table-responsive">
+                            <table id="table" class="table table-bordered table-striped table-vcenter js-dataTable-full">
+                                <thead>
+                                    <tr class="text-center">
+                                        <th>NO</th>
+                                        <th>Tanggal</th>
+                                        <th>Nama</th>
+                                        <th>Masukan</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="riwayat-masukan">
+                                    <?php $no=0;foreach($masukans as $masukan):$no++?>
+                                        <tr id="<?=$masukan["masukan_id"];?>">
+                                            <td class="text-center"><?=$no;?></td>
+                                            <td><?=$masukan["created_at"];?></td>
+                                            <td><?=$masukan["wargabelajar_nama"].'<br>'.$masukan["wargabelajar_nomor_induk"];?></td>
+                                            <td><?=$masukan["masukan"];?></td>
+                                            <td class="text-center">
+                                                <button type="button" class="btn btn-warning hapus">
+                                                    <i class="fa fa-fw fa-times"></i> Hapus
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach;?>
+                                </tbody>
+                            </table>
+                             <a href="<?=base_url('masukan');?>">
+                                <button type="button" class="btn btn-large btn-info">
+                                    Yuk, Lihat masukan lebih lengkap!
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- End Masukan -->
+                        
                 </div>
               
                 <!-- END Page Content -->
@@ -356,5 +403,53 @@
             webpack is putting everything together at assets/_es6/main/app.js
         -->
         <script src="<?=base_url('assets/js/oneui.app.min.js')?>"></script>
+         <script src="<?=base_url('assets/js/plugins/datatables/jquery.dataTables.min.js');?>"></script>
+        <script src="<?=base_url('assets/js/plugins/datatables/dataTables.bootstrap4.min.js');?>"></script>
+        <script src="<?=base_url('assets/js/plugins/es6-promise/es6-promise.auto.min.js');?>"></script>
+        <script src="<?=base_url('assets/js/plugins/sweetalert2/sweetalert2.min.js');?>"></script>
+        <script src="<?=base_url('assets/js/pages/be_tables_datatables.min.js');?>"></script>
+        <script type="text/javascript">
+            jQuery(function(){
+              jQuery("#table").on("click",".hapus",function(){
+                       
+                        var id = $(this).parents("tr").attr("id");
+                        Swal.fire({
+                            title:"Peringatan",
+                            text:"Apakah kamu benar ingin menghapus ini?",
+                            type:"warning",
+                            showCancelButton:!0,
+                            customClass:{
+                                confirmButton:"btn btn-danger m-1",
+                                cancelButton:"btn btn-secondary m-1"
+                            },
+                            buttonsStyling:false,
+                            confirmButtonText:"Ya, hapus ini!",
+                            html:!1,
+                            preConfirm:function(Swal){
+                                return new Promise(function(Swal){
+                                    setTimeout(function(){
+                                        Swal()},
+                                        50)}
+                                    )}
+                            }).then(function(n){
+                                n.value?$.ajax({
+                                        url: '<?php echo base_url('rekapmasukan/hapus/');?>'+id,
+                                        type: 'DELETE',
+                                        error: function() {
+                                            Swal.fire("Oops...", "Terjadi kesalahan", "error");
+                                        },success: function(data) {
+                                            $("#"+id).remove();
+                                            Swal.fire(
+                                                "Berhasil",
+                                                "Data berhasil dihapus.",
+                                                "success");
+                                        }}):"cancel"===n.dismiss&&Swal.fire(
+                                        "Dibatalkan",
+                                        "Tenang, data masih ada :)",
+                                        "error")
+                            })
+                });
+          });
+        </script>
     </body>
 </html>

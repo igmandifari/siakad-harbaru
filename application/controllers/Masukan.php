@@ -6,7 +6,7 @@ Class Masukan extends CI_Controller{
 		parent::__construct();
         $url=base_url();
         if($this->session->userdata('MASUK') != TRUE)redirect($url);
-        if($this->session->userdata('level') == 0) redirect("rekapmasukan");
+        if($this->session->userdata('level') == 0 || $this->session->userdata('level') == 2) redirect("rekapmasukan");
         if($this->session->userdata('level') != 1) redirect("dasbor");
         
 		$this->load->model('Masukan_model');

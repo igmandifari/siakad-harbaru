@@ -43,6 +43,12 @@
                     'rules' => 'trim|xss_clean',
                 ],
                 [
+                    'field' => 'tutor_tanggal_lahir',
+                    'label' => 'Tanggal Lahir',
+                    'rules' => 'trim|xss_clean|required',
+                ],
+
+                [
                     'field' => 'tutor_alamat_rtrw',
                     'label' => 'RT/RW',
                     'rules' => 'trim|xss_clean',
@@ -144,6 +150,14 @@
         }
         public function simpan(){
             $this->tutor_id = uniqid();
+            $tanggal_lahir = $this->input->post("tutor_tanggal_lahir");
+            $nama = $this->input->post("tutor_nama");
+            $years = substr($tanggal_lahir, 2,2);
+            $month = substr($tanggal_lahir, 5,2);
+            $date = substr($tanggal_lahir, 8,2);
+            $first_name = strtoupper(substr($nama, 0,1));
+            
+            $password = $first_name.$date.$month.$years; 
             $data= array(
                 'tutor_id'                  => $this->tutor_id,
                 'tutor_nomor_induk'                 => $this->input->post("tutor_nomor_induk"),
@@ -161,7 +175,7 @@
                 'tutor_alamat_kabupaten'    => $this->input->post("tutor_alamat_kabupaten"),
                 'tutor_alamat_provinsi'     => $this->input->post("tutor_alamat_provinsi"),
                 'tutor_alamat_kodepos'      => $this->input->post("tutor_alamat_kodepos"),
-                'tutor_password'            => md5(sha1($this->input->post("tutor_nomor_induk"))),
+                'tutor_password'            => md5(sha1($password)),
                 'tutor_foto'                => $this->_uploadImage()
             );
             return $this->db->insert($this->_table, $data);

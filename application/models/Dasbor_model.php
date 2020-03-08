@@ -168,4 +168,8 @@ class Dasbor_model extends CI_Model {
         {
             return $this->db->query("SELECT * FROM logs ORDER BY times DESC")->result_array();
         }
+        public function get_masukan()
+        {
+            return $this->db->query("SELECT masukan.masukan_id,masukan.masukan,masukan.created_at,masukan.wargabelajar_id,wargabelajar.wargabelajar_nama,wargabelajar.wargabelajar_nomor_induk FROM masukan INNER JOIN wargabelajar ON wargabelajar.wargabelajar_id=masukan.wargabelajar_id ORDER BY masukan.created_at DESC LIMIT 5")->result_array();
+        }
 }

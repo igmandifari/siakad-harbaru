@@ -85,7 +85,7 @@
                                             <div class="form-grup">
                                                 <label class="d-block">Jenis Kelamin</label>
                                                 <div class="custom-control custom-radio custom-control-inline">
-                                                    <input type="radio" class="custom-control-input" id="wargabelajar_jenis_kelamin-1" value="Pria" name="wargabelajar_jenis_kelamin" required>
+                                                    <input type="radio" class="custom-control-input" id="wargabelajar_jenis_kelamin-1" value="Pria" name="wargabelajar_jenis_kelamin">
                                                     <label class="custom-control-label" for="wargabelajar_jenis_kelamin-1">Pria</label>
                                                 </div>
                                                 <div class="custom-control custom-radio custom-control-inline">
@@ -101,7 +101,9 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="wargabelajar_tanggal_lahir">Tanggal Lahir</label>
-                                                <input type="date" class="js-flatpickr form-control bg-white js-flatpickr-enabled flatpickr-input active" id="wargabelajar_tanggal_lahir" name="wargabelajar_tanggal_lahir" max="2003-01-01">
+                                                <input type="date" class="js-flatpickr form-control bg-white js-flatpickr-enabled flatpickr-input active" id="wargabelajar_tanggal_lahir" name="wargabelajar_tanggal_lahir" max="<?php echo $min_year;?>-01-01">
+                                                <small class="form-text text-danger"><?= form_error('wargabelajar_tanggal_lahir'); ?></small>
+
                                             </div>
                                             <div class="form-group">
                                                 <label for="wargabelajar_agama">Agama</label>
