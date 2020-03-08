@@ -177,7 +177,7 @@ class Dasbor_model extends CI_Model {
         {
             $pw = md5(sha1($pw));
             $this->db->where('wargabelajar_id',$id);
-            $this->db->set('wargabelajar_password',$pw)
+            $this->db->set('wargabelajar_password',$pw);
 
             return $this->db->update('wargabelajar');
         }
@@ -185,7 +185,7 @@ class Dasbor_model extends CI_Model {
         {
             $pw = md5(sha1($pw));
             $this->db->where('tutor_id',$id);
-            $this->db->set('tutor_password',$pw)
+            $this->db->set('tutor_password',$pw);
 
             return $this->db->update('tutor');
         }
