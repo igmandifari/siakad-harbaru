@@ -104,7 +104,7 @@ class Dasbor extends CI_Controller
             if($jenis=="nilai"){
                 $data["wargabelajars"]= $model->getWargaBelajar($id);
                 $data["jadwal"]= $model->getKelasAndMatpel($id);
-
+                if(!$data["wargabelajars"]) redirect('dasbor/kelas');
                 $this->load->view('dasbor/pimpinan/nilai',$data,FALSE);
             }elseif($jenis=="presensi"){
                 $idpresensi=$model->getIDPresensi($id);
