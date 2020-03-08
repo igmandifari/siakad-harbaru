@@ -29,8 +29,9 @@ class Dasbor extends CI_Controller
                 $data = $model->getTutors();
                 foreach ($data as $tutor) {
                     $id = $tutor->tutor_id;
-                    $nama = strtoupper(substr($data->tutor_nama,0,1));
-                    $tanggal_lahir = $data->tutor_tanggal_lahir;
+                    $name = $tutor->tutor_nama;
+                    $nama = strtoupper(substr($name,0,1));
+                    $tanggal_lahir = $tutor->tutor_tanggal_lahir;
                     $years = substr($tanggal_lahir, 2,2);
                     $month = substr($tanggal_lahir, 5,2);
                     $date = substr($tanggal_lahir, 8,2);
@@ -38,16 +39,16 @@ class Dasbor extends CI_Controller
                     $password = $nama.$date.$month.$years;
 
                     $update = $model->tutor_pw($id,$password);
-
                     if($update){
                         echo "sukses";
-                    } 
+                    }
                 }
             }elseif ($jenis=="wargabelajar") {
                 $data = $model->getWargabelajars();
                 foreach ($data as $wb) {
-                    $id = $wb->wb_id;
-                    $nama = strtoupper(substr($wb->wargabelajar_nama,0,1));
+                    $id = $wb->wargabelajar_id;
+                    $name = $wb->wargabelajar_nama;
+                    $nama = strtoupper(substr($name,0,1));
                     $tanggal_lahir = $wb->wargabelajar_tanggal_lahir;
                     $years = substr($tanggal_lahir, 2,2);
                     $month = substr($tanggal_lahir, 5,2);
