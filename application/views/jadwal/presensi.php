@@ -17,7 +17,7 @@
                                     </button>
                                 </a>
 
-                                <a href="<?=base_url('dasbor/kelas/')?>">
+                                <a href="<?=base_url('jadwal/matpel_lihat/').$this->uri->segment(5)?>">
                                     <button type="button" class="btn btn-sm btn-light">
                                         Kembali
                                     </button>
@@ -164,7 +164,7 @@
 
                            
                             <div class="col-sm-12 text-center">
-                                <a href="<?=base_url('dasbor/kelas')?>">
+                                <a href="<?=base_url('jadwal/matpel_lihat/').$this->uri->segment(5)?>">
                                     <button type="button" class="btn btn-primary js-click-ripple-enabled" data-toggle="click-ripple" style="overflow: hidden; position: relative; z-index: 1;"><span class="click-ripple animate" style="height: 87.2656px; width: 87.2656px; top: -21.625px; left: 31.375px;"></span>Kembali</button>
                                 </a>
                             </div>

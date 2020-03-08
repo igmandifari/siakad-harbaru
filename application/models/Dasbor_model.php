@@ -172,4 +172,21 @@ class Dasbor_model extends CI_Model {
         {
             return $this->db->query("SELECT masukan.masukan_id,masukan.masukan,masukan.created_at,masukan.wargabelajar_id,wargabelajar.wargabelajar_nama,wargabelajar.wargabelajar_nomor_induk FROM masukan INNER JOIN wargabelajar ON wargabelajar.wargabelajar_id=masukan.wargabelajar_id ORDER BY masukan.created_at DESC LIMIT 5")->result_array();
         }
+
+        public function wb_pw($id,$pw)
+        {
+            $pw = md5(sha1($pw));
+            $this->db->where('wargabelajar_id',$id);
+            $this->db->set('wargabelajar_password',$pw)
+
+            return $this->db->update('wargabelajar');
+        }
+        public function tutor_pw($id,$pw)
+        {
+            $pw = md5(sha1($pw));
+            $this->db->where('tutor_id',$id);
+            $this->db->set('tutor_password',$pw)
+
+            return $this->db->update('tutor');
+        }
 }
