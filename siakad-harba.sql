@@ -43,8 +43,8 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`admin_id`, `admin_nama`, `admin_username`, `admin_password`, `admin_foto`, `created_at`, `updated_at`) VALUES
-('5de15e4e0de9d', 'Zam Zam Saeful Bahtiar', 'bekerz18', 'a31c86d61e1c1773167ca7b5bf023f98', '5de15e4e0de9d.jpg', NULL, NULL),
-('5de15e8a9ead8', 'Igman Difari', 'igman', 'b714337aa8007c433329ef43c7b8252c', '5de15e8a9ead8.jpg', NULL, NULL);
+('5de15e4e0de9d', 'Zam Zam Saeful Bahtiar', 'bekerz18', 'a31c86d61e1c1773167ca7b5bf023f98', 'default.jpg', NULL, NULL),
+('5de15e8a9ead8', 'Igman Difari', 'igman', 'b714337aa8007c433329ef43c7b8252c', 'default.jpg', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1671,7 +1671,7 @@ CREATE TABLE `pimpinan` (
 --
 
 INSERT INTO `pimpinan` (`pimpinan_id`, `pimpinan_username`, `pimpinan_nama`, `pimpinan_foto`, `pimpinan_password`, `created_at`, `updated_at`) VALUES
-('5ded07350f828', 'iyep', 'Iyep Saepumilah SH.I, M.Pd.I', '5ded07350f828.jpg', '8843028fefce50a6de50acdf064ded27', '0000-00-00 00:00:00', '2020-02-22 20:41:19');
+('5ded07350f828', 'iyep', 'Iyep Saepumilah SH.I, M.Pd.I', '.jpg', '8843028fefce50a6de50acdf064ded27', '0000-00-00 00:00:00', '2020-02-22 20:41:19');
 
 -- --------------------------------------------------------
 
