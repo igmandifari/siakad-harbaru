@@ -4,22 +4,6 @@
 <!-- Main Container -->
 <main id="main-container">
 
-<!-- Hero -->
-<div class="bg-body-light">
-    <div class="content content-full">
-        <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
-            <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
-                <ol class="breadcrumb breadcrumb-alt">
-                    <li class="breadcrumb-item"><?=$actor;?></li>
-                    <li class="breadcrumb-item" aria-current="page">
-                        <a class="link-fx" href=""><?=$title;?></a>
-                    </li>
-                </ol>
-            </nav>
-        </div>
-    </div>
-</div>
-<!-- END Hero -->
 
 <!-- Page Content -->
 <div class="content">
@@ -28,9 +12,6 @@
         <div class="block-header block-header-default">
             <h3 class="block-title"><?=$title;?></h3>
             <div class="block-options">
-                <button type="button" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#modal-cetak">
-                    Cetak
-                </button>
                 <a href="<?=base_url();?>">
                     <button type="button" class="btn btn-sm btn-light">
                         Kembali

@@ -36,16 +36,25 @@
                                 <?php endif;?>
                                 <ul class="nav nav-tabs nav-tabs-block" data-toggle="tabs" role="tablist">
                                     <li class="nav-item">
-                                        <a class="nav-link active" href="#tatap-muka">Tatap Muka</a>
+                                        <a class="nav-link active" href="#tatap-muka-tutorial">Tatap Muka dan Tutorial</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#tutorial-mandiri">Tutorial dan Mandiri</a>
+                                        <a class="nav-link" href="#mandiri">Mandiri</a>
                                     </li>
                                 </ul>
 
                                 <div class="block-content tab-content overflow-hidden">
-                                    <div class="tab-pane fade fade-left show active" id="tatap-muka" role="tabpanel">
+                                    <div class="tab-pane fade fade-left show active" id="tatap-muka-tutorial" role="tabpanel">
                                         <form action="<?php echo base_url('jadwal/matpel_tambah/').$this->uri->segment(3);?>" method="post">
+                                            <div class="form-group">
+                                                <label for="jadwal_tipe_pembelajaran">Tipe Pembelajaran</label>
+                                                <select class="js-select2 form-control form-control-lg form-control-alt" id="jadwal_tipe_pembelajaran" name="jadwal_tipe_pembelajaran" data-placeholder="Silahkan Pilih Tipe Pembelajaran">
+                                                    <option></option>
+                                                    <option value="Tutorial">Tutorial</option>
+                                                    <option value="Tatap Muka">Tatap Muka</option>
+                                                </select>
+                                                <small class="form-text text-danger"><?= form_error('jadwal_tipe_pembelajaran'); ?></small>
+                                            </div>
                                             <div class="form-group">
                                                 <label for="jadwal_hari">Hari</label>
                                                 <select class="js-select2 form-control form-control-lg form-control-alt" id="jadwal_hari" name="jadwal_hari" data-placeholder="Silahkan Pilih Hari">
@@ -108,17 +117,8 @@
                                         </div>
                                     </div>
 
-                                    <div class="tab-pane fade fade-right show" id="tutorial-mandiri" role="tabpanel">
+                                    <div class="tab-pane fade fade-right show" id="mandiri" role="tabpanel">
                                         <form action="<?php echo base_url('jadwal/tambah_tutorial_mandiri/'.$this->uri->segment(3))?>" method="post">
-                                            <div class="form-group">
-                                                <label for="jadwal_tipe_pembelajaran">Tipe Pembelajaran</label>
-                                                <select class="js-select2 form-control form-control-lg form-control-alt" id="jadwal_tipe_pembelajaran" name="jadwal_tipe_pembelajaran" data-placeholder="Silahkan Pilih Tipe Pembelajaran">
-                                                    <option></option>
-                                                    <option value="Tutorial">Tutorial</option>
-                                                    <option value="Mandiri">Mandiri</option>
-                                                </select>
-                                                <small class="form-text text-danger"><?= form_error('jadwal_tipe_pembelajaran'); ?></small>
-                                            </div>
                                             <div class="form-group">
                                                 <label for="matpel_id_other">Mata Pelajaran</label>
                                                 <select class="js-select2 form-control form-control-lg form-control-alt" id="matpel_id_other" name="matpel_id_other" data-placeholder="Silahkan Pilih Mata Pelajaran">

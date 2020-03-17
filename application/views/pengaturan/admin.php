@@ -511,7 +511,8 @@
                                                                     NO
                                                                 </th>
                                                                 <th>Tahun Ajaran</th>
-                                                                <th style="width: 30%;">Aksi</th>
+                                                                <th style="width: 30%;">Nilai</th>
+                                                                <th style="width: 30%;">Berjalan</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
@@ -521,8 +522,14 @@
                                                                     <td><?php echo $tahunajaran["tahunajaran_nama"];?></td>
                                                                     <td class="text-center">
                                                                         <div class="custom-control custom-switch mb-1">
-                                                                            <input type="checkbox" class="switch custom-control-input" id="switch-<?php echo $no;?>" name="switch-<?php echo $no;?>" data-id="<?php echo $tahunajaran['tahunajaran_id'];?>" <?php if($tahunajaran['open_nilai']== 1) echo "checked";?>>
+                                                                            <input type="checkbox" class="switch custom-control-input switch-nilai" id="switch-<?php echo $no;?>" name="switch-<?php echo $no;?>" data-id="<?php echo $tahunajaran['tahunajaran_id'];?>" <?php if($tahunajaran['open_nilai']== 1) echo "checked";?>>
                                                                             <label class="custom-control-label" for="switch-<?php echo $no;?>"><?php if($tahunajaran['open_nilai']== 1){ echo "Tutup Nilai";}else{echo "Buka";}?></label>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td class="text-center">
+                                                                        <div class="custom-control custom-switch mb-1">
+                                                                            <input type="radio" class="switch custom-control-input switch-aktif" id="tahunajaran-aktif-<?php echo $no;?>" name="tahunajaran-aktif" data-id="<?php echo $tahunajaran['tahunajaran_id'];?>" <?php if($tahunajaran['is_active']== 1) echo "checked";?>>
+                                                                            <label class="custom-control-label" for="tahunajaran-aktif-<?php echo $no;?>"><?php if($tahunajaran['is_active']== 1){ echo "Aktif";}else{echo "Tidak Aktif";}?></label>
                                                                         </div>
                                                                     </td>
                                                                 </tr>
@@ -646,8 +653,24 @@
         <script src="<?=base_url('assets/js/pages/be_forms_wizard.min.js');?>"></script>
         <script type="text/javascript">
             jQuery(function(){
+
+                jQuery('#pengaturan-nilai').on('click','.switch-aktif',function(){
+                    var id = jQuery(this).data('id');
+
+                    if($(this).prop("checked") == true){
+                        jQuery.ajax({
+                            type:'POST',
+                            url:'<?php echo base_url('pengaturan/set_active');?>',
+                            data:{id:id},
+                            success:function(data){
+                                status();
+                            }
+
+                        })
+                    }
+                });
                 
-                jQuery('#pengaturan-nilai').on('click','.switch',function(){
+                jQuery('#pengaturan-nilai').on('click','.switch-nilai',function(){
                     var id = jQuery(this).data('id');
                     if($(this).prop("checked") == true){
                         jQuery.ajax({

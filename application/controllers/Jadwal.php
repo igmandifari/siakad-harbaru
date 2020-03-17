@@ -71,9 +71,20 @@ class Jadwal extends CI_Controller
         $validasi->set_rules($jadwal->rules());
         
         if($validasi->run()){
-            $jadwal->simpan();
-            $this->session->set_flashdata('success', 'Berhasil Ditambahkan');
+            $hari = $this->input->post("jadwal_hari");
+            $matpel= $this->input->post("matpel_id");
+            $rombel = $this->input->post("rombel_id");
+            $waktu = $this->input->post("jadwal_waktu");
 
+            $cek = $jadwal->cek_tatap($tahun,$matpel,$hari,$waktu,$rombel);
+
+            if(isset($cek)){
+                $this->session->set_flashdata('failed', 'Cek, matpel sudah ada');
+
+            }else{
+                $jadwal->simpan();
+                $this->session->set_flashdata('success', 'Berhasil Ditambahkan');
+            }
             redirect('jadwal/matpel_lihat/'.$tahun);
 
         }
@@ -213,8 +224,16 @@ class Jadwal extends CI_Controller
 
         if($validasi->run()){
             $tahun = $this->uri->segment('3');
-            $jadwal->save_tutorial_mandiri();
-            $this->session->set_flashdata('success', 'Berhasil Ditambahan');
+            $matpel= $this->input->post("matpel_id_other");
+            $rombel = $this->input->post("rombel_id_other");
+            
+            $cek = $jadwal->cek_mandiri($tahun,$matpel,$rombel);
+            if(isset($cek)){
+                $this->session->set_flashdata('failed', 'Cek sudah ada');
+            }else{
+                $jadwal->save_tutorial_mandiri();
+                $this->session->set_flashdata('success', 'Berhasil Ditambahan');
+            }
 
             redirect('jadwal/matpel_lihat/'.$id);
         }else{

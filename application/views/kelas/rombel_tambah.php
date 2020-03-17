@@ -32,12 +32,22 @@
             </div>
         </div>
         <?php endif;?>
+        <?php if ($this->session->flashdata('failed')): ?>
+        <div class="alert alert-danger d-flex align-items-center" role="alert">
+            <div class="flex-00-auto">
+                <i class="fa fa-fw fa-check"></i>
+            </div>
+            <div class="flex-fill ml-3">
+                <p class="mb-0"><?php echo $this->session->flashdata('failed'); ?></p>
+            </div>
+        </div>
+        <?php endif;?>
         
           <div class='text-center'>
             <div class="block-content">
-                <h3>Masukan Warga Belajar Kesini...</h3>
-                <p>Kelas        : <?=$kelas["kelas_nama"]?></p>
-                <p>Tahun Ajaran : <?=$kelas["tahunajaran_nama"]?></p>
+                <h3 class="block-title">Masukan Warga Belajar Kesini...</h3>
+                <p class="font-size-sm text-muted">Kelas        : <?=$kelas["kelas_nama"]?></p>
+                <p class="font-size-sm text-muted">Tahun Ajaran : <?=$kelas["tahunajaran_nama"]?></p>
             </div>
           </div>
           <div class="table-responsive">

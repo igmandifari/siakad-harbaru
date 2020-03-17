@@ -111,4 +111,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             );
             return $this->db->insert('logs',$data);
         }
+
+        public function set_active($id)
+        {
+            $this->db->where('tahunajaran_id',$id);
+            $this->db->set('is_active',1);
+
+            return $this->db->update('tahunajaran');
+        }
+
+        public function set_not_active($id)
+        {
+            return $this->db->query("UPDATE tahunajaran SET is_active=0 WHERE tahunajaran_id != '$id'");
+        }
 	}

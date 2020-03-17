@@ -128,6 +128,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                  ['field'    => 'wargabelajar_tempat_lahir',
                  'label'    => 'Tempat Lahir',
                  'rules'    => 'trim|xss_clean'],
+                 ['field'    => 'wargabelajar_tanggal_lahir',
+                 'label'    => 'Tanggal Lahir',
+                 'rules'    => 'trim|xss_clean|required'],
                  ['field'    => 'wargabelajar_agama',
                  'label'    => 'Agama',
                  'rules'    => 'trim|xss_clean'],
@@ -253,6 +256,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                  ['field'    => 'wargabelajar_tempat_lahir',
                  'label'    => 'Tempat Lahir',
                  'rules'    => 'trim|xss_clean'],
+                 ['field'    => 'wargabelajar_tanggal_lahir',
+                 'label'    => 'Tanggal Lahir',
+                 'rules'    => 'trim|xss_clean|required'],
                  ['field'    => 'wargabelajar_agama',
                  'label'    => 'Agama',
                  'rules'    => 'trim|xss_clean'],
@@ -387,6 +393,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         }
         public function simpan(){
             $this->wargabelajar_id = uniqid();
+            $tanggal_lahir = $this->input->post("wargabelajar_tanggal_lahir");
+            $nama = $this->input->post("wargabelajar_nama");
+            $years = substr($tanggal_lahir, 2,2);
+            $month = substr($tanggal_lahir, 5,2);
+            $date = substr($tanggal_lahir, 8,2);
+            $first_name = strtoupper(substr($nama, 0,1));
+            
+            $password = $first_name.$date.$month.$years; 
             $data= array(
                 'wargabelajar_id'                  => $this->wargabelajar_id,
                 'wargabelajar_nomor_induk'         => $this->input->post("wargabelajar_nomor_induk"),
@@ -409,7 +423,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 'wargabelajar_sttb'                => $this->input->post("wargabelajar_sttb"),
                 'wargabelajar_masuk'               => $this->input->post("wargabelajar_masuk"),
                 'wargabelajar_foto'                => $this->_uploadImage(),
-                'wargabelajar_password'            => md5(sha1($this->input->post("wargabelajar_nomor_induk"))),
+                'wargabelajar_password'            => md5(sha1($password)),
                 'tahunajaran_id'                   => $this->input->post("tahunajaran_id"),
                
 
@@ -520,7 +534,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             return $this->db->delete($this->_table, array("wargabelajar_id" => $id));
         }
         public function getTahunAjaran(){
-            return $this->db->get('tahunajaran')->result();
+            return $this->db->query('SELECT * FROM tahunajaran ORDER BY tahunajaran_nama DESC')->result();
         }
         public function getAlls()
         {
@@ -540,5 +554,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 'os'        => $this->agent->platform()
             );
             return $this->db->insert('logs',$data);
+        }
+        public function get_nik()
+        {
+            return $this->db->query("SELECT wargabelajar.wargabelajar_nomor_induk as nik FROM wargabelajar ORDER BY wargabelajar.wargabelajar_nomor_induk DESC LIMIT 1")->row_array();
+        }
+        public function get_tahun_active()
+        {
+            $this->db->where('is_active',1);
+            return $this->db->get('tahunajaran')->row_array();
         }
     }

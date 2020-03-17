@@ -108,7 +108,32 @@ Class Wargabelajar extends CI_Controller
             $this->session->set_flashdata('success', 'Berhasil');
 
             redirect('wargabelajar');
-        } 
+        }
+        $nik = $wargabelajar->get_nik();
+        if(!$nik){
+
+        }else{
+            $get_year = $wargabelajar->get_tahun_active();
+            $year_active = substr($get_year['tahunajaran_nama'], 2,2).substr($get_year['tahunajaran_nama'], 7,2);
+            $year_month = substr($nik['nik'],0,4 );
+
+            if($year_active == $year_month)
+            {
+                $month_number = substr($nik['nik'], 4,5) + 1;
+
+                if(strlen($month_number) !=5){
+                    $month_number = '0'.$month_number;
+                }
+                $rec_nik = $year_active.$month_number;
+            }else{
+                $month = date('m');
+                $rec_nik = $year_active.$month.'001';
+            }
+
+        }
+        $min_age = substr(date('Y-m-d'), 0,4) - 7;
+        $data["min_year"] = $min_age;
+        $data["rec_nik"] = $rec_nik; 
         $data["title"] = "Tambah Data";
         $data["actor"] = "Warga Belajar";
         $data["tahunajaran_all"] = $wargabelajar->getTahunAjaran();

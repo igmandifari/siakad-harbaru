@@ -143,5 +143,12 @@
             );
             return $this->db->insert('logs',$data);
         }
+        public function cekisthere($wb,$rombel)
+        {
+            $this->db->where('rombel_id',$rombel);
+            $this->db->where('wargabelajar_id',$wb);
+
+            return $this->db->get('rombel_details')->row_array();
+        }
 }
     

@@ -45,25 +45,30 @@
         public function cetak($type=null)
         {
             $model = $this->Rekapnilai_model;
-            $tahun = $this->session->userdata('tahunajaran_id');
-            // warga belajar id
-            $wb_id = $this->session->userdata('id');
-            $data['jadwals'] = $model->getJadwal($wb_id,$tahun);
-            $data['model']=$model;
-            $data['wb_id']=$wb_id;
+            $tahunajaran = $model->get_tahun_ajaran($this->ta_id);
+            if($tahunajaran['open_nilai']==1){
+                $tahun = $this->session->userdata('tahunajaran_id');
+                // warga belajar id
+                $wb_id = $this->session->userdata('id');
+                $data['jadwals'] = $model->getJadwal($wb_id,$tahun);
+                $data['model']=$model;
+                $data['wb_id']=$wb_id;
 
-            if(!isset($type)){
+                if(!isset($type)){
+                    redirect('rekapnilai');
+                }elseif ($type != "xlsx" && $type !="pdf") {
+                    redirect('rekapnilai');
+                }elseif($type=="pdf"){
+                    $style = file_get_contents(base_url('assets/css/presensi.css'));
+                    $cetak = $this->load->view('dasbor/wargabelajar/cetak_rekapnilai',$data,TRUE);
+                    $pdf= new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'Legal-L']);
+                    $pdf->WriteHTML($style,\Mpdf\HTMLParserMode::HEADER_CSS);
+                    $pdf->WriteHtml($cetak,\Mpdf\HTMLParserMode::HTML_BODY);
+                    $pdf->Output('Rekap Nilai '.$this->session->userdata('induk').' Tahun Ajaran '.$this->session->userdata('tahunajaran_nama').'.pdf', 'D');
+                    
+                }
+            }else{
                 redirect('rekapnilai');
-            }elseif ($type != "xlsx" && $type !="pdf") {
-                redirect('rekapnilai');
-            }elseif($type=="pdf"){
-                $style = file_get_contents(base_url('assets/css/presensi.css'));
-                $cetak = $this->load->view('dasbor/wargabelajar/cetak_rekapnilai',$data,TRUE);
-                $pdf= new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'Legal-L']);
-                $pdf->WriteHTML($style,\Mpdf\HTMLParserMode::HEADER_CSS);
-                $pdf->WriteHtml($cetak,\Mpdf\HTMLParserMode::HTML_BODY);
-                $pdf->Output('Rekap Nilai '.$this->session->userdata('induk').' Tahun Ajaran '.$this->session->userdata('tahunajaran_nama').'.pdf', 'D');
-                
             }
         }
 

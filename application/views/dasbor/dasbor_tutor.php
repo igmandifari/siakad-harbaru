@@ -383,7 +383,7 @@
                                                         <td><?=$jadwalmengajar->jadwal_hari?></td>
                                                         <td><?=$jadwalmengajar->jadwal_waktu?></td>
                                                         <td class="text-center">
-                                                            <?php if($jadwalmengajar->jadwal_tipe_pembelajaran == "Tatap Muka"){?>
+                                                            <?php if($jadwalmengajar->jadwal_tipe_pembelajaran == "Tatap Muka" || $jadwalmengajar->jadwal_tipe_pembelajaran == "Tutorial"){?>
                                                                 <a href="<?=base_url('presensi/jadwal/').$jadwalmengajar->jadwal_id;?>">
                                                                     <button type="button" class="btn btn-primary btn-sm">Presensi</button>
                                                                 </a>

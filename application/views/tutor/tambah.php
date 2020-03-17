@@ -12,7 +12,7 @@
         <div class="block-header block-header-default">
             <h3 class="block-title"><?=$title;?></h3>
             <div class="block-options">
-                <a href="<?=base_url('wargabelajar');?>">
+                <a href="<?=base_url('tutor');?>">
                     <button type="button" class="btn btn-sm btn-light">
                         Kembali
                     </button>
@@ -37,6 +37,15 @@
                 <div class="row push">
                     <div class="col-lg-12">
                         <div class="form-group">
+                            <label for="rec_nik">Rekomendasi NIK</label>
+                            <div class="col-sm-4">
+                                <div class="custom-control-inline">
+                                    <input id="rec_nik" type="text" class="form-control" value="<?=$rec_nik;?>" disabled>
+                                    <button id="btn-rec-nik-tutor" class="btn btn-sm btn-secondary" type="button">Gunakan</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label for="tutor_nomor_induk">Nomor Induk</label>
                             <input type="text" class="form-control" id="tutor_nomor_induk" name="tutor_nomor_induk" placeholder="Masukan Nomor Induk">
                             <small class="form-text text-danger"><?= form_error('tutor_nomor_induk'); ?></small>
@@ -60,6 +69,7 @@
                         <div class="form-group">
                             <label for="tutor_tanggal_lahir">Tanggal Lahir</label>
                             <input type="date" class="js-flatpickr form-control bg-white js-flatpickr-enabled flatpickr-input active" id="tutor_tanggal_lahir" name="tutor_tanggal_lahir">
+                            <small class="form-text text-danger"><?= form_error('tutor_tanggal_lahir'); ?></small>
                         </div>
                         <div class="form-grup">
                             <label for="tutor_tempat_lahir">Tempat Lahir</label>

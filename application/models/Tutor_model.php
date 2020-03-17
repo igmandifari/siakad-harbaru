@@ -43,6 +43,57 @@
                     'rules' => 'trim|xss_clean',
                 ],
                 [
+                    'field' => 'tutor_tanggal_lahir',
+                    'label' => 'Tanggal Lahir',
+                    'rules' => 'trim|xss_clean|required',
+                ],
+
+                [
+                    'field' => 'tutor_alamat_rtrw',
+                    'label' => 'RT/RW',
+                    'rules' => 'trim|xss_clean',
+                ],
+                [
+                    'field' => 'tutor_alamat_desa',
+                    'label' => 'Des/Kel',
+                    'rules' => 'trim|xss_clean',
+                ],
+                [
+                    'field' => 'tutor_alamat_kecamatan',
+                    'label' => 'Kecamatan',
+                    'rules' => 'trim|xss_clean',
+                ],
+                [
+                    'field' => 'tutor_alamat_kabupaten',
+                    'label' => 'Kota/Kabupaten',
+                    'rules' => 'trim|xss_clean',
+                ],
+                [
+                    'field' => 'tutor_alamat_provinsi',
+                    'label' => 'Provinsi',
+                    'rules' => 'trim|xss_clean',
+                ],
+                [
+                    'field' => 'tutor_alamat_kodepos',
+                    'label' => 'Kode POS',
+                    'rules' => 'trim|numeric|xss_clean',
+                ]
+            ];
+        }
+        public function rules2()
+        {
+            return[
+                [
+                    'field' => 'tutor_nama',
+                    'label' => 'Nama',
+                    'rules' => 'required|trim|xss_clean',
+                ],
+                [
+                    'field' => 'tutor_tempat_lahir',
+                    'label' => 'Tempat Lahir',
+                    'rules' => 'trim|xss_clean',
+                ],
+                [
                     'field' => 'tutor_alamat_rtrw',
                     'label' => 'RT/RW',
                     'rules' => 'trim|xss_clean',
@@ -99,6 +150,14 @@
         }
         public function simpan(){
             $this->tutor_id = uniqid();
+            $tanggal_lahir = $this->input->post("tutor_tanggal_lahir");
+            $nama = $this->input->post("tutor_nama");
+            $years = substr($tanggal_lahir, 2,2);
+            $month = substr($tanggal_lahir, 5,2);
+            $date = substr($tanggal_lahir, 8,2);
+            $first_name = strtoupper(substr($nama, 0,1));
+            
+            $password = $first_name.$date.$month.$years; 
             $data= array(
                 'tutor_id'                  => $this->tutor_id,
                 'tutor_nomor_induk'                 => $this->input->post("tutor_nomor_induk"),
@@ -116,7 +175,7 @@
                 'tutor_alamat_kabupaten'    => $this->input->post("tutor_alamat_kabupaten"),
                 'tutor_alamat_provinsi'     => $this->input->post("tutor_alamat_provinsi"),
                 'tutor_alamat_kodepos'      => $this->input->post("tutor_alamat_kodepos"),
-                'tutor_password'            => md5(sha1($this->input->post("tutor_nomor_induk"))),
+                'tutor_password'            => md5(sha1($password)),
                 'tutor_foto'                => $this->_uploadImage()
             );
             return $this->db->insert($this->_table, $data);
@@ -137,7 +196,6 @@
                 $foto = $this->input->post("old_image");
             }
             $data= array(
-                'tutor_nomor_induk'         => $this->input->post("tutor_nomor_induk"),
                 'tutor_nama'                => $this->input->post("tutor_nama"),
                 'tutor_jenis_kelamin'       => $this->input->post("tutor_jenis_kelamin"),
                 'tutor_tempat_lahir'        => $this->input->post("tutor_tempat_lahir"),
@@ -183,6 +241,10 @@
                 'os'        => $this->agent->platform()
             );
             return $this->db->insert('logs',$data);
+        }
+        public function get_nik()
+        {
+            return $this->db->query("SELECT tutor.tutor_nomor_induk as nik FROM tutor ORDER BY tutor.tutor_nomor_induk DESC LIMIT 1")->row_array();
         }
         
     }

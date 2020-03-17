@@ -233,8 +233,15 @@ class Kelas extends CI_Controller
         $validasi = $this->form_validation;
         $kelas = $this->Kelas_model;
         if($this->input->method()=="post"){
-            $kelas->rombelsave();
-            $this->session->set_flashdata('success', 'Berhasil');            
+            $rombel= $this->input->post('rombel_id');
+            $wargabelajar = $this->input->post('wargabelajar_id');
+                $cek = $kelas->cekisthere($wargabelajar,$rombel);
+            if(isset($cek)){
+                $this->session->set_flashdata('failed', 'Warga belajar Sudah ada');  
+            }else{
+                $kelas->rombelsave();
+                $this->session->set_flashdata('success', 'Berhasil');            
+            }
             redirect('kelas/rombel_tambah/'.$this->input->post('rombel_id'));
         }
         else{

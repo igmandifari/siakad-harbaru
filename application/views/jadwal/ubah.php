@@ -42,19 +42,10 @@
             </div>
         </div>
         <?php endif;?>
-        <?php if($jadwal["jadwal_tipe_pembelajaran"] != "Tatap Muka"){?>
+        <?php if($jadwal["jadwal_tipe_pembelajaran"] == "Mandiri"){?>
                 <form action="<?php echo site_url('jadwal/update_tutorial_mandiri/').$this->uri->segment(3).'/'.$this->uri->segment(4);?>" method="post">
                 <div class="row push">
                     <div class="col-lg-12">
-                        <div class="form-group">
-                            <label for="jadwal_tipe_pembelajaran">Tipe Pembelajaran</label>
-                            <input type="hidden" name="id" value="<?=$jadwal["jadwal_id"]?>">
-                            <select class="js-select2 form-control form-control-lg form-control-alt" id="jadwal_tipe_pembelajaran" name="jadwal_tipe_pembelajaran" data-placeholder="Silahkan Pilih Tipe Pembelajaran">
-                                <option></option>
-                                <option value="Mandiri" <?php if($jadwal["jadwal_tipe_pembelajaran"]=="Mandiri") echo"selected"?>>Mandiri</option>
-                                <option value="Tutorial"<?php if($jadwal["jadwal_tipe_pembelajaran"]=="Tutorial") echo"selected"?>>Tutorial</option>
-                            </select>
-                        </div> 
                         <div class="form-group">
                             <label for="matpel_id_other">Mata Pelajaran</label>
                             <select class="js-select2 form-control form-control-lg form-control-alt" id="matpel_id_other" name="matpel_id_other" data-placeholder="Silahkan Pilih Mata Pelajaran">
@@ -107,6 +98,15 @@
                 <form action="<?php base_url('jadwal/ubah');?>" method="post">
                 <div class="row push">
                     <div class="col-lg-12">
+                        <div class="form-group">
+                            <label for="jadwal_tipe_pembelajaran">Tipe Pembelajaran</label>
+                            <input type="hidden" name="id" value="<?=$jadwal["jadwal_id"]?>">
+                            <select class="js-select2 form-control form-control-lg form-control-alt" id="jadwal_tipe_pembelajaran" name="jadwal_tipe_pembelajaran" data-placeholder="Silahkan Pilih Tipe Pembelajaran">
+                                <option></option>
+                                <option value="Tatap Muka" <?php if($jadwal["jadwal_tipe_pembelajaran"]=="Tatap Muka") echo"selected"?>>Tatap Muka</option>
+                                <option value="Tutorial"<?php if($jadwal["jadwal_tipe_pembelajaran"]=="Tutorial") echo"selected"?>>Tutorial</option>
+                            </select>
+                        </div> 
                         <div class="form-group">
                             <input type="hidden" name="id" value="<?=$jadwal["jadwal_id"]?>">
                             <label for="jadwal_hari">Hari</label>

@@ -332,4 +332,36 @@ Class Pengaturan extends CI_Controller
 
         echo json_encode($data);
     }
+    public function set_active()
+    {
+        if($this->level != 0)
+            {
+                redirect('pengaturan');
+            }
+        else{
+            if($this->input->method()=="post")
+            {
+                $model = $this->Pengaturan_model;
+                $id = $this->input->post('id');
+
+                $deactivate =  $model->set_not_active($id);
+
+                if($deactivate){
+                    $activate = $model->set_active($id);
+                    if($activate){
+                        $this->session->set_flashdata('success_set_permission','sukses');
+                    }else{
+                        $this->session->set_flashdata('failed_set_permission','gagal');
+                    }
+                }else{
+                    $this->session->set_flashdata('failed_set_permission','gagal');
+                }
+            }
+            else{
+                redirect('pengaturan');
+            }
+        }
+
+
+    }
 }
